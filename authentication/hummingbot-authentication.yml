@@ -1,0 +1,47 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://hummingbot.org/hummingbot-api/, https://github.com/hummingbot/hummingbot-api,
+  https://github.com/hummingbot/gateway — auth captured from the component docs
+  and READMEs. The Gateway OpenAPI declares no securitySchemes, so this profile
+  is documentation-sourced rather than spec-derived.
+description: >-
+  Hummingbot's two server components authenticate differently, and neither uses
+  OAuth or issued API tokens: the Hummingbot API uses HTTP Basic auth, while
+  Gateway protects wallet keys with a startup passphrase and TLS.
+summary:
+  types: [http-basic, passphrase, mtls-optional]
+  hosted_oauth: false
+  api_keys: false
+schemes:
+  - name: HummingbotAPIBasic
+    component: Hummingbot API (FastAPI server, default :8000)
+    type: http
+    scheme: basic
+    detail: >-
+      Username/password set during `make setup` (defaults admin/admin, meant to
+      be changed). Sent as an HTTP Basic Authorization header on every request.
+    docs: https://hummingbot.org/hummingbot-api/
+  - name: GatewayPassphrase
+    component: Gateway (TypeScript DEX middleware, default :15888)
+    type: passphrase
+    detail: >-
+      Gateway is started with `--passphrase=<PASSPHRASE>`; the passphrase encrypts
+      the wallet key store. There is no per-request API token — access control is
+      network isolation plus the encrypted wallet. Production mode requires TLS
+      certificates (HTTPS); `--dev` runs unencrypted HTTP for local use.
+    docs: https://hummingbot.org/gateway/
+  - name: GatewayTLS
+    component: Gateway (production mode)
+    type: mutualTLS
+    optional: true
+    detail: >-
+      In production Gateway serves HTTPS with TLS certificates; client certs can
+      be used to restrict access to the Gateway host.
+    docs: https://hummingbot.org/gateway/
+exchange_credentials:
+  note: >-
+    Individual CEX/DEX connectors require the user's own exchange API keys
+    (entered via the Hummingbot client `connect` command or stored per-account
+    via the API `add_credential`). These are the end user's exchange keys, not a
+    Hummingbot-issued credential.

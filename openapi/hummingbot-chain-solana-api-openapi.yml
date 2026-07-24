@@ -1,0 +1,361 @@
+openapi: 3.0.3
+info:
+  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /chain/solana API
+  description: API endpoints for interacting with DEXs and blockchains
+  version: dev-2.11.0
+servers:
+- url: http://localhost:15888
+tags:
+- name: /chain/solana
+  description: Solana and SVM-based chain endpoints
+paths:
+  /chains/solana/status:
+    get:
+      tags:
+      - /chain/solana
+      description: Get Solana network status
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: The Solana network to use
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  chain:
+                    type: string
+                  network:
+                    type: string
+                  rpcUrl:
+                    type: string
+                  rpcProvider:
+                    type: string
+                  currentBlockNumber:
+                    type: number
+                  nativeCurrency:
+                    type: string
+                  swapProvider:
+                    type: string
+                required:
+                - chain
+                - network
+                - rpcUrl
+                - rpcProvider
+                - currentBlockNumber
+                - nativeCurrency
+                - swapProvider
+  /chains/solana/estimate-gas:
+    get:
+      tags:
+      - /chain/solana
+      description: Estimate gas prices for Solana transactions
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: The Solana network to use
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  feePerComputeUnit:
+                    type: number
+                  denomination:
+                    type: string
+                  computeUnits:
+                    type: number
+                  feeAsset:
+                    type: string
+                  fee:
+                    type: number
+                  timestamp:
+                    type: number
+                  gasType:
+                    type: string
+                  maxFeePerGas:
+                    type: number
+                  maxPriorityFeePerGas:
+                    type: number
+                required:
+                - feePerComputeUnit
+                - denomination
+                - computeUnits
+                - feeAsset
+                - fee
+                - timestamp
+  /chains/solana/balances:
+    post:
+      tags:
+      - /chain/solana
+      description: Get token balances for a Solana address. Only returns tokens in the network's token list. If no tokens specified or empty array provided, returns non-zero balances for tokens from the token list that are found in the wallet (includes SOL even if zero). If specific tokens are requested, returns those exact tokens with their balances, including zeros.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: The Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                address:
+                  description: Solana wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                tokens:
+                  description: A list of token symbols (SOL, USDC, BONK) from the network's token list. Only tokens in the token list will be returned. An empty array is treated the same as if the parameter was not provided, returning only non-zero balances (with the exception of SOL).
+                  type: array
+                  items:
+                    type: string
+                  example:
+                  - SOL
+                  - USDC
+                  - BONK
+      responses:
+        '200':
+          description: Token balances for the specified address (only tokens in token list)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  balances:
+                    type: object
+                    additionalProperties:
+                      type: number
+                required:
+                - balances
+                description: Token balances for the specified address (only tokens in token list)
+              example:
+                balances:
+                  SOL: 1.5
+                  USDC: 100
+                  BONK: 50000
+  /chains/solana/poll:
+    post:
+      tags:
+      - /chain/solana
+      description: Poll for the status of a Solana transaction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: The Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                signature:
+                  description: Transaction signature to poll
+                  type: string
+                  example: 55ukR6VCt1sQFMC8Nyeo51R1SMaTzUC7jikmkEJ2jjkQNdqBxXHraH7vaoaNmf8rX4Y55EXAj8XXoyzvvsrQqWZa
+                tokens:
+                  description: Tokens to track balance changes for
+                  type: array
+                  items:
+                    type: string
+                  example:
+                  - SOL
+                  - USDC
+                  - BONK
+                walletAddress:
+                  description: Wallet address to track balance changes for
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+              required:
+              - signature
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  currentBlock:
+                    type: number
+                  signature:
+                    type: string
+                  txBlock:
+                    anyOf:
+                    - type: number
+                    - type: 'null'
+                  txStatus:
+                    type: number
+                  fee:
+                    anyOf:
+                    - type: number
+                    - type: 'null'
+                  tokenBalanceChanges:
+                    description: Dictionary of token balance changes keyed by token input value (symbol or address)
+                    type: object
+                    additionalProperties:
+                      type: number
+                  txData:
+                    anyOf:
+                    - type: object
+                      additionalProperties: {}
+                    - type: 'null'
+                  error:
+                    type: string
+                required:
+                - currentBlock
+                - signature
+                - txBlock
+                - txStatus
+                - fee
+                - txData
+  /chains/solana/wrap:
+    post:
+      tags:
+      - /chain/solana
+      description: Wrap SOL to WSOL (Wrapped SOL)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: The Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                address:
+                  description: Solana wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                amount:
+                  description: The amount of SOL to wrap (in SOL, not lamports)
+                  type: string
+                  example: '1.0'
+              required:
+              - amount
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: string
+                      amount:
+                        type: string
+                      wrappedAddress:
+                        type: string
+                      nativeToken:
+                        type: string
+                      wrappedToken:
+                        type: string
+                    required:
+                    - fee
+                    - amount
+                    - wrappedAddress
+                    - nativeToken
+                    - wrappedToken
+                required:
+                - signature
+                - status
+  /chains/solana/unwrap:
+    post:
+      tags:
+      - /chain/solana
+      description: 'Unwrap WSOL to SOL. Note: This closes the entire WSOL account, returning all WSOL as SOL.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: The Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                address:
+                  description: Solana wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                amount:
+                  description: The amount of WSOL to unwrap (in SOL, not lamports). If not provided, unwraps all WSOL.
+                  type: string
+                  example: '1.0'
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: string
+                      amount:
+                        type: string
+                      wrappedAddress:
+                        type: string
+                      nativeToken:
+                        type: string
+                      wrappedToken:
+                        type: string
+                    required:
+                    - fee
+                    - amount
+                    - wrappedAddress
+                    - nativeToken
+                    - wrappedToken
+                required:
+                - signature
+                - status

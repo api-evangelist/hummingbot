@@ -1,0 +1,1382 @@
+openapi: 3.0.3
+info:
+  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/raydium API
+  description: API endpoints for interacting with DEXs and blockchains
+  version: dev-2.11.0
+servers:
+- url: http://localhost:15888
+tags:
+- name: /connector/raydium
+  description: Raydium connector endpoints
+paths:
+  /connectors/raydium/amm/pool-info:
+    get:
+      tags:
+      - /connector/raydium
+      description: Get AMM pool information from Raydium
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: 58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2
+        in: query
+        name: poolAddress
+        required: true
+        description: Raydium AMM pool address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                  baseTokenAddress:
+                    type: string
+                  quoteTokenAddress:
+                    type: string
+                  feePct:
+                    type: number
+                  price:
+                    type: number
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                required:
+                - address
+                - baseTokenAddress
+                - quoteTokenAddress
+                - feePct
+                - price
+                - baseTokenAmount
+                - quoteTokenAmount
+  /connectors/raydium/amm/position-info:
+    get:
+      tags:
+      - /connector/raydium
+      description: Get info about a Raydium AMM position
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: 58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2
+        in: query
+        name: poolAddress
+        required: true
+        description: Raydium AMM pool address
+      - schema:
+          default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+          type: string
+        in: query
+        name: walletAddress
+        required: false
+        description: Solana wallet address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  poolAddress:
+                    type: string
+                  walletAddress:
+                    type: string
+                  baseTokenAddress:
+                    type: string
+                  quoteTokenAddress:
+                    type: string
+                  lpTokenAmount:
+                    type: number
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  price:
+                    type: number
+                required:
+                - poolAddress
+                - walletAddress
+                - baseTokenAddress
+                - quoteTokenAddress
+                - lpTokenAmount
+                - baseTokenAmount
+                - quoteTokenAmount
+                - price
+  /connectors/raydium/amm/quote-liquidity:
+    get:
+      tags:
+      - /connector/raydium
+      description: Quote amounts for a new Raydium AMM liquidity position
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: 58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2
+        in: query
+        name: poolAddress
+        required: true
+        description: Raydium AMM pool address
+      - schema:
+          type: number
+        example: 0.01
+        in: query
+        name: baseTokenAmount
+        required: true
+        description: Amount of base token to add
+      - schema:
+          type: number
+        example: 2
+        in: query
+        name: quoteTokenAmount
+        required: true
+        description: Amount of quote token to add
+      - schema:
+          minimum: 0
+          maximum: 100
+          default: 2
+          type: number
+        example: 2
+        in: query
+        name: slippagePct
+        required: false
+        description: Maximum acceptable slippage percentage
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  baseLimited:
+                    type: boolean
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  baseTokenAmountMax:
+                    type: number
+                  quoteTokenAmountMax:
+                    type: number
+                required:
+                - baseLimited
+                - baseTokenAmount
+                - quoteTokenAmount
+                - baseTokenAmountMax
+                - quoteTokenAmountMax
+        '500':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /connectors/raydium/amm/quote-swap:
+    get:
+      tags:
+      - /connector/raydium
+      description: Get swap quote for Raydium AMM
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: 58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2
+        in: query
+        name: poolAddress
+        required: false
+        description: AMM pool address (optional - can be looked up from baseToken and quoteToken)
+      - schema:
+          type: string
+        example: SOL
+        in: query
+        name: baseToken
+        required: true
+        description: Token to determine swap direction
+      - schema:
+          type: string
+        example: USDC
+        in: query
+        name: quoteToken
+        required: false
+        description: The other token in the pair (optional - required if poolAddress not provided)
+      - schema:
+          type: number
+        example: 0.01
+        in: query
+        name: amount
+        required: true
+        description: Amount to swap
+      - schema:
+          enum:
+          - BUY
+          - SELL
+          default: SELL
+          type: string
+        in: query
+        name: side
+        required: true
+        description: Trade direction
+      - schema:
+          minimum: 0
+          maximum: 100
+          default: 2
+          type: number
+        example: 2
+        in: query
+        name: slippagePct
+        required: false
+        description: Maximum acceptable slippage percentage
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  poolAddress:
+                    type: string
+                  tokenIn:
+                    type: string
+                  tokenOut:
+                    type: string
+                  amountIn:
+                    type: number
+                  amountOut:
+                    type: number
+                  price:
+                    type: number
+                  slippagePct:
+                    type: number
+                  minAmountOut:
+                    type: number
+                  maxAmountIn:
+                    type: number
+                  priceImpactPct:
+                    type: number
+                required:
+                - poolAddress
+                - tokenIn
+                - tokenOut
+                - amountIn
+                - amountOut
+                - price
+                - minAmountOut
+                - maxAmountIn
+                - priceImpactPct
+  /connectors/raydium/amm/execute-swap:
+    post:
+      tags:
+      - /connector/raydium
+      description: Execute a swap on Raydium AMM or CPMM
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                walletAddress:
+                  type: string
+                  example: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                network:
+                  type: string
+                  default: mainnet-beta
+                poolAddress:
+                  type: string
+                  example: ''
+                baseToken:
+                  type: string
+                  example: SOL
+                quoteToken:
+                  type: string
+                  example: USDC
+                amount:
+                  type: number
+                  example: 0.01
+                side:
+                  type: string
+                  example: SELL
+                slippagePct:
+                  type: number
+                  example: 1
+              required:
+              - baseToken
+              - amount
+              - side
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      tokenIn:
+                        type: string
+                      tokenOut:
+                        type: string
+                      amountIn:
+                        type: number
+                      amountOut:
+                        type: number
+                      fee:
+                        type: number
+                      baseTokenBalanceChange:
+                        type: number
+                      quoteTokenBalanceChange:
+                        type: number
+                    required:
+                    - tokenIn
+                    - tokenOut
+                    - amountIn
+                    - amountOut
+                    - fee
+                    - baseTokenBalanceChange
+                    - quoteTokenBalanceChange
+                required:
+                - signature
+                - status
+  /connectors/raydium/amm/add-liquidity:
+    post:
+      tags:
+      - /connector/raydium
+      description: Add liquidity to a Raydium AMM/CPMM pool
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                poolAddress:
+                  description: Raydium AMM pool address
+                  type: string
+                  example: 58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2
+                baseTokenAmount:
+                  description: Amount of base token to add
+                  type: number
+                  example: 0.01
+                quoteTokenAmount:
+                  description: Amount of quote token to add
+                  type: number
+                  example: 2
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 2
+                  type: number
+                  example: 2
+              required:
+              - poolAddress
+              - baseTokenAmount
+              - quoteTokenAmount
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseTokenAmountAdded:
+                        type: number
+                      quoteTokenAmountAdded:
+                        type: number
+                    required:
+                    - fee
+                    - baseTokenAmountAdded
+                    - quoteTokenAmountAdded
+                required:
+                - signature
+                - status
+  /connectors/raydium/amm/remove-liquidity:
+    post:
+      tags:
+      - /connector/raydium
+      description: Remove liquidity from a Raydium AMM/CPMM pool
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                poolAddress:
+                  description: Raydium AMM pool address
+                  type: string
+                  example: 58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2
+                percentageToRemove:
+                  minimum: 0
+                  maximum: 100
+                  description: Percentage of liquidity to remove
+                  type: number
+                  example: 100
+              required:
+              - poolAddress
+              - percentageToRemove
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseTokenAmountRemoved:
+                        type: number
+                      quoteTokenAmountRemoved:
+                        type: number
+                    required:
+                    - fee
+                    - baseTokenAmountRemoved
+                    - quoteTokenAmountRemoved
+                required:
+                - signature
+                - status
+  /connectors/raydium/clmm/pool-info:
+    get:
+      tags:
+      - /connector/raydium
+      description: Get CLMM pool information from Raydium
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: 3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv
+        in: query
+        name: poolAddress
+        required: true
+        description: Raydium CLMM pool address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                  baseTokenAddress:
+                    type: string
+                  quoteTokenAddress:
+                    type: string
+                  binStep:
+                    type: number
+                  feePct:
+                    type: number
+                  price:
+                    type: number
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  activeBinId:
+                    type: number
+                required:
+                - address
+                - baseTokenAddress
+                - quoteTokenAddress
+                - feePct
+                - price
+                - baseTokenAmount
+                - quoteTokenAmount
+                - activeBinId
+  /connectors/raydium/clmm/positions-owned:
+    get:
+      tags:
+      - /connector/raydium
+      description: Retrieve all positions owned by a user's wallet across all Raydium CLMM pools
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+        in: query
+        name: walletAddress
+        required: true
+        description: Solana wallet address to check for positions
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    address:
+                      type: string
+                    poolAddress:
+                      type: string
+                    baseTokenAddress:
+                      type: string
+                    quoteTokenAddress:
+                      type: string
+                    baseTokenAmount:
+                      type: number
+                    quoteTokenAmount:
+                      type: number
+                    baseFeeAmount:
+                      type: number
+                    quoteFeeAmount:
+                      type: number
+                    lowerBinId:
+                      type: number
+                    upperBinId:
+                      type: number
+                    lowerPrice:
+                      type: number
+                    upperPrice:
+                      type: number
+                    price:
+                      type: number
+                    rewardTokenAddress:
+                      type: string
+                    rewardAmount:
+                      type: number
+                  required:
+                  - address
+                  - poolAddress
+                  - baseTokenAddress
+                  - quoteTokenAddress
+                  - baseTokenAmount
+                  - quoteTokenAmount
+                  - baseFeeAmount
+                  - quoteFeeAmount
+                  - lowerBinId
+                  - upperBinId
+                  - lowerPrice
+                  - upperPrice
+                  - price
+  /connectors/raydium/clmm/position-info:
+    get:
+      tags:
+      - /connector/raydium
+      description: Get info about a Raydium CLMM position
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: <sample-position-address>
+        in: query
+        name: positionAddress
+        required: true
+        description: Position NFT address
+      - schema:
+          default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+          type: string
+        in: query
+        name: walletAddress
+        required: false
+        description: Solana wallet address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                  poolAddress:
+                    type: string
+                  baseTokenAddress:
+                    type: string
+                  quoteTokenAddress:
+                    type: string
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  baseFeeAmount:
+                    type: number
+                  quoteFeeAmount:
+                    type: number
+                  lowerBinId:
+                    type: number
+                  upperBinId:
+                    type: number
+                  lowerPrice:
+                    type: number
+                  upperPrice:
+                    type: number
+                  price:
+                    type: number
+                  rewardTokenAddress:
+                    type: string
+                  rewardAmount:
+                    type: number
+                required:
+                - address
+                - poolAddress
+                - baseTokenAddress
+                - quoteTokenAddress
+                - baseTokenAmount
+                - quoteTokenAmount
+                - baseFeeAmount
+                - quoteFeeAmount
+                - lowerBinId
+                - upperBinId
+                - lowerPrice
+                - upperPrice
+                - price
+  /connectors/raydium/clmm/quote-position:
+    get:
+      tags:
+      - /connector/raydium
+      description: Quote amounts for a new Raydium CLMM position
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: number
+        example: 100
+        in: query
+        name: lowerPrice
+        required: true
+        description: Lower price bound for the position
+      - schema:
+          type: number
+        example: 300
+        in: query
+        name: upperPrice
+        required: true
+        description: Upper price bound for the position
+      - schema:
+          type: string
+        example: 3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv
+        in: query
+        name: poolAddress
+        required: true
+        description: Raydium CLMM pool address
+      - schema:
+          type: number
+        example: 0.01
+        in: query
+        name: baseTokenAmount
+        required: false
+        description: Amount of base token to deposit
+      - schema:
+          type: number
+        example: 2
+        in: query
+        name: quoteTokenAmount
+        required: false
+        description: Amount of quote token to deposit
+      - schema:
+          minimum: 0
+          maximum: 100
+          default: 2
+          type: number
+        example: 2
+        in: query
+        name: slippagePct
+        required: false
+        description: Maximum acceptable slippage percentage
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  baseLimited:
+                    type: boolean
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  baseTokenAmountMax:
+                    type: number
+                  quoteTokenAmountMax:
+                    type: number
+                  liquidity: {}
+                required:
+                - baseLimited
+                - baseTokenAmount
+                - quoteTokenAmount
+                - baseTokenAmountMax
+                - quoteTokenAmountMax
+  /connectors/raydium/clmm/quote-swap:
+    get:
+      tags:
+      - /connector/raydium
+      description: Get swap quote for Raydium CLMM
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: 3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv
+        in: query
+        name: poolAddress
+        required: false
+        description: CLMM pool address (optional - can be looked up from tokens)
+      - schema:
+          type: string
+        example: SOL
+        in: query
+        name: baseToken
+        required: true
+        description: Token to determine swap direction
+      - schema:
+          type: string
+        example: USDC
+        in: query
+        name: quoteToken
+        required: false
+        description: The other token in the pair
+      - schema:
+          type: number
+        example: 0.01
+        in: query
+        name: amount
+        required: true
+        description: Amount to swap
+      - schema:
+          enum:
+          - BUY
+          - SELL
+          default: SELL
+          type: string
+        in: query
+        name: side
+        required: true
+        description: Trade direction
+      - schema:
+          minimum: 0
+          maximum: 100
+          default: 2
+          type: number
+        example: 2
+        in: query
+        name: slippagePct
+        required: false
+        description: Maximum acceptable slippage percentage
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  poolAddress:
+                    type: string
+                  tokenIn:
+                    type: string
+                  tokenOut:
+                    type: string
+                  amountIn:
+                    type: number
+                  amountOut:
+                    type: number
+                  price:
+                    type: number
+                  slippagePct:
+                    type: number
+                  minAmountOut:
+                    type: number
+                  maxAmountIn:
+                    type: number
+                  priceImpactPct:
+                    type: number
+                required:
+                - poolAddress
+                - tokenIn
+                - tokenOut
+                - amountIn
+                - amountOut
+                - price
+                - minAmountOut
+                - maxAmountIn
+                - priceImpactPct
+  /connectors/raydium/clmm/execute-swap:
+    post:
+      tags:
+      - /connector/raydium
+      description: Execute a swap on Raydium CLMM
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                walletAddress:
+                  description: Solana wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                  example: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                poolAddress:
+                  description: CLMM pool address (optional)
+                  type: string
+                  example: 3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv
+                baseToken:
+                  description: Base token symbol or address
+                  type: string
+                  example: SOL
+                quoteToken:
+                  description: Quote token symbol or address
+                  type: string
+                  example: USDC
+                amount:
+                  description: Amount to swap
+                  type: number
+                  example: 0.01
+                side:
+                  description: Trade direction
+                  enum:
+                  - BUY
+                  - SELL
+                  default: SELL
+                  type: string
+                  example: SELL
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 2
+                  type: number
+                  example: 2
+              required:
+              - baseToken
+              - amount
+              - side
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      tokenIn:
+                        type: string
+                      tokenOut:
+                        type: string
+                      amountIn:
+                        type: number
+                      amountOut:
+                        type: number
+                      fee:
+                        type: number
+                      baseTokenBalanceChange:
+                        type: number
+                      quoteTokenBalanceChange:
+                        type: number
+                    required:
+                    - tokenIn
+                    - tokenOut
+                    - amountIn
+                    - amountOut
+                    - fee
+                    - baseTokenBalanceChange
+                    - quoteTokenBalanceChange
+                required:
+                - signature
+                - status
+  /connectors/raydium/clmm/open-position:
+    post:
+      tags:
+      - /connector/raydium
+      description: Open a new Raydium CLMM position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                lowerPrice:
+                  description: Lower price bound for the position
+                  type: number
+                  example: 100
+                upperPrice:
+                  description: Upper price bound for the position
+                  type: number
+                  example: 300
+                poolAddress:
+                  description: Raydium CLMM pool address
+                  type: string
+                  example: 3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv
+                baseTokenAmount:
+                  description: Amount of base token to deposit
+                  type: number
+                  example: 0.01
+                quoteTokenAmount:
+                  description: Amount of quote token to deposit
+                  type: number
+                  example: 2
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 2
+                  type: number
+                  example: 2
+              required:
+              - lowerPrice
+              - upperPrice
+              - poolAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      positionAddress:
+                        type: string
+                      positionRent:
+                        type: number
+                      baseTokenAmountAdded:
+                        type: number
+                      quoteTokenAmountAdded:
+                        type: number
+                    required:
+                    - fee
+                    - positionAddress
+                    - positionRent
+                    - baseTokenAmountAdded
+                    - quoteTokenAmountAdded
+                required:
+                - signature
+                - status
+  /connectors/raydium/clmm/add-liquidity:
+    post:
+      tags:
+      - /connector/raydium
+      description: Add liquidity to existing Raydium CLMM position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                positionAddress:
+                  description: Position NFT address
+                  type: string
+                  example: <sample-position-address>
+                baseTokenAmount:
+                  description: Amount of base token to add
+                  type: number
+                  example: 0.01
+                quoteTokenAmount:
+                  description: Amount of quote token to add
+                  type: number
+                  example: 2
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 2
+                  type: number
+                  example: 2
+              required:
+              - positionAddress
+              - baseTokenAmount
+              - quoteTokenAmount
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseTokenAmountAdded:
+                        type: number
+                      quoteTokenAmountAdded:
+                        type: number
+                    required:
+                    - fee
+                    - baseTokenAmountAdded
+                    - quoteTokenAmountAdded
+                required:
+                - signature
+                - status
+  /connectors/raydium/clmm/remove-liquidity:
+    post:
+      tags:
+      - /connector/raydium
+      description: Remove liquidity from Raydium CLMM position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                positionAddress:
+                  description: Position NFT address to remove liquidity from
+                  type: string
+                  example: DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263
+                percentageToRemove:
+                  minimum: 0
+                  maximum: 100
+                  description: Percentage of liquidity to remove
+                  type: number
+                  example: 100
+              required:
+              - positionAddress
+              - percentageToRemove
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseTokenAmountRemoved:
+                        type: number
+                      quoteTokenAmountRemoved:
+                        type: number
+                    required:
+                    - fee
+                    - baseTokenAmountRemoved
+                    - quoteTokenAmountRemoved
+                required:
+                - signature
+                - status
+  /connectors/raydium/clmm/collect-fees:
+    post:
+      tags:
+      - /connector/raydium
+      description: Collect fees from a Raydium CLMM position by removing 1% of liquidity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  default: mainnet-beta
+                walletAddress:
+                  type: string
+                  example: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                positionAddress:
+                  type: string
+              required:
+              - positionAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseFeeAmountCollected:
+                        type: number
+                      quoteFeeAmountCollected:
+                        type: number
+                    required:
+                    - fee
+                    - baseFeeAmountCollected
+                    - quoteFeeAmountCollected
+                required:
+                - signature
+                - status
+  /connectors/raydium/clmm/close-position:
+    post:
+      tags:
+      - /connector/raydium
+      description: Close a Raydium CLMM position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                positionAddress:
+                  description: Position NFT address to close
+                  type: string
+                  example: DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263
+              required:
+              - positionAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      positionRentRefunded:
+                        type: number
+                      baseTokenAmountRemoved:
+                        type: number
+                      quoteTokenAmountRemoved:
+                        type: number
+                      baseFeeAmountCollected:
+                        type: number
+                      quoteFeeAmountCollected:
+                        type: number
+                    required:
+                    - fee
+                    - positionRentRefunded
+                    - baseTokenAmountRemoved
+                    - quoteTokenAmountRemoved
+                    - baseFeeAmountCollected
+                    - quoteFeeAmountCollected
+                required:
+                - signature
+                - status

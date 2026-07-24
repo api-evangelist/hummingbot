@@ -1,0 +1,708 @@
+openapi: 3.0.3
+info:
+  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /tokens API
+  description: API endpoints for interacting with DEXs and blockchains
+  version: dev-2.11.0
+servers:
+- url: http://localhost:15888
+tags:
+- name: /tokens
+  description: Token management endpoints
+paths:
+  /tokens/{symbolOrAddress}:
+    get:
+      tags:
+      - /tokens
+      description: Get a specific token by symbol or address
+      parameters:
+      - schema:
+          type: string
+        examples:
+          ethereum:
+            value: ethereum
+          solana:
+            value: solana
+        in: query
+        name: chain
+        required: true
+        description: Blockchain network (e.g., ethereum, solana)
+      - schema:
+          type: string
+        examples:
+          mainnet:
+            value: mainnet
+          mainnet-beta:
+            value: mainnet-beta
+          devnet:
+            value: devnet
+        in: query
+        name: network
+        required: true
+        description: Network name (e.g., mainnet, mainnet-beta)
+      - schema:
+          type: string
+        in: path
+        name: symbolOrAddress
+        required: true
+        description: Token symbol or address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: object
+                    properties:
+                      chainId:
+                        description: The chain ID
+                        type: number
+                        example: 1
+                      name:
+                        description: The full name of the token
+                        type: string
+                        example: USD Coin
+                      symbol:
+                        description: The token symbol
+                        type: string
+                        example: USDC
+                      address:
+                        description: The token contract address
+                        type: string
+                        example: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+                      decimals:
+                        description: The number of decimals the token uses
+                        minimum: 0
+                        maximum: 255
+                        type: number
+                        example: 6
+                      geckoData:
+                        type: object
+                        properties:
+                          coingeckoCoinId:
+                            description: CoinGecko coin ID if available
+                            anyOf:
+                            - type: string
+                            - type: 'null'
+                          imageUrl:
+                            description: Token image URL
+                            type: string
+                          priceUsd:
+                            description: Current price in USD
+                            type: string
+                          volumeUsd24h:
+                            description: 24h trading volume in USD
+                            type: string
+                          marketCapUsd:
+                            description: Market capitalization in USD
+                            type: string
+                          fdvUsd:
+                            description: Fully diluted valuation in USD
+                            type: string
+                          totalSupply:
+                            description: Normalized total supply (human-readable)
+                            type: string
+                          topPools:
+                            description: Array of top pool addresses
+                            type: array
+                            items:
+                              type: string
+                          timestamp:
+                            description: Unix timestamp (ms) when data was fetched
+                            type: number
+                        required:
+                        - coingeckoCoinId
+                        - imageUrl
+                        - priceUsd
+                        - volumeUsd24h
+                        - marketCapUsd
+                        - fdvUsd
+                        - totalSupply
+                        - topPools
+                        - timestamp
+                    required:
+                    - name
+                    - symbol
+                    - address
+                    - decimals
+                  chain:
+                    type: string
+                  network:
+                    type: string
+                required:
+                - token
+                - chain
+                - network
+  /tokens/find/{address}:
+    get:
+      tags:
+      - /tokens
+      description: Get token information with market data from GeckoTerminal by address
+      parameters:
+      - schema:
+          type: string
+        examples:
+          solana-mainnet-beta:
+            value: solana-mainnet-beta
+          ethereum-mainnet:
+            value: ethereum-mainnet
+          ethereum-base:
+            value: ethereum-base
+          ethereum-polygon:
+            value: ethereum-polygon
+        in: query
+        name: chainNetwork
+        required: true
+        description: 'Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)'
+      - schema:
+          type: string
+        examples:
+          So11111111111111111111111111111111111111112:
+            value: So11111111111111111111111111111111111111112
+          '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48':
+            value: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+        in: path
+        name: address
+        required: true
+        description: Token contract address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  chainId:
+                    description: The chain ID
+                    type: number
+                    example: 1
+                  name:
+                    description: The full name of the token
+                    type: string
+                    example: USD Coin
+                  symbol:
+                    description: The token symbol
+                    type: string
+                    example: USDC
+                  address:
+                    description: The token contract address
+                    type: string
+                    example: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+                  decimals:
+                    description: The number of decimals the token uses
+                    minimum: 0
+                    maximum: 255
+                    type: number
+                    example: 6
+                  geckoData:
+                    type: object
+                    allOf:
+                    - type: object
+                      properties:
+                        coingeckoCoinId:
+                          description: CoinGecko coin ID if available
+                          anyOf:
+                          - type: string
+                          - type: 'null'
+                        imageUrl:
+                          description: Token image URL
+                          type: string
+                        priceUsd:
+                          description: Current price in USD
+                          type: string
+                        volumeUsd24h:
+                          description: 24h trading volume in USD
+                          type: string
+                        marketCapUsd:
+                          description: Market capitalization in USD
+                          type: string
+                        fdvUsd:
+                          description: Fully diluted valuation in USD
+                          type: string
+                        totalSupply:
+                          description: Normalized total supply (human-readable)
+                          type: string
+                        topPools:
+                          description: Array of top pool addresses
+                          type: array
+                          items:
+                            type: string
+                        timestamp:
+                          description: Unix timestamp (ms) when data was fetched
+                          type: number
+                      required:
+                      - coingeckoCoinId
+                      - imageUrl
+                      - priceUsd
+                      - volumeUsd24h
+                      - marketCapUsd
+                      - fdvUsd
+                      - totalSupply
+                      - topPools
+                      - timestamp
+                    - type: object
+                      properties:
+                        coingeckoCoinId:
+                          description: CoinGecko coin ID if available
+                          anyOf:
+                          - type: string
+                          - type: 'null'
+                        imageUrl:
+                          description: Token image URL
+                          type: string
+                        priceUsd:
+                          description: Current price in USD
+                          type: string
+                        volumeUsd24h:
+                          description: 24h trading volume in USD
+                          type: string
+                        marketCapUsd:
+                          description: Market capitalization in USD
+                          type: string
+                        fdvUsd:
+                          description: Fully diluted valuation in USD
+                          type: string
+                        totalSupply:
+                          description: Normalized total supply (human-readable)
+                          type: string
+                        topPools:
+                          description: Array of top pool addresses
+                          type: array
+                          items:
+                            type: string
+                        timestamp:
+                          description: Unix timestamp (ms) when data was fetched
+                          type: number
+                      required:
+                      - coingeckoCoinId
+                      - imageUrl
+                      - priceUsd
+                      - volumeUsd24h
+                      - marketCapUsd
+                      - fdvUsd
+                      - totalSupply
+                      - topPools
+                      - timestamp
+                required:
+                - name
+                - symbol
+                - address
+                - decimals
+  /tokens/:
+    get:
+      tags:
+      - /tokens
+      description: List tokens from token lists with optional filtering
+      parameters:
+      - schema:
+          type: string
+        examples:
+          ethereum:
+            value: ethereum
+          solana:
+            value: solana
+        in: query
+        name: chain
+        required: false
+        description: Blockchain network (e.g., ethereum, solana)
+      - schema:
+          type: string
+        examples:
+          mainnet:
+            value: mainnet
+          mainnet-beta:
+            value: mainnet-beta
+          devnet:
+            value: devnet
+        in: query
+        name: network
+        required: false
+        description: Network name (e.g., mainnet, mainnet-beta)
+      - schema:
+          type: string
+        examples:
+          USDC:
+            value: USDC
+          USD:
+            value: USD
+        in: query
+        name: search
+        required: false
+        description: Search term for filtering tokens by symbol or name
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tokens:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chainId:
+                          description: The chain ID
+                          type: number
+                          example: 1
+                        name:
+                          description: The full name of the token
+                          type: string
+                          example: USD Coin
+                        symbol:
+                          description: The token symbol
+                          type: string
+                          example: USDC
+                        address:
+                          description: The token contract address
+                          type: string
+                          example: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+                        decimals:
+                          description: The number of decimals the token uses
+                          minimum: 0
+                          maximum: 255
+                          type: number
+                          example: 6
+                        geckoData:
+                          type: object
+                          properties:
+                            coingeckoCoinId:
+                              description: CoinGecko coin ID if available
+                              anyOf:
+                              - type: string
+                              - type: 'null'
+                            imageUrl:
+                              description: Token image URL
+                              type: string
+                            priceUsd:
+                              description: Current price in USD
+                              type: string
+                            volumeUsd24h:
+                              description: 24h trading volume in USD
+                              type: string
+                            marketCapUsd:
+                              description: Market capitalization in USD
+                              type: string
+                            fdvUsd:
+                              description: Fully diluted valuation in USD
+                              type: string
+                            totalSupply:
+                              description: Normalized total supply (human-readable)
+                              type: string
+                            topPools:
+                              description: Array of top pool addresses
+                              type: array
+                              items:
+                                type: string
+                            timestamp:
+                              description: Unix timestamp (ms) when data was fetched
+                              type: number
+                          required:
+                          - coingeckoCoinId
+                          - imageUrl
+                          - priceUsd
+                          - volumeUsd24h
+                          - marketCapUsd
+                          - fdvUsd
+                          - totalSupply
+                          - topPools
+                          - timestamp
+                      required:
+                      - name
+                      - symbol
+                      - address
+                      - decimals
+                required:
+                - tokens
+    post:
+      tags:
+      - /tokens
+      description: Add a new token to a token list
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                chain:
+                  description: Blockchain network (e.g., ethereum, solana)
+                  type: string
+                  example: ethereum
+                network:
+                  description: Network name (e.g., mainnet, mainnet-beta)
+                  type: string
+                  example: mainnet
+                token:
+                  type: object
+                  properties:
+                    chainId:
+                      description: The chain ID
+                      type: number
+                      example: 1
+                    name:
+                      description: The full name of the token
+                      type: string
+                      example: USD Coin
+                    symbol:
+                      description: The token symbol
+                      type: string
+                      example: USDC
+                    address:
+                      description: The token contract address
+                      type: string
+                      example: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+                    decimals:
+                      description: The number of decimals the token uses
+                      minimum: 0
+                      maximum: 255
+                      type: number
+                      example: 6
+                    geckoData:
+                      type: object
+                      properties:
+                        coingeckoCoinId:
+                          description: CoinGecko coin ID if available
+                          anyOf:
+                          - type: string
+                          - type: 'null'
+                        imageUrl:
+                          description: Token image URL
+                          type: string
+                        priceUsd:
+                          description: Current price in USD
+                          type: string
+                        volumeUsd24h:
+                          description: 24h trading volume in USD
+                          type: string
+                        marketCapUsd:
+                          description: Market capitalization in USD
+                          type: string
+                        fdvUsd:
+                          description: Fully diluted valuation in USD
+                          type: string
+                        totalSupply:
+                          description: Normalized total supply (human-readable)
+                          type: string
+                        topPools:
+                          description: Array of top pool addresses
+                          type: array
+                          items:
+                            type: string
+                        timestamp:
+                          description: Unix timestamp (ms) when data was fetched
+                          type: number
+                      required:
+                      - coingeckoCoinId
+                      - imageUrl
+                      - priceUsd
+                      - volumeUsd24h
+                      - marketCapUsd
+                      - fdvUsd
+                      - totalSupply
+                      - topPools
+                      - timestamp
+                  required:
+                  - name
+                  - symbol
+                  - address
+                  - decimals
+              required:
+              - chain
+              - network
+              - token
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    description: Success message
+                    type: string
+                  requiresRestart:
+                    description: Whether gateway restart is required
+                    default: true
+                    type: boolean
+                required:
+                - message
+                - requiresRestart
+  /tokens/save/{address}:
+    post:
+      tags:
+      - /tokens
+      description: Find token from GeckoTerminal and save it to the token list
+      parameters:
+      - schema:
+          type: string
+        examples:
+          solana-mainnet-beta:
+            value: solana-mainnet-beta
+          ethereum-mainnet:
+            value: ethereum-mainnet
+          ethereum-base:
+            value: ethereum-base
+          ethereum-polygon:
+            value: ethereum-polygon
+        in: query
+        name: chainNetwork
+        required: true
+        description: 'Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)'
+      - schema:
+          type: string
+        examples:
+          So11111111111111111111111111111111111111112:
+            value: So11111111111111111111111111111111111111112
+          '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48':
+            value: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+        in: path
+        name: address
+        required: true
+        description: Token contract address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  token:
+                    type: object
+                    properties:
+                      chainId:
+                        description: The chain ID
+                        type: number
+                        example: 1
+                      name:
+                        description: The full name of the token
+                        type: string
+                        example: USD Coin
+                      symbol:
+                        description: The token symbol
+                        type: string
+                        example: USDC
+                      address:
+                        description: The token contract address
+                        type: string
+                        example: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+                      decimals:
+                        description: The number of decimals the token uses
+                        minimum: 0
+                        maximum: 255
+                        type: number
+                        example: 6
+                      geckoData:
+                        type: object
+                        properties:
+                          coingeckoCoinId:
+                            description: CoinGecko coin ID if available
+                            anyOf:
+                            - type: string
+                            - type: 'null'
+                          imageUrl:
+                            description: Token image URL
+                            type: string
+                          priceUsd:
+                            description: Current price in USD
+                            type: string
+                          volumeUsd24h:
+                            description: 24h trading volume in USD
+                            type: string
+                          marketCapUsd:
+                            description: Market capitalization in USD
+                            type: string
+                          fdvUsd:
+                            description: Fully diluted valuation in USD
+                            type: string
+                          totalSupply:
+                            description: Normalized total supply (human-readable)
+                            type: string
+                          topPools:
+                            description: Array of top pool addresses
+                            type: array
+                            items:
+                              type: string
+                          timestamp:
+                            description: Unix timestamp (ms) when data was fetched
+                            type: number
+                        required:
+                        - coingeckoCoinId
+                        - imageUrl
+                        - priceUsd
+                        - volumeUsd24h
+                        - marketCapUsd
+                        - fdvUsd
+                        - totalSupply
+                        - topPools
+                        - timestamp
+                    required:
+                    - name
+                    - symbol
+                    - address
+                    - decimals
+                required:
+                - message
+                - token
+  /tokens/{address}:
+    delete:
+      tags:
+      - /tokens
+      description: Remove a token from a token list by address
+      parameters:
+      - schema:
+          type: string
+        examples:
+          ethereum:
+            value: ethereum
+          solana:
+            value: solana
+        in: query
+        name: chain
+        required: true
+        description: Blockchain network (e.g., ethereum, solana)
+      - schema:
+          type: string
+        examples:
+          mainnet:
+            value: mainnet
+          mainnet-beta:
+            value: mainnet-beta
+          devnet:
+            value: devnet
+        in: query
+        name: network
+        required: true
+        description: Network name (e.g., mainnet, mainnet-beta)
+      - schema:
+          type: string
+        in: path
+        name: address
+        required: true
+        description: Token address to remove
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    description: Success message
+                    type: string
+                  requiresRestart:
+                    description: Whether gateway restart is required
+                    default: true
+                    type: boolean
+                required:
+                - message
+                - requiresRestart

@@ -1,0 +1,222 @@
+openapi: 3.0.3
+info:
+  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /trading/swap API
+  description: API endpoints for interacting with DEXs and blockchains
+  version: dev-2.11.0
+servers:
+- url: http://localhost:15888
+tags:
+- name: /trading/swap
+  description: Unified cross-chain swap endpoints
+paths:
+  /trading/swap/quote:
+    get:
+      tags:
+      - /trading/swap
+      description: Get a swap quote for any supported chain
+      parameters:
+      - schema:
+          default: solana-mainnet-beta
+          type: string
+        in: query
+        name: chainNetwork
+        required: true
+        description: 'Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet, ethereum-polygon)'
+      - schema:
+          default: jupiter/router
+          type: string
+        in: query
+        name: connector
+        required: false
+        description: 'Connector to use in format: connector/type (e.g., jupiter/router, raydium/amm, uniswap/clmm). If not provided, uses network''s configured swapProvider'
+      - schema:
+          default: SOL
+          type: string
+        in: query
+        name: baseToken
+        required: true
+        description: Symbol or address of the base token
+      - schema:
+          default: USDC
+          type: string
+        in: query
+        name: quoteToken
+        required: true
+        description: Symbol or address of the quote token
+      - schema:
+          default: 1
+          type: number
+        in: query
+        name: amount
+        required: true
+        description: Amount to swap
+      - schema:
+          enum:
+          - BUY
+          - SELL
+          default: SELL
+          type: string
+        in: query
+        name: side
+        required: true
+        description: Side of the swap
+      - schema:
+          default: 1
+          type: number
+        in: query
+        name: slippagePct
+        required: false
+        description: Slippage tolerance percentage (optional)
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tokenIn:
+                    description: Address of the token being swapped from
+                    type: string
+                  tokenOut:
+                    description: Address of the token being swapped to
+                    type: string
+                  amountIn:
+                    description: Amount of tokenIn to be swapped
+                    type: number
+                  amountOut:
+                    description: Expected amount of tokenOut to receive
+                    type: number
+                  price:
+                    description: Exchange rate between tokenIn and tokenOut
+                    type: number
+                  priceImpactPct:
+                    description: Estimated price impact percentage (0-100)
+                    type: number
+                  minAmountOut:
+                    description: Minimum amount of tokenOut that will be accepted
+                    type: number
+                  maxAmountIn:
+                    description: Maximum amount of tokenIn that will be spent
+                    type: number
+                  poolAddress:
+                    description: Pool address for AMM/CLMM swaps
+                    type: string
+                  routePath:
+                    description: Route path for router-based swaps
+                    type: string
+                  slippagePct:
+                    description: Slippage tolerance percentage
+                    type: number
+                required:
+                - tokenIn
+                - tokenOut
+                - amountIn
+                - amountOut
+                - price
+                - priceImpactPct
+                - minAmountOut
+                - maxAmountIn
+  /trading/swap/execute:
+    post:
+      tags:
+      - /trading/swap
+      description: Execute a swap on any supported chain
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                walletAddress:
+                  description: Wallet address to execute swap from
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                chainNetwork:
+                  description: 'Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet, ethereum-polygon)'
+                  default: solana-mainnet-beta
+                  type: string
+                connector:
+                  description: 'Connector to use in format: connector/type (e.g., jupiter/router, raydium/amm, uniswap/clmm). If not provided, uses network''s configured swapProvider'
+                  default: jupiter/router
+                  type: string
+                baseToken:
+                  description: Symbol or address of the base token
+                  default: SOL
+                  type: string
+                quoteToken:
+                  description: Symbol or address of the quote token
+                  default: USDC
+                  type: string
+                amount:
+                  description: Amount to swap
+                  default: 1
+                  type: number
+                side:
+                  description: Side of the swap
+                  enum:
+                  - BUY
+                  - SELL
+                  default: SELL
+                  type: string
+                slippagePct:
+                  description: Slippage tolerance percentage (optional)
+                  default: 1
+                  type: number
+              required:
+              - walletAddress
+              - chainNetwork
+              - baseToken
+              - quoteToken
+              - amount
+              - side
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    description: Transaction signature/hash
+                    type: string
+                  status:
+                    description: 'Transaction status: 0 = PENDING, 1 = CONFIRMED, -1 = FAILED'
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      tokenIn:
+                        description: Address of the token swapped from
+                        type: string
+                      tokenOut:
+                        description: Address of the token swapped to
+                        type: string
+                      amountIn:
+                        description: Actual amount of tokenIn swapped
+                        type: number
+                      amountOut:
+                        description: Actual amount of tokenOut received
+                        type: number
+                      fee:
+                        description: Transaction fee paid
+                        type: number
+                      baseTokenBalanceChange:
+                        description: Change in base token balance (negative for decrease)
+                        type: number
+                      quoteTokenBalanceChange:
+                        description: Change in quote token balance (negative for decrease)
+                        type: number
+                    required:
+                    - tokenIn
+                    - tokenOut
+                    - amountIn
+                    - amountOut
+                    - fee
+                    - baseTokenBalanceChange
+                    - quoteTokenBalanceChange
+                required:
+                - signature
+                - status

@@ -1,0 +1,392 @@
+openapi: 3.0.3
+info:
+  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/jupiter API
+  description: API endpoints for interacting with DEXs and blockchains
+  version: dev-2.11.0
+servers:
+- url: http://localhost:15888
+tags:
+- name: /connector/jupiter
+  description: Jupiter connector endpoints
+paths:
+  /connectors/jupiter/router/quote-swap:
+    get:
+      tags:
+      - /connector/jupiter
+      description: Get an executable swap quote from Jupiter
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: SOL
+        in: query
+        name: baseToken
+        required: true
+        description: Solana token symbol or address to determine swap direction
+      - schema:
+          type: string
+        example: USDC
+        in: query
+        name: quoteToken
+        required: true
+        description: The other Solana token symbol or address in the pair
+      - schema:
+          type: number
+        example: 0.1
+        in: query
+        name: amount
+        required: true
+        description: Amount of base token to trade
+      - schema:
+          enum:
+          - BUY
+          - SELL
+          default: SELL
+          type: string
+        in: query
+        name: side
+        required: true
+        description: Trade direction - BUY means buying base token with quote token, SELL means selling base token for quote token
+      - schema:
+          minimum: 0
+          maximum: 100
+          default: 1
+          type: number
+        in: query
+        name: slippagePct
+        required: false
+        description: Maximum acceptable slippage percentage
+      - schema:
+          default: true
+          type: boolean
+        in: query
+        name: restrictIntermediateTokens
+        required: false
+        description: Restrict routing through highly liquid intermediate tokens only for better price and stability
+      - schema:
+          default: false
+          type: boolean
+        in: query
+        name: onlyDirectRoutes
+        required: false
+        description: Restrict routing to only go through 1 market
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  quoteId:
+                    description: Unique identifier for this quote
+                    type: string
+                  tokenIn:
+                    description: Address of the token being swapped from
+                    type: string
+                  tokenOut:
+                    description: Address of the token being swapped to
+                    type: string
+                  amountIn:
+                    description: Amount of tokenIn to be swapped
+                    type: number
+                  amountOut:
+                    description: Expected amount of tokenOut to receive
+                    type: number
+                  price:
+                    description: Exchange rate between tokenIn and tokenOut
+                    type: number
+                  priceImpactPct:
+                    description: Estimated price impact percentage (0-100)
+                    type: number
+                  minAmountOut:
+                    description: Minimum amount of tokenOut that will be accepted
+                    type: number
+                  maxAmountIn:
+                    description: Maximum amount of tokenIn that will be spent
+                    type: number
+                  quoteResponse:
+                    type: object
+                    properties:
+                      inputMint:
+                        description: Solana mint address of input token
+                        type: string
+                      inAmount:
+                        description: Input amount in token decimals
+                        type: string
+                      outputMint:
+                        description: Solana mint address of output token
+                        type: string
+                      outAmount:
+                        description: Expected output amount in token decimals
+                        type: string
+                      otherAmountThreshold:
+                        description: Minimum output amount based on slippage
+                        type: string
+                      swapMode:
+                        description: Swap mode used (ExactIn or ExactOut)
+                        type: string
+                      slippageBps:
+                        description: Slippage in basis points
+                        type: number
+                      platformFee:
+                        description: Platform fee information if applicable
+                      priceImpactPct:
+                        description: Estimated price impact percentage
+                        type: string
+                      routePlan:
+                        description: Detailed routing plan through various markets
+                        type: array
+                        items: {}
+                      contextSlot:
+                        description: Solana slot used for quote calculation
+                        type: number
+                      timeTaken:
+                        description: Time taken to generate quote in milliseconds
+                        type: number
+                    required:
+                    - inputMint
+                    - inAmount
+                    - outputMint
+                    - outAmount
+                    - otherAmountThreshold
+                    - swapMode
+                    - slippageBps
+                    - priceImpactPct
+                    - routePlan
+                  approximation:
+                    description: Indicates if ExactIn approximation was used when ExactOut route was not available
+                    type: boolean
+                required:
+                - quoteId
+                - tokenIn
+                - tokenOut
+                - amountIn
+                - amountOut
+                - price
+                - priceImpactPct
+                - minAmountOut
+                - maxAmountIn
+                - quoteResponse
+  /connectors/jupiter/router/execute-quote:
+    post:
+      tags:
+      - /connector/jupiter
+      description: Execute a previously fetched quote from Jupiter
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                walletAddress:
+                  description: Solana wallet address that will execute the swap
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                quoteId:
+                  description: ID of the Jupiter quote to execute
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                priorityLevel:
+                  description: Priority level for Solana transaction processing
+                  enum:
+                  - medium
+                  - high
+                  - veryHigh
+                  default: veryHigh
+                  type: string
+                maxLamports:
+                  description: Maximum priority fee in lamports for Solana transaction
+                  default:
+                  - 1000000
+                  type: number
+              required:
+              - quoteId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    description: Transaction signature/hash
+                    type: string
+                  status:
+                    description: 'Transaction status: 0 = PENDING, 1 = CONFIRMED, -1 = FAILED'
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      tokenIn:
+                        description: Address of the token swapped from
+                        type: string
+                      tokenOut:
+                        description: Address of the token swapped to
+                        type: string
+                      amountIn:
+                        description: Actual amount of tokenIn swapped
+                        type: number
+                      amountOut:
+                        description: Actual amount of tokenOut received
+                        type: number
+                      fee:
+                        description: Transaction fee paid
+                        type: number
+                      baseTokenBalanceChange:
+                        description: Change in base token balance (negative for decrease)
+                        type: number
+                      quoteTokenBalanceChange:
+                        description: Change in quote token balance (negative for decrease)
+                        type: number
+                    required:
+                    - tokenIn
+                    - tokenOut
+                    - amountIn
+                    - amountOut
+                    - fee
+                    - baseTokenBalanceChange
+                    - quoteTokenBalanceChange
+                required:
+                - signature
+                - status
+  /connectors/jupiter/router/execute-swap:
+    post:
+      tags:
+      - /connector/jupiter
+      description: Quote and execute a token swap on Jupiter in one step
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                walletAddress:
+                  description: Solana wallet address that will execute the swap
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                baseToken:
+                  description: Solana token symbol or address to determine swap direction
+                  type: string
+                  example: SOL
+                quoteToken:
+                  description: The other Solana token symbol or address in the pair
+                  type: string
+                  example: USDC
+                amount:
+                  description: Amount of base token to trade
+                  type: number
+                  example: 0.1
+                side:
+                  description: Trade direction - BUY means buying base token with quote token, SELL means selling base token for quote token
+                  enum:
+                  - BUY
+                  - SELL
+                  default: SELL
+                  type: string
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 1
+                  type: number
+                restrictIntermediateTokens:
+                  description: Restrict routing through highly liquid intermediate tokens only for better price and stability
+                  default: true
+                  type: boolean
+                onlyDirectRoutes:
+                  description: Restrict routing to only go through 1 market
+                  default: false
+                  type: boolean
+                priorityLevel:
+                  description: Priority level for Solana transaction processing
+                  enum:
+                  - medium
+                  - high
+                  - veryHigh
+                  default: veryHigh
+                  type: string
+                maxLamports:
+                  description: Maximum priority fee in lamports for Solana transaction
+                  default: 1000000
+                  type: number
+              required:
+              - baseToken
+              - quoteToken
+              - amount
+              - side
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    description: Transaction signature/hash
+                    type: string
+                  status:
+                    description: 'Transaction status: 0 = PENDING, 1 = CONFIRMED, -1 = FAILED'
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      tokenIn:
+                        description: Address of the token swapped from
+                        type: string
+                      tokenOut:
+                        description: Address of the token swapped to
+                        type: string
+                      amountIn:
+                        description: Actual amount of tokenIn swapped
+                        type: number
+                      amountOut:
+                        description: Actual amount of tokenOut received
+                        type: number
+                      fee:
+                        description: Transaction fee paid
+                        type: number
+                      baseTokenBalanceChange:
+                        description: Change in base token balance (negative for decrease)
+                        type: number
+                      quoteTokenBalanceChange:
+                        description: Change in quote token balance (negative for decrease)
+                        type: number
+                    required:
+                    - tokenIn
+                    - tokenOut
+                    - amountIn
+                    - amountOut
+                    - fee
+                    - baseTokenBalanceChange
+                    - quoteTokenBalanceChange
+                required:
+                - signature
+                - status

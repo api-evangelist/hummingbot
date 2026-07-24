@@ -1,0 +1,745 @@
+openapi: 3.0.3
+info:
+  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /pools API
+  description: API endpoints for interacting with DEXs and blockchains
+  version: dev-2.11.0
+servers:
+- url: http://localhost:15888
+tags:
+- name: /pools
+  description: Pool management endpoints
+paths:
+  /pools/{tradingPair}:
+    get:
+      tags:
+      - /pools
+      description: Get a specific pool by trading pair
+      parameters:
+      - schema:
+          type: string
+        examples:
+          raydium:
+            value: raydium
+          meteora:
+            value: meteora
+          uniswap:
+            value: uniswap
+          orca:
+            value: orca
+        in: query
+        name: connector
+        required: true
+        description: Connector (raydium, meteora, uniswap, orca)
+      - schema:
+          default: mainnet-beta
+          type: string
+        examples:
+          mainnet-beta:
+            value: mainnet-beta
+          mainnet:
+            value: mainnet
+        in: query
+        name: network
+        required: true
+        description: Network name (mainnet, mainnet-beta, etc)
+      - schema:
+          enum:
+          - amm
+          - clmm
+          type: string
+        examples:
+          amm:
+            value: amm
+          clmm:
+            value: clmm
+        in: query
+        name: type
+        required: true
+        description: Pool type
+      - schema:
+          type: string
+        examples:
+          SOL-USDC:
+            value: SOL-USDC
+          ETH-USDC:
+            value: ETH-USDC
+        in: path
+        name: tradingPair
+        required: true
+        description: Trading pair (e.g., SOL-USDC, ETH-USDC)
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    description: Pool type
+                    enum:
+                    - clmm
+                    - amm
+                    type: string
+                    example: clmm
+                  network:
+                    type: string
+                  baseSymbol:
+                    type: string
+                  quoteSymbol:
+                    type: string
+                  baseTokenAddress:
+                    type: string
+                  quoteTokenAddress:
+                    type: string
+                  feePct:
+                    type: number
+                  address:
+                    type: string
+                required:
+                - type
+                - network
+                - baseSymbol
+                - quoteSymbol
+                - baseTokenAddress
+                - quoteTokenAddress
+                - feePct
+                - address
+        '404':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /pools/find/{address}:
+    get:
+      tags:
+      - /pools
+      description: Get detailed pool information by address from GeckoTerminal
+      parameters:
+      - schema:
+          type: string
+        examples:
+          solana-mainnet-beta:
+            value: solana-mainnet-beta
+          ethereum-mainnet:
+            value: ethereum-mainnet
+          ethereum-base:
+            value: ethereum-base
+          ethereum-polygon:
+            value: ethereum-polygon
+        in: query
+        name: chainNetwork
+        required: true
+        description: 'Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)'
+      - schema:
+          type: string
+        examples:
+          58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2:
+            value: 58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2
+          '0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640':
+            value: '0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640'
+        in: path
+        name: address
+        required: true
+        description: Pool contract address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    description: Pool type
+                    enum:
+                    - clmm
+                    - amm
+                    type: string
+                    example: clmm
+                  network:
+                    type: string
+                  baseSymbol:
+                    type: string
+                  quoteSymbol:
+                    type: string
+                  baseTokenAddress:
+                    type: string
+                  quoteTokenAddress:
+                    type: string
+                  feePct:
+                    type: number
+                  address:
+                    type: string
+                  geckoData:
+                    type: object
+                    properties:
+                      volumeUsd24h:
+                        description: 24-hour trading volume in USD
+                        type: string
+                      liquidityUsd:
+                        description: Total liquidity in USD
+                        type: string
+                      priceNative:
+                        description: Base token price in quote token
+                        type: string
+                      priceUsd:
+                        description: Base token price in USD
+                        type: string
+                      buys24h:
+                        description: Number of buy transactions in 24h
+                        type: number
+                      sells24h:
+                        description: Number of sell transactions in 24h
+                        type: number
+                      apr:
+                        description: Annual percentage rate
+                        type: number
+                      timestamp:
+                        description: Unix timestamp (ms) when data was fetched
+                        type: number
+                    required:
+                    - volumeUsd24h
+                    - liquidityUsd
+                    - priceNative
+                    - priceUsd
+                    - buys24h
+                    - sells24h
+                    - timestamp
+                required:
+                - type
+                - network
+                - baseSymbol
+                - quoteSymbol
+                - baseTokenAddress
+                - quoteTokenAddress
+                - feePct
+                - address
+  /pools/find:
+    get:
+      tags:
+      - /pools
+      description: Find pools for a token pair from GeckoTerminal
+      parameters:
+      - schema:
+          type: string
+        examples:
+          solana-mainnet-beta:
+            value: solana-mainnet-beta
+          ethereum-mainnet:
+            value: ethereum-mainnet
+          ethereum-base:
+            value: ethereum-base
+          ethereum-polygon:
+            value: ethereum-polygon
+        in: query
+        name: chainNetwork
+        required: true
+        description: 'Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)'
+      - schema:
+          type: string
+        examples:
+          raydium:
+            value: raydium
+          meteora:
+            value: meteora
+          uniswap:
+            value: uniswap
+          pancakeswap:
+            value: pancakeswap
+          pancakeswap-sol:
+            value: pancakeswap-sol
+          orca:
+            value: orca
+        in: query
+        name: connector
+        required: false
+        description: Filter by connector name (e.g., raydium, meteora, uniswap, pancakeswap, pancakeswap-sol)
+      - schema:
+          enum:
+          - clmm
+          - amm
+          default: clmm
+          type: string
+        examples:
+          clmm:
+            value: clmm
+          amm:
+            value: amm
+        in: query
+        name: type
+        required: false
+        description: 'Filter by pool type: clmm (v3-style concentrated liquidity) or amm (v2-style)'
+      - schema:
+          type: string
+        examples:
+          SOL:
+            value: SOL
+          So11111111111111111111111111111111111111112:
+            value: So11111111111111111111111111111111111111112
+          USDC:
+            value: USDC
+        in: query
+        name: tokenA
+        required: false
+        description: First token symbol or contract address (optional - for filtering by token pair)
+      - schema:
+          type: string
+        examples:
+          USDC:
+            value: USDC
+          EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v:
+            value: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+          SOL:
+            value: SOL
+        in: query
+        name: tokenB
+        required: false
+        description: Second token symbol or contract address (optional - for filtering by token pair)
+      - schema:
+          minimum: 1
+          maximum: 10
+          default: 10
+          type: number
+        in: query
+        name: pages
+        required: false
+        description: 'Number of pages to fetch from GeckoTerminal (1-10, default: 10)'
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      description: Pool type
+                      enum:
+                      - clmm
+                      - amm
+                      type: string
+                      example: clmm
+                    network:
+                      type: string
+                    baseSymbol:
+                      type: string
+                    quoteSymbol:
+                      type: string
+                    baseTokenAddress:
+                      type: string
+                    quoteTokenAddress:
+                      type: string
+                    feePct:
+                      type: number
+                    address:
+                      type: string
+                    geckoData:
+                      type: object
+                      properties:
+                        volumeUsd24h:
+                          description: 24-hour trading volume in USD
+                          type: string
+                        liquidityUsd:
+                          description: Total liquidity in USD
+                          type: string
+                        priceNative:
+                          description: Base token price in quote token
+                          type: string
+                        priceUsd:
+                          description: Base token price in USD
+                          type: string
+                        buys24h:
+                          description: Number of buy transactions in 24h
+                          type: number
+                        sells24h:
+                          description: Number of sell transactions in 24h
+                          type: number
+                        apr:
+                          description: Annual percentage rate
+                          type: number
+                        timestamp:
+                          description: Unix timestamp (ms) when data was fetched
+                          type: number
+                      required:
+                      - volumeUsd24h
+                      - liquidityUsd
+                      - priceNative
+                      - priceUsd
+                      - buys24h
+                      - sells24h
+                      - timestamp
+                  required:
+                  - type
+                  - network
+                  - baseSymbol
+                  - quoteSymbol
+                  - baseTokenAddress
+                  - quoteTokenAddress
+                  - feePct
+                  - address
+  /pools/:
+    get:
+      tags:
+      - /pools
+      description: List all pools for a connector, optionally filtered by network, type, or search term
+      parameters:
+      - schema:
+          type: string
+        examples:
+          raydium:
+            value: raydium
+          meteora:
+            value: meteora
+          uniswap:
+            value: uniswap
+          orca:
+            value: orca
+        in: query
+        name: connector
+        required: true
+        description: Connector (raydium, meteora, uniswap, orca)
+      - schema:
+          type: string
+        examples:
+          mainnet:
+            value: mainnet
+          mainnet-beta:
+            value: mainnet-beta
+          base:
+            value: base
+        in: query
+        name: network
+        required: false
+        description: 'Optional: filter by network (mainnet, mainnet-beta, etc)'
+      - schema:
+          enum:
+          - clmm
+          - amm
+          type: string
+        examples:
+          clmm:
+            value: clmm
+          amm:
+            value: amm
+        in: query
+        name: type
+        required: false
+        description: 'Optional: filter by pool type'
+      - schema:
+          type: string
+        in: query
+        name: search
+        required: false
+        description: 'Optional: search by token symbol or address'
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      description: Pool type
+                      enum:
+                      - clmm
+                      - amm
+                      type: string
+                      example: clmm
+                    network:
+                      type: string
+                    baseSymbol:
+                      type: string
+                    quoteSymbol:
+                      type: string
+                    baseTokenAddress:
+                      type: string
+                    quoteTokenAddress:
+                      type: string
+                    feePct:
+                      type: number
+                    address:
+                      type: string
+                  required:
+                  - type
+                  - network
+                  - baseSymbol
+                  - quoteSymbol
+                  - baseTokenAddress
+                  - quoteTokenAddress
+                  - feePct
+                  - address
+    post:
+      tags:
+      - /pools
+      description: Add a new pool
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                connector:
+                  description: Connector (raydium, meteora, uniswap, orca)
+                  type: string
+                  example: raydium
+                type:
+                  description: Pool type
+                  enum:
+                  - clmm
+                  - amm
+                  type: string
+                  example: clmm
+                network:
+                  description: Network name (mainnet, mainnet-beta, etc)
+                  default: mainnet-beta
+                  type: string
+                  example: mainnet-beta
+                address:
+                  description: Pool contract address
+                  type: string
+                baseSymbol:
+                  description: Base token symbol
+                  type: string
+                  example: SOL
+                quoteSymbol:
+                  description: Quote token symbol
+                  type: string
+                  example: USDC
+                baseTokenAddress:
+                  description: Base token contract address
+                  type: string
+                  example: So11111111111111111111111111111111111111112
+                quoteTokenAddress:
+                  description: Quote token contract address
+                  type: string
+                  example: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+                feePct:
+                  description: Pool fee percentage (optional - fetched from pool-info if not provided)
+                  minimum: 0
+                  maximum: 100
+                  type: number
+                  example: 0.25
+              required:
+              - connector
+              - type
+              - network
+              - address
+              - baseSymbol
+              - quoteSymbol
+              - baseTokenAddress
+              - quoteTokenAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+        '400':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /pools/save/{address}:
+    post:
+      tags:
+      - /pools
+      description: Find pool from GeckoTerminal and save it to the pool list
+      parameters:
+      - schema:
+          type: string
+        examples:
+          solana-mainnet-beta:
+            value: solana-mainnet-beta
+          ethereum-mainnet:
+            value: ethereum-mainnet
+          ethereum-base:
+            value: ethereum-base
+          ethereum-polygon:
+            value: ethereum-polygon
+        in: query
+        name: chainNetwork
+        required: true
+        description: 'Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)'
+      - schema:
+          type: string
+        examples:
+          58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2:
+            value: 58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2
+          '0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640':
+            value: '0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640'
+        in: path
+        name: address
+        required: true
+        description: Pool contract address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  pool:
+                    type: object
+                    properties:
+                      type:
+                        description: Pool type
+                        enum:
+                        - clmm
+                        - amm
+                        type: string
+                        example: clmm
+                      network:
+                        type: string
+                      baseSymbol:
+                        type: string
+                      quoteSymbol:
+                        type: string
+                      baseTokenAddress:
+                        type: string
+                      quoteTokenAddress:
+                        type: string
+                      feePct:
+                        type: number
+                      address:
+                        type: string
+                      geckoData:
+                        type: object
+                        properties:
+                          volumeUsd24h:
+                            description: 24-hour trading volume in USD
+                            type: string
+                          liquidityUsd:
+                            description: Total liquidity in USD
+                            type: string
+                          priceNative:
+                            description: Base token price in quote token
+                            type: string
+                          priceUsd:
+                            description: Base token price in USD
+                            type: string
+                          buys24h:
+                            description: Number of buy transactions in 24h
+                            type: number
+                          sells24h:
+                            description: Number of sell transactions in 24h
+                            type: number
+                          apr:
+                            description: Annual percentage rate
+                            type: number
+                          timestamp:
+                            description: Unix timestamp (ms) when data was fetched
+                            type: number
+                        required:
+                        - volumeUsd24h
+                        - liquidityUsd
+                        - priceNative
+                        - priceUsd
+                        - buys24h
+                        - sells24h
+                        - timestamp
+                    required:
+                    - type
+                    - network
+                    - baseSymbol
+                    - quoteSymbol
+                    - baseTokenAddress
+                    - quoteTokenAddress
+                    - feePct
+                    - address
+                required:
+                - message
+                - pool
+  /pools/{address}:
+    delete:
+      tags:
+      - /pools
+      description: Remove a pool by address
+      parameters:
+      - schema:
+          type: string
+        examples:
+          raydium:
+            value: raydium
+          meteora:
+            value: meteora
+          uniswap:
+            value: uniswap
+          orca:
+            value: orca
+        in: query
+        name: connector
+        required: true
+        description: Connector (raydium, meteora, uniswap, orca)
+      - schema:
+          type: string
+        examples:
+          mainnet:
+            value: mainnet
+          mainnet-beta:
+            value: mainnet-beta
+        in: query
+        name: network
+        required: true
+        description: Network name (mainnet, mainnet-beta, etc)
+      - schema:
+          type: string
+        examples:
+          amm:
+            value: amm
+          clmm:
+            value: clmm
+        in: query
+        name: type
+        required: true
+        description: Pool type
+      - schema:
+          type: string
+        in: path
+        name: address
+        required: true
+        description: Pool contract address to remove
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+        '404':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string

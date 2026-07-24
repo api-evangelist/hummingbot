@@ -1,0 +1,247 @@
+openapi: 3.0.3
+info:
+  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /wallet API
+  description: API endpoints for interacting with DEXs and blockchains
+  version: dev-2.11.0
+servers:
+- url: http://localhost:15888
+tags:
+- name: /wallet
+  description: Wallet management endpoints
+paths:
+  /wallet/:
+    get:
+      tags:
+      - /wallet
+      description: Get all wallets across different chains
+      parameters:
+      - schema:
+          default: true
+          type: boolean
+        in: query
+        name: showHardware
+        required: false
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    chain:
+                      description: Blockchain name
+                      type: string
+                      example: solana
+                    walletAddresses:
+                      description: List of regular wallet addresses with private keys
+                      type: array
+                      items:
+                        description: 'Wallet address (Ethereum format: 0x... or Solana format: base58)'
+                        type: string
+                    hardwareWalletAddresses:
+                      description: List of hardware wallet addresses (Ledger)
+                      type: array
+                      items:
+                        description: 'Wallet address (Ethereum format: 0x... or Solana format: base58)'
+                        type: string
+                  required:
+                  - chain
+                  - walletAddresses
+  /wallet/add:
+    post:
+      tags:
+      - /wallet
+      description: Add a new wallet using a private key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                chain:
+                  description: Blockchain to add wallet to
+                  enum:
+                  - ethereum
+                  - solana
+                  type: string
+                  example: solana
+                privateKey:
+                  description: Private key for the wallet
+                  type: string
+                  example: <your-private-key>
+                setDefault:
+                  description: Set this wallet as the default for the chain
+                  default: false
+                  type: boolean
+              required:
+              - chain
+              - privateKey
+            example:
+              chain: solana
+              privateKey: <your-private-key>
+              setDefault: true
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    description: The wallet address that was added
+                    type: string
+                required:
+                - address
+  /wallet/add-hardware:
+    post:
+      tags:
+      - /wallet
+      description: Add a hardware wallet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                chain:
+                  description: Blockchain for hardware wallet
+                  enum:
+                  - ethereum
+                  - solana
+                  default: solana
+                  type: string
+                  example: solana
+                address:
+                  description: Hardware wallet address to add (must exist on connected Ledger device)
+                  type: string
+                setDefault:
+                  description: Set this wallet as the default for the chain
+                  default: false
+                  type: boolean
+              required:
+              - chain
+              - address
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    description: The hardware wallet address that was added
+                    type: string
+                  publicKey:
+                    description: Public key of the hardware wallet
+                    type: string
+                  derivationPath:
+                    description: BIP32/BIP44 derivation path used
+                    type: string
+                  message:
+                    description: Success message
+                    type: string
+                required:
+                - address
+                - publicKey
+                - derivationPath
+                - message
+  /wallet/remove:
+    delete:
+      tags:
+      - /wallet
+      description: Remove a wallet by its address (automatically detects wallet type)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                chain:
+                  description: Blockchain to remove wallet from
+                  enum:
+                  - ethereum
+                  - solana
+                  type: string
+                  example: solana
+                address:
+                  description: Wallet address to remove
+                  type: string
+              required:
+              - chain
+              - address
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    description: Success message indicating wallet type removed
+                    type: string
+                required:
+                - message
+  /wallet/setDefault:
+    post:
+      tags:
+      - /wallet
+      description: Set a wallet as default for a specific chain
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                chain:
+                  description: Blockchain to set default wallet for
+                  enum:
+                  - ethereum
+                  - solana
+                  type: string
+                  example: solana
+                address:
+                  description: Wallet address to set as default
+                  type: string
+              required:
+              - chain
+              - address
+            examples:
+              example1:
+                value:
+                  chain: ethereum
+                  address: '0x742d35Cc6634C0532925a3b844Bc9e7595f2BDf8'
+              example2:
+                value:
+                  chain: solana
+                  address: 7UX2i7SucgLMQcfZ75s3VXmZZY4YRUyJN9X1RgfMoDUi
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    description: Success message
+                    type: string
+                  chain:
+                    description: Chain name
+                    type: string
+                  address:
+                    description: Default wallet address
+                    type: string
+                required:
+                - message
+                - chain
+                - address

@@ -1,0 +1,198 @@
+openapi: 3.0.3
+info:
+  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /config API
+  description: API endpoints for interacting with DEXs and blockchains
+  version: dev-2.11.0
+servers:
+- url: http://localhost:15888
+tags:
+- name: /config
+  description: System configuration endpoints
+paths:
+  /config/:
+    get:
+      tags:
+      - /config
+      description: Get configuration settings. Returns all configurations if no parameters are specified. Use namespace to get a specific config (e.g., server, ethereum-mainnet, solana-mainnet-beta, uniswap).
+      parameters:
+      - schema:
+          type: string
+        examples:
+          server:
+            value: server
+          ethereum-mainnet:
+            value: ethereum-mainnet
+          solana-mainnet-beta:
+            value: solana-mainnet-beta
+          uniswap:
+            value: uniswap
+        in: query
+        name: namespace
+        required: false
+        description: Optional configuration namespace (e.g., "server", "ethereum-mainnet", "solana-mainnet-beta", "uniswap")
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /config/update:
+    post:
+      tags:
+      - /config
+      description: Update a specific configuration value
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                namespace:
+                  description: Configuration namespace (e.g., "server", "ethereum-mainnet", "solana-mainnet-beta", "uniswap")
+                  type: string
+                  example: server
+                path:
+                  description: Configuration path within the namespace (e.g., "nodeURL", "manualGasPrice")
+                  type: string
+                  example: nodeURL
+                value:
+                  description: Configuration value
+                  anyOf:
+                  - type: string
+                  - type: number
+                  - type: boolean
+                  - type: object
+                    properties: {}
+                  - type: array
+                    items: {}
+              required:
+              - namespace
+              - path
+              - value
+            examples:
+              example1:
+                value:
+                  namespace: solana-mainnet-beta
+                  path: maxFee
+                  value: 0.01
+              example2:
+                value:
+                  namespace: ethereum-mainnet
+                  path: nodeURL
+                  value: https://eth-mainnet.g.alchemy.com/v2/your-api-key
+              example3:
+                value:
+                  namespace: ethereum-mainnet
+                  path: gasLimitTransaction
+                  value: 3000000
+              example4:
+                value:
+                  namespace: solana-devnet
+                  path: retryCount
+                  value: 5
+              example5:
+                value:
+                  namespace: server
+                  path: port
+                  value: 15888
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    description: Status message
+                    type: string
+                required:
+                - message
+  /config/chains:
+    get:
+      tags:
+      - /config
+      description: Returns a list of available blockchain networks supported by Gateway.
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  chains:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chain:
+                          type: string
+                        networks:
+                          type: array
+                          items:
+                            type: string
+                      required:
+                      - chain
+                      - networks
+                required:
+                - chains
+  /config/connectors:
+    get:
+      tags:
+      - /config
+      description: Returns a list of available DEX connectors and their supported blockchain networks.
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  connectors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        trading_types:
+                          type: array
+                          items:
+                            type: string
+                        chain:
+                          type: string
+                        networks:
+                          type: array
+                          items:
+                            type: string
+                      required:
+                      - name
+                      - trading_types
+                      - chain
+                      - networks
+                required:
+                - connectors
+  /config/namespaces:
+    get:
+      tags:
+      - /config
+      description: Returns a list of all configuration namespaces available in Gateway.
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  namespaces:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - namespaces

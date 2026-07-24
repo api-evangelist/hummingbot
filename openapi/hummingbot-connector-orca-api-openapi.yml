@@ -1,0 +1,978 @@
+openapi: 3.0.3
+info:
+  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/orca API
+  description: API endpoints for interacting with DEXs and blockchains
+  version: dev-2.11.0
+servers:
+- url: http://localhost:15888
+tags:
+- name: /connector/orca
+  description: Orca connector endpoints
+paths:
+  /connectors/orca/clmm/fetch-pools:
+    get:
+      tags:
+      - /connector/orca
+      description: Fetch info about Orca pools
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          minimum: 1
+          default: 10
+          type: number
+        example: 10
+        in: query
+        name: limit
+        required: false
+        description: Maximum number of pools to return
+      - schema:
+          type: string
+        example: SOL
+        in: query
+        name: tokenA
+        required: false
+        description: First token symbol or address
+      - schema:
+          type: string
+        example: USDC
+        in: query
+        name: tokenB
+        required: false
+        description: Second token symbol or address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    address:
+                      type: string
+                    baseTokenAddress:
+                      type: string
+                    quoteTokenAddress:
+                      type: string
+                    binStep:
+                      type: number
+                    feePct:
+                      type: number
+                    price:
+                      type: number
+                    baseTokenAmount:
+                      type: number
+                    quoteTokenAmount:
+                      type: number
+                    activeBinId:
+                      type: number
+                  required:
+                  - address
+                  - baseTokenAddress
+                  - quoteTokenAddress
+                  - feePct
+                  - price
+                  - baseTokenAmount
+                  - quoteTokenAmount
+                  - activeBinId
+  /connectors/orca/clmm/pool-info:
+    get:
+      tags:
+      - /connector/orca
+      description: Get pool information for a Orca pool
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE
+        in: query
+        name: poolAddress
+        required: true
+        description: Orca CLMM pool address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                  baseTokenAddress:
+                    type: string
+                  quoteTokenAddress:
+                    type: string
+                  binStep:
+                    type: number
+                  feePct:
+                    type: number
+                  price:
+                    type: number
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  activeBinId:
+                    type: number
+                  liquidity:
+                    type: string
+                  sqrtPrice:
+                    type: string
+                  tvlUsdc:
+                    type: number
+                  protocolFeeRate:
+                    type: number
+                  yieldOverTvl:
+                    type: number
+                required:
+                - address
+                - baseTokenAddress
+                - quoteTokenAddress
+                - feePct
+                - price
+                - baseTokenAmount
+                - quoteTokenAmount
+                - activeBinId
+                - liquidity
+                - sqrtPrice
+                - tvlUsdc
+                - protocolFeeRate
+                - yieldOverTvl
+  /connectors/orca/clmm/positions-owned:
+    get:
+      tags:
+      - /connector/orca
+      description: Retrieve a list of positions owned by a user's wallet in a specific Orca pool
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+          type: string
+        example: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+        in: query
+        name: walletAddress
+        required: false
+        description: Solana wallet address to check for positions
+      - schema:
+          type: string
+        example: Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE
+        in: query
+        name: poolAddress
+        required: true
+        description: Orca CLMM pool address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    address:
+                      type: string
+                    poolAddress:
+                      type: string
+                    baseTokenAddress:
+                      type: string
+                    quoteTokenAddress:
+                      type: string
+                    baseTokenAmount:
+                      type: number
+                    quoteTokenAmount:
+                      type: number
+                    baseFeeAmount:
+                      type: number
+                    quoteFeeAmount:
+                      type: number
+                    lowerBinId:
+                      type: number
+                    upperBinId:
+                      type: number
+                    lowerPrice:
+                      type: number
+                    upperPrice:
+                      type: number
+                    price:
+                      type: number
+                    rewardTokenAddress:
+                      type: string
+                    rewardAmount:
+                      type: number
+                  required:
+                  - address
+                  - poolAddress
+                  - baseTokenAddress
+                  - quoteTokenAddress
+                  - baseTokenAmount
+                  - quoteTokenAmount
+                  - baseFeeAmount
+                  - quoteFeeAmount
+                  - lowerBinId
+                  - upperBinId
+                  - lowerPrice
+                  - upperPrice
+                  - price
+  /connectors/orca/clmm/position-info:
+    get:
+      tags:
+      - /connector/orca
+      description: Get details for a specific Orca position
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: <sample-position-address>
+        in: query
+        name: positionAddress
+        required: true
+        description: Position address
+      - schema:
+          default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+          type: string
+        example: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+        in: query
+        name: walletAddress
+        required: false
+        description: Solana wallet address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                  poolAddress:
+                    type: string
+                  baseTokenAddress:
+                    type: string
+                  quoteTokenAddress:
+                    type: string
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  baseFeeAmount:
+                    type: number
+                  quoteFeeAmount:
+                    type: number
+                  lowerBinId:
+                    type: number
+                  upperBinId:
+                    type: number
+                  lowerPrice:
+                    type: number
+                  upperPrice:
+                    type: number
+                  price:
+                    type: number
+                  rewardTokenAddress:
+                    type: string
+                  rewardAmount:
+                    type: number
+                required:
+                - address
+                - poolAddress
+                - baseTokenAddress
+                - quoteTokenAddress
+                - baseTokenAmount
+                - quoteTokenAmount
+                - baseFeeAmount
+                - quoteFeeAmount
+                - lowerBinId
+                - upperBinId
+                - lowerPrice
+                - upperPrice
+                - price
+  /connectors/orca/clmm/quote-position:
+    get:
+      tags:
+      - /connector/orca
+      description: Quote amounts for a new Orca CLMM position
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: number
+        example: 200
+        in: query
+        name: lowerPrice
+        required: true
+        description: Lower price bound for the position
+      - schema:
+          type: number
+        example: 300
+        in: query
+        name: upperPrice
+        required: true
+        description: Upper price bound for the position
+      - schema:
+          type: string
+        example: Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE
+        in: query
+        name: poolAddress
+        required: true
+        description: Orca CLMM pool address
+      - schema:
+          type: number
+        example: 0.01
+        in: query
+        name: baseTokenAmount
+        required: false
+        description: Amount of base token to deposit
+      - schema:
+          type: number
+        example: 2
+        in: query
+        name: quoteTokenAmount
+        required: false
+        description: Amount of quote token to deposit
+      - schema:
+          minimum: 0
+          maximum: 100
+          default: 1
+          type: number
+        example: 1
+        in: query
+        name: slippagePct
+        required: false
+        description: Maximum acceptable slippage percentage
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  baseLimited:
+                    type: boolean
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  baseTokenAmountMax:
+                    type: number
+                  quoteTokenAmountMax:
+                    type: number
+                  liquidity: {}
+                required:
+                - baseLimited
+                - baseTokenAmount
+                - quoteTokenAmount
+                - baseTokenAmountMax
+                - quoteTokenAmountMax
+  /connectors/orca/clmm/quote-swap:
+    get:
+      tags:
+      - /connector/orca
+      description: Get swap quote for Orca CLMM
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE
+        in: query
+        name: poolAddress
+        required: false
+        description: Orca CLMM pool address (optional - can be looked up from baseToken and quoteToken)
+      - schema:
+          type: string
+        example: SOL
+        in: query
+        name: baseToken
+        required: true
+        description: Token to determine swap direction
+      - schema:
+          type: string
+        example: USDC
+        in: query
+        name: quoteToken
+        required: false
+        description: The other token in the pair (optional - required if poolAddress not provided)
+      - schema:
+          type: number
+        example: 0.01
+        in: query
+        name: amount
+        required: true
+        description: Amount to swap
+      - schema:
+          enum:
+          - BUY
+          - SELL
+          default: SELL
+          type: string
+        example: SELL
+        in: query
+        name: side
+        required: true
+        description: Trade direction
+      - schema:
+          minimum: 0
+          maximum: 100
+          default: 1
+          type: number
+        example: 1
+        in: query
+        name: slippagePct
+        required: false
+        description: Maximum acceptable slippage percentage
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  poolAddress:
+                    type: string
+                  tokenIn:
+                    type: string
+                  tokenOut:
+                    type: string
+                  amountIn:
+                    type: number
+                  amountOut:
+                    type: number
+                  price:
+                    type: number
+                  slippagePct:
+                    type: number
+                  minAmountOut:
+                    type: number
+                  maxAmountIn:
+                    type: number
+                  priceImpactPct:
+                    type: number
+                required:
+                - poolAddress
+                - tokenIn
+                - tokenOut
+                - amountIn
+                - amountOut
+                - price
+                - minAmountOut
+                - maxAmountIn
+                - priceImpactPct
+  /connectors/orca/clmm/execute-swap:
+    post:
+      tags:
+      - /connector/orca
+      description: Execute a token swap on Orca CLMM
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address that will execute the swap
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                  example: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                poolAddress:
+                  description: Orca CLMM pool address (optional - can be looked up from baseToken and quoteToken)
+                  type: string
+                  example: Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE
+                baseToken:
+                  description: Base token symbol or address
+                  type: string
+                  example: SOL
+                quoteToken:
+                  description: Quote token symbol or address (optional - required if poolAddress not provided)
+                  type: string
+                  example: USDC
+                amount:
+                  description: Amount to swap
+                  type: number
+                  example: 0.01
+                side:
+                  description: Trade direction
+                  enum:
+                  - BUY
+                  - SELL
+                  default: SELL
+                  type: string
+                  example: SELL
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 1
+                  type: number
+                  example: 1
+              required:
+              - baseToken
+              - amount
+              - side
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      tokenIn:
+                        type: string
+                      tokenOut:
+                        type: string
+                      amountIn:
+                        type: number
+                      amountOut:
+                        type: number
+                      fee:
+                        type: number
+                      baseTokenBalanceChange:
+                        type: number
+                      quoteTokenBalanceChange:
+                        type: number
+                    required:
+                    - tokenIn
+                    - tokenOut
+                    - amountIn
+                    - amountOut
+                    - fee
+                    - baseTokenBalanceChange
+                    - quoteTokenBalanceChange
+                required:
+                - signature
+                - status
+  /connectors/orca/clmm/open-position:
+    post:
+      tags:
+      - /connector/orca
+      description: Open a new Orca position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address that will open the position
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                  example: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                lowerPrice:
+                  description: Lower price bound for the position
+                  type: number
+                  example: 200
+                upperPrice:
+                  description: Upper price bound for the position
+                  type: number
+                  example: 300
+                poolAddress:
+                  description: Orca CLMM pool address
+                  type: string
+                  example: Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE
+                baseTokenAmount:
+                  description: Amount of base token to deposit
+                  type: number
+                  example: 0.01
+                quoteTokenAmount:
+                  description: Amount of quote token to deposit
+                  type: number
+                  example: 2
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 1
+                  type: number
+                  example: 1
+              required:
+              - lowerPrice
+              - upperPrice
+              - poolAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      positionAddress:
+                        type: string
+                      positionRent:
+                        type: number
+                      baseTokenAmountAdded:
+                        type: number
+                      quoteTokenAmountAdded:
+                        type: number
+                    required:
+                    - fee
+                    - positionAddress
+                    - positionRent
+                    - baseTokenAmountAdded
+                    - quoteTokenAmountAdded
+                required:
+                - signature
+                - status
+  /connectors/orca/clmm/add-liquidity:
+    post:
+      tags:
+      - /connector/orca
+      description: Add liquidity to an Orca position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address that will add liquidity
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                  example: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                positionAddress:
+                  description: Position NFT address
+                  type: string
+                  example: <sample-position-address>
+                baseTokenAmount:
+                  description: Amount of base token to deposit
+                  type: number
+                  example: 0.01
+                quoteTokenAmount:
+                  description: Amount of quote token to deposit
+                  type: number
+                  example: 2
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 1
+                  type: number
+                  example: 1
+              required:
+              - positionAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseTokenAmountAdded:
+                        type: number
+                      quoteTokenAmountAdded:
+                        type: number
+                    required:
+                    - fee
+                    - baseTokenAmountAdded
+                    - quoteTokenAmountAdded
+                required:
+                - signature
+                - status
+  /connectors/orca/clmm/remove-liquidity:
+    post:
+      tags:
+      - /connector/orca
+      description: Remove liquidity from an Orca position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address that will remove liquidity
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                  example: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                positionAddress:
+                  description: Position NFT address
+                  type: string
+                  example: <sample-position-address>
+                liquidityPct:
+                  minimum: 0
+                  maximum: 100
+                  description: Percentage of liquidity to remove
+                  default: 100
+                  type: number
+                  example: 100
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 1
+                  type: number
+                  example: 1
+              required:
+              - positionAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseTokenAmountRemoved:
+                        type: number
+                      quoteTokenAmountRemoved:
+                        type: number
+                    required:
+                    - fee
+                    - baseTokenAmountRemoved
+                    - quoteTokenAmountRemoved
+                required:
+                - signature
+                - status
+  /connectors/orca/clmm/collect-fees:
+    post:
+      tags:
+      - /connector/orca
+      description: Collect fees from an Orca position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address that will collect fees
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                  example: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                positionAddress:
+                  description: Position NFT address
+                  type: string
+                  example: <sample-position-address>
+              required:
+              - positionAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseFeeAmountCollected:
+                        type: number
+                      quoteFeeAmountCollected:
+                        type: number
+                    required:
+                    - fee
+                    - baseFeeAmountCollected
+                    - quoteFeeAmountCollected
+                required:
+                - signature
+                - status
+  /connectors/orca/clmm/close-position:
+    post:
+      tags:
+      - /connector/orca
+      description: Close an Orca position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address that will close the position
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                  example: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                positionAddress:
+                  description: Position NFT address
+                  type: string
+                  example: <sample-position-address>
+              required:
+              - positionAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      positionRentRefunded:
+                        type: number
+                      baseTokenAmountRemoved:
+                        type: number
+                      quoteTokenAmountRemoved:
+                        type: number
+                      baseFeeAmountCollected:
+                        type: number
+                      quoteFeeAmountCollected:
+                        type: number
+                    required:
+                    - fee
+                    - positionRentRefunded
+                    - baseTokenAmountRemoved
+                    - quoteTokenAmountRemoved
+                    - baseFeeAmountCollected
+                    - quoteFeeAmountCollected
+                required:
+                - signature
+                - status

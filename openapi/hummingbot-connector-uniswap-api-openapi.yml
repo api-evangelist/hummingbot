@@ -1,0 +1,1691 @@
+openapi: 3.0.3
+info:
+  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/uniswap API
+  description: API endpoints for interacting with DEXs and blockchains
+  version: dev-2.11.0
+servers:
+- url: http://localhost:15888
+tags:
+- name: /connector/uniswap
+  description: Uniswap connector endpoints
+paths:
+  /connectors/uniswap/router/quote-swap:
+    get:
+      tags:
+      - /connector/uniswap
+      description: Get an executable swap quote from Uniswap Universal Router
+      parameters:
+      - schema:
+          default: mainnet
+          enum:
+          - arbitrum
+          - avalanche
+          - base
+          - bsc
+          - celo
+          - mainnet
+          - optimism
+          - polygon
+          type: string
+        in: query
+        name: network
+        required: false
+        description: The EVM network to use
+      - schema:
+          type: string
+        example: WETH
+        in: query
+        name: baseToken
+        required: true
+        description: First token in the trading pair
+      - schema:
+          type: string
+        example: USDC
+        in: query
+        name: quoteToken
+        required: true
+        description: Second token in the trading pair
+      - schema:
+          type: number
+        example: 0.001
+        in: query
+        name: amount
+        required: true
+        description: Amount of base token to trade
+      - schema:
+          enum:
+          - BUY
+          - SELL
+          type: string
+        in: query
+        name: side
+        required: true
+        description: Trade direction - BUY means buying base token with quote token, SELL means selling base token for quote token
+      - schema:
+          minimum: 0
+          maximum: 100
+          default: 2
+          type: number
+        in: query
+        name: slippagePct
+        required: false
+        description: Maximum acceptable slippage percentage
+      - schema:
+          default: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+          type: string
+        in: query
+        name: walletAddress
+        required: false
+        description: Wallet address for more accurate quotes (optional)
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  quoteId:
+                    description: Unique identifier for this quote
+                    type: string
+                  tokenIn:
+                    description: Address of the token being swapped from
+                    type: string
+                  tokenOut:
+                    description: Address of the token being swapped to
+                    type: string
+                  amountIn:
+                    description: Amount of tokenIn to be swapped
+                    type: number
+                  amountOut:
+                    description: Expected amount of tokenOut to receive
+                    type: number
+                  price:
+                    description: Exchange rate between tokenIn and tokenOut
+                    type: number
+                  priceImpactPct:
+                    description: Estimated price impact percentage (0-100)
+                    type: number
+                  minAmountOut:
+                    description: Minimum amount of tokenOut that will be accepted
+                    type: number
+                  maxAmountIn:
+                    description: Maximum amount of tokenIn that will be spent
+                    type: number
+                  routePath:
+                    description: Human-readable route path
+                    type: string
+                required:
+                - quoteId
+                - tokenIn
+                - tokenOut
+                - amountIn
+                - amountOut
+                - price
+                - priceImpactPct
+                - minAmountOut
+                - maxAmountIn
+  /connectors/uniswap/router/execute-quote:
+    post:
+      tags:
+      - /connector/uniswap
+      description: Execute a previously fetched quote from Uniswap Universal Router
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                walletAddress:
+                  description: Wallet address that will execute the swap
+                  default: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                  type: string
+                  example: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                network:
+                  description: The blockchain network to use
+                  default: mainnet
+                  enum:
+                  - arbitrum
+                  - avalanche
+                  - base
+                  - bsc
+                  - celo
+                  - mainnet
+                  - optimism
+                  - polygon
+                  type: string
+                quoteId:
+                  description: ID of the quote to execute
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+              required:
+              - quoteId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    description: Transaction signature/hash
+                    type: string
+                  status:
+                    description: 'Transaction status: 0 = PENDING, 1 = CONFIRMED, -1 = FAILED'
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      tokenIn:
+                        description: Address of the token swapped from
+                        type: string
+                      tokenOut:
+                        description: Address of the token swapped to
+                        type: string
+                      amountIn:
+                        description: Actual amount of tokenIn swapped
+                        type: number
+                      amountOut:
+                        description: Actual amount of tokenOut received
+                        type: number
+                      fee:
+                        description: Transaction fee paid
+                        type: number
+                      baseTokenBalanceChange:
+                        description: Change in base token balance (negative for decrease)
+                        type: number
+                      quoteTokenBalanceChange:
+                        description: Change in quote token balance (negative for decrease)
+                        type: number
+                    required:
+                    - tokenIn
+                    - tokenOut
+                    - amountIn
+                    - amountOut
+                    - fee
+                    - baseTokenBalanceChange
+                    - quoteTokenBalanceChange
+                required:
+                - signature
+                - status
+  /connectors/uniswap/router/execute-swap:
+    post:
+      tags:
+      - /connector/uniswap
+      description: Quote and execute a token swap on Uniswap Universal Router in one step
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                walletAddress:
+                  description: Wallet address that will execute the swap
+                  default: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                  type: string
+                  example: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                network:
+                  description: The blockchain network to use
+                  default: mainnet
+                  enum:
+                  - arbitrum
+                  - avalanche
+                  - base
+                  - bsc
+                  - celo
+                  - mainnet
+                  - optimism
+                  - polygon
+                  type: string
+                baseToken:
+                  description: Token to determine swap direction
+                  type: string
+                  example: WETH
+                quoteToken:
+                  description: The other token in the pair
+                  type: string
+                  example: USDC
+                amount:
+                  description: Amount of base token to trade
+                  type: number
+                  example: 0.001
+                side:
+                  description: Trade direction - BUY means buying base token with quote token, SELL means selling base token for quote token
+                  enum:
+                  - BUY
+                  - SELL
+                  type: string
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 2
+                  type: number
+                  example: 1
+              required:
+              - baseToken
+              - quoteToken
+              - amount
+              - side
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    description: Transaction signature/hash
+                    type: string
+                  status:
+                    description: 'Transaction status: 0 = PENDING, 1 = CONFIRMED, -1 = FAILED'
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      tokenIn:
+                        description: Address of the token swapped from
+                        type: string
+                      tokenOut:
+                        description: Address of the token swapped to
+                        type: string
+                      amountIn:
+                        description: Actual amount of tokenIn swapped
+                        type: number
+                      amountOut:
+                        description: Actual amount of tokenOut received
+                        type: number
+                      fee:
+                        description: Transaction fee paid
+                        type: number
+                      baseTokenBalanceChange:
+                        description: Change in base token balance (negative for decrease)
+                        type: number
+                      quoteTokenBalanceChange:
+                        description: Change in quote token balance (negative for decrease)
+                        type: number
+                    required:
+                    - tokenIn
+                    - tokenOut
+                    - amountIn
+                    - amountOut
+                    - fee
+                    - baseTokenBalanceChange
+                    - quoteTokenBalanceChange
+                required:
+                - signature
+                - status
+  /connectors/uniswap/amm/pool-info:
+    get:
+      tags:
+      - /connector/uniswap
+      description: Get AMM pool information from Uniswap V2
+      parameters:
+      - schema:
+          default: mainnet
+          enum:
+          - arbitrum
+          - avalanche
+          - base
+          - bsc
+          - celo
+          - mainnet
+          - optimism
+          - polygon
+          type: string
+        in: query
+        name: network
+        required: false
+        description: The EVM network to use
+      - schema:
+          type: string
+        example: '0x88A43bbDF9D098eEC7bCEda4e2494615dfD9bB9C'
+        in: query
+        name: poolAddress
+        required: true
+        description: Uniswap V2 pool address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                  baseTokenAddress:
+                    type: string
+                  quoteTokenAddress:
+                    type: string
+                  feePct:
+                    type: number
+                  price:
+                    type: number
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                required:
+                - address
+                - baseTokenAddress
+                - quoteTokenAddress
+                - feePct
+                - price
+                - baseTokenAmount
+                - quoteTokenAmount
+  /connectors/uniswap/amm/position-info:
+    get:
+      tags:
+      - /connector/uniswap
+      description: Get position information for a Uniswap V2 pool
+      parameters:
+      - schema:
+          type: string
+          default: base
+        in: query
+        name: network
+        required: false
+      - schema:
+          type: string
+        example: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+        in: query
+        name: walletAddress
+        required: false
+      - schema:
+          type: string
+        example: ''
+        in: query
+        name: poolAddress
+        required: true
+      - schema:
+          type: string
+        example: WETH
+        in: query
+        name: baseToken
+        required: false
+      - schema:
+          type: string
+        example: USDC
+        in: query
+        name: quoteToken
+        required: false
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  poolAddress:
+                    type: string
+                  walletAddress:
+                    type: string
+                  baseTokenAddress:
+                    type: string
+                  quoteTokenAddress:
+                    type: string
+                  lpTokenAmount:
+                    type: number
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  price:
+                    type: number
+                required:
+                - poolAddress
+                - walletAddress
+                - baseTokenAddress
+                - quoteTokenAddress
+                - lpTokenAmount
+                - baseTokenAmount
+                - quoteTokenAmount
+                - price
+  /connectors/uniswap/amm/quote-swap:
+    get:
+      tags:
+      - /connector/uniswap
+      description: Get swap quote for Uniswap V2 AMM
+      parameters:
+      - schema:
+          type: string
+          default: base
+        in: query
+        name: network
+        required: false
+      - schema:
+          type: string
+        example: ''
+        in: query
+        name: poolAddress
+        required: false
+      - schema:
+          type: string
+        example: WETH
+        in: query
+        name: baseToken
+        required: true
+      - schema:
+          type: string
+        example: USDC
+        in: query
+        name: quoteToken
+        required: false
+      - schema:
+          type: number
+        example: 0.001
+        in: query
+        name: amount
+        required: true
+      - schema:
+          type: string
+          enum:
+          - BUY
+          - SELL
+        example: SELL
+        in: query
+        name: side
+        required: true
+      - schema:
+          type: number
+        example: 1
+        in: query
+        name: slippagePct
+        required: false
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  poolAddress:
+                    type: string
+                  tokenIn:
+                    type: string
+                  tokenOut:
+                    type: string
+                  amountIn:
+                    type: number
+                  amountOut:
+                    type: number
+                  price:
+                    type: number
+                  slippagePct:
+                    type: number
+                  minAmountOut:
+                    type: number
+                  maxAmountIn:
+                    type: number
+                  priceImpactPct:
+                    type: number
+                required:
+                - poolAddress
+                - tokenIn
+                - tokenOut
+                - amountIn
+                - amountOut
+                - price
+                - minAmountOut
+                - maxAmountIn
+                - priceImpactPct
+  /connectors/uniswap/amm/quote-liquidity:
+    get:
+      tags:
+      - /connector/uniswap
+      description: Get liquidity quote for a Uniswap V2 pool
+      parameters:
+      - schema:
+          type: string
+          default: base
+        in: query
+        name: network
+        required: false
+      - schema:
+          type: string
+        example: ''
+        in: query
+        name: poolAddress
+        required: true
+      - schema:
+          type: number
+        example: 0.001
+        in: query
+        name: baseTokenAmount
+        required: true
+      - schema:
+          type: number
+        example: 2.5
+        in: query
+        name: quoteTokenAmount
+        required: true
+      - schema:
+          type: number
+        example: 1
+        in: query
+        name: slippagePct
+        required: false
+      - schema:
+          type: string
+        example: WETH
+        in: query
+        name: baseToken
+        required: false
+      - schema:
+          type: string
+        example: USDC
+        in: query
+        name: quoteToken
+        required: false
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  baseLimited:
+                    type: boolean
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  baseTokenAmountMax:
+                    type: number
+                  quoteTokenAmountMax:
+                    type: number
+                required:
+                - baseLimited
+                - baseTokenAmount
+                - quoteTokenAmount
+                - baseTokenAmountMax
+                - quoteTokenAmountMax
+  /connectors/uniswap/amm/execute-swap:
+    post:
+      tags:
+      - /connector/uniswap
+      description: Execute a swap on Uniswap V2 AMM using Router02
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                walletAddress:
+                  description: Wallet address that will execute the swap
+                  default: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                  type: string
+                network:
+                  description: The EVM network to use
+                  default: mainnet
+                  enum:
+                  - arbitrum
+                  - avalanche
+                  - base
+                  - bsc
+                  - celo
+                  - mainnet
+                  - optimism
+                  - polygon
+                  type: string
+                poolAddress:
+                  description: Pool address (optional - can be looked up from tokens)
+                  default: ''
+                  type: string
+                baseToken:
+                  description: Base token symbol or address
+                  type: string
+                  example: WETH
+                quoteToken:
+                  description: Quote token symbol or address
+                  type: string
+                  example: USDC
+                amount:
+                  description: Amount to swap
+                  type: number
+                  example: 0.001
+                side:
+                  enum:
+                  - BUY
+                  - SELL
+                  default: SELL
+                  type: string
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 2
+                  type: number
+              required:
+              - baseToken
+              - amount
+              - side
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    description: Transaction signature/hash
+                    type: string
+                  status:
+                    description: 'Transaction status: 0 = PENDING, 1 = CONFIRMED, -1 = FAILED'
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      tokenIn:
+                        description: Address of the token swapped from
+                        type: string
+                      tokenOut:
+                        description: Address of the token swapped to
+                        type: string
+                      amountIn:
+                        description: Actual amount of tokenIn swapped
+                        type: number
+                      amountOut:
+                        description: Actual amount of tokenOut received
+                        type: number
+                      fee:
+                        description: Transaction fee paid
+                        type: number
+                      baseTokenBalanceChange:
+                        description: Change in base token balance (negative for decrease)
+                        type: number
+                      quoteTokenBalanceChange:
+                        description: Change in quote token balance (negative for decrease)
+                        type: number
+                    required:
+                    - tokenIn
+                    - tokenOut
+                    - amountIn
+                    - amountOut
+                    - fee
+                    - baseTokenBalanceChange
+                    - quoteTokenBalanceChange
+                required:
+                - signature
+                - status
+  /connectors/uniswap/amm/add-liquidity:
+    post:
+      tags:
+      - /connector/uniswap
+      description: Add liquidity to a Uniswap V2 pool
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: The EVM network to use
+                  default: mainnet
+                  enum:
+                  - arbitrum
+                  - avalanche
+                  - base
+                  - bsc
+                  - celo
+                  - mainnet
+                  - optimism
+                  - polygon
+                  type: string
+                walletAddress:
+                  description: Wallet address that will add liquidity
+                  default: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                  type: string
+                poolAddress:
+                  description: Address of the Uniswap V2 pool
+                  type: string
+                baseTokenAmount:
+                  description: Amount of base token to add
+                  type: number
+                quoteTokenAmount:
+                  description: Amount of quote token to add
+                  type: number
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 2
+                  type: number
+                gasPrice:
+                  description: Gas price in wei for the transaction
+                  type: string
+                maxGas:
+                  description: Maximum gas limit for the transaction
+                  type: number
+                  example: 300000
+              required:
+              - poolAddress
+              - baseTokenAmount
+              - quoteTokenAmount
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseTokenAmountAdded:
+                        type: number
+                      quoteTokenAmountAdded:
+                        type: number
+                    required:
+                    - fee
+                    - baseTokenAmountAdded
+                    - quoteTokenAmountAdded
+                required:
+                - signature
+                - status
+  /connectors/uniswap/amm/remove-liquidity:
+    post:
+      tags:
+      - /connector/uniswap
+      description: Remove liquidity from a Uniswap V2 pool
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: The EVM network to use
+                  default: mainnet
+                  enum:
+                  - arbitrum
+                  - avalanche
+                  - base
+                  - bsc
+                  - celo
+                  - mainnet
+                  - optimism
+                  - polygon
+                  type: string
+                walletAddress:
+                  description: Wallet address that will remove liquidity
+                  default: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                  type: string
+                poolAddress:
+                  description: Address of the Uniswap V2 pool
+                  type: string
+                percentageToRemove:
+                  minimum: 0
+                  maximum: 100
+                  description: Percentage of liquidity to remove
+                  type: number
+                gasPrice:
+                  description: Gas price in wei for the transaction
+                  type: string
+                maxGas:
+                  description: Maximum gas limit for the transaction
+                  type: number
+                  example: 300000
+              required:
+              - poolAddress
+              - percentageToRemove
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseTokenAmountRemoved:
+                        type: number
+                      quoteTokenAmountRemoved:
+                        type: number
+                    required:
+                    - fee
+                    - baseTokenAmountRemoved
+                    - quoteTokenAmountRemoved
+                required:
+                - signature
+                - status
+  /connectors/uniswap/clmm/pool-info:
+    get:
+      tags:
+      - /connector/uniswap
+      description: Get CLMM pool information from Uniswap V3
+      parameters:
+      - schema:
+          default: mainnet
+          enum:
+          - arbitrum
+          - avalanche
+          - base
+          - bsc
+          - celo
+          - mainnet
+          - optimism
+          - polygon
+          type: string
+        in: query
+        name: network
+        required: false
+        description: The EVM network to use
+      - schema:
+          type: string
+        example: '0xd0b53d9277642d899df5c87a3966a349a798f224'
+        in: query
+        name: poolAddress
+        required: true
+        description: Uniswap V3 pool address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                  baseTokenAddress:
+                    type: string
+                  quoteTokenAddress:
+                    type: string
+                  binStep:
+                    type: number
+                  feePct:
+                    type: number
+                  price:
+                    type: number
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  activeBinId:
+                    type: number
+                required:
+                - address
+                - baseTokenAddress
+                - quoteTokenAddress
+                - feePct
+                - price
+                - baseTokenAmount
+                - quoteTokenAmount
+                - activeBinId
+  /connectors/uniswap/clmm/position-info:
+    get:
+      tags:
+      - /connector/uniswap
+      description: Get position information for a Uniswap V3 position
+      parameters:
+      - schema:
+          type: string
+          default: base
+        in: query
+        name: network
+        required: false
+      - schema:
+          type: string
+        example: '1234'
+        in: query
+        name: positionAddress
+        required: true
+        description: Position NFT token ID
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                  poolAddress:
+                    type: string
+                  baseTokenAddress:
+                    type: string
+                  quoteTokenAddress:
+                    type: string
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  baseFeeAmount:
+                    type: number
+                  quoteFeeAmount:
+                    type: number
+                  lowerBinId:
+                    type: number
+                  upperBinId:
+                    type: number
+                  lowerPrice:
+                    type: number
+                  upperPrice:
+                    type: number
+                  price:
+                    type: number
+                  rewardTokenAddress:
+                    type: string
+                  rewardAmount:
+                    type: number
+                required:
+                - address
+                - poolAddress
+                - baseTokenAddress
+                - quoteTokenAddress
+                - baseTokenAmount
+                - quoteTokenAmount
+                - baseFeeAmount
+                - quoteFeeAmount
+                - lowerBinId
+                - upperBinId
+                - lowerPrice
+                - upperPrice
+                - price
+  /connectors/uniswap/clmm/positions-owned:
+    get:
+      tags:
+      - /connector/uniswap
+      description: Get all Uniswap V3 positions owned by a wallet
+      parameters:
+      - schema:
+          default: base
+          type: string
+        example: base
+        in: query
+        name: network
+        required: false
+      - schema:
+          type: string
+        example: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+        in: query
+        name: walletAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    address:
+                      type: string
+                    poolAddress:
+                      type: string
+                    baseTokenAddress:
+                      type: string
+                    quoteTokenAddress:
+                      type: string
+                    baseTokenAmount:
+                      type: number
+                    quoteTokenAmount:
+                      type: number
+                    baseFeeAmount:
+                      type: number
+                    quoteFeeAmount:
+                      type: number
+                    lowerBinId:
+                      type: number
+                    upperBinId:
+                      type: number
+                    lowerPrice:
+                      type: number
+                    upperPrice:
+                      type: number
+                    price:
+                      type: number
+                    rewardTokenAddress:
+                      type: string
+                    rewardAmount:
+                      type: number
+                  required:
+                  - address
+                  - poolAddress
+                  - baseTokenAddress
+                  - quoteTokenAddress
+                  - baseTokenAmount
+                  - quoteTokenAmount
+                  - baseFeeAmount
+                  - quoteFeeAmount
+                  - lowerBinId
+                  - upperBinId
+                  - lowerPrice
+                  - upperPrice
+                  - price
+  /connectors/uniswap/clmm/quote-position:
+    get:
+      tags:
+      - /connector/uniswap
+      description: Get a quote for opening a position on Uniswap V3
+      parameters:
+      - schema:
+          type: string
+          default: base
+        example: base
+        in: query
+        name: network
+        required: false
+      - schema:
+          type: number
+        example: 2000
+        in: query
+        name: lowerPrice
+        required: true
+      - schema:
+          type: number
+        example: 4000
+        in: query
+        name: upperPrice
+        required: true
+      - schema:
+          type: string
+          default: '0xd0b53d9277642d899df5c87a3966a349a798f224'
+        example: '0xd0b53d9277642d899df5c87a3966a349a798f224'
+        in: query
+        name: poolAddress
+        required: true
+      - schema:
+          type: number
+        example: 0.001
+        in: query
+        name: baseTokenAmount
+        required: false
+      - schema:
+          type: number
+        example: 3
+        in: query
+        name: quoteTokenAmount
+        required: false
+      - schema:
+          minimum: 0
+          maximum: 100
+          type: number
+        in: query
+        name: slippagePct
+        required: false
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  baseLimited:
+                    type: boolean
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  baseTokenAmountMax:
+                    type: number
+                  quoteTokenAmountMax:
+                    type: number
+                  liquidity: {}
+                required:
+                - baseLimited
+                - baseTokenAmount
+                - quoteTokenAmount
+                - baseTokenAmountMax
+                - quoteTokenAmountMax
+  /connectors/uniswap/clmm/quote-swap:
+    get:
+      tags:
+      - /connector/uniswap
+      description: Get swap quote for Uniswap V3 CLMM
+      parameters:
+      - schema:
+          type: string
+          default: base
+        in: query
+        name: network
+        required: false
+      - schema:
+          type: string
+        in: query
+        name: poolAddress
+        required: false
+        description: Pool address (optional - can be looked up from baseToken and quoteToken)
+      - schema:
+          type: string
+        example: WETH
+        in: query
+        name: baseToken
+        required: true
+      - schema:
+          type: string
+        example: USDC
+        in: query
+        name: quoteToken
+        required: false
+      - schema:
+          type: number
+        example: 0.001
+        in: query
+        name: amount
+        required: true
+      - schema:
+          type: string
+          enum:
+          - BUY
+          - SELL
+        example: SELL
+        in: query
+        name: side
+        required: true
+      - schema:
+          type: number
+        example: 1
+        in: query
+        name: slippagePct
+        required: false
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  poolAddress:
+                    type: string
+                  tokenIn:
+                    type: string
+                  tokenOut:
+                    type: string
+                  amountIn:
+                    type: number
+                  amountOut:
+                    type: number
+                  price:
+                    type: number
+                  slippagePct:
+                    type: number
+                  minAmountOut:
+                    type: number
+                  maxAmountIn:
+                    type: number
+                  priceImpactPct:
+                    type: number
+                required:
+                - poolAddress
+                - tokenIn
+                - tokenOut
+                - amountIn
+                - amountOut
+                - price
+                - minAmountOut
+                - maxAmountIn
+                - priceImpactPct
+  /connectors/uniswap/clmm/execute-swap:
+    post:
+      tags:
+      - /connector/uniswap
+      description: Execute a swap on Uniswap V3 CLMM using SwapRouter02
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                walletAddress:
+                  description: Wallet address that will execute the swap
+                  default: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                  type: string
+                  example: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                network:
+                  description: The blockchain network to use
+                  default: mainnet
+                  enum:
+                  - arbitrum
+                  - avalanche
+                  - base
+                  - bsc
+                  - celo
+                  - mainnet
+                  - optimism
+                  - polygon
+                  type: string
+                baseToken:
+                  description: Token to determine swap direction
+                  type: string
+                  example: WETH
+                quoteToken:
+                  description: The other token in the pair
+                  type: string
+                  example: USDC
+                amount:
+                  description: Amount of base token to trade
+                  type: number
+                  example: 0.001
+                side:
+                  description: Trade direction - BUY means buying base token with quote token, SELL means selling base token for quote token
+                  enum:
+                  - BUY
+                  - SELL
+                  type: string
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 2
+                  type: number
+                  example: 1
+              required:
+              - baseToken
+              - quoteToken
+              - amount
+              - side
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    description: Transaction signature/hash
+                    type: string
+                  status:
+                    description: 'Transaction status: 0 = PENDING, 1 = CONFIRMED, -1 = FAILED'
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      tokenIn:
+                        description: Address of the token swapped from
+                        type: string
+                      tokenOut:
+                        description: Address of the token swapped to
+                        type: string
+                      amountIn:
+                        description: Actual amount of tokenIn swapped
+                        type: number
+                      amountOut:
+                        description: Actual amount of tokenOut received
+                        type: number
+                      fee:
+                        description: Transaction fee paid
+                        type: number
+                      baseTokenBalanceChange:
+                        description: Change in base token balance (negative for decrease)
+                        type: number
+                      quoteTokenBalanceChange:
+                        description: Change in quote token balance (negative for decrease)
+                        type: number
+                    required:
+                    - tokenIn
+                    - tokenOut
+                    - amountIn
+                    - amountOut
+                    - fee
+                    - baseTokenBalanceChange
+                    - quoteTokenBalanceChange
+                required:
+                - signature
+                - status
+  /connectors/uniswap/clmm/open-position:
+    post:
+      tags:
+      - /connector/uniswap
+      description: Open a new liquidity position in a Uniswap V3 pool
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  default: base
+                walletAddress:
+                  type: string
+                  example: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                lowerPrice:
+                  type: number
+                  example: 1000
+                upperPrice:
+                  type: number
+                  example: 4000
+                poolAddress:
+                  type: string
+                  example: '0xd0b53d9277642d899df5c87a3966a349a798f224'
+                baseTokenAmount:
+                  type: number
+                  example: 0.001
+                quoteTokenAmount:
+                  type: number
+                  example: 3
+                slippagePct:
+                  type: number
+                  example: 1
+              required:
+              - lowerPrice
+              - upperPrice
+              - poolAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      positionAddress:
+                        type: string
+                      positionRent:
+                        type: number
+                      baseTokenAmountAdded:
+                        type: number
+                      quoteTokenAmountAdded:
+                        type: number
+                    required:
+                    - fee
+                    - positionAddress
+                    - positionRent
+                    - baseTokenAmountAdded
+                    - quoteTokenAmountAdded
+                required:
+                - signature
+                - status
+  /connectors/uniswap/clmm/add-liquidity:
+    post:
+      tags:
+      - /connector/uniswap
+      description: Add liquidity to an existing Uniswap V3 position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: The EVM network to use
+                  default: mainnet
+                  enum:
+                  - arbitrum
+                  - avalanche
+                  - base
+                  - bsc
+                  - celo
+                  - mainnet
+                  - optimism
+                  - polygon
+                  type: string
+                walletAddress:
+                  description: Wallet address that will add liquidity
+                  default: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                  type: string
+                positionAddress:
+                  description: NFT token ID of the position
+                  type: string
+                baseTokenAmount:
+                  description: Amount of base token to add
+                  type: number
+                quoteTokenAmount:
+                  description: Amount of quote token to add
+                  type: number
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 2
+                  type: number
+                gasPrice:
+                  description: Gas price in wei for the transaction
+                  type: string
+                maxGas:
+                  description: Maximum gas limit for the transaction
+                  type: number
+                  example: 300000
+              required:
+              - positionAddress
+              - baseTokenAmount
+              - quoteTokenAmount
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseTokenAmountAdded:
+                        type: number
+                      quoteTokenAmountAdded:
+                        type: number
+                    required:
+                    - fee
+                    - baseTokenAmountAdded
+                    - quoteTokenAmountAdded
+                required:
+                - signature
+                - status
+  /connectors/uniswap/clmm/remove-liquidity:
+    post:
+      tags:
+      - /connector/uniswap
+      description: Remove liquidity from a Uniswap V3 position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  default: base
+                walletAddress:
+                  type: string
+                  example: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                positionAddress:
+                  type: string
+                  description: Position NFT token ID
+                  example: '1234'
+                percentageToRemove:
+                  type: number
+                  minimum: 0
+                  maximum: 100
+                  example: 50
+              required:
+              - positionAddress
+              - percentageToRemove
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseTokenAmountRemoved:
+                        type: number
+                      quoteTokenAmountRemoved:
+                        type: number
+                    required:
+                    - fee
+                    - baseTokenAmountRemoved
+                    - quoteTokenAmountRemoved
+                required:
+                - signature
+                - status
+  /connectors/uniswap/clmm/collect-fees:
+    post:
+      tags:
+      - /connector/uniswap
+      description: Collect fees from a Uniswap V3 position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  default: base
+                walletAddress:
+                  type: string
+                  example: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                positionAddress:
+                  type: string
+                  description: Position NFT token ID
+                  example: '1234'
+              required:
+              - positionAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseFeeAmountCollected:
+                        type: number
+                      quoteFeeAmountCollected:
+                        type: number
+                    required:
+                    - fee
+                    - baseFeeAmountCollected
+                    - quoteFeeAmountCollected
+                required:
+                - signature
+                - status
+  /connectors/uniswap/clmm/close-position:
+    post:
+      tags:
+      - /connector/uniswap
+      description: Close a Uniswap V3 position by removing all liquidity and collecting fees
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                walletAddress:
+                  type: string
+                positionAddress:
+                  type: string
+              required:
+              - positionAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      positionRentRefunded:
+                        type: number
+                      baseTokenAmountRemoved:
+                        type: number
+                      quoteTokenAmountRemoved:
+                        type: number
+                      baseFeeAmountCollected:
+                        type: number
+                      quoteFeeAmountCollected:
+                        type: number
+                    required:
+                    - fee
+                    - positionRentRefunded
+                    - baseTokenAmountRemoved
+                    - quoteTokenAmountRemoved
+                    - baseFeeAmountCollected
+                    - quoteFeeAmountCollected
+                required:
+                - signature
+                - status

@@ -1,0 +1,358 @@
+openapi: 3.0.3
+info:
+  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/0x API
+  description: API endpoints for interacting with DEXs and blockchains
+  version: dev-2.11.0
+servers:
+- url: http://localhost:15888
+tags:
+- name: /connector/0x
+  description: 0x connector endpoints
+paths:
+  /connectors/0x/router/quote-swap:
+    get:
+      tags:
+      - /connector/0x
+      description: Get a swap quote from 0x. Use indicativePrice=true for price discovery only, or false/undefined for executable quotes
+      parameters:
+      - schema:
+          default: mainnet
+          enum:
+          - arbitrum
+          - avalanche
+          - base
+          - bsc
+          - mainnet
+          - optimism
+          - polygon
+          type: string
+        in: query
+        name: network
+        required: false
+        description: The EVM network to use
+      - schema:
+          type: string
+        example: WETH
+        in: query
+        name: baseToken
+        required: true
+        description: First token in the trading pair
+      - schema:
+          type: string
+        example: USDC
+        in: query
+        name: quoteToken
+        required: true
+        description: Second token in the trading pair
+      - schema:
+          type: number
+        example: 1
+        in: query
+        name: amount
+        required: true
+        description: Amount of base token to trade
+      - schema:
+          enum:
+          - BUY
+          - SELL
+          type: string
+        in: query
+        name: side
+        required: true
+        description: Trade direction - BUY means buying base token with quote token, SELL means selling base token for quote token
+      - schema:
+          minimum: 0
+          maximum: 100
+          type: number
+        example: 1
+        in: query
+        name: slippagePct
+        required: false
+        description: Maximum acceptable slippage percentage
+      - schema:
+          default: true
+          type: boolean
+        in: query
+        name: indicativePrice
+        required: false
+        description: If true, returns indicative pricing only (no commitment). If false, returns firm quote ready for execution
+      - schema:
+          type: string
+        in: query
+        name: takerAddress
+        required: false
+        description: Ethereum wallet address that will execute the swap (optional for quotes)
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  quoteId:
+                    description: Unique identifier for this quote
+                    type: string
+                  tokenIn:
+                    description: Address of the token being swapped from
+                    type: string
+                  tokenOut:
+                    description: Address of the token being swapped to
+                    type: string
+                  amountIn:
+                    description: Amount of tokenIn to be swapped
+                    type: number
+                  amountOut:
+                    description: Expected amount of tokenOut to receive
+                    type: number
+                  price:
+                    description: Exchange rate between tokenIn and tokenOut
+                    type: number
+                  priceImpactPct:
+                    description: Estimated price impact percentage (0-100)
+                    type: number
+                  minAmountOut:
+                    description: Minimum amount of tokenOut that will be accepted
+                    type: number
+                  maxAmountIn:
+                    description: Maximum amount of tokenIn that will be spent
+                    type: number
+                  expirationTime:
+                    description: Unix timestamp when this quote expires (only for firm quotes)
+                    type: number
+                  gasEstimate:
+                    description: Estimated gas required for the swap
+                    type: string
+                  sources:
+                    description: Liquidity sources used for this quote
+                    type: array
+                    items: {}
+                  allowanceTarget:
+                    description: Contract address that needs token approval
+                    type: string
+                  to:
+                    description: Contract address to send transaction to
+                    type: string
+                  data:
+                    description: Encoded transaction data
+                    type: string
+                  value:
+                    description: ETH value to send with transaction
+                    type: string
+                required:
+                - quoteId
+                - tokenIn
+                - tokenOut
+                - amountIn
+                - amountOut
+                - price
+                - priceImpactPct
+                - minAmountOut
+                - maxAmountIn
+                - gasEstimate
+  /connectors/0x/router/execute-quote:
+    post:
+      tags:
+      - /connector/0x
+      description: Execute a previously fetched quote from 0x
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                walletAddress:
+                  description: Wallet address that will execute the swap
+                  default: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                  type: string
+                network:
+                  description: The blockchain network to use
+                  default: mainnet
+                  enum:
+                  - arbitrum
+                  - avalanche
+                  - base
+                  - bsc
+                  - mainnet
+                  - optimism
+                  - polygon
+                  type: string
+                  example: arbitrum
+                quoteId:
+                  description: ID of the quote to execute
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                gasPrice:
+                  description: Gas price in wei for the transaction
+                  type: string
+                maxGas:
+                  description: Maximum gas limit for the transaction
+                  type: number
+                  example: 1000000
+              required:
+              - quoteId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    description: Transaction signature/hash
+                    type: string
+                  status:
+                    description: 'Transaction status: 0 = PENDING, 1 = CONFIRMED, -1 = FAILED'
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      tokenIn:
+                        description: Address of the token swapped from
+                        type: string
+                      tokenOut:
+                        description: Address of the token swapped to
+                        type: string
+                      amountIn:
+                        description: Actual amount of tokenIn swapped
+                        type: number
+                      amountOut:
+                        description: Actual amount of tokenOut received
+                        type: number
+                      fee:
+                        description: Transaction fee paid
+                        type: number
+                      baseTokenBalanceChange:
+                        description: Change in base token balance (negative for decrease)
+                        type: number
+                      quoteTokenBalanceChange:
+                        description: Change in quote token balance (negative for decrease)
+                        type: number
+                    required:
+                    - tokenIn
+                    - tokenOut
+                    - amountIn
+                    - amountOut
+                    - fee
+                    - baseTokenBalanceChange
+                    - quoteTokenBalanceChange
+                required:
+                - signature
+                - status
+  /connectors/0x/router/execute-swap:
+    post:
+      tags:
+      - /connector/0x
+      description: Quote and execute a token swap on 0x in one step
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                walletAddress:
+                  description: Wallet address that will execute the swap
+                  default: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                  type: string
+                  example: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                network:
+                  description: The blockchain network to use
+                  default: mainnet
+                  enum:
+                  - arbitrum
+                  - avalanche
+                  - base
+                  - bsc
+                  - mainnet
+                  - optimism
+                  - polygon
+                  type: string
+                  example: arbitrum
+                baseToken:
+                  description: Token to determine swap direction
+                  type: string
+                  example: WETH
+                quoteToken:
+                  description: The other token in the pair
+                  type: string
+                  example: USDC
+                amount:
+                  description: Amount of base token to trade
+                  type: number
+                  example: 1
+                side:
+                  description: Trade direction - BUY means buying base token with quote token, SELL means selling base token for quote token
+                  enum:
+                  - BUY
+                  - SELL
+                  type: string
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  type: number
+                  example: 1
+                gasPrice:
+                  description: Gas price in wei for the transaction
+                  type: string
+                maxGas:
+                  description: Maximum gas limit for the transaction
+                  type: number
+                  example: 300000
+              required:
+              - baseToken
+              - quoteToken
+              - amount
+              - side
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    description: Transaction signature/hash
+                    type: string
+                  status:
+                    description: 'Transaction status: 0 = PENDING, 1 = CONFIRMED, -1 = FAILED'
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      tokenIn:
+                        description: Address of the token swapped from
+                        type: string
+                      tokenOut:
+                        description: Address of the token swapped to
+                        type: string
+                      amountIn:
+                        description: Actual amount of tokenIn swapped
+                        type: number
+                      amountOut:
+                        description: Actual amount of tokenOut received
+                        type: number
+                      fee:
+                        description: Transaction fee paid
+                        type: number
+                      baseTokenBalanceChange:
+                        description: Change in base token balance (negative for decrease)
+                        type: number
+                      quoteTokenBalanceChange:
+                        description: Change in quote token balance (negative for decrease)
+                        type: number
+                    required:
+                    - tokenIn
+                    - tokenOut
+                    - amountIn
+                    - amountOut
+                    - fee
+                    - baseTokenBalanceChange
+                    - quoteTokenBalanceChange
+                required:
+                - signature
+                - status

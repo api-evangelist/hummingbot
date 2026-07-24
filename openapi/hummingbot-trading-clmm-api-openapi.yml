@@ -1,0 +1,745 @@
+openapi: 3.0.3
+info:
+  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /trading/clmm API
+  description: API endpoints for interacting with DEXs and blockchains
+  version: dev-2.11.0
+servers:
+- url: http://localhost:15888
+tags:
+- name: /trading/clmm
+  description: Unified cross-chain CLMM (Concentrated Liquidity) endpoints
+paths:
+  /trading/clmm/pool-info:
+    get:
+      tags:
+      - /trading/clmm
+      description: Get CLMM pool information from any supported connector
+      parameters:
+      - schema:
+          enum:
+          - raydium
+          - meteora
+          - pancakeswap-sol
+          - uniswap
+          - pancakeswap
+          - orca
+          default: meteora
+          type: string
+        example: meteora
+        in: query
+        name: connector
+        required: true
+        description: CLMM connector (raydium, meteora, pancakeswap-sol, uniswap, pancakeswap, orca)
+      - schema:
+          default: solana-mainnet-beta
+          type: string
+        example: solana-mainnet-beta
+        in: query
+        name: chainNetwork
+        required: true
+        description: 'Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)'
+      - schema:
+          type: string
+        example: 2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3
+        in: query
+        name: poolAddress
+        required: true
+        description: Pool contract address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                  baseTokenAddress:
+                    type: string
+                  quoteTokenAddress:
+                    type: string
+                  binStep:
+                    type: number
+                  feePct:
+                    type: number
+                  price:
+                    type: number
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  activeBinId:
+                    type: number
+                required:
+                - address
+                - baseTokenAddress
+                - quoteTokenAddress
+                - feePct
+                - price
+                - baseTokenAmount
+                - quoteTokenAmount
+                - activeBinId
+  /trading/clmm/position-info:
+    get:
+      tags:
+      - /trading/clmm
+      description: Get CLMM position information from any supported connector
+      parameters:
+      - schema:
+          enum:
+          - raydium
+          - meteora
+          - pancakeswap-sol
+          - uniswap
+          - pancakeswap
+          - orca
+          default: meteora
+          type: string
+        example: meteora
+        in: query
+        name: connector
+        required: true
+        description: CLMM connector (raydium, meteora, pancakeswap-sol, uniswap, pancakeswap, orca)
+      - schema:
+          default: solana-mainnet-beta
+          type: string
+        example: solana-mainnet-beta
+        in: query
+        name: chainNetwork
+        required: true
+        description: 'Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)'
+      - schema:
+          type: string
+        example: <sample-position-address>
+        in: query
+        name: positionAddress
+        required: true
+        description: Position address or NFT token ID
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                  poolAddress:
+                    type: string
+                  baseTokenAddress:
+                    type: string
+                  quoteTokenAddress:
+                    type: string
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  baseFeeAmount:
+                    type: number
+                  quoteFeeAmount:
+                    type: number
+                  lowerBinId:
+                    type: number
+                  upperBinId:
+                    type: number
+                  lowerPrice:
+                    type: number
+                  upperPrice:
+                    type: number
+                  price:
+                    type: number
+                  rewardTokenAddress:
+                    type: string
+                  rewardAmount:
+                    type: number
+                required:
+                - address
+                - poolAddress
+                - baseTokenAddress
+                - quoteTokenAddress
+                - baseTokenAmount
+                - quoteTokenAmount
+                - baseFeeAmount
+                - quoteFeeAmount
+                - lowerBinId
+                - upperBinId
+                - lowerPrice
+                - upperPrice
+                - price
+  /trading/clmm/positions-owned:
+    get:
+      tags:
+      - /trading/clmm
+      description: Get all CLMM positions owned by a wallet from any supported connector
+      parameters:
+      - schema:
+          enum:
+          - raydium
+          - meteora
+          - pancakeswap-sol
+          - uniswap
+          - pancakeswap
+          - orca
+          default: meteora
+          type: string
+        example: meteora
+        in: query
+        name: connector
+        required: true
+        description: CLMM connector (raydium, meteora, pancakeswap-sol, uniswap, pancakeswap, orca)
+      - schema:
+          default: solana-mainnet-beta
+          type: string
+        example: solana-mainnet-beta
+        in: query
+        name: chainNetwork
+        required: true
+        description: 'Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)'
+      - schema:
+          default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+          type: string
+        in: query
+        name: walletAddress
+        required: false
+        description: Wallet address (optional, uses default wallet if not provided)
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    address:
+                      type: string
+                    poolAddress:
+                      type: string
+                    baseTokenAddress:
+                      type: string
+                    quoteTokenAddress:
+                      type: string
+                    baseTokenAmount:
+                      type: number
+                    quoteTokenAmount:
+                      type: number
+                    baseFeeAmount:
+                      type: number
+                    quoteFeeAmount:
+                      type: number
+                    lowerBinId:
+                      type: number
+                    upperBinId:
+                      type: number
+                    lowerPrice:
+                      type: number
+                    upperPrice:
+                      type: number
+                    price:
+                      type: number
+                    rewardTokenAddress:
+                      type: string
+                    rewardAmount:
+                      type: number
+                  required:
+                  - address
+                  - poolAddress
+                  - baseTokenAddress
+                  - quoteTokenAddress
+                  - baseTokenAmount
+                  - quoteTokenAmount
+                  - baseFeeAmount
+                  - quoteFeeAmount
+                  - lowerBinId
+                  - upperBinId
+                  - lowerPrice
+                  - upperPrice
+                  - price
+                  title: PositionInfo
+  /trading/clmm/quote-position:
+    get:
+      tags:
+      - /trading/clmm
+      description: Quote amounts for a new CLMM position from any supported connector
+      parameters:
+      - schema:
+          enum:
+          - raydium
+          - meteora
+          - pancakeswap-sol
+          - uniswap
+          - pancakeswap
+          - orca
+          default: meteora
+          type: string
+        example: meteora
+        in: query
+        name: connector
+        required: true
+        description: CLMM connector (raydium, meteora, pancakeswap-sol, uniswap, pancakeswap, orca)
+      - schema:
+          default: solana-mainnet-beta
+          type: string
+        example: solana-mainnet-beta
+        in: query
+        name: chainNetwork
+        required: true
+        description: 'Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)'
+      - schema:
+          type: number
+        example: 150
+        in: query
+        name: lowerPrice
+        required: true
+        description: Lower price bound for the position
+      - schema:
+          type: number
+        example: 250
+        in: query
+        name: upperPrice
+        required: true
+        description: Upper price bound for the position
+      - schema:
+          type: string
+        example: 2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3
+        in: query
+        name: poolAddress
+        required: true
+        description: Pool contract address
+      - schema:
+          type: number
+        example: 0.01
+        in: query
+        name: baseTokenAmount
+        required: false
+        description: Amount of base token to deposit
+      - schema:
+          type: number
+        example: 2
+        in: query
+        name: quoteTokenAmount
+        required: false
+        description: Amount of quote token to deposit
+      - schema:
+          minimum: 0
+          maximum: 100
+          default: 1
+          type: number
+        example: 1
+        in: query
+        name: slippagePct
+        required: false
+        description: Maximum acceptable slippage percentage
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  baseLimited:
+                    type: boolean
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  baseTokenAmountMax:
+                    type: number
+                  quoteTokenAmountMax:
+                    type: number
+                  liquidity: {}
+                required:
+                - baseLimited
+                - baseTokenAmount
+                - quoteTokenAmount
+                - baseTokenAmountMax
+                - quoteTokenAmountMax
+  /trading/clmm/open:
+    post:
+      tags:
+      - /trading/clmm
+      description: Open a new CLMM position across supported connectors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                connector:
+                  description: Connector name (uniswap, pancakeswap, raydium, meteora, pancakeswap-sol, orca)
+                  default: meteora
+                  type: string
+                  example: meteora
+                chainNetwork:
+                  description: 'Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)'
+                  default: solana-mainnet-beta
+                  type: string
+                  example: solana-mainnet-beta
+                walletAddress:
+                  description: Wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                lowerPrice:
+                  description: Lower price bound for the position
+                  type: number
+                  example: 150
+                upperPrice:
+                  description: Upper price bound for the position
+                  type: number
+                  example: 250
+                poolAddress:
+                  description: Pool address
+                  type: string
+                  example: 2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3
+                baseTokenAmount:
+                  description: Amount of base token to deposit
+                  type: number
+                  example: 0.01
+                quoteTokenAmount:
+                  description: Amount of quote token to deposit
+                  type: number
+                  example: 2
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 1
+                  type: number
+                  example: 1
+              required:
+              - connector
+              - chainNetwork
+              - walletAddress
+              - lowerPrice
+              - upperPrice
+              - poolAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      positionAddress:
+                        type: string
+                      positionRent:
+                        type: number
+                      baseTokenAmountAdded:
+                        type: number
+                      quoteTokenAmountAdded:
+                        type: number
+                    required:
+                    - fee
+                    - positionAddress
+                    - positionRent
+                    - baseTokenAmountAdded
+                    - quoteTokenAmountAdded
+                required:
+                - signature
+                - status
+  /trading/clmm/add:
+    post:
+      tags:
+      - /trading/clmm
+      description: Add liquidity to an existing CLMM position across supported connectors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                connector:
+                  description: Connector name (uniswap, pancakeswap, raydium, meteora, pancakeswap-sol, orca)
+                  default: meteora
+                  type: string
+                  example: meteora
+                chainNetwork:
+                  description: 'Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)'
+                  default: solana-mainnet-beta
+                  type: string
+                  example: solana-mainnet-beta
+                walletAddress:
+                  description: Wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                positionAddress:
+                  description: Position address
+                  type: string
+                  example: <sample-position-address>
+                baseTokenAmount:
+                  description: Amount of base token to deposit
+                  type: number
+                  example: 0.01
+                quoteTokenAmount:
+                  description: Amount of quote token to deposit
+                  type: number
+                  example: 2
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 1
+                  type: number
+                  example: 1
+              required:
+              - connector
+              - chainNetwork
+              - walletAddress
+              - positionAddress
+              - baseTokenAmount
+              - quoteTokenAmount
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseTokenAmountAdded:
+                        type: number
+                      quoteTokenAmountAdded:
+                        type: number
+                    required:
+                    - fee
+                    - baseTokenAmountAdded
+                    - quoteTokenAmountAdded
+                required:
+                - signature
+                - status
+  /trading/clmm/remove:
+    post:
+      tags:
+      - /trading/clmm
+      description: Remove liquidity from a CLMM position across supported connectors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                connector:
+                  description: Connector name (uniswap, pancakeswap, raydium, meteora, pancakeswap-sol, orca)
+                  default: meteora
+                  type: string
+                  example: meteora
+                chainNetwork:
+                  description: 'Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)'
+                  default: solana-mainnet-beta
+                  type: string
+                  example: solana-mainnet-beta
+                walletAddress:
+                  description: Wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                positionAddress:
+                  description: Position address
+                  type: string
+                  example: <sample-position-address>
+                percentageToRemove:
+                  minimum: 0
+                  maximum: 100
+                  description: Percentage of liquidity to remove
+                  default: 100
+                  type: number
+                  example: 100
+              required:
+              - connector
+              - chainNetwork
+              - walletAddress
+              - positionAddress
+              - percentageToRemove
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseTokenAmountRemoved:
+                        type: number
+                      quoteTokenAmountRemoved:
+                        type: number
+                    required:
+                    - fee
+                    - baseTokenAmountRemoved
+                    - quoteTokenAmountRemoved
+                required:
+                - signature
+                - status
+  /trading/clmm/collect-fees:
+    post:
+      tags:
+      - /trading/clmm
+      description: Collect fees from a CLMM position across supported connectors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                connector:
+                  description: Connector name (uniswap, pancakeswap, raydium, meteora, pancakeswap-sol, orca)
+                  default: meteora
+                  type: string
+                  example: meteora
+                chainNetwork:
+                  description: 'Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)'
+                  default: solana-mainnet-beta
+                  type: string
+                  example: solana-mainnet-beta
+                walletAddress:
+                  description: Wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                positionAddress:
+                  description: Position address
+                  type: string
+                  example: <sample-position-address>
+              required:
+              - connector
+              - chainNetwork
+              - walletAddress
+              - positionAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseFeeAmountCollected:
+                        type: number
+                      quoteFeeAmountCollected:
+                        type: number
+                    required:
+                    - fee
+                    - baseFeeAmountCollected
+                    - quoteFeeAmountCollected
+                required:
+                - signature
+                - status
+  /trading/clmm/close:
+    post:
+      tags:
+      - /trading/clmm
+      description: Close a CLMM position across supported connectors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                connector:
+                  description: Connector name (uniswap, pancakeswap, raydium, meteora, pancakeswap-sol, orca)
+                  default: meteora
+                  type: string
+                  example: meteora
+                chainNetwork:
+                  description: 'Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)'
+                  default: solana-mainnet-beta
+                  type: string
+                  example: solana-mainnet-beta
+                walletAddress:
+                  description: Wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                positionAddress:
+                  description: Position address
+                  type: string
+                  example: <sample-position-address>
+              required:
+              - connector
+              - chainNetwork
+              - walletAddress
+              - positionAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      positionRentRefunded:
+                        type: number
+                      baseTokenAmountRemoved:
+                        type: number
+                      quoteTokenAmountRemoved:
+                        type: number
+                      baseFeeAmountCollected:
+                        type: number
+                      quoteFeeAmountCollected:
+                        type: number
+                    required:
+                    - fee
+                    - positionRentRefunded
+                    - baseTokenAmountRemoved
+                    - quoteTokenAmountRemoved
+                    - baseFeeAmountCollected
+                    - quoteFeeAmountCollected
+                required:
+                - signature
+                - status

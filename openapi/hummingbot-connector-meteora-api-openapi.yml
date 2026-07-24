@@ -1,0 +1,1000 @@
+openapi: 3.0.3
+info:
+  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/meteora API
+  description: API endpoints for interacting with DEXs and blockchains
+  version: dev-2.11.0
+servers:
+- url: http://localhost:15888
+tags:
+- name: /connector/meteora
+  description: Meteora connector endpoints
+paths:
+  /connectors/meteora/clmm/fetch-pools:
+    get:
+      tags:
+      - /connector/meteora
+      description: Fetch info about Meteora pools
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          minimum: 1
+          default: 10
+          type: number
+        example: 10
+        in: query
+        name: limit
+        required: false
+        description: Maximum number of pools to return
+      - schema:
+          type: string
+        example: SOL
+        in: query
+        name: tokenA
+        required: false
+        description: First token symbol or address
+      - schema:
+          type: string
+        example: USDC
+        in: query
+        name: tokenB
+        required: false
+        description: Second token symbol or address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    address:
+                      type: string
+                    baseTokenAddress:
+                      type: string
+                    quoteTokenAddress:
+                      type: string
+                    binStep:
+                      type: number
+                    feePct:
+                      type: number
+                    price:
+                      type: number
+                    baseTokenAmount:
+                      type: number
+                    quoteTokenAmount:
+                      type: number
+                    activeBinId:
+                      type: number
+                  required:
+                  - address
+                  - baseTokenAddress
+                  - quoteTokenAddress
+                  - feePct
+                  - price
+                  - baseTokenAmount
+                  - quoteTokenAmount
+                  - activeBinId
+                  title: PoolInfo
+  /connectors/meteora/clmm/pool-info:
+    get:
+      tags:
+      - /connector/meteora
+      description: Get pool information for a Meteora pool
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: 2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3
+        in: query
+        name: poolAddress
+        required: true
+        description: Meteora DLMM pool address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                  baseTokenAddress:
+                    type: string
+                  quoteTokenAddress:
+                    type: string
+                  binStep:
+                    type: number
+                  feePct:
+                    type: number
+                  price:
+                    type: number
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  activeBinId:
+                    type: number
+                  dynamicFeePct:
+                    type: number
+                  minBinId:
+                    type: number
+                  maxBinId:
+                    type: number
+                  bins:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        binId:
+                          type: number
+                        price:
+                          type: number
+                        baseTokenAmount:
+                          type: number
+                        quoteTokenAmount:
+                          type: number
+                      required:
+                      - binId
+                      - price
+                      - baseTokenAmount
+                      - quoteTokenAmount
+                      title: BinLiquidity
+                required:
+                - address
+                - baseTokenAddress
+                - quoteTokenAddress
+                - feePct
+                - price
+                - baseTokenAmount
+                - quoteTokenAmount
+                - activeBinId
+                - dynamicFeePct
+                - minBinId
+                - maxBinId
+                - bins
+  /connectors/meteora/clmm/positions-owned:
+    get:
+      tags:
+      - /connector/meteora
+      description: Retrieve all positions owned by a user's wallet across all Meteora pools
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+        in: query
+        name: walletAddress
+        required: true
+        description: Solana wallet address to check for positions
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    address:
+                      type: string
+                    poolAddress:
+                      type: string
+                    baseTokenAddress:
+                      type: string
+                    quoteTokenAddress:
+                      type: string
+                    baseTokenAmount:
+                      type: number
+                    quoteTokenAmount:
+                      type: number
+                    baseFeeAmount:
+                      type: number
+                    quoteFeeAmount:
+                      type: number
+                    lowerBinId:
+                      type: number
+                    upperBinId:
+                      type: number
+                    lowerPrice:
+                      type: number
+                    upperPrice:
+                      type: number
+                    price:
+                      type: number
+                    rewardTokenAddress:
+                      type: string
+                    rewardAmount:
+                      type: number
+                  required:
+                  - address
+                  - poolAddress
+                  - baseTokenAddress
+                  - quoteTokenAddress
+                  - baseTokenAmount
+                  - quoteTokenAmount
+                  - baseFeeAmount
+                  - quoteFeeAmount
+                  - lowerBinId
+                  - upperBinId
+                  - lowerPrice
+                  - upperPrice
+                  - price
+  /connectors/meteora/clmm/position-info:
+    get:
+      tags:
+      - /connector/meteora
+      description: Get details for a specific Meteora position
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: <sample-position-address>
+        in: query
+        name: positionAddress
+        required: true
+        description: Position NFT address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                  poolAddress:
+                    type: string
+                  baseTokenAddress:
+                    type: string
+                  quoteTokenAddress:
+                    type: string
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  baseFeeAmount:
+                    type: number
+                  quoteFeeAmount:
+                    type: number
+                  lowerBinId:
+                    type: number
+                  upperBinId:
+                    type: number
+                  lowerPrice:
+                    type: number
+                  upperPrice:
+                    type: number
+                  price:
+                    type: number
+                  rewardTokenAddress:
+                    type: string
+                  rewardAmount:
+                    type: number
+                required:
+                - address
+                - poolAddress
+                - baseTokenAddress
+                - quoteTokenAddress
+                - baseTokenAmount
+                - quoteTokenAmount
+                - baseFeeAmount
+                - quoteFeeAmount
+                - lowerBinId
+                - upperBinId
+                - lowerPrice
+                - upperPrice
+                - price
+  /connectors/meteora/clmm/quote-position:
+    get:
+      tags:
+      - /connector/meteora
+      description: Quote amounts for a new Meteora CLMM position
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: number
+        example: 150
+        in: query
+        name: lowerPrice
+        required: true
+        description: Lower price bound for the position
+      - schema:
+          type: number
+        example: 250
+        in: query
+        name: upperPrice
+        required: true
+        description: Upper price bound for the position
+      - schema:
+          type: string
+        example: 2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3
+        in: query
+        name: poolAddress
+        required: true
+        description: Meteora DLMM pool address
+      - schema:
+          type: number
+        example: 0.01
+        in: query
+        name: baseTokenAmount
+        required: false
+        description: Amount of base token to deposit
+      - schema:
+          type: number
+        example: 2
+        in: query
+        name: quoteTokenAmount
+        required: false
+        description: Amount of quote token to deposit
+      - schema:
+          minimum: 0
+          maximum: 100
+          default: 2
+          type: number
+        example: 2
+        in: query
+        name: slippagePct
+        required: false
+        description: Maximum acceptable slippage percentage
+      - schema:
+          enum:
+          - 0
+          - 1
+          - 2
+          type: number
+        example: 0
+        in: query
+        name: strategyType
+        required: false
+        description: Strategy type for the position
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  baseLimited:
+                    type: boolean
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  baseTokenAmountMax:
+                    type: number
+                  quoteTokenAmountMax:
+                    type: number
+                  liquidity: {}
+                required:
+                - baseLimited
+                - baseTokenAmount
+                - quoteTokenAmount
+                - baseTokenAmountMax
+                - quoteTokenAmountMax
+  /connectors/meteora/clmm/quote-swap:
+    get:
+      tags:
+      - /connector/meteora
+      description: Get swap quote for Meteora CLMM
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: 2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3
+        in: query
+        name: poolAddress
+        required: false
+        description: Meteora DLMM pool address (optional - can be looked up from baseToken and quoteToken)
+      - schema:
+          type: string
+        example: SOL
+        in: query
+        name: baseToken
+        required: true
+        description: Token to determine swap direction
+      - schema:
+          type: string
+        example: USDC
+        in: query
+        name: quoteToken
+        required: false
+        description: The other token in the pair (optional - required if poolAddress not provided)
+      - schema:
+          type: number
+        example: 0.01
+        in: query
+        name: amount
+        required: true
+        description: Amount to swap
+      - schema:
+          enum:
+          - BUY
+          - SELL
+          default: SELL
+          type: string
+        example: SELL
+        in: query
+        name: side
+        required: true
+        description: Trade direction
+      - schema:
+          minimum: 0
+          maximum: 100
+          default: 2
+          type: number
+        example: 2
+        in: query
+        name: slippagePct
+        required: false
+        description: Maximum acceptable slippage percentage
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  poolAddress:
+                    type: string
+                  tokenIn:
+                    type: string
+                  tokenOut:
+                    type: string
+                  amountIn:
+                    type: number
+                  amountOut:
+                    type: number
+                  price:
+                    type: number
+                  slippagePct:
+                    type: number
+                  minAmountOut:
+                    type: number
+                  maxAmountIn:
+                    type: number
+                  priceImpactPct:
+                    type: number
+                required:
+                - poolAddress
+                - tokenIn
+                - tokenOut
+                - amountIn
+                - amountOut
+                - price
+                - minAmountOut
+                - maxAmountIn
+                - priceImpactPct
+  /connectors/meteora/clmm/execute-swap:
+    post:
+      tags:
+      - /connector/meteora
+      description: Execute a token swap on Meteora DLMM
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address that will execute the swap
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                  example: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                poolAddress:
+                  description: Meteora DLMM pool address (optional - can be looked up from baseToken and quoteToken)
+                  type: string
+                  example: 2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3
+                baseToken:
+                  description: Base token symbol or address
+                  type: string
+                  example: SOL
+                quoteToken:
+                  description: Quote token symbol or address (optional - required if poolAddress not provided)
+                  type: string
+                  example: USDC
+                amount:
+                  description: Amount to swap
+                  type: number
+                  example: 0.01
+                side:
+                  description: Trade direction
+                  enum:
+                  - BUY
+                  - SELL
+                  default: SELL
+                  type: string
+                  example: SELL
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 2
+                  type: number
+                  example: 2
+              required:
+              - baseToken
+              - amount
+              - side
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      tokenIn:
+                        type: string
+                      tokenOut:
+                        type: string
+                      amountIn:
+                        type: number
+                      amountOut:
+                        type: number
+                      fee:
+                        type: number
+                      baseTokenBalanceChange:
+                        type: number
+                      quoteTokenBalanceChange:
+                        type: number
+                    required:
+                    - tokenIn
+                    - tokenOut
+                    - amountIn
+                    - amountOut
+                    - fee
+                    - baseTokenBalanceChange
+                    - quoteTokenBalanceChange
+                required:
+                - signature
+                - status
+  /connectors/meteora/clmm/open-position:
+    post:
+      tags:
+      - /connector/meteora
+      description: Open a new Meteora position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address that will open the position
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                  example: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                lowerPrice:
+                  description: Lower price bound for the position
+                  type: number
+                  example: 150
+                upperPrice:
+                  description: Upper price bound for the position
+                  type: number
+                  example: 250
+                poolAddress:
+                  description: Meteora DLMM pool address
+                  type: string
+                  example: 2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3
+                baseTokenAmount:
+                  description: Amount of base token to deposit
+                  type: number
+                  example: 0.01
+                quoteTokenAmount:
+                  description: Amount of quote token to deposit
+                  type: number
+                  example: 2
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 2
+                  type: number
+                  example: 2
+                strategyType:
+                  description: Strategy type for the position
+                  enum:
+                  - 0
+                  - 1
+                  - 2
+                  type: number
+                  example: 0
+              required:
+              - lowerPrice
+              - upperPrice
+              - poolAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      positionAddress:
+                        type: string
+                      positionRent:
+                        type: number
+                      baseTokenAmountAdded:
+                        type: number
+                      quoteTokenAmountAdded:
+                        type: number
+                    required:
+                    - fee
+                    - positionAddress
+                    - positionRent
+                    - baseTokenAmountAdded
+                    - quoteTokenAmountAdded
+                required:
+                - signature
+                - status
+  /connectors/meteora/clmm/add-liquidity:
+    post:
+      tags:
+      - /connector/meteora
+      description: Add liquidity to a Meteora position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address that will add liquidity
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                  example: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                positionAddress:
+                  description: Position NFT address
+                  type: string
+                  example: <sample-position-address>
+                baseTokenAmount:
+                  description: Amount of base token to deposit
+                  type: number
+                  example: 0.01
+                quoteTokenAmount:
+                  description: Amount of quote token to deposit
+                  type: number
+                  example: 2
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 2
+                  type: number
+                  example: 2
+                strategyType:
+                  description: Strategy type for the position
+                  enum:
+                  - 0
+                  - 1
+                  - 2
+                  type: number
+                  example: 0
+              required:
+              - positionAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseTokenAmountAdded:
+                        type: number
+                      quoteTokenAmountAdded:
+                        type: number
+                    required:
+                    - fee
+                    - baseTokenAmountAdded
+                    - quoteTokenAmountAdded
+                required:
+                - signature
+                - status
+  /connectors/meteora/clmm/remove-liquidity:
+    post:
+      tags:
+      - /connector/meteora
+      description: Remove liquidity from a Meteora position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address that will remove liquidity
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                  example: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                positionAddress:
+                  description: Position NFT address
+                  type: string
+                  example: <sample-position-address>
+                liquidityPct:
+                  minimum: 0
+                  maximum: 100
+                  description: Percentage of liquidity to remove
+                  default: 100
+                  type: number
+                  example: 100
+              required:
+              - positionAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseTokenAmountRemoved:
+                        type: number
+                      quoteTokenAmountRemoved:
+                        type: number
+                    required:
+                    - fee
+                    - baseTokenAmountRemoved
+                    - quoteTokenAmountRemoved
+                required:
+                - signature
+                - status
+  /connectors/meteora/clmm/collect-fees:
+    post:
+      tags:
+      - /connector/meteora
+      description: Collect fees from a Meteora position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address that will collect fees
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                  example: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                positionAddress:
+                  description: Position NFT address
+                  type: string
+                  example: <sample-position-address>
+              required:
+              - positionAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseFeeAmountCollected:
+                        type: number
+                      quoteFeeAmountCollected:
+                        type: number
+                    required:
+                    - fee
+                    - baseFeeAmountCollected
+                    - quoteFeeAmountCollected
+                required:
+                - signature
+                - status
+  /connectors/meteora/clmm/close-position:
+    post:
+      tags:
+      - /connector/meteora
+      description: Close a Meteora position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address that will close the position
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                  example: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                positionAddress:
+                  description: Position NFT address
+                  type: string
+                  example: <sample-position-address>
+              required:
+              - positionAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      positionRentRefunded:
+                        type: number
+                      baseTokenAmountRemoved:
+                        type: number
+                      quoteTokenAmountRemoved:
+                        type: number
+                      baseFeeAmountCollected:
+                        type: number
+                      quoteFeeAmountCollected:
+                        type: number
+                    required:
+                    - fee
+                    - positionRentRefunded
+                    - baseTokenAmountRemoved
+                    - quoteTokenAmountRemoved
+                    - baseFeeAmountCollected
+                    - quoteFeeAmountCollected
+                required:
+                - signature
+                - status

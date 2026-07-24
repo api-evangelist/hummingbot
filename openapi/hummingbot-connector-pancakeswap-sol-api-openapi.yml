@@ -1,0 +1,870 @@
+openapi: 3.0.3
+info:
+  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/pancakeswap-sol API
+  description: API endpoints for interacting with DEXs and blockchains
+  version: dev-2.11.0
+servers:
+- url: http://localhost:15888
+tags:
+- name: /connector/pancakeswap-sol
+  description: PancakeSwap Solana connector endpoints
+paths:
+  /connectors/pancakeswap-sol/clmm/pool-info:
+    get:
+      tags:
+      - /connector/pancakeswap-sol
+      description: Get CLMM pool information from PancakeSwap Solana
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: 4QU2NpRaqmKMvPSwVKQDeW4V6JFEKJdkzbzdauumD9qN
+        in: query
+        name: poolAddress
+        required: true
+        description: PancakeSwap CLMM pool address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                  baseTokenAddress:
+                    type: string
+                  quoteTokenAddress:
+                    type: string
+                  binStep:
+                    type: number
+                  feePct:
+                    type: number
+                  price:
+                    type: number
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  activeBinId:
+                    type: number
+                required:
+                - address
+                - baseTokenAddress
+                - quoteTokenAddress
+                - feePct
+                - price
+                - baseTokenAmount
+                - quoteTokenAmount
+                - activeBinId
+  /connectors/pancakeswap-sol/clmm/position-info:
+    get:
+      tags:
+      - /connector/pancakeswap-sol
+      description: Get CLMM position information from PancakeSwap Solana
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: ''
+        in: query
+        name: positionAddress
+        required: true
+        description: Position NFT address
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                  poolAddress:
+                    type: string
+                  baseTokenAddress:
+                    type: string
+                  quoteTokenAddress:
+                    type: string
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  baseFeeAmount:
+                    type: number
+                  quoteFeeAmount:
+                    type: number
+                  lowerBinId:
+                    type: number
+                  upperBinId:
+                    type: number
+                  lowerPrice:
+                    type: number
+                  upperPrice:
+                    type: number
+                  price:
+                    type: number
+                  rewardTokenAddress:
+                    type: string
+                  rewardAmount:
+                    type: number
+                required:
+                - address
+                - poolAddress
+                - baseTokenAddress
+                - quoteTokenAddress
+                - baseTokenAmount
+                - quoteTokenAmount
+                - baseFeeAmount
+                - quoteFeeAmount
+                - lowerBinId
+                - upperBinId
+                - lowerPrice
+                - upperPrice
+                - price
+  /connectors/pancakeswap-sol/clmm/positions-owned:
+    get:
+      tags:
+      - /connector/pancakeswap-sol
+      description: Retrieve all positions owned by a user's wallet across all PancakeSwap Solana CLMM pools
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+        in: query
+        name: walletAddress
+        required: true
+        description: Solana wallet address to check for positions
+      - schema:
+          type: string
+        example: 4QU2NpRaqmKMvPSwVKQDeW4V6JFEKJdkzbzdauumD9qN
+        in: query
+        name: poolAddress
+        required: false
+        description: Optional pool address to filter positions by specific pool
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    address:
+                      type: string
+                    poolAddress:
+                      type: string
+                    baseTokenAddress:
+                      type: string
+                    quoteTokenAddress:
+                      type: string
+                    baseTokenAmount:
+                      type: number
+                    quoteTokenAmount:
+                      type: number
+                    baseFeeAmount:
+                      type: number
+                    quoteFeeAmount:
+                      type: number
+                    lowerBinId:
+                      type: number
+                    upperBinId:
+                      type: number
+                    lowerPrice:
+                      type: number
+                    upperPrice:
+                      type: number
+                    price:
+                      type: number
+                    rewardTokenAddress:
+                      type: string
+                    rewardAmount:
+                      type: number
+                  required:
+                  - address
+                  - poolAddress
+                  - baseTokenAddress
+                  - quoteTokenAddress
+                  - baseTokenAmount
+                  - quoteTokenAmount
+                  - baseFeeAmount
+                  - quoteFeeAmount
+                  - lowerBinId
+                  - upperBinId
+                  - lowerPrice
+                  - upperPrice
+                  - price
+  /connectors/pancakeswap-sol/clmm/quote-position:
+    get:
+      tags:
+      - /connector/pancakeswap-sol
+      description: Quote position amounts for PancakeSwap Solana CLMM (simplified)
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: 4QU2NpRaqmKMvPSwVKQDeW4V6JFEKJdkzbzdauumD9qN
+        in: query
+        name: poolAddress
+        required: true
+        description: PancakeSwap CLMM pool address
+      - schema:
+          type: number
+        example: 150
+        in: query
+        name: lowerPrice
+        required: true
+        description: Lower price bound for the position
+      - schema:
+          type: number
+        example: 250
+        in: query
+        name: upperPrice
+        required: true
+        description: Upper price bound for the position
+      - schema:
+          type: number
+        example: 0.01
+        in: query
+        name: baseTokenAmount
+        required: false
+        description: Amount of base token to deposit
+      - schema:
+          type: number
+        example: 2
+        in: query
+        name: quoteTokenAmount
+        required: false
+        description: Amount of quote token to deposit
+      - schema:
+          minimum: 0
+          maximum: 100
+          default: 2
+          type: number
+        example: 2
+        in: query
+        name: slippagePct
+        required: false
+        description: Maximum acceptable slippage percentage
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  baseLimited:
+                    type: boolean
+                  baseTokenAmount:
+                    type: number
+                  quoteTokenAmount:
+                    type: number
+                  baseTokenAmountMax:
+                    type: number
+                  quoteTokenAmountMax:
+                    type: number
+                  liquidity: {}
+                required:
+                - baseLimited
+                - baseTokenAmount
+                - quoteTokenAmount
+                - baseTokenAmountMax
+                - quoteTokenAmountMax
+  /connectors/pancakeswap-sol/clmm/quote-swap:
+    get:
+      tags:
+      - /connector/pancakeswap-sol
+      description: Get swap quote for PancakeSwap Solana CLMM with fee and estimated price impact based on pool liquidity
+      parameters:
+      - schema:
+          default: mainnet-beta
+          enum:
+          - devnet
+          - mainnet-beta
+          type: string
+        in: query
+        name: network
+        required: false
+        description: Solana network to use
+      - schema:
+          type: string
+        example: 4QU2NpRaqmKMvPSwVKQDeW4V6JFEKJdkzbzdauumD9qN
+        in: query
+        name: poolAddress
+        required: false
+        description: CLMM pool address (optional - can be looked up from tokens)
+      - schema:
+          type: string
+        example: SOL
+        in: query
+        name: baseToken
+        required: true
+        description: Base token symbol or address
+      - schema:
+          type: string
+        example: USDC
+        in: query
+        name: quoteToken
+        required: true
+        description: Quote token symbol or address
+      - schema:
+          type: number
+        example: 0.01
+        in: query
+        name: amount
+        required: true
+        description: Amount to swap
+      - schema:
+          enum:
+          - BUY
+          - SELL
+          default: SELL
+          type: string
+        in: query
+        name: side
+        required: true
+        description: Trade direction
+      - schema:
+          minimum: 0
+          maximum: 100
+          default: 2
+          type: number
+        example: 2
+        in: query
+        name: slippagePct
+        required: false
+        description: Maximum acceptable slippage percentage
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  poolAddress:
+                    type: string
+                  tokenIn:
+                    type: string
+                  tokenOut:
+                    type: string
+                  amountIn:
+                    type: number
+                  amountOut:
+                    type: number
+                  price:
+                    type: number
+                  slippagePct:
+                    type: number
+                  minAmountOut:
+                    type: number
+                  maxAmountIn:
+                    type: number
+                  priceImpactPct:
+                    type: number
+                required:
+                - poolAddress
+                - tokenIn
+                - tokenOut
+                - amountIn
+                - amountOut
+                - price
+                - minAmountOut
+                - maxAmountIn
+                - priceImpactPct
+  /connectors/pancakeswap-sol/clmm/execute-swap:
+    post:
+      tags:
+      - /connector/pancakeswap-sol
+      description: Execute a swap on PancakeSwap Solana CLMM
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                poolAddress:
+                  description: CLMM pool address (optional)
+                  type: string
+                  example: 4QU2NpRaqmKMvPSwVKQDeW4V6JFEKJdkzbzdauumD9qN
+                baseToken:
+                  description: Base token symbol or address
+                  type: string
+                  example: SOL
+                quoteToken:
+                  description: Quote token symbol or address
+                  type: string
+                  example: USDC
+                amount:
+                  description: Amount to swap
+                  type: number
+                  example: 0.01
+                side:
+                  description: Trade direction
+                  enum:
+                  - BUY
+                  - SELL
+                  default: SELL
+                  type: string
+                  example: SELL
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 2
+                  type: number
+                  example: 2
+              required:
+              - baseToken
+              - quoteToken
+              - amount
+              - side
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      tokenIn:
+                        type: string
+                      tokenOut:
+                        type: string
+                      amountIn:
+                        type: number
+                      amountOut:
+                        type: number
+                      fee:
+                        type: number
+                      baseTokenBalanceChange:
+                        type: number
+                      quoteTokenBalanceChange:
+                        type: number
+                    required:
+                    - tokenIn
+                    - tokenOut
+                    - amountIn
+                    - amountOut
+                    - fee
+                    - baseTokenBalanceChange
+                    - quoteTokenBalanceChange
+                required:
+                - signature
+                - status
+  /connectors/pancakeswap-sol/clmm/open-position:
+    post:
+      tags:
+      - /connector/pancakeswap-sol
+      description: Open a new PancakeSwap Solana CLMM position with Token2022 NFT
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                poolAddress:
+                  description: PancakeSwap CLMM pool address
+                  type: string
+                  example: 4QU2NpRaqmKMvPSwVKQDeW4V6JFEKJdkzbzdauumD9qN
+                lowerPrice:
+                  description: Lower price bound for the position
+                  type: number
+                  example: 150
+                upperPrice:
+                  description: Upper price bound for the position
+                  type: number
+                  example: 250
+                baseTokenAmount:
+                  description: Amount of base token to deposit
+                  type: number
+                  example: 0.01
+                quoteTokenAmount:
+                  description: Amount of quote token to deposit
+                  type: number
+                  example: 2
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 2
+                  type: number
+                  example: 2
+              required:
+              - poolAddress
+              - lowerPrice
+              - upperPrice
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      positionAddress:
+                        type: string
+                      positionRent:
+                        type: number
+                      baseTokenAmountAdded:
+                        type: number
+                      quoteTokenAmountAdded:
+                        type: number
+                    required:
+                    - fee
+                    - positionAddress
+                    - positionRent
+                    - baseTokenAmountAdded
+                    - quoteTokenAmountAdded
+                required:
+                - signature
+                - status
+  /connectors/pancakeswap-sol/clmm/add-liquidity:
+    post:
+      tags:
+      - /connector/pancakeswap-sol
+      description: Add liquidity to an existing PancakeSwap Solana CLMM position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                positionAddress:
+                  description: Position NFT address
+                  type: string
+                  example: ''
+                baseTokenAmount:
+                  description: Amount of base token to add
+                  type: number
+                  example: 0.01
+                quoteTokenAmount:
+                  description: Amount of quote token to add
+                  type: number
+                  example: 2
+                slippagePct:
+                  minimum: 0
+                  maximum: 100
+                  description: Maximum acceptable slippage percentage
+                  default: 2
+                  type: number
+                  example: 2
+              required:
+              - positionAddress
+              - baseTokenAmount
+              - quoteTokenAmount
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseTokenAmountAdded:
+                        type: number
+                      quoteTokenAmountAdded:
+                        type: number
+                    required:
+                    - fee
+                    - baseTokenAmountAdded
+                    - quoteTokenAmountAdded
+                required:
+                - signature
+                - status
+  /connectors/pancakeswap-sol/clmm/remove-liquidity:
+    post:
+      tags:
+      - /connector/pancakeswap-sol
+      description: Remove liquidity from a PancakeSwap Solana CLMM position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                positionAddress:
+                  description: Position NFT address to remove liquidity from
+                  type: string
+                  example: ''
+                percentageToRemove:
+                  minimum: 0
+                  maximum: 100
+                  description: Percentage of liquidity to remove
+                  type: number
+                  example: 100
+              required:
+              - positionAddress
+              - percentageToRemove
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseTokenAmountRemoved:
+                        type: number
+                      quoteTokenAmountRemoved:
+                        type: number
+                    required:
+                    - fee
+                    - baseTokenAmountRemoved
+                    - quoteTokenAmountRemoved
+                required:
+                - signature
+                - status
+  /connectors/pancakeswap-sol/clmm/collect-fees:
+    post:
+      tags:
+      - /connector/pancakeswap-sol
+      description: Collect accumulated fees from a PancakeSwap Solana CLMM position (removes 1% liquidity)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                positionAddress:
+                  description: Position NFT address
+                  type: string
+                  example: ''
+              required:
+              - positionAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      baseFeeAmountCollected:
+                        type: number
+                      quoteFeeAmountCollected:
+                        type: number
+                    required:
+                    - fee
+                    - baseFeeAmountCollected
+                    - quoteFeeAmountCollected
+                required:
+                - signature
+                - status
+  /connectors/pancakeswap-sol/clmm/close-position:
+    post:
+      tags:
+      - /connector/pancakeswap-sol
+      description: Close a PancakeSwap Solana CLMM position and remove all liquidity and fees if present
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: Solana network to use
+                  default: mainnet-beta
+                  enum:
+                  - devnet
+                  - mainnet-beta
+                  type: string
+                walletAddress:
+                  description: Solana wallet address
+                  default: Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn
+                  type: string
+                positionAddress:
+                  description: Position NFT address to close
+                  type: string
+                  example: ''
+              required:
+              - positionAddress
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      fee:
+                        type: number
+                      positionRentRefunded:
+                        type: number
+                      baseTokenAmountRemoved:
+                        type: number
+                      quoteTokenAmountRemoved:
+                        type: number
+                      baseFeeAmountCollected:
+                        type: number
+                      quoteFeeAmountCollected:
+                        type: number
+                    required:
+                    - fee
+                    - positionRentRefunded
+                    - baseTokenAmountRemoved
+                    - quoteTokenAmountRemoved
+                    - baseFeeAmountCollected
+                    - quoteFeeAmountCollected
+                required:
+                - signature
+                - status

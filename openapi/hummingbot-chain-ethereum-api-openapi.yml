@@ -1,0 +1,535 @@
+openapi: 3.0.3
+info:
+  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /chain/ethereum API
+  description: API endpoints for interacting with DEXs and blockchains
+  version: dev-2.11.0
+servers:
+- url: http://localhost:15888
+tags:
+- name: /chain/ethereum
+  description: Ethereum and EVM-based chain endpoints
+paths:
+  /chains/ethereum/status:
+    get:
+      tags:
+      - /chain/ethereum
+      description: Get Ethereum chain status
+      parameters:
+      - schema:
+          default: mainnet
+          enum:
+          - arbitrum
+          - avalanche
+          - base
+          - bsc
+          - celo
+          - mainnet
+          - optimism
+          - polygon
+          - sepolia
+          type: string
+        in: query
+        name: network
+        required: false
+        description: The Ethereum network to use
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  chain:
+                    type: string
+                  network:
+                    type: string
+                  rpcUrl:
+                    type: string
+                  rpcProvider:
+                    type: string
+                  currentBlockNumber:
+                    type: number
+                  nativeCurrency:
+                    type: string
+                  swapProvider:
+                    type: string
+                required:
+                - chain
+                - network
+                - rpcUrl
+                - rpcProvider
+                - currentBlockNumber
+                - nativeCurrency
+                - swapProvider
+  /chains/ethereum/estimate-gas:
+    get:
+      tags:
+      - /chain/ethereum
+      description: Estimate gas prices for Ethereum transactions
+      parameters:
+      - schema:
+          default: mainnet
+          enum:
+          - arbitrum
+          - avalanche
+          - base
+          - bsc
+          - celo
+          - mainnet
+          - optimism
+          - polygon
+          - sepolia
+          type: string
+        in: query
+        name: network
+        required: false
+        description: The Ethereum network to use
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  feePerComputeUnit:
+                    type: number
+                  denomination:
+                    type: string
+                  computeUnits:
+                    type: number
+                  feeAsset:
+                    type: string
+                  fee:
+                    type: number
+                  timestamp:
+                    type: number
+                  gasType:
+                    type: string
+                  maxFeePerGas:
+                    type: number
+                  maxPriorityFeePerGas:
+                    type: number
+                required:
+                - feePerComputeUnit
+                - denomination
+                - computeUnits
+                - feeAsset
+                - fee
+                - timestamp
+  /chains/ethereum/balances:
+    post:
+      tags:
+      - /chain/ethereum
+      description: Get Ethereum balances. If no tokens specified or empty array provided, returns native token (ETH) and only non-zero balances for tokens from the token list. If specific tokens are requested, returns those exact tokens with their balances, including zeros.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: The Ethereum network to use
+                  default: mainnet
+                  enum:
+                  - arbitrum
+                  - avalanche
+                  - base
+                  - bsc
+                  - celo
+                  - mainnet
+                  - optimism
+                  - polygon
+                  - sepolia
+                  type: string
+                address:
+                  description: Ethereum wallet address
+                  default: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                  type: string
+                tokens:
+                  description: A list of token symbols (ETH, USDC, WETH) or token addresses. Both formats are accepted and will be automatically detected. An empty array is treated the same as if the parameter was not provided, returning only non-zero balances (with the exception of ETH).
+                  type: array
+                  items:
+                    type: string
+                  example:
+                  - ETH
+                  - USDC
+                  - WETH
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  balances:
+                    type: object
+                    additionalProperties:
+                      type: number
+                required:
+                - balances
+  /chains/ethereum/poll:
+    post:
+      tags:
+      - /chain/ethereum
+      description: Poll Ethereum transaction status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: The Ethereum network to use
+                  default: mainnet
+                  enum:
+                  - arbitrum
+                  - avalanche
+                  - base
+                  - bsc
+                  - celo
+                  - mainnet
+                  - optimism
+                  - polygon
+                  - sepolia
+                  type: string
+                signature:
+                  description: Transaction hash to poll
+                  type: string
+                  example: '0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef'
+              required:
+              - signature
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  currentBlock:
+                    type: number
+                  signature:
+                    type: string
+                  txBlock:
+                    anyOf:
+                    - type: number
+                    - type: 'null'
+                  txStatus:
+                    type: number
+                  fee:
+                    anyOf:
+                    - type: number
+                    - type: 'null'
+                  tokenBalanceChanges:
+                    description: Dictionary of token balance changes keyed by token input value (symbol or address)
+                    type: object
+                    additionalProperties:
+                      type: number
+                  txData:
+                    anyOf:
+                    - type: object
+                      additionalProperties: {}
+                    - type: 'null'
+                  error:
+                    type: string
+                required:
+                - currentBlock
+                - signature
+                - txBlock
+                - txStatus
+                - fee
+                - txData
+  /chains/ethereum/allowances:
+    post:
+      tags:
+      - /chain/ethereum
+      description: Get token allowances
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: The Ethereum network to use
+                  default: mainnet
+                  enum:
+                  - arbitrum
+                  - avalanche
+                  - base
+                  - bsc
+                  - celo
+                  - mainnet
+                  - optimism
+                  - polygon
+                  - sepolia
+                  type: string
+                address:
+                  description: Ethereum wallet address
+                  default: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                  type: string
+                spender:
+                  description: Connector name (e.g., uniswap/clmm, uniswap/amm, 0x/router) or contract address
+                  type: string
+                  example: uniswap/router
+                tokens:
+                  description: Array of token symbols or addresses
+                  type: array
+                  items:
+                    type: string
+                  example:
+                  - USDC
+                  - WETH
+              required:
+              - spender
+              - tokens
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  spender:
+                    type: string
+                  approvals:
+                    type: object
+                    additionalProperties:
+                      type: string
+                required:
+                - spender
+                - approvals
+  /chains/ethereum/approve:
+    post:
+      tags:
+      - /chain/ethereum
+      description: Approve token spending
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: The Ethereum network to use
+                  default: mainnet
+                  enum:
+                  - arbitrum
+                  - avalanche
+                  - base
+                  - bsc
+                  - celo
+                  - mainnet
+                  - optimism
+                  - polygon
+                  - sepolia
+                  type: string
+                address:
+                  description: Ethereum wallet address
+                  default: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                  type: string
+                spender:
+                  description: Connector name (e.g., uniswap/clmm, uniswap/amm, 0x/router) contract address
+                  type: string
+                  example: uniswap/router
+                token:
+                  description: Token symbol or address
+                  type: string
+                  example: USDC
+                amount:
+                  description: The amount to approve. If not provided, defaults to maximum amount (unlimited approval).
+                  default: ''
+                  type: string
+              required:
+              - spender
+              - token
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      tokenAddress:
+                        type: string
+                      spender:
+                        type: string
+                      amount:
+                        type: string
+                      nonce:
+                        type: number
+                      fee:
+                        type: string
+                    required:
+                    - tokenAddress
+                    - spender
+                    - amount
+                    - nonce
+                    - fee
+                required:
+                - signature
+                - status
+  /chains/ethereum/wrap:
+    post:
+      tags:
+      - /chain/ethereum
+      description: Wrap native token to wrapped token (e.g., ETH to WETH, BNB to WBNB)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: The Ethereum network to use
+                  default: mainnet
+                  enum:
+                  - arbitrum
+                  - avalanche
+                  - base
+                  - bsc
+                  - celo
+                  - mainnet
+                  - optimism
+                  - polygon
+                  - sepolia
+                  type: string
+                address:
+                  description: Ethereum wallet address
+                  default: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                  type: string
+                amount:
+                  description: The amount of native token to wrap (e.g., ETH, BNB, AVAX)
+                  type: string
+                  example: '0.01'
+              required:
+              - amount
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      nonce:
+                        type: number
+                      fee:
+                        type: string
+                      amount:
+                        type: string
+                      wrappedAddress:
+                        type: string
+                      nativeToken:
+                        type: string
+                      wrappedToken:
+                        type: string
+                    required:
+                    - nonce
+                    - fee
+                    - amount
+                    - wrappedAddress
+                    - nativeToken
+                    - wrappedToken
+                required:
+                - signature
+                - status
+  /chains/ethereum/unwrap:
+    post:
+      tags:
+      - /chain/ethereum
+      description: Unwrap wrapped token to native token (e.g., WETH to ETH, WBNB to BNB)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  description: The Ethereum network to use
+                  default: mainnet
+                  enum:
+                  - arbitrum
+                  - avalanche
+                  - base
+                  - bsc
+                  - celo
+                  - mainnet
+                  - optimism
+                  - polygon
+                  - sepolia
+                  type: string
+                address:
+                  description: Ethereum wallet address
+                  default: '0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50'
+                  type: string
+                amount:
+                  description: The amount of wrapped token to unwrap (e.g., WETH, WBNB, WAVAX)
+                  type: string
+                  example: '0.01'
+              required:
+              - amount
+        required: true
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                  status:
+                    description: TransactionStatus enum value
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      nonce:
+                        type: number
+                      fee:
+                        type: string
+                      amount:
+                        type: string
+                      wrappedAddress:
+                        type: string
+                      nativeToken:
+                        type: string
+                      wrappedToken:
+                        type: string
+                    required:
+                    - nonce
+                    - fee
+                    - amount
+                    - wrappedAddress
+                    - nativeToken
+                    - wrappedToken
+                required:
+                - signature
+                - status

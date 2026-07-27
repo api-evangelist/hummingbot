@@ -1,0 +1,47 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/hummingbot/skills
+description: >-
+  Hummingbot publishes an official set of open Agent Skills built on the Agent
+  Skills standard, installable with `npx skills add hummingbot/skills`. Each
+  skill is a SKILL.md (frontmatter + instructions) plus scripts/ that an AI
+  agent runs to operate Hummingbot infrastructure. This index catalogs the
+  provider-published skills verbatim; hummingbot-swap-on-dex.md is an additional
+  API-Evangelist-generated skill grounded in real Gateway endpoints.
+install: npx skills add hummingbot/skills
+skills:
+  - file: hummingbot-swap-on-dex.md
+    name: Swap tokens on a DEX via Gateway
+    method: generated
+    api: openapi/hummingbot-gateway-openapi-original.json
+    operations:
+      - GET /trading/swap/quote
+      - POST /trading/swap/execute
+  - name: hummingbot-deploy
+    source: https://github.com/hummingbot/skills/tree/main/hummingbot-deploy
+    method: searched
+    description: Deploy the Hummingbot API server, MCP server, and Condor Telegram bot.
+  - name: lp-agent
+    source: https://github.com/hummingbot/skills/tree/main/lp-agent
+    method: searched
+    description: Automate liquidity provision on CLMM DEXs such as Meteora on Solana.
+  - name: connectors-available
+    source: https://github.com/hummingbot/skills/tree/main/connectors-available
+    method: searched
+    description: Check exchange availability and search token trading rules.
+  - name: slides-generator
+    source: https://github.com/hummingbot/skills/tree/main/slides-generator
+    method: searched
+    description: Create Hummingbot-branded PDF slides from markdown.
+  - name: find-arbitrage-opps
+    source: https://github.com/hummingbot/skills/tree/main/find-arbitrage-opps
+    method: searched
+    description: Identify arbitrage opportunities across exchanges for fungible pairs.
+  - name: hummingbot
+    source: https://github.com/hummingbot/skills/tree/main/hummingbot
+    method: searched
+    description: Run Hummingbot CLI commands via the Hummingbot API.
+  - name: hummingbot-developer
+    source: https://github.com/hummingbot/skills/tree/main/hummingbot-developer
+    method: searched
+    description: Build and run the Hummingbot stack from source.

@@ -1,0 +1,24 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of the Hummingbot web hosts (2026-07-19)
+description: >-
+  Probed the /.well-known/ discovery surface on the Hummingbot web hosts. No
+  documents are published — every path returned 404. (The Hummingbot API and
+  Gateway themselves are self-hosted on localhost and have no public host to
+  probe.) Recorded as valid, expected absence; no WellKnown pointer is wired
+  because no catalog document was found.
+hosts:
+  - host: https://hummingbot.org
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+  - host: https://hummingbot.io
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}

@@ -1,9 +1,32 @@
 aid: hummingbot
 name: Hummingbot
-description: 'Hummingbot is a company surfaced as a portfolio company of initialized-capital and added
-  to the API Evangelist network as a stub for enrichment. Sector: crypto. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  Hummingbot is an open source Python framework, maintained by the Hummingbot
+  Foundation, that lets traders build and run automated, high-frequency crypto
+  trading strategies across both centralized (CEX) and decentralized (DEX)
+  venues. The project ships several developer-facing components: the Hummingbot
+  client (a CLI trading bot), Gateway (a TypeScript middleware that standardizes
+  DEX/blockchain endpoints behind one REST API on port 15888, documented with a
+  published OpenAPI spec), the Hummingbot API (a FastAPI REST server on port
+  8000 that orchestrates multiple bots, accounts, portfolios, and market data),
+  an async Python API client, an official Model Context Protocol (MCP) server,
+  and a set of open Agent Skills for AI trading agents. With 300+ exchange
+  connectors and Apache-2.0 licensing, Hummingbot reports having facilitated
+  tens of billions of dollars in trade volume across 100K+ deployed instances.
 url: https://raw.githubusercontent.com/api-evangelist/hummingbot/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://github.com/hummingbot.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -12,16 +35,314 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
 - Crypto
-apis: []
+- Trading
+- Blockchain
+- DeFi
+- DEX
+- Open Source
+- Market Making
+- Algorithmic Trading
+- Bots
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- name: Hummingbot API
+  description: >-
+    The Hummingbot API is a FastAPI backend service (default port 8000) that orchestrates multiple trading
+    bots and exposes REST routers for accounts and exchange credentials, trading (orders, positions, trades,
+    leverage), portfolio state and valuation, connectors and trading rules, market data (candles, prices,
+    order books, funding), bot orchestration, controllers, and scripts. Interactive Swagger docs are served
+    at /docs; authentication is HTTP Basic. An official async Python client (hummingbot-api-client) wraps
+    it.
+  humanURL: https://hummingbot.org/hummingbot-api/
+  baseURL: http://localhost:8000
+  properties:
+  - type: Documentation
+    url: https://hummingbot.org/hummingbot-api/
+  - type: APIReference
+    url: https://hummingbot.org/hummingbot-api/
+- aid: hummingbot:hummingbot-chain-ethereum-api
+  name: Hummingbot /chain/ethereum API
+  description: Ethereum and EVM-based chain endpoints
+  humanURL: https://hummingbot.org/gateway/
+  baseURL: http://localhost:15888
+  tags:
+  - /chain/ethereum
+  properties:
+  - type: OpenAPI
+    url: openapi/hummingbot-chain-ethereum-api-openapi.yml
+  - type: Documentation
+    url: https://hummingbot.org/gateway/
+  - type: APIReference
+    url: https://hummingbot.org/gateway/
+- aid: hummingbot:hummingbot-chain-solana-api
+  name: Hummingbot /chain/solana API
+  description: Solana and SVM-based chain endpoints
+  humanURL: https://hummingbot.org/gateway/
+  baseURL: http://localhost:15888
+  tags:
+  - /chain/solana
+  properties:
+  - type: OpenAPI
+    url: openapi/hummingbot-chain-solana-api-openapi.yml
+  - type: Documentation
+    url: https://hummingbot.org/gateway/
+  - type: APIReference
+    url: https://hummingbot.org/gateway/
+- aid: hummingbot:hummingbot-config-api
+  name: Hummingbot /config API
+  description: System configuration endpoints
+  humanURL: https://hummingbot.org/gateway/
+  baseURL: http://localhost:15888
+  tags:
+  - /config
+  properties:
+  - type: OpenAPI
+    url: openapi/hummingbot-config-api-openapi.yml
+  - type: Documentation
+    url: https://hummingbot.org/gateway/
+  - type: APIReference
+    url: https://hummingbot.org/gateway/
+- aid: hummingbot:hummingbot-connector-0x-api
+  name: Hummingbot /connector/0x API
+  description: 0x connector endpoints
+  humanURL: https://hummingbot.org/gateway/
+  baseURL: http://localhost:15888
+  tags:
+  - /connector/0x
+  properties:
+  - type: OpenAPI
+    url: openapi/hummingbot-connector-0x-api-openapi.yml
+  - type: Documentation
+    url: https://hummingbot.org/gateway/
+  - type: APIReference
+    url: https://hummingbot.org/gateway/
+- aid: hummingbot:hummingbot-connector-jupiter-api
+  name: Hummingbot /connector/jupiter API
+  description: Jupiter connector endpoints
+  humanURL: https://hummingbot.org/gateway/
+  baseURL: http://localhost:15888
+  tags:
+  - /connector/jupiter
+  properties:
+  - type: OpenAPI
+    url: openapi/hummingbot-connector-jupiter-api-openapi.yml
+  - type: Documentation
+    url: https://hummingbot.org/gateway/
+  - type: APIReference
+    url: https://hummingbot.org/gateway/
+- aid: hummingbot:hummingbot-connector-meteora-api
+  name: Hummingbot /connector/meteora API
+  description: Meteora connector endpoints
+  humanURL: https://hummingbot.org/gateway/
+  baseURL: http://localhost:15888
+  tags:
+  - /connector/meteora
+  properties:
+  - type: OpenAPI
+    url: openapi/hummingbot-connector-meteora-api-openapi.yml
+  - type: Documentation
+    url: https://hummingbot.org/gateway/
+  - type: APIReference
+    url: https://hummingbot.org/gateway/
+- aid: hummingbot:hummingbot-connector-orca-api
+  name: Hummingbot /connector/orca API
+  description: Orca connector endpoints
+  humanURL: https://hummingbot.org/gateway/
+  baseURL: http://localhost:15888
+  tags:
+  - /connector/orca
+  properties:
+  - type: OpenAPI
+    url: openapi/hummingbot-connector-orca-api-openapi.yml
+  - type: Documentation
+    url: https://hummingbot.org/gateway/
+  - type: APIReference
+    url: https://hummingbot.org/gateway/
+- aid: hummingbot:hummingbot-connector-pancakeswap-api
+  name: Hummingbot /connector/pancakeswap API
+  description: PancakeSwap EVM connector endpoints
+  humanURL: https://hummingbot.org/gateway/
+  baseURL: http://localhost:15888
+  tags:
+  - /connector/pancakeswap
+  properties:
+  - type: OpenAPI
+    url: openapi/hummingbot-connector-pancakeswap-api-openapi.yml
+  - type: Documentation
+    url: https://hummingbot.org/gateway/
+  - type: APIReference
+    url: https://hummingbot.org/gateway/
+- aid: hummingbot:hummingbot-connector-pancakeswap-sol-api
+  name: Hummingbot /connector/pancakeswap-sol API
+  description: PancakeSwap Solana connector endpoints
+  humanURL: https://hummingbot.org/gateway/
+  baseURL: http://localhost:15888
+  tags:
+  - /connector/pancakeswap-sol
+  properties:
+  - type: OpenAPI
+    url: openapi/hummingbot-connector-pancakeswap-sol-api-openapi.yml
+  - type: Documentation
+    url: https://hummingbot.org/gateway/
+  - type: APIReference
+    url: https://hummingbot.org/gateway/
+- aid: hummingbot:hummingbot-connector-raydium-api
+  name: Hummingbot /connector/raydium API
+  description: Raydium connector endpoints
+  humanURL: https://hummingbot.org/gateway/
+  baseURL: http://localhost:15888
+  tags:
+  - /connector/raydium
+  properties:
+  - type: OpenAPI
+    url: openapi/hummingbot-connector-raydium-api-openapi.yml
+  - type: Documentation
+    url: https://hummingbot.org/gateway/
+  - type: APIReference
+    url: https://hummingbot.org/gateway/
+- aid: hummingbot:hummingbot-connector-uniswap-api
+  name: Hummingbot /connector/uniswap API
+  description: Uniswap connector endpoints
+  humanURL: https://hummingbot.org/gateway/
+  baseURL: http://localhost:15888
+  tags:
+  - /connector/uniswap
+  properties:
+  - type: OpenAPI
+    url: openapi/hummingbot-connector-uniswap-api-openapi.yml
+  - type: Documentation
+    url: https://hummingbot.org/gateway/
+  - type: APIReference
+    url: https://hummingbot.org/gateway/
+- aid: hummingbot:hummingbot-pools-api
+  name: Hummingbot /pools API
+  description: Pool management endpoints
+  humanURL: https://hummingbot.org/gateway/
+  baseURL: http://localhost:15888
+  tags:
+  - /pools
+  properties:
+  - type: OpenAPI
+    url: openapi/hummingbot-pools-api-openapi.yml
+  - type: Documentation
+    url: https://hummingbot.org/gateway/
+  - type: APIReference
+    url: https://hummingbot.org/gateway/
+- aid: hummingbot:hummingbot-tokens-api
+  name: Hummingbot /tokens API
+  description: Token management endpoints
+  humanURL: https://hummingbot.org/gateway/
+  baseURL: http://localhost:15888
+  tags:
+  - /tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/hummingbot-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://hummingbot.org/gateway/
+  - type: APIReference
+    url: https://hummingbot.org/gateway/
+- aid: hummingbot:hummingbot-trading-clmm-api
+  name: Hummingbot /trading/clmm API
+  description: Unified cross-chain CLMM (Concentrated Liquidity) endpoints
+  humanURL: https://hummingbot.org/gateway/
+  baseURL: http://localhost:15888
+  tags:
+  - /trading/clmm
+  properties:
+  - type: OpenAPI
+    url: openapi/hummingbot-trading-clmm-api-openapi.yml
+  - type: Documentation
+    url: https://hummingbot.org/gateway/
+  - type: APIReference
+    url: https://hummingbot.org/gateway/
+- aid: hummingbot:hummingbot-trading-swap-api
+  name: Hummingbot /trading/swap API
+  description: Unified cross-chain swap endpoints
+  humanURL: https://hummingbot.org/gateway/
+  baseURL: http://localhost:15888
+  tags:
+  - /trading/swap
+  properties:
+  - type: OpenAPI
+    url: openapi/hummingbot-trading-swap-api-openapi.yml
+  - type: Documentation
+    url: https://hummingbot.org/gateway/
+  - type: APIReference
+    url: https://hummingbot.org/gateway/
+- aid: hummingbot:hummingbot-wallet-api
+  name: Hummingbot /wallet API
+  description: Wallet management endpoints
+  humanURL: https://hummingbot.org/gateway/
+  baseURL: http://localhost:15888
+  tags:
+  - /wallet
+  properties:
+  - type: OpenAPI
+    url: openapi/hummingbot-wallet-api-openapi.yml
+  - type: Documentation
+    url: https://hummingbot.org/gateway/
+  - type: APIReference
+    url: https://hummingbot.org/gateway/
 common:
+- type: DomainSecurity
+  url: security/hummingbot-domain-security.yml
 - type: Website
   url: https://hummingbot.io/
+- type: DeveloperPortal
+  url: https://hummingbot.org/
+- type: Documentation
+  url: https://hummingbot.org/docs/
+- type: APIReference
+  url: https://hummingbot.org/hummingbot-api/
+- type: GettingStarted
+  url: https://hummingbot.org/installation/
+- type: GitHubOrganization
+  url: https://github.com/hummingbot
+- type: Blog
+  url: https://hummingbot.org/blog/
+- type: Support
+  url: https://hummingbot.org/community/
+- type: License
+  url: https://github.com/hummingbot/hummingbot/blob/master/LICENSE
+- type: ChangeLog
+  url: https://hummingbot.org/release-notes/
+- type: ChangeLog
+  url: changelog/hummingbot-changelog.yml
+- type: Packages
+  url: packages/hummingbot-packages.yml
+- type: SDKs
+  url: packages/hummingbot-packages.yml
+- type: MCPServer
+  url: mcp/hummingbot-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/hummingbot-llms.txt
+- type: Authentication
+  url: authentication/hummingbot-authentication.yml
+- type: Conventions
+  url: conventions/hummingbot-conventions.yml
+- type: RateLimits
+  url: rate-limits/hummingbot-rate-limits.yml
+- type: ErrorCatalog
+  url: errors/hummingbot-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/hummingbot-lifecycle.yml
+- type: CLI
+  url: cli/hummingbot-cli.yml
+- type: Conformance
+  url: conformance/hummingbot-conformance.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

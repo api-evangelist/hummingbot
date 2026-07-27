@@ -1,0 +1,33 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Hummingbot Gateway
+  version: 1.0.0
+# Non-destructive Overlay of API Evangelist enhancements over the harvested
+# Gateway OpenAPI. The original spec is never mutated. Captures enhancements we
+# would recommend upstream: operationIds (the published spec declares none),
+# an API Evangelist rating, and cross-links to our derived artifacts.
+generated: '2026-07-19'
+method: generated
+source: openapi/hummingbot-gateway-openapi-original.json
+extends: openapi/hummingbot-gateway-openapi-original.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-rating: 3
+      x-apievangelist-notes: >-
+        Well-tagged REST surface (17 tag groups, 149 operations) with per-operation
+        descriptions, but no operationIds, no reusable components.schemas, and only
+        sparse 4xx/5xx responses. Recommend adding operationIds and a shared error
+        schema. Auth is passphrase/TLS at the process level, not an OpenAPI
+        securityScheme.
+      x-apievangelist-artifacts:
+        authentication: authentication/hummingbot-authentication.yml
+        conventions: conventions/hummingbot-conventions.yml
+        errors: errors/hummingbot-problem-types.yml
+        rate_limits: rate-limits/hummingbot-rate-limits.yml
+        mcp: mcp/hummingbot-mcp.yml
+  - target: $.info
+    update:
+      x-recommendation-operationids: >-
+        Publish stable operationIds for all 149 operations so downstream Arazzo
+        workflows and Agent Skills can bind to them by id rather than path+method.

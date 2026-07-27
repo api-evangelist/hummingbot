@@ -1,0 +1,43 @@
+generated: '2026-07-19'
+method: derived
+source: >-
+  openapi/hummingbot-gateway-openapi-original.json, conventions/hummingbot-conventions.yml —
+  standards conformance derived from the Gateway OpenAPI and captured conventions.
+  Hummingbot publishes no compliance-certification program (it is self-hosted
+  open-source software), so no `Compliance` pointer is emitted.
+description: >-
+  Which cross-cutting API standards the Hummingbot surface conforms to. It is a
+  plain REST/JSON surface with a published OpenAPI 3.0.3 document; it does not
+  implement OAuth/OIDC, RFC 9457 problem+json, or any domain profile (FHIR/SCIM/
+  OData/PSD2/FAPI).
+standards:
+  - id: rest-json
+    conforms: true
+    evidence: All operations are REST over HTTP with application/json bodies.
+  - id: openapi-3.0
+    conforms: true
+    evidence: openapi/hummingbot-gateway-openapi-original.json declares openapi 3.0.3 (149 operations).
+  - id: cursor-pagination
+    conforms: true
+    evidence: Hummingbot API list endpoints return has_more + next_cursor (conventions).
+  - id: oauth2
+    conforms: false
+    evidence: No oauth2 securitySchemes; auth is HTTP Basic / passphrase / TLS.
+  - id: openid-connect
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: 'Errors use the FastAPI {"detail": ...} JSON envelope, not application/problem+json.'
+  - id: json-api
+    conforms: false
+  - id: idempotency-keys
+    conforms: false
+    evidence: No idempotency-key header/parameter documented.
+  - id: fhir-r4
+    conforms: false
+  - id: scim-2.0
+    conforms: false
+  - id: odata
+    conforms: false
+  - id: fapi
+    conforms: false

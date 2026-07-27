@@ -1,0 +1,36 @@
+generated: '2026-07-19'
+method: searched
+source: https://hummingbot.org/client/
+description: >-
+  The Hummingbot client is itself a first-party command-line application — a
+  terminal UI where users connect exchanges, configure and run trading
+  strategies, and monitor bots. This artifact captures its top-level command
+  surface from the client docs. The client binary/package is catalogued in
+  packages/hummingbot-packages.yml (PyPI `hummingbot` + Docker).
+docs: https://hummingbot.org/client/
+repo: https://github.com/hummingbot/hummingbot
+install:
+  docker: docker run -it hummingbot/hummingbot
+  pip: pip install hummingbot
+  source: https://hummingbot.org/installation/
+commands:
+  setup_and_connect:
+    - {name: connect, description: Connect an exchange by entering its API keys/credentials.}
+    - {name: balance, description: Display asset balances across connected exchanges and wallets.}
+    - {name: config, description: View or change global and strategy configuration settings.}
+  strategies_and_bots:
+    - {name: create, description: Create a new strategy/bot configuration via guided prompts.}
+    - {name: import, description: Import an existing strategy/script configuration.}
+    - {name: start, description: Start the configured strategy/bot.}
+    - {name: stop, description: Stop the running strategy/bot.}
+    - {name: status, description: Show the current status and health of the running bot.}
+    - {name: history, description: Show trade and performance history for the session.}
+  market_data:
+    - {name: order_book, description: Display the live order book for a trading pair.}
+    - {name: ticker, description: Display the current ticker/price for a trading pair.}
+  integrations:
+    - {name: gateway, description: Manage the Gateway connection for DEX trading.}
+    - {name: mqtt, description: Manage the MQTT bridge for remote bot messaging/monitoring.}
+  session:
+    - {name: help, description: List available commands and usage.}
+    - {name: exit, description: Exit the Hummingbot client.}

@@ -1,0 +1,16 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/hummingbot/gateway
+description: >-
+  Gateway applies a built-in per-instance rate limit to protect the self-hosted
+  process from denial-of-service. Because Hummingbot components are self-hosted
+  (not a metered cloud API), this is a fixed process limit rather than a
+  plan-tiered quota. The Hummingbot API server documents no explicit HTTP rate
+  limit; throughput is bounded by the host and by upstream exchange limits.
+rate_limits:
+  - api: Hummingbot Gateway
+    scope: per Gateway instance
+    limit_count: 100
+    window: 1 minute
+    description: Built-in rate limit (100 requests/minute) to prevent DoS.
+    source: https://github.com/hummingbot/gateway

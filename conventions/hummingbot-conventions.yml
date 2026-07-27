@@ -1,0 +1,57 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://github.com/hummingbot/hummingbot-api-client, https://hummingbot.org/hummingbot-api/,
+  https://github.com/hummingbot/gateway — cross-cutting request/response semantics
+  captured from the API client README, component docs, and derived from the
+  Gateway OpenAPI. Applies across operations, not to any single endpoint.
+description: >-
+  How the Hummingbot API and Gateway behave across operations: transport, auth
+  style, pagination, versioning, the error envelope, and rate-limit signaling.
+  No idempotency-key contract is documented for either component.
+
+hummingbot_api:
+  base_url: http://localhost:8000
+  api_style: REST over HTTP(S), JSON request/response bodies
+  authentication:
+    scheme: HTTP Basic
+    detail: authentication/hummingbot-authentication.yml
+  pagination:
+    style: cursor
+    request_params:
+      limit: page size (e.g. 100)
+      cursor: opaque cursor for the next page
+    response_fields:
+      pagination: object wrapping the page
+      has_more: boolean — whether more results exist
+      next_cursor: cursor to request the next page
+    applies_to: List endpoints such as trades/order history.
+  idempotency:
+    supported: false
+    note: No idempotency-key header/parameter is documented for the API.
+
+gateway:
+  base_url: http://localhost:15888
+  api_style: REST over HTTP(S), JSON request/response bodies
+  authentication:
+    scheme: startup passphrase (wallet encryption) + TLS in production
+    detail: authentication/hummingbot-authentication.yml
+  rate_limiting:
+    limit: 100 requests/minute
+    detail: rate-limits/hummingbot-rate-limits.yml
+  idempotency:
+    supported: false
+    note: >-
+      No idempotency-key contract is documented. On-chain execution endpoints
+      (swap/execute, position open/close) are inherently non-idempotent — a
+      resubmission broadcasts a new transaction.
+  error_envelope:
+    shape: FastAPI-style JSON object
+    field: detail
+    example: '{"detail": "Not Found"}'
+    detail: errors/hummingbot-problem-types.yml
+
+versioning:
+  scheme: semantic versioning (2.x), monthly release cadence
+  detail: lifecycle/hummingbot-lifecycle.yml
+  changelog: changelog/hummingbot-changelog.yml

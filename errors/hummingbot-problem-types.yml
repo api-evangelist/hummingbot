@@ -1,0 +1,27 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/hummingbot-gateway-openapi-original.json
+format: json
+description: >-
+  API-level error responses derived from the Gateway OpenAPI. Gateway is a
+  FastAPI service, so errors use the FastAPI JSON envelope `{"detail": ...}`
+  with a standard HTTP status — not RFC 9457 application/problem+json. The
+  published spec declares only a sparse set of non-2xx responses (400/404/500),
+  so this catalog is the documented minimum, not an exhaustive error registry.
+envelope:
+  content_type: application/json
+  field: detail
+  rfc9457: false
+problems:
+  - status: 400
+    title: Bad Request
+    meaning: Request parameters were malformed or invalid (e.g. unknown token, bad amount).
+    remediation: Validate query/body parameters against the operation's schema and retry.
+  - status: 404
+    title: Not Found
+    meaning: The requested resource (token, pool, wallet, or path) does not exist.
+    remediation: Confirm the identifier (symbol/address/trading pair) is registered on the target chain/connector.
+  - status: 500
+    title: Internal Server Error
+    meaning: Gateway or an upstream chain/DEX RPC failed while processing the request.
+    remediation: Retry; check Gateway logs and the configured RPC/connector health.

@@ -1,0 +1,30 @@
+generated: '2026-07-19'
+method: searched
+source: https://hummingbot.org/release-notes/
+description: >-
+  Hummingbot's dated release notes. Versions follow semver (2.x) on a roughly
+  monthly cadence; each version links to a GitHub release and DockerHub tag,
+  which are the source of truth for per-release highlights. This artifact
+  records the recent version/date window captured from the release-notes index;
+  per-release breaking/addition detail is not itemized on the index page and is
+  intentionally left unfabricated.
+docs: https://hummingbot.org/release-notes/
+versioning:
+  scheme: semantic versioning
+  current: 2.15.1
+  cadence: monthly
+  detail: lifecycle/hummingbot-lifecycle.yml
+entries:
+  - version: 2.15.1
+    date: '2026-06-22'
+    latest: true
+  - version: 2.14.0
+    date: '2026-04-20'
+  - version: 2.13.0
+    date: '2026-03-02'
+  - version: 2.12.0
+    date: '2026-01-26'
+  - version: 2.11.0
+    date: '2025-12-15'
+  - version: 2.10.0
+    date: '2025-11-03'

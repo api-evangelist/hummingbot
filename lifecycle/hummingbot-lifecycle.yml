@@ -1,0 +1,28 @@
+generated: '2026-07-19'
+method: searched
+source: https://hummingbot.org/release-notes/
+description: >-
+  Hummingbot ships monthly releases under semantic versioning (2.x series). As
+  self-hosted open-source software there is no hosted-service SLA or public
+  status page, and no formal RFC 8594 Sunset/Deprecation header policy; version
+  compatibility is communicated through the dated release notes and GitHub
+  releases. Users pin behavior by choosing which release/Docker tag they run.
+versioning:
+  scheme: semantic versioning (MAJOR.MINOR.PATCH)
+  current: 2.15.1
+  current_released: '2026-06-22'
+  cadence: monthly
+  docs: https://hummingbot.org/release-notes/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: >-
+    No formal deprecation-header policy. Breaking changes are announced in the
+    dated release notes; older behavior stays available by running an older
+    release/Docker image.
+sla:
+  url: null
+  public_uptime_target: null
+  notes: Self-hosted software — no hosted-service SLA.
+status_page: null
+changelog: changelog/hummingbot-changelog.yml

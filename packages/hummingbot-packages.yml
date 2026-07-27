@@ -1,0 +1,38 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://pypi.org/project/hummingbot-api-client/, https://pypi.org/project/hummingbot/,
+  https://github.com/hummingbot, https://hub.docker.com/u/hummingbot — first-party
+  Hummingbot Foundation client libraries and distributions verified against the
+  public registries. Registry HTTP status recorded at fetch time.
+description: >-
+  Hummingbot is distributed primarily as source + Docker images rather than
+  language SDKs. The one true client library is the async Python API client for
+  the Hummingbot API server; the framework itself ships to PyPI and Docker.
+packages:
+  - language: python
+    registry: pypi
+    name: hummingbot-api-client
+    url: https://pypi.org/project/hummingbot-api-client/
+    source: https://github.com/hummingbot/hummingbot-api-client
+    install: pip install hummingbot-api-client
+    version: 1.5.3
+    description: Async Python client for the Hummingbot API, with modular router support.
+    official: true
+  - language: python
+    registry: pypi
+    name: hummingbot
+    url: https://pypi.org/project/hummingbot/
+    source: https://github.com/hummingbot/hummingbot
+    install: pip install hummingbot
+    version: '20260616'
+    description: The Hummingbot open source algorithmic crypto trading framework.
+    official: true
+  - language: docker
+    registry: dockerhub
+    name: hummingbot/hummingbot-mcp
+    url: https://hub.docker.com/r/hummingbot/hummingbot-mcp
+    source: https://github.com/hummingbot/mcp
+    install: docker pull hummingbot/hummingbot-mcp:latest
+    description: Official Model Context Protocol server image for Hummingbot.
+    official: true

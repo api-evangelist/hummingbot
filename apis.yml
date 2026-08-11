@@ -293,6 +293,8 @@ apis:
   - type: APIReference
     url: https://hummingbot.org/gateway/
 common:
+- type: Overlay
+  url: overlays/hummingbot-gateway-overlay.yaml
 - type: DomainSecurity
   url: security/hummingbot-domain-security.yml
 - type: Website

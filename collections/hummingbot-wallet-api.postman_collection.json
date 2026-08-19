@@ -1,0 +1,487 @@
+{
+  "item": [
+    {
+      "id": "4d9c6730-2a57-4e03-a6ee-2bfdadc64141",
+      "name": "/wallet",
+      "description": {
+        "content": "Wallet management endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2daa6016-2010-4a4e-b438-2e74b7a0a521",
+          "name": "Get all wallets across different chains",
+          "request": {
+            "name": "Get all wallets across different chains",
+            "description": {
+              "content": "Get all wallets across different chains",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wallet",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "showHardware",
+                  "value": "true"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df9b3b4b-8764-4060-8627-9f4ef0cd226e",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wallet",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "showHardware",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"chain\": \"solana\",\n    \"walletAddresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"hardwareWalletAddresses\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"chain\": \"solana\",\n    \"walletAddresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"hardwareWalletAddresses\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "21cd602c-d9ec-498c-99a6-8f410493c451",
+          "name": "Add a new wallet using a private key",
+          "request": {
+            "name": "Add a new wallet using a private key",
+            "description": {
+              "content": "Add a new wallet using a private key",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wallet",
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chain\": \"<string>\",\n  \"privateKey\": \"<string>\",\n  \"setDefault\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5d10e9d7-cb49-401e-8f06-9584628a24c7",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wallet",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chain\": \"solana\",\n  \"privateKey\": \"<your-private-key>\",\n  \"setDefault\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa2cb8da-fb3f-4839-a788-9f8b5d4eedf1",
+          "name": "Add a hardware wallet",
+          "request": {
+            "name": "Add a hardware wallet",
+            "description": {
+              "content": "Add a hardware wallet",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wallet",
+                "add-hardware"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chain\": \"solana\",\n  \"address\": \"<string>\",\n  \"setDefault\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7d2539ce-e80c-4b2b-84e9-1ebd58db7171",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wallet",
+                    "add-hardware"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chain\": \"solana\",\n  \"address\": \"<string>\",\n  \"setDefault\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"publicKey\": \"string\",\n  \"derivationPath\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83921917-de7f-4fe8-8951-6adb854e197e",
+          "name": "Remove a wallet by its address (automatically detects wallet type)",
+          "request": {
+            "name": "Remove a wallet by its address (automatically detects wallet type)",
+            "description": {
+              "content": "Remove a wallet by its address (automatically detects wallet type)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wallet",
+                "remove"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chain\": \"<string>\",\n  \"address\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1b9651e2-ebc2-491e-9e50-135fd1605232",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wallet",
+                    "remove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chain\": \"solana\",\n  \"address\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e61843ac-414d-4926-9b62-0c0f2910444b",
+          "name": "Set a wallet as default for a specific chain",
+          "request": {
+            "name": "Set a wallet as default for a specific chain",
+            "description": {
+              "content": "Set a wallet as default for a specific chain",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wallet",
+                "setDefault"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chain\": \"<string>\",\n  \"address\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ecbc8223-b7e5-4eda-b9bc-64a274178045",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wallet",
+                    "setDefault"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chain\": \"ethereum\",\n  \"address\": \"0x742d35Cc6634C0532925a3b844Bc9e7595f2BDf8\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"chain\": \"string\",\n  \"address\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:15888",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a5636bf2-664e-4982-b468-ddff74a6ddf7",
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /wallet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API endpoints for interacting with DEXs and blockchains",
+      "type": "text/plain"
+    }
+  }
+}

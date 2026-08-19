@@ -1,0 +1,273 @@
+{
+  "item": [
+    {
+      "id": "67bc4879-339a-4f8a-896f-61a8801c396e",
+      "name": "/trading/swap",
+      "description": {
+        "content": "Unified cross-chain swap endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1119fd00-3725-4bc3-a273-a6d2f124d18c",
+          "name": "Get a swap quote for any supported chain",
+          "request": {
+            "name": "Get a swap quote for any supported chain",
+            "description": {
+              "content": "Get a swap quote for any supported chain",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trading",
+                "swap",
+                "quote"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainNetwork",
+                  "value": "solana-mainnet-beta",
+                  "description": "(Required) Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet, ethereum-polygon)"
+                },
+                {
+                  "disabled": false,
+                  "key": "connector",
+                  "value": "jupiter/router",
+                  "description": "Connector to use in format: connector/type (e.g., jupiter/router, raydium/amm, uniswap/clmm). If not provided, uses network's configured swapProvider"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseToken",
+                  "value": "SOL",
+                  "description": "(Required) Symbol or address of the base token"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteToken",
+                  "value": "USDC",
+                  "description": "(Required) Symbol or address of the quote token"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "1",
+                  "description": "(Required) Amount to swap"
+                },
+                {
+                  "disabled": false,
+                  "key": "side",
+                  "value": "SELL",
+                  "description": "(Required) Side of the swap"
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "1",
+                  "description": "Slippage tolerance percentage (optional)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3683b817-c496-4a55-94dc-fb298b99a3e6",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trading",
+                    "swap",
+                    "quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainNetwork",
+                      "value": "solana-mainnet-beta"
+                    },
+                    {
+                      "key": "connector",
+                      "value": "jupiter/router"
+                    },
+                    {
+                      "key": "baseToken",
+                      "value": "SOL"
+                    },
+                    {
+                      "key": "quoteToken",
+                      "value": "USDC"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "1"
+                    },
+                    {
+                      "key": "side",
+                      "value": "SELL"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tokenIn\": \"string\",\n  \"tokenOut\": \"string\",\n  \"amountIn\": 3813.467801447924,\n  \"amountOut\": 2241.3010440060334,\n  \"price\": 2316.515973911477,\n  \"priceImpactPct\": 2164.4739830882654,\n  \"minAmountOut\": 5924.326085803051,\n  \"maxAmountIn\": 5492.209380412008,\n  \"poolAddress\": \"string\",\n  \"routePath\": \"string\",\n  \"slippagePct\": 8304.30227050435\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c71b0e00-eae0-427d-926e-a36ed1c5ae49",
+          "name": "Execute a swap on any supported chain",
+          "request": {
+            "name": "Execute a swap on any supported chain",
+            "description": {
+              "content": "Execute a swap on any supported chain",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trading",
+                "swap",
+                "execute"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"chainNetwork\": \"solana-mainnet-beta\",\n  \"baseToken\": \"SOL\",\n  \"quoteToken\": \"USDC\",\n  \"amount\": 1,\n  \"side\": \"SELL\",\n  \"connector\": \"jupiter/router\",\n  \"slippagePct\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4c93fc47-01f4-413f-a6fc-92e18c590840",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trading",
+                    "swap",
+                    "execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"chainNetwork\": \"solana-mainnet-beta\",\n  \"baseToken\": \"SOL\",\n  \"quoteToken\": \"USDC\",\n  \"amount\": 1,\n  \"side\": \"SELL\",\n  \"connector\": \"jupiter/router\",\n  \"slippagePct\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 1110.4626908105008,\n  \"data\": {\n    \"tokenIn\": \"string\",\n    \"tokenOut\": \"string\",\n    \"amountIn\": 6842.082733936947,\n    \"amountOut\": 6077.068553831358,\n    \"fee\": 1007.6250577925916,\n    \"baseTokenBalanceChange\": 41.51780045690501,\n    \"quoteTokenBalanceChange\": 419.9455412096365\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:15888",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5e9317c3-8690-46ee-acc7-0b2c738a08f9",
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /trading/swap API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API endpoints for interacting with DEXs and blockchains",
+      "type": "text/plain"
+    }
+  }
+}

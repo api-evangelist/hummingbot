@@ -1,0 +1,584 @@
+{
+  "item": [
+    {
+      "id": "57049d1c-9178-4f9a-9351-f69983d3838e",
+      "name": "/chain/solana",
+      "description": {
+        "content": "Solana and SVM-based chain endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d45bb29d-9c74-4329-be17-34920343e550",
+          "name": "Get Solana network status",
+          "request": {
+            "name": "Get Solana network status",
+            "description": {
+              "content": "Get Solana network status",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chains",
+                "solana",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "The Solana network to use"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d5816cdc-2633-48c4-bd6d-3c9e9047f4dd",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chains",
+                    "solana",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"chain\": \"string\",\n  \"network\": \"string\",\n  \"rpcUrl\": \"string\",\n  \"rpcProvider\": \"string\",\n  \"currentBlockNumber\": 6394.297559667096,\n  \"nativeCurrency\": \"string\",\n  \"swapProvider\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "212fdbd4-e9d8-4d1b-9941-6a3e9248392a",
+          "name": "Estimate gas prices for Solana transactions",
+          "request": {
+            "name": "Estimate gas prices for Solana transactions",
+            "description": {
+              "content": "Estimate gas prices for Solana transactions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chains",
+                "solana",
+                "estimate-gas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "The Solana network to use"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a146c5e-29cd-4e46-b591-5b6ddbd27f28",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chains",
+                    "solana",
+                    "estimate-gas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"feePerComputeUnit\": 1168.9263194456357,\n  \"denomination\": \"string\",\n  \"computeUnits\": 7071.860673965487,\n  \"feeAsset\": \"string\",\n  \"fee\": 5655.014454955951,\n  \"timestamp\": 9173.033549669783,\n  \"gasType\": \"string\",\n  \"maxFeePerGas\": 727.1200418630907,\n  \"maxPriorityFeePerGas\": 6931.944319251187\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "347a3f65-1d9c-49e2-9d57-e460d551c932",
+          "name": "Get token balances for a Solana address. Only returns tokens in the network's token list. If no tokens specified or empty array provided, returns non-zero balances for tokens from the token list that are found in the wallet (includes SOL even if zero). If specific tokens are requested, returns those exact tokens with their balances, including zeros.",
+          "request": {
+            "name": "Get token balances for a Solana address. Only returns tokens in the network's token list. If no tokens specified or empty array provided, returns non-zero balances for tokens from the token list that are found in the wallet (includes SOL even if zero). If specific tokens are requested, returns those exact tokens with their balances, including zeros.",
+            "description": {
+              "content": "Get token balances for a Solana address. Only returns tokens in the network's token list. If no tokens specified or empty array provided, returns non-zero balances for tokens from the token list that are found in the wallet (includes SOL even if zero). If specific tokens are requested, returns those exact tokens with their balances, including zeros.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chains",
+                "solana",
+                "balances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"mainnet-beta\",\n  \"address\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"tokens\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bc3efed5-2c39-4e7c-984d-8b66985e8814",
+              "name": "Token balances for the specified address (only tokens in token list)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chains",
+                    "solana",
+                    "balances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"mainnet-beta\",\n  \"address\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"tokens\": [\n    \"SOL\",\n    \"USDC\",\n    \"BONK\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"balances\": {\n    \"SOL\": 1.5,\n    \"USDC\": 100,\n    \"BONK\": 50000\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e18374fe-3cf0-4123-a6bb-43cc64b5aefc",
+          "name": "Poll for the status of a Solana transaction",
+          "request": {
+            "name": "Poll for the status of a Solana transaction",
+            "description": {
+              "content": "Poll for the status of a Solana transaction",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chains",
+                "solana",
+                "poll"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"signature\": \"<string>\",\n  \"network\": \"mainnet-beta\",\n  \"tokens\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1733b770-800f-429f-9baf-905ed1a195f8",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chains",
+                    "solana",
+                    "poll"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signature\": \"55ukR6VCt1sQFMC8Nyeo51R1SMaTzUC7jikmkEJ2jjkQNdqBxXHraH7vaoaNmf8rX4Y55EXAj8XXoyzvvsrQqWZa\",\n  \"network\": \"mainnet-beta\",\n  \"tokens\": [\n    \"SOL\",\n    \"USDC\",\n    \"BONK\"\n  ],\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"currentBlock\": 5769.048068966387,\n  \"signature\": \"string\",\n  \"txBlock\": 6539.2206464057645,\n  \"txStatus\": 3298.719998604618,\n  \"fee\": 3826.034951098001,\n  \"txData\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"tokenBalanceChanges\": {\n    \"key_0\": 8701.486010916415,\n    \"key_1\": 1134.2302761606204,\n    \"key_2\": 1365.3501752605978\n  },\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35f1a579-e98a-4b7a-9160-f5188aa67dd7",
+          "name": "Wrap SOL to WSOL (Wrapped SOL)",
+          "request": {
+            "name": "Wrap SOL to WSOL (Wrapped SOL)",
+            "description": {
+              "content": "Wrap SOL to WSOL (Wrapped SOL)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chains",
+                "solana",
+                "wrap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<string>\",\n  \"network\": \"mainnet-beta\",\n  \"address\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e4305b72-076b-4e3a-b584-f4d9b181aab1",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chains",
+                    "solana",
+                    "wrap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"1.0\",\n  \"network\": \"mainnet-beta\",\n  \"address\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 875.0560323343049,\n  \"data\": {\n    \"fee\": \"string\",\n    \"amount\": \"string\",\n    \"wrappedAddress\": \"string\",\n    \"nativeToken\": \"string\",\n    \"wrappedToken\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ad42d13-aef8-46dd-939b-d26b11f47459",
+          "name": "Unwrap WSOL to SOL. Note: This closes the entire WSOL account, returning all WSOL as SOL.",
+          "request": {
+            "name": "Unwrap WSOL to SOL. Note: This closes the entire WSOL account, returning all WSOL as SOL.",
+            "description": {
+              "content": "Unwrap WSOL to SOL. Note: This closes the entire WSOL account, returning all WSOL as SOL.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chains",
+                "solana",
+                "unwrap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"mainnet-beta\",\n  \"address\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"amount\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4f3b3ca9-e895-4c9c-b04a-c6249677175c",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chains",
+                    "solana",
+                    "unwrap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"mainnet-beta\",\n  \"address\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"amount\": \"1.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 875.0560323343049,\n  \"data\": {\n    \"fee\": \"string\",\n    \"amount\": \"string\",\n    \"wrappedAddress\": \"string\",\n    \"nativeToken\": \"string\",\n    \"wrappedToken\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:15888",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4b4294ed-c104-4daa-9b7c-bc5c03fe75dd",
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /chain/solana API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API endpoints for interacting with DEXs and blockchains",
+      "type": "text/plain"
+    }
+  }
+}

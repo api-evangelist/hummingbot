@@ -1,0 +1,1332 @@
+{
+  "item": [
+    {
+      "id": "687aa3ed-7bae-4fb3-9241-3f0ac0b04e04",
+      "name": "/connector/meteora",
+      "description": {
+        "content": "Meteora connector endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dffd6d9e-1e1a-4864-9b44-241a5bcacfd6",
+          "name": "Fetch info about Meteora pools",
+          "request": {
+            "name": "Fetch info about Meteora pools",
+            "description": {
+              "content": "Fetch info about Meteora pools",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "meteora",
+                "clmm",
+                "fetch-pools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of pools to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "tokenA",
+                  "value": "<string>",
+                  "description": "First token symbol or address"
+                },
+                {
+                  "disabled": false,
+                  "key": "tokenB",
+                  "value": "<string>",
+                  "description": "Second token symbol or address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35511457-39c2-4881-b0d2-c1cf7b117a92",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "meteora",
+                    "clmm",
+                    "fetch-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "tokenA",
+                      "value": "SOL"
+                    },
+                    {
+                      "key": "tokenB",
+                      "value": "USDC"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"address\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"feePct\": 1145.4534383523874,\n    \"price\": 9102.29875287919,\n    \"baseTokenAmount\": 2469.967436516215,\n    \"quoteTokenAmount\": 3797.187751212896,\n    \"activeBinId\": 8518.942190578304,\n    \"binStep\": 2907.0846048441344\n  },\n  {\n    \"address\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"feePct\": 312.24167466208706,\n    \"price\": 8756.155398313422,\n    \"baseTokenAmount\": 6647.666007138745,\n    \"quoteTokenAmount\": 2227.270892787866,\n    \"activeBinId\": 1020.6881607469597,\n    \"binStep\": 4141.634097851793\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e1c9d84-6c87-4f36-a45c-ac3e96cff0c8",
+          "name": "Get pool information for a Meteora pool",
+          "request": {
+            "name": "Get pool information for a Meteora pool",
+            "description": {
+              "content": "Get pool information for a Meteora pool",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "meteora",
+                "clmm",
+                "pool-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) Meteora DLMM pool address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5bbd3d13-a078-4214-8b7a-5084080e4ba5",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "meteora",
+                    "clmm",
+                    "pool-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"feePct\": 6663.286026344255,\n  \"price\": 1591.3787411013013,\n  \"baseTokenAmount\": 2306.585513558238,\n  \"quoteTokenAmount\": 5000.854476172541,\n  \"activeBinId\": 2118.8297632418594,\n  \"dynamicFeePct\": 5891.542841404966,\n  \"minBinId\": 8338.401363216452,\n  \"maxBinId\": 534.4782534589276,\n  \"bins\": [\n    {\n      \"binId\": 2856.2190328053207,\n      \"price\": 3688.6759256084833,\n      \"baseTokenAmount\": 5982.906901100716,\n      \"quoteTokenAmount\": 7909.972140186616\n    },\n    {\n      \"binId\": 1012.8663329688881,\n      \"price\": 6889.975157162138,\n      \"baseTokenAmount\": 3946.743155132726,\n      \"quoteTokenAmount\": 2940.5486509879784\n    }\n  ],\n  \"binStep\": 9506.955377419992\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ac08a30-02e0-469b-89ff-2a22835f490f",
+          "name": "Retrieve all positions owned by a user's wallet across all Meteora pools",
+          "request": {
+            "name": "Retrieve all positions owned by a user's wallet across all Meteora pools",
+            "description": {
+              "content": "Retrieve all positions owned by a user's wallet across all Meteora pools",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "meteora",
+                "clmm",
+                "positions-owned"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "walletAddress",
+                  "value": "<string>",
+                  "description": "(Required) Solana wallet address to check for positions"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "052ffdd7-e3ec-45e5-847f-7cabd06d2720",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "meteora",
+                    "clmm",
+                    "positions-owned"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "walletAddress",
+                      "value": "Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"address\": \"string\",\n    \"poolAddress\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"baseTokenAmount\": 1954.6371983049094,\n    \"quoteTokenAmount\": 2513.96904203897,\n    \"baseFeeAmount\": 2740.431942948195,\n    \"quoteFeeAmount\": 7666.698572399563,\n    \"lowerBinId\": 25.73747336946819,\n    \"upperBinId\": 335.78132503864435,\n    \"lowerPrice\": 324.1066218585131,\n    \"upperPrice\": 3225.444847089465,\n    \"price\": 2000.9629563094388,\n    \"rewardTokenAddress\": \"string\",\n    \"rewardAmount\": 5502.733344318293\n  },\n  {\n    \"address\": \"string\",\n    \"poolAddress\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"baseTokenAmount\": 8862.104612321406,\n    \"quoteTokenAmount\": 3706.826066233664,\n    \"baseFeeAmount\": 21.109234967714443,\n    \"quoteFeeAmount\": 2331.5432382322842,\n    \"lowerBinId\": 6868.885531550088,\n    \"upperBinId\": 9887.072996567747,\n    \"lowerPrice\": 9256.268683789325,\n    \"upperPrice\": 7420.081538348247,\n    \"price\": 3253.088118602008,\n    \"rewardTokenAddress\": \"string\",\n    \"rewardAmount\": 613.3750671943483\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5f862c9-d756-46eb-8430-6aee89c4910c",
+          "name": "Get details for a specific Meteora position",
+          "request": {
+            "name": "Get details for a specific Meteora position",
+            "description": {
+              "content": "Get details for a specific Meteora position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "meteora",
+                "clmm",
+                "position-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "positionAddress",
+                  "value": "<string>",
+                  "description": "(Required) Position NFT address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5585eebf-a7a6-495c-892a-28613f83a37a",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "meteora",
+                    "clmm",
+                    "position-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "positionAddress",
+                      "value": "<sample-position-address>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"poolAddress\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"baseTokenAmount\": 2231.5900403761,\n  \"quoteTokenAmount\": 8382.658363440243,\n  \"baseFeeAmount\": 1437.8069902456002,\n  \"quoteFeeAmount\": 950.1591816952737,\n  \"lowerBinId\": 1760.6948638640963,\n  \"upperBinId\": 9698.801562107663,\n  \"lowerPrice\": 7877.983859105697,\n  \"upperPrice\": 6069.91238325788,\n  \"price\": 4551.888848140582,\n  \"rewardTokenAddress\": \"string\",\n  \"rewardAmount\": 9326.289391171775\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41103080-5556-4c74-8371-d8f1e6771d3d",
+          "name": "Quote amounts for a new Meteora CLMM position",
+          "request": {
+            "name": "Quote amounts for a new Meteora CLMM position",
+            "description": {
+              "content": "Quote amounts for a new Meteora CLMM position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "meteora",
+                "clmm",
+                "quote-position"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "lowerPrice",
+                  "value": "<number>",
+                  "description": "(Required) Lower price bound for the position"
+                },
+                {
+                  "disabled": false,
+                  "key": "upperPrice",
+                  "value": "<number>",
+                  "description": "(Required) Upper price bound for the position"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) Meteora DLMM pool address"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseTokenAmount",
+                  "value": "<number>",
+                  "description": "Amount of base token to deposit"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteTokenAmount",
+                  "value": "<number>",
+                  "description": "Amount of quote token to deposit"
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "2",
+                  "description": "Maximum acceptable slippage percentage"
+                },
+                {
+                  "disabled": false,
+                  "key": "strategyType",
+                  "value": "<number>",
+                  "description": "Strategy type for the position"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "355d0878-da08-42c0-92de-070ae5ffd450",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "meteora",
+                    "clmm",
+                    "quote-position"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "lowerPrice",
+                      "value": "150"
+                    },
+                    {
+                      "key": "upperPrice",
+                      "value": "250"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3"
+                    },
+                    {
+                      "key": "baseTokenAmount",
+                      "value": "0.01"
+                    },
+                    {
+                      "key": "quoteTokenAmount",
+                      "value": "2"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "2"
+                    },
+                    {
+                      "key": "strategyType",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"baseLimited\": false,\n  \"baseTokenAmount\": 174.67776416296044,\n  \"quoteTokenAmount\": 9215.451360594434,\n  \"baseTokenAmountMax\": 4161.515518842265,\n  \"quoteTokenAmountMax\": 9569.888314772314,\n  \"liquidity\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6007443-5982-4a0d-9df9-9e65324f8113",
+          "name": "Get swap quote for Meteora CLMM",
+          "request": {
+            "name": "Get swap quote for Meteora CLMM",
+            "description": {
+              "content": "Get swap quote for Meteora CLMM",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "meteora",
+                "clmm",
+                "quote-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "Meteora DLMM pool address (optional - can be looked up from baseToken and quoteToken)"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseToken",
+                  "value": "<string>",
+                  "description": "(Required) Token to determine swap direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteToken",
+                  "value": "<string>",
+                  "description": "The other token in the pair (optional - required if poolAddress not provided)"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "(Required) Amount to swap"
+                },
+                {
+                  "disabled": false,
+                  "key": "side",
+                  "value": "SELL",
+                  "description": "(Required) Trade direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "2",
+                  "description": "Maximum acceptable slippage percentage"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5313bdc2-3a63-4a14-8354-fd1c6087ef2d",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "meteora",
+                    "clmm",
+                    "quote-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3"
+                    },
+                    {
+                      "key": "baseToken",
+                      "value": "SOL"
+                    },
+                    {
+                      "key": "quoteToken",
+                      "value": "USDC"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "0.01"
+                    },
+                    {
+                      "key": "side",
+                      "value": "SELL"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"poolAddress\": \"string\",\n  \"tokenIn\": \"string\",\n  \"tokenOut\": \"string\",\n  \"amountIn\": 9386.799530659802,\n  \"amountOut\": 9197.610411323949,\n  \"price\": 8099.989812813652,\n  \"minAmountOut\": 4015.876680571384,\n  \"maxAmountIn\": 8975.255011247671,\n  \"priceImpactPct\": 9469.09753942461,\n  \"slippagePct\": 234.07716641135946\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4433f537-e437-4279-9423-0fc82acb6205",
+          "name": "Execute a token swap on Meteora DLMM",
+          "request": {
+            "name": "Execute a token swap on Meteora DLMM",
+            "description": {
+              "content": "Execute a token swap on Meteora DLMM",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "meteora",
+                "clmm",
+                "execute-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baseToken\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"side\": \"SELL\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"poolAddress\": \"<string>\",\n  \"quoteToken\": \"<string>\",\n  \"slippagePct\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "34303462-21d8-4f2f-a955-05618287ff0e",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "meteora",
+                    "clmm",
+                    "execute-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baseToken\": \"SOL\",\n  \"amount\": 0.01,\n  \"side\": \"SELL\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"poolAddress\": \"2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3\",\n  \"quoteToken\": \"USDC\",\n  \"slippagePct\": 2\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 1929.5575862967496,\n  \"data\": {\n    \"tokenIn\": \"string\",\n    \"tokenOut\": \"string\",\n    \"amountIn\": 2965.8991921956535,\n    \"amountOut\": 1370.6358555463494,\n    \"fee\": 2284.30603916741,\n    \"baseTokenBalanceChange\": 2081.242565428746,\n    \"quoteTokenBalanceChange\": 8390.538405740095\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "abef9e84-600f-45a4-8297-f559fa89bd85",
+          "name": "Open a new Meteora position",
+          "request": {
+            "name": "Open a new Meteora position",
+            "description": {
+              "content": "Open a new Meteora position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "meteora",
+                "clmm",
+                "open-position"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lowerPrice\": \"<number>\",\n  \"upperPrice\": \"<number>\",\n  \"poolAddress\": \"<string>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"slippagePct\": 2,\n  \"strategyType\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8f77dcf6-fe6a-4ff8-88d5-570dac070dc1",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "meteora",
+                    "clmm",
+                    "open-position"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lowerPrice\": 150,\n  \"upperPrice\": 250,\n  \"poolAddress\": \"2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"baseTokenAmount\": 0.01,\n  \"quoteTokenAmount\": 2,\n  \"slippagePct\": 2,\n  \"strategyType\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 8636.72167245707,\n  \"data\": {\n    \"fee\": 8804.668909723041,\n    \"positionAddress\": \"string\",\n    \"positionRent\": 8282.513037501874,\n    \"baseTokenAmountAdded\": 5577.798163781428,\n    \"quoteTokenAmountAdded\": 2661.6031415034804\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1a24034-323a-4555-bfa8-32be7eb0b7ab",
+          "name": "Add liquidity to a Meteora position",
+          "request": {
+            "name": "Add liquidity to a Meteora position",
+            "description": {
+              "content": "Add liquidity to a Meteora position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "meteora",
+                "clmm",
+                "add-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"slippagePct\": 2,\n  \"strategyType\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dcc81f15-9f5f-4457-be71-b84a93cbed89",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "meteora",
+                    "clmm",
+                    "add-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"<sample-position-address>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"baseTokenAmount\": 0.01,\n  \"quoteTokenAmount\": 2,\n  \"slippagePct\": 2,\n  \"strategyType\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 8528.718885380902,\n  \"data\": {\n    \"fee\": 2056.6001336449267,\n    \"baseTokenAmountAdded\": 9393.098267236854,\n    \"quoteTokenAmountAdded\": 3533.2703540820785\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7005e835-c0f3-4437-81de-0950d4ae6aa6",
+          "name": "Remove liquidity from a Meteora position",
+          "request": {
+            "name": "Remove liquidity from a Meteora position",
+            "description": {
+              "content": "Remove liquidity from a Meteora position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "meteora",
+                "clmm",
+                "remove-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"liquidityPct\": 100\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e625b01b-5083-4814-bb0a-951f454ea02d",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "meteora",
+                    "clmm",
+                    "remove-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"<sample-position-address>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"liquidityPct\": 100\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 198.65368406916218,\n  \"data\": {\n    \"fee\": 7437.076204689581,\n    \"baseTokenAmountRemoved\": 3798.3761579584852,\n    \"quoteTokenAmountRemoved\": 2702.347991292393\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0da2d77b-7d74-48bf-8dae-25eea97e5cf3",
+          "name": "Collect fees from a Meteora position",
+          "request": {
+            "name": "Collect fees from a Meteora position",
+            "description": {
+              "content": "Collect fees from a Meteora position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "meteora",
+                "clmm",
+                "collect-fees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "041d8557-2a63-4a64-9f5f-023ecea2865a",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "meteora",
+                    "clmm",
+                    "collect-fees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"<sample-position-address>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 2437.800140631985,\n  \"data\": {\n    \"fee\": 4584.031000863992,\n    \"baseFeeAmountCollected\": 3962.9750947402463,\n    \"quoteFeeAmountCollected\": 9082.57964350091\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6081a128-8100-41f2-829a-082486d87333",
+          "name": "Close a Meteora position",
+          "request": {
+            "name": "Close a Meteora position",
+            "description": {
+              "content": "Close a Meteora position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "meteora",
+                "clmm",
+                "close-position"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2a4fa04d-a7da-4591-a5b4-6e87261e45fd",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "meteora",
+                    "clmm",
+                    "close-position"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"<sample-position-address>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 7537.268973567326,\n  \"data\": {\n    \"fee\": 7119.99605157689,\n    \"positionRentRefunded\": 201.54090834964555,\n    \"baseTokenAmountRemoved\": 2755.728520567711,\n    \"quoteTokenAmountRemoved\": 5584.948712147284,\n    \"baseFeeAmountCollected\": 3450.496403024137,\n    \"quoteFeeAmountCollected\": 4775.070023496956\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:15888",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "540689ea-c5d2-43c3-bf9a-389c30a8ed63",
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/meteora API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API endpoints for interacting with DEXs and blockchains",
+      "type": "text/plain"
+    }
+  }
+}

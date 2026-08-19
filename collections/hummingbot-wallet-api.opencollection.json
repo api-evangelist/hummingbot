@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /wallet API",
+    "version": "dev-2.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/wallet",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /wallet/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/wallet/",
+            "params": [
+              {
+                "name": "showHardware",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get all wallets across different chains"
+        },
+        {
+          "info": {
+            "name": "POST /wallet/add",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/wallet/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new wallet using a private key"
+        },
+        {
+          "info": {
+            "name": "POST /wallet/add-hardware",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/wallet/add-hardware",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a hardware wallet"
+        },
+        {
+          "info": {
+            "name": "DELETE /wallet/remove",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:15888/wallet/remove",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove a wallet by its address (automatically detects wallet type)"
+        },
+        {
+          "info": {
+            "name": "POST /wallet/setDefault",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/wallet/setDefault",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set a wallet as default for a specific chain"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

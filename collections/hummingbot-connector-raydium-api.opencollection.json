@@ -1,0 +1,498 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/raydium API",
+    "version": "dev-2.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/connector/raydium",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /connectors/raydium/amm/pool-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/raydium/amm/pool-info",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "poolAddress",
+                "value": "58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2",
+                "type": "query",
+                "description": "Raydium AMM pool address"
+              }
+            ]
+          },
+          "docs": "Get AMM pool information from Raydium"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/raydium/amm/position-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/raydium/amm/position-info",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "poolAddress",
+                "value": "58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2",
+                "type": "query",
+                "description": "Raydium AMM pool address"
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "query",
+                "description": "Solana wallet address"
+              }
+            ]
+          },
+          "docs": "Get info about a Raydium AMM position"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/raydium/amm/quote-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/raydium/amm/quote-liquidity",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "poolAddress",
+                "value": "58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2",
+                "type": "query",
+                "description": "Raydium AMM pool address"
+              },
+              {
+                "name": "baseTokenAmount",
+                "value": "0.01",
+                "type": "query",
+                "description": "Amount of base token to add"
+              },
+              {
+                "name": "quoteTokenAmount",
+                "value": "2",
+                "type": "query",
+                "description": "Amount of quote token to add"
+              },
+              {
+                "name": "slippagePct",
+                "value": "2",
+                "type": "query",
+                "description": "Maximum acceptable slippage percentage"
+              }
+            ]
+          },
+          "docs": "Quote amounts for a new Raydium AMM liquidity position"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/raydium/amm/quote-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/raydium/amm/quote-swap",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "poolAddress",
+                "value": "58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2",
+                "type": "query",
+                "description": "AMM pool address (optional - can be looked up from baseToken and quoteToken)"
+              },
+              {
+                "name": "baseToken",
+                "value": "SOL",
+                "type": "query",
+                "description": "Token to determine swap direction"
+              },
+              {
+                "name": "quoteToken",
+                "value": "USDC",
+                "type": "query",
+                "description": "The other token in the pair (optional - required if poolAddress not provided)"
+              },
+              {
+                "name": "amount",
+                "value": "0.01",
+                "type": "query",
+                "description": "Amount to swap"
+              },
+              {
+                "name": "side",
+                "value": "",
+                "type": "query",
+                "description": "Trade direction"
+              },
+              {
+                "name": "slippagePct",
+                "value": "2",
+                "type": "query",
+                "description": "Maximum acceptable slippage percentage"
+              }
+            ]
+          },
+          "docs": "Get swap quote for Raydium AMM"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/raydium/amm/execute-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/raydium/amm/execute-swap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a swap on Raydium AMM or CPMM"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/raydium/amm/add-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/raydium/amm/add-liquidity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add liquidity to a Raydium AMM/CPMM pool"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/raydium/amm/remove-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/raydium/amm/remove-liquidity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove liquidity from a Raydium AMM/CPMM pool"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/raydium/clmm/pool-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/raydium/clmm/pool-info",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "poolAddress",
+                "value": "3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv",
+                "type": "query",
+                "description": "Raydium CLMM pool address"
+              }
+            ]
+          },
+          "docs": "Get CLMM pool information from Raydium"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/raydium/clmm/positions-owned",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/raydium/clmm/positions-owned",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "walletAddress",
+                "value": "Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn",
+                "type": "query",
+                "description": "Solana wallet address to check for positions"
+              }
+            ]
+          },
+          "docs": "Retrieve all positions owned by a user's wallet across all Raydium CLMM pools"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/raydium/clmm/position-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/raydium/clmm/position-info",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "positionAddress",
+                "value": "<sample-position-address>",
+                "type": "query",
+                "description": "Position NFT address"
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "query",
+                "description": "Solana wallet address"
+              }
+            ]
+          },
+          "docs": "Get info about a Raydium CLMM position"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/raydium/clmm/quote-position",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/raydium/clmm/quote-position",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "lowerPrice",
+                "value": "100",
+                "type": "query",
+                "description": "Lower price bound for the position"
+              },
+              {
+                "name": "upperPrice",
+                "value": "300",
+                "type": "query",
+                "description": "Upper price bound for the position"
+              },
+              {
+                "name": "poolAddress",
+                "value": "3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv",
+                "type": "query",
+                "description": "Raydium CLMM pool address"
+              },
+              {
+                "name": "baseTokenAmount",
+                "value": "0.01",
+                "type": "query",
+                "description": "Amount of base token to deposit"
+              },
+              {
+                "name": "quoteTokenAmount",
+                "value": "2",
+                "type": "query",
+                "description": "Amount of quote token to deposit"
+              },
+              {
+                "name": "slippagePct",
+                "value": "2",
+                "type": "query",
+                "description": "Maximum acceptable slippage percentage"
+              }
+            ]
+          },
+          "docs": "Quote amounts for a new Raydium CLMM position"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/raydium/clmm/quote-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/raydium/clmm/quote-swap",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "poolAddress",
+                "value": "3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv",
+                "type": "query",
+                "description": "CLMM pool address (optional - can be looked up from tokens)"
+              },
+              {
+                "name": "baseToken",
+                "value": "SOL",
+                "type": "query",
+                "description": "Token to determine swap direction"
+              },
+              {
+                "name": "quoteToken",
+                "value": "USDC",
+                "type": "query",
+                "description": "The other token in the pair"
+              },
+              {
+                "name": "amount",
+                "value": "0.01",
+                "type": "query",
+                "description": "Amount to swap"
+              },
+              {
+                "name": "side",
+                "value": "",
+                "type": "query",
+                "description": "Trade direction"
+              },
+              {
+                "name": "slippagePct",
+                "value": "2",
+                "type": "query",
+                "description": "Maximum acceptable slippage percentage"
+              }
+            ]
+          },
+          "docs": "Get swap quote for Raydium CLMM"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/raydium/clmm/execute-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/raydium/clmm/execute-swap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a swap on Raydium CLMM"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/raydium/clmm/open-position",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/raydium/clmm/open-position",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Open a new Raydium CLMM position"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/raydium/clmm/add-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/raydium/clmm/add-liquidity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add liquidity to existing Raydium CLMM position"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/raydium/clmm/remove-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/raydium/clmm/remove-liquidity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove liquidity from Raydium CLMM position"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/raydium/clmm/collect-fees",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/raydium/clmm/collect-fees",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Collect fees from a Raydium CLMM position by removing 1% of liquidity"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/raydium/clmm/close-position",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/raydium/clmm/close-position",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Close a Raydium CLMM position"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

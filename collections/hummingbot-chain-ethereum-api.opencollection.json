@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /chain/ethereum API",
+    "version": "dev-2.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/chain/ethereum",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /chains/ethereum/status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/chains/ethereum/status",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "The Ethereum network to use"
+              }
+            ]
+          },
+          "docs": "Get Ethereum chain status"
+        },
+        {
+          "info": {
+            "name": "GET /chains/ethereum/estimate-gas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/chains/ethereum/estimate-gas",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "The Ethereum network to use"
+              }
+            ]
+          },
+          "docs": "Estimate gas prices for Ethereum transactions"
+        },
+        {
+          "info": {
+            "name": "POST /chains/ethereum/balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/chains/ethereum/balances",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get Ethereum balances. If no tokens specified or empty array provided, returns native token (ETH) and only non-zero balances for tokens from the token list. If specific tokens are requested, returns those exact tokens with their balances, including zeros."
+        },
+        {
+          "info": {
+            "name": "POST /chains/ethereum/poll",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/chains/ethereum/poll",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Poll Ethereum transaction status"
+        },
+        {
+          "info": {
+            "name": "POST /chains/ethereum/allowances",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/chains/ethereum/allowances",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get token allowances"
+        },
+        {
+          "info": {
+            "name": "POST /chains/ethereum/approve",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/chains/ethereum/approve",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Approve token spending"
+        },
+        {
+          "info": {
+            "name": "POST /chains/ethereum/wrap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/chains/ethereum/wrap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Wrap native token to wrapped token (e.g., ETH to WETH, BNB to WBNB)"
+        },
+        {
+          "info": {
+            "name": "POST /chains/ethereum/unwrap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/chains/ethereum/unwrap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unwrap wrapped token to native token (e.g., WETH to ETH, WBNB to BNB)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

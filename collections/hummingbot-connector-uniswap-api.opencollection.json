@@ -1,0 +1,566 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/uniswap API",
+    "version": "dev-2.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/connector/uniswap",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /connectors/uniswap/router/quote-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/uniswap/router/quote-swap",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "The EVM network to use"
+              },
+              {
+                "name": "baseToken",
+                "value": "WETH",
+                "type": "query",
+                "description": "First token in the trading pair"
+              },
+              {
+                "name": "quoteToken",
+                "value": "USDC",
+                "type": "query",
+                "description": "Second token in the trading pair"
+              },
+              {
+                "name": "amount",
+                "value": "0.001",
+                "type": "query",
+                "description": "Amount of base token to trade"
+              },
+              {
+                "name": "side",
+                "value": "",
+                "type": "query",
+                "description": "Trade direction - BUY means buying base token with quote token, SELL means selling base token for quote token"
+              },
+              {
+                "name": "slippagePct",
+                "value": "",
+                "type": "query",
+                "description": "Maximum acceptable slippage percentage"
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "query",
+                "description": "Wallet address for more accurate quotes (optional)"
+              }
+            ]
+          },
+          "docs": "Get an executable swap quote from Uniswap Universal Router"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/uniswap/router/execute-quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/uniswap/router/execute-quote",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a previously fetched quote from Uniswap Universal Router"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/uniswap/router/execute-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/uniswap/router/execute-swap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Quote and execute a token swap on Uniswap Universal Router in one step"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/uniswap/amm/pool-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/uniswap/amm/pool-info",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "The EVM network to use"
+              },
+              {
+                "name": "poolAddress",
+                "value": "0x88A43bbDF9D098eEC7bCEda4e2494615dfD9bB9C",
+                "type": "query",
+                "description": "Uniswap V2 pool address"
+              }
+            ]
+          },
+          "docs": "Get AMM pool information from Uniswap V2"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/uniswap/amm/position-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/uniswap/amm/position-info",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "walletAddress",
+                "value": "0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50",
+                "type": "query"
+              },
+              {
+                "name": "poolAddress",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "baseToken",
+                "value": "WETH",
+                "type": "query"
+              },
+              {
+                "name": "quoteToken",
+                "value": "USDC",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get position information for a Uniswap V2 pool"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/uniswap/amm/quote-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/uniswap/amm/quote-swap",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "poolAddress",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "baseToken",
+                "value": "WETH",
+                "type": "query"
+              },
+              {
+                "name": "quoteToken",
+                "value": "USDC",
+                "type": "query"
+              },
+              {
+                "name": "amount",
+                "value": "0.001",
+                "type": "query"
+              },
+              {
+                "name": "side",
+                "value": "SELL",
+                "type": "query"
+              },
+              {
+                "name": "slippagePct",
+                "value": "1",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get swap quote for Uniswap V2 AMM"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/uniswap/amm/quote-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/uniswap/amm/quote-liquidity",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "poolAddress",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "baseTokenAmount",
+                "value": "0.001",
+                "type": "query"
+              },
+              {
+                "name": "quoteTokenAmount",
+                "value": "2.5",
+                "type": "query"
+              },
+              {
+                "name": "slippagePct",
+                "value": "1",
+                "type": "query"
+              },
+              {
+                "name": "baseToken",
+                "value": "WETH",
+                "type": "query"
+              },
+              {
+                "name": "quoteToken",
+                "value": "USDC",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get liquidity quote for a Uniswap V2 pool"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/uniswap/amm/execute-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/uniswap/amm/execute-swap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a swap on Uniswap V2 AMM using Router02"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/uniswap/amm/add-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/uniswap/amm/add-liquidity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add liquidity to a Uniswap V2 pool"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/uniswap/amm/remove-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/uniswap/amm/remove-liquidity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove liquidity from a Uniswap V2 pool"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/uniswap/clmm/pool-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/uniswap/clmm/pool-info",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "The EVM network to use"
+              },
+              {
+                "name": "poolAddress",
+                "value": "0xd0b53d9277642d899df5c87a3966a349a798f224",
+                "type": "query",
+                "description": "Uniswap V3 pool address"
+              }
+            ]
+          },
+          "docs": "Get CLMM pool information from Uniswap V3"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/uniswap/clmm/position-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/uniswap/clmm/position-info",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "positionAddress",
+                "value": "1234",
+                "type": "query",
+                "description": "Position NFT token ID"
+              }
+            ]
+          },
+          "docs": "Get position information for a Uniswap V3 position"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/uniswap/clmm/positions-owned",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/uniswap/clmm/positions-owned",
+            "params": [
+              {
+                "name": "network",
+                "value": "base",
+                "type": "query"
+              },
+              {
+                "name": "walletAddress",
+                "value": "0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get all Uniswap V3 positions owned by a wallet"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/uniswap/clmm/quote-position",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/uniswap/clmm/quote-position",
+            "params": [
+              {
+                "name": "network",
+                "value": "base",
+                "type": "query"
+              },
+              {
+                "name": "lowerPrice",
+                "value": "2000",
+                "type": "query"
+              },
+              {
+                "name": "upperPrice",
+                "value": "4000",
+                "type": "query"
+              },
+              {
+                "name": "poolAddress",
+                "value": "0xd0b53d9277642d899df5c87a3966a349a798f224",
+                "type": "query"
+              },
+              {
+                "name": "baseTokenAmount",
+                "value": "0.001",
+                "type": "query"
+              },
+              {
+                "name": "quoteTokenAmount",
+                "value": "3",
+                "type": "query"
+              },
+              {
+                "name": "slippagePct",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a quote for opening a position on Uniswap V3"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/uniswap/clmm/quote-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/uniswap/clmm/quote-swap",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "poolAddress",
+                "value": "",
+                "type": "query",
+                "description": "Pool address (optional - can be looked up from baseToken and quoteToken)"
+              },
+              {
+                "name": "baseToken",
+                "value": "WETH",
+                "type": "query"
+              },
+              {
+                "name": "quoteToken",
+                "value": "USDC",
+                "type": "query"
+              },
+              {
+                "name": "amount",
+                "value": "0.001",
+                "type": "query"
+              },
+              {
+                "name": "side",
+                "value": "SELL",
+                "type": "query"
+              },
+              {
+                "name": "slippagePct",
+                "value": "1",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get swap quote for Uniswap V3 CLMM"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/uniswap/clmm/execute-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/uniswap/clmm/execute-swap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a swap on Uniswap V3 CLMM using SwapRouter02"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/uniswap/clmm/open-position",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/uniswap/clmm/open-position",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Open a new liquidity position in a Uniswap V3 pool"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/uniswap/clmm/add-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/uniswap/clmm/add-liquidity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add liquidity to an existing Uniswap V3 position"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/uniswap/clmm/remove-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/uniswap/clmm/remove-liquidity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove liquidity from a Uniswap V3 position"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/uniswap/clmm/collect-fees",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/uniswap/clmm/collect-fees",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Collect fees from a Uniswap V3 position"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/uniswap/clmm/close-position",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/uniswap/clmm/close-position",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Close a Uniswap V3 position by removing all liquidity and collecting fees"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

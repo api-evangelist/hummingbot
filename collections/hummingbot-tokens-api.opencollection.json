@@ -1,0 +1,176 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /tokens API",
+    "version": "dev-2.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /tokens/{symbolOrAddress}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/tokens/:symbolOrAddress",
+            "params": [
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Blockchain network (e.g., ethereum, solana)"
+              },
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Network name (e.g., mainnet, mainnet-beta)"
+              },
+              {
+                "name": "symbolOrAddress",
+                "value": "",
+                "type": "path",
+                "description": "Token symbol or address"
+              }
+            ]
+          },
+          "docs": "Get a specific token by symbol or address"
+        },
+        {
+          "info": {
+            "name": "GET /tokens/find/{address}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/tokens/find/:address",
+            "params": [
+              {
+                "name": "chainNetwork",
+                "value": "",
+                "type": "query",
+                "description": "Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)"
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "Token contract address"
+              }
+            ]
+          },
+          "docs": "Get token information with market data from GeckoTerminal by address"
+        },
+        {
+          "info": {
+            "name": "GET /tokens/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/tokens/",
+            "params": [
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Blockchain network (e.g., ethereum, solana)"
+              },
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Network name (e.g., mainnet, mainnet-beta)"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search term for filtering tokens by symbol or name"
+              }
+            ]
+          },
+          "docs": "List tokens from token lists with optional filtering"
+        },
+        {
+          "info": {
+            "name": "POST /tokens/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/tokens/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new token to a token list"
+        },
+        {
+          "info": {
+            "name": "POST /tokens/save/{address}",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/tokens/save/:address",
+            "params": [
+              {
+                "name": "chainNetwork",
+                "value": "",
+                "type": "query",
+                "description": "Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)"
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "Token contract address"
+              }
+            ]
+          },
+          "docs": "Find token from GeckoTerminal and save it to the token list"
+        },
+        {
+          "info": {
+            "name": "DELETE /tokens/{address}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:15888/tokens/:address",
+            "params": [
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Blockchain network (e.g., ethereum, solana)"
+              },
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Network name (e.g., mainnet, mainnet-beta)"
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "Token address to remove"
+              }
+            ]
+          },
+          "docs": "Remove a token from a token list by address"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

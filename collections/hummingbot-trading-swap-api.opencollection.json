@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /trading/swap API",
+    "version": "dev-2.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/trading/swap",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /trading/swap/quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/trading/swap/quote",
+            "params": [
+              {
+                "name": "chainNetwork",
+                "value": "",
+                "type": "query",
+                "description": "Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet, ethereum-polygon)"
+              },
+              {
+                "name": "connector",
+                "value": "",
+                "type": "query",
+                "description": "Connector to use in format: connector/type (e.g., jupiter/router, raydium/amm, uniswap/clmm). If not provided, uses network's configured swapProvider"
+              },
+              {
+                "name": "baseToken",
+                "value": "",
+                "type": "query",
+                "description": "Symbol or address of the base token"
+              },
+              {
+                "name": "quoteToken",
+                "value": "",
+                "type": "query",
+                "description": "Symbol or address of the quote token"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "Amount to swap"
+              },
+              {
+                "name": "side",
+                "value": "",
+                "type": "query",
+                "description": "Side of the swap"
+              },
+              {
+                "name": "slippagePct",
+                "value": "",
+                "type": "query",
+                "description": "Slippage tolerance percentage (optional)"
+              }
+            ]
+          },
+          "docs": "Get a swap quote for any supported chain"
+        },
+        {
+          "info": {
+            "name": "POST /trading/swap/execute",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/trading/swap/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a swap on any supported chain"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

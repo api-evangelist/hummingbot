@@ -1,0 +1,1214 @@
+{
+  "item": [
+    {
+      "id": "cd6671a8-9961-4166-8e95-0c7897e9c71d",
+      "name": "/connector/pancakeswap-sol",
+      "description": {
+        "content": "PancakeSwap Solana connector endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "09521d0b-1c5c-4163-99c8-0545f30cf31f",
+          "name": "Get CLMM pool information from PancakeSwap Solana",
+          "request": {
+            "name": "Get CLMM pool information from PancakeSwap Solana",
+            "description": {
+              "content": "Get CLMM pool information from PancakeSwap Solana",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap-sol",
+                "clmm",
+                "pool-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) PancakeSwap CLMM pool address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "746b5793-ccea-461d-add3-9321b08004ad",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap-sol",
+                    "clmm",
+                    "pool-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "4QU2NpRaqmKMvPSwVKQDeW4V6JFEKJdkzbzdauumD9qN"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"feePct\": 4025.803065957496,\n  \"price\": 8336.078919939362,\n  \"baseTokenAmount\": 6282.646601087581,\n  \"quoteTokenAmount\": 8271.544921633707,\n  \"activeBinId\": 3510.211028400627,\n  \"binStep\": 3375.5446376526575\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f7b6d33-9070-4a46-a2e5-ff9b63b94081",
+          "name": "Get CLMM position information from PancakeSwap Solana",
+          "request": {
+            "name": "Get CLMM position information from PancakeSwap Solana",
+            "description": {
+              "content": "Get CLMM position information from PancakeSwap Solana",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap-sol",
+                "clmm",
+                "position-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "positionAddress",
+                  "value": "<string>",
+                  "description": "(Required) Position NFT address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "768e6833-a20b-41c6-84c6-2bb3a36ea6a0",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap-sol",
+                    "clmm",
+                    "position-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "positionAddress",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"poolAddress\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"baseTokenAmount\": 5006.060306677929,\n  \"quoteTokenAmount\": 2133.761127597762,\n  \"baseFeeAmount\": 6111.116926745681,\n  \"quoteFeeAmount\": 6439.676157000633,\n  \"lowerBinId\": 1101.9416164252705,\n  \"upperBinId\": 51.808354823233984,\n  \"lowerPrice\": 885.4317000269162,\n  \"upperPrice\": 6416.550411986685,\n  \"price\": 8751.985460961412,\n  \"rewardTokenAddress\": \"string\",\n  \"rewardAmount\": 4681.125684475709\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ebb30fa-148c-44a9-aede-5878e6d3ec37",
+          "name": "Retrieve all positions owned by a user's wallet across all PancakeSwap Solana CLMM pools",
+          "request": {
+            "name": "Retrieve all positions owned by a user's wallet across all PancakeSwap Solana CLMM pools",
+            "description": {
+              "content": "Retrieve all positions owned by a user's wallet across all PancakeSwap Solana CLMM pools",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap-sol",
+                "clmm",
+                "positions-owned"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "walletAddress",
+                  "value": "<string>",
+                  "description": "(Required) Solana wallet address to check for positions"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "Optional pool address to filter positions by specific pool"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a429f6f-dac6-46f3-b037-12ba0044b39e",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap-sol",
+                    "clmm",
+                    "positions-owned"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "walletAddress",
+                      "value": "Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "4QU2NpRaqmKMvPSwVKQDeW4V6JFEKJdkzbzdauumD9qN"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"address\": \"string\",\n    \"poolAddress\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"baseTokenAmount\": 8953.73994506975,\n    \"quoteTokenAmount\": 3511.7489924277047,\n    \"baseFeeAmount\": 5653.83210996913,\n    \"quoteFeeAmount\": 1955.4995451385225,\n    \"lowerBinId\": 8329.728186366052,\n    \"upperBinId\": 5736.77039331267,\n    \"lowerPrice\": 6854.663539962862,\n    \"upperPrice\": 5555.913455268694,\n    \"price\": 42.826501676416214,\n    \"rewardTokenAddress\": \"string\",\n    \"rewardAmount\": 9897.019241107762\n  },\n  {\n    \"address\": \"string\",\n    \"poolAddress\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"baseTokenAmount\": 8449.420034016624,\n    \"quoteTokenAmount\": 7315.17583134212,\n    \"baseFeeAmount\": 7913.5357989609965,\n    \"quoteFeeAmount\": 7275.225475594292,\n    \"lowerBinId\": 8876.964262941798,\n    \"upperBinId\": 4275.214350624775,\n    \"lowerPrice\": 6674.045481621064,\n    \"upperPrice\": 4631.097883040152,\n    \"price\": 6557.866425981653,\n    \"rewardTokenAddress\": \"string\",\n    \"rewardAmount\": 1325.2200025600348\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "674e299d-11d8-4af6-b9c5-02c29e8f4353",
+          "name": "Quote position amounts for PancakeSwap Solana CLMM (simplified)",
+          "request": {
+            "name": "Quote position amounts for PancakeSwap Solana CLMM (simplified)",
+            "description": {
+              "content": "Quote position amounts for PancakeSwap Solana CLMM (simplified)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap-sol",
+                "clmm",
+                "quote-position"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) PancakeSwap CLMM pool address"
+                },
+                {
+                  "disabled": false,
+                  "key": "lowerPrice",
+                  "value": "<number>",
+                  "description": "(Required) Lower price bound for the position"
+                },
+                {
+                  "disabled": false,
+                  "key": "upperPrice",
+                  "value": "<number>",
+                  "description": "(Required) Upper price bound for the position"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseTokenAmount",
+                  "value": "<number>",
+                  "description": "Amount of base token to deposit"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteTokenAmount",
+                  "value": "<number>",
+                  "description": "Amount of quote token to deposit"
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "2",
+                  "description": "Maximum acceptable slippage percentage"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "40615f9a-a7b8-4b83-9f37-d9ace026c467",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap-sol",
+                    "clmm",
+                    "quote-position"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "4QU2NpRaqmKMvPSwVKQDeW4V6JFEKJdkzbzdauumD9qN"
+                    },
+                    {
+                      "key": "lowerPrice",
+                      "value": "150"
+                    },
+                    {
+                      "key": "upperPrice",
+                      "value": "250"
+                    },
+                    {
+                      "key": "baseTokenAmount",
+                      "value": "0.01"
+                    },
+                    {
+                      "key": "quoteTokenAmount",
+                      "value": "2"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"baseLimited\": false,\n  \"baseTokenAmount\": 7104.340396717886,\n  \"quoteTokenAmount\": 2814.4507037097032,\n  \"baseTokenAmountMax\": 5122.748123298784,\n  \"quoteTokenAmountMax\": 2987.7392387346135,\n  \"liquidity\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "394be99d-5349-4b79-a6f7-1970be6648df",
+          "name": "Get swap quote for PancakeSwap Solana CLMM with fee and estimated price impact based on pool liquidity",
+          "request": {
+            "name": "Get swap quote for PancakeSwap Solana CLMM with fee and estimated price impact based on pool liquidity",
+            "description": {
+              "content": "Get swap quote for PancakeSwap Solana CLMM with fee and estimated price impact based on pool liquidity",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap-sol",
+                "clmm",
+                "quote-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "CLMM pool address (optional - can be looked up from tokens)"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseToken",
+                  "value": "<string>",
+                  "description": "(Required) Base token symbol or address"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteToken",
+                  "value": "<string>",
+                  "description": "(Required) Quote token symbol or address"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "(Required) Amount to swap"
+                },
+                {
+                  "disabled": false,
+                  "key": "side",
+                  "value": "SELL",
+                  "description": "(Required) Trade direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "2",
+                  "description": "Maximum acceptable slippage percentage"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b05b6631-6517-4055-abea-30ce7a39566e",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap-sol",
+                    "clmm",
+                    "quote-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "4QU2NpRaqmKMvPSwVKQDeW4V6JFEKJdkzbzdauumD9qN"
+                    },
+                    {
+                      "key": "baseToken",
+                      "value": "SOL"
+                    },
+                    {
+                      "key": "quoteToken",
+                      "value": "USDC"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "0.01"
+                    },
+                    {
+                      "key": "side",
+                      "value": "SELL"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"poolAddress\": \"string\",\n  \"tokenIn\": \"string\",\n  \"tokenOut\": \"string\",\n  \"amountIn\": 232.58171480995514,\n  \"amountOut\": 4783.19315808443,\n  \"price\": 7482.704214228687,\n  \"minAmountOut\": 1634.0457651122,\n  \"maxAmountIn\": 8137.323551009986,\n  \"priceImpactPct\": 2413.74073966139,\n  \"slippagePct\": 3486.5818571783557\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1fcac1b9-e986-4b0d-9757-030d7386dd20",
+          "name": "Execute a swap on PancakeSwap Solana CLMM",
+          "request": {
+            "name": "Execute a swap on PancakeSwap Solana CLMM",
+            "description": {
+              "content": "Execute a swap on PancakeSwap Solana CLMM",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap-sol",
+                "clmm",
+                "execute-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baseToken\": \"<string>\",\n  \"quoteToken\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"side\": \"SELL\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"poolAddress\": \"<string>\",\n  \"slippagePct\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c3417d7c-ef66-4b24-81a2-beacf5e31e19",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap-sol",
+                    "clmm",
+                    "execute-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baseToken\": \"SOL\",\n  \"quoteToken\": \"USDC\",\n  \"amount\": 0.01,\n  \"side\": \"SELL\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"poolAddress\": \"4QU2NpRaqmKMvPSwVKQDeW4V6JFEKJdkzbzdauumD9qN\",\n  \"slippagePct\": 2\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 8085.787524135152,\n  \"data\": {\n    \"tokenIn\": \"string\",\n    \"tokenOut\": \"string\",\n    \"amountIn\": 6905.765434437158,\n    \"amountOut\": 5850.423091282893,\n    \"fee\": 8601.152442416045,\n    \"baseTokenBalanceChange\": 6686.798469457412,\n    \"quoteTokenBalanceChange\": 4688.655718558605\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee3067c6-5dbe-4155-9dd8-67c7a5146167",
+          "name": "Open a new PancakeSwap Solana CLMM position with Token2022 NFT",
+          "request": {
+            "name": "Open a new PancakeSwap Solana CLMM position with Token2022 NFT",
+            "description": {
+              "content": "Open a new PancakeSwap Solana CLMM position with Token2022 NFT",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap-sol",
+                "clmm",
+                "open-position"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"poolAddress\": \"<string>\",\n  \"lowerPrice\": \"<number>\",\n  \"upperPrice\": \"<number>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"slippagePct\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c85f24f9-1ec3-49a0-b2d2-e84ef9fbe1d0",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap-sol",
+                    "clmm",
+                    "open-position"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"poolAddress\": \"4QU2NpRaqmKMvPSwVKQDeW4V6JFEKJdkzbzdauumD9qN\",\n  \"lowerPrice\": 150,\n  \"upperPrice\": 250,\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"baseTokenAmount\": 0.01,\n  \"quoteTokenAmount\": 2,\n  \"slippagePct\": 2\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 6106.069824385369,\n  \"data\": {\n    \"fee\": 5961.690521398878,\n    \"positionAddress\": \"string\",\n    \"positionRent\": 3421.5598967761507,\n    \"baseTokenAmountAdded\": 4534.907277899223,\n    \"quoteTokenAmountAdded\": 667.9757985301571\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b7fd4c4-cc45-4a0d-b5b0-893127faa6bc",
+          "name": "Add liquidity to an existing PancakeSwap Solana CLMM position",
+          "request": {
+            "name": "Add liquidity to an existing PancakeSwap Solana CLMM position",
+            "description": {
+              "content": "Add liquidity to an existing PancakeSwap Solana CLMM position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap-sol",
+                "clmm",
+                "add-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"slippagePct\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3e8614ee-92cb-4f61-8691-70089160bd5a",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap-sol",
+                    "clmm",
+                    "add-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"\",\n  \"baseTokenAmount\": 0.01,\n  \"quoteTokenAmount\": 2,\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"slippagePct\": 2\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 2944.9249918554333,\n  \"data\": {\n    \"fee\": 861.9016721648165,\n    \"baseTokenAmountAdded\": 7697.230007933437,\n    \"quoteTokenAmountAdded\": 2204.417010874515\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02129746-12f7-439b-a5d8-8bd03e2d09aa",
+          "name": "Remove liquidity from a PancakeSwap Solana CLMM position",
+          "request": {
+            "name": "Remove liquidity from a PancakeSwap Solana CLMM position",
+            "description": {
+              "content": "Remove liquidity from a PancakeSwap Solana CLMM position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap-sol",
+                "clmm",
+                "remove-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"percentageToRemove\": \"<number>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aaa45867-6e36-4b50-8a9d-bf82b47ae748",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap-sol",
+                    "clmm",
+                    "remove-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"\",\n  \"percentageToRemove\": 100,\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 496.05026417574584,\n  \"data\": {\n    \"fee\": 8442.53398429337,\n    \"baseTokenAmountRemoved\": 4370.868513607688,\n    \"quoteTokenAmountRemoved\": 9002.79743401997\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4df66049-d6ca-4530-8bf6-81ba1faa628f",
+          "name": "Collect accumulated fees from a PancakeSwap Solana CLMM position (removes 1% liquidity)",
+          "request": {
+            "name": "Collect accumulated fees from a PancakeSwap Solana CLMM position (removes 1% liquidity)",
+            "description": {
+              "content": "Collect accumulated fees from a PancakeSwap Solana CLMM position (removes 1% liquidity)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap-sol",
+                "clmm",
+                "collect-fees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bde84fae-815d-4c63-81ff-fc99cc653340",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap-sol",
+                    "clmm",
+                    "collect-fees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 7019.721827665741,\n  \"data\": {\n    \"fee\": 2338.826585444429,\n    \"baseFeeAmountCollected\": 2256.7346700415314,\n    \"quoteFeeAmountCollected\": 4506.643846494927\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2cc2963c-264a-42f3-b2a5-cccd29bd5e5c",
+          "name": "Close a PancakeSwap Solana CLMM position and remove all liquidity and fees if present",
+          "request": {
+            "name": "Close a PancakeSwap Solana CLMM position and remove all liquidity and fees if present",
+            "description": {
+              "content": "Close a PancakeSwap Solana CLMM position and remove all liquidity and fees if present",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap-sol",
+                "clmm",
+                "close-position"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1c9347cb-3e65-4356-953a-6b48d2af396a",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap-sol",
+                    "clmm",
+                    "close-position"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 1759.4256368392691,\n  \"data\": {\n    \"fee\": 988.7355317243051,\n    \"positionRentRefunded\": 3490.9605603241766,\n    \"baseTokenAmountRemoved\": 4542.079380775429,\n    \"quoteTokenAmountRemoved\": 9146.41067267421,\n    \"baseFeeAmountCollected\": 4343.228937576265,\n    \"quoteFeeAmountCollected\": 9231.582980934692\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:15888",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bae9373a-c423-4161-9900-749e830b08a7",
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/pancakeswap-sol API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API endpoints for interacting with DEXs and blockchains",
+      "type": "text/plain"
+    }
+  }
+}

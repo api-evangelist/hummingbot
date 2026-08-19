@@ -1,0 +1,566 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/pancakeswap API",
+    "version": "dev-2.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/connector/pancakeswap",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /connectors/pancakeswap/router/quote-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/pancakeswap/router/quote-swap",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "The EVM network to use"
+              },
+              {
+                "name": "baseToken",
+                "value": "USDT",
+                "type": "query",
+                "description": "First token in the trading pair"
+              },
+              {
+                "name": "quoteToken",
+                "value": "WBNB",
+                "type": "query",
+                "description": "Second token in the trading pair"
+              },
+              {
+                "name": "amount",
+                "value": "10",
+                "type": "query",
+                "description": "Amount of base token to trade"
+              },
+              {
+                "name": "side",
+                "value": "",
+                "type": "query",
+                "description": "Trade direction - BUY means buying base token with quote token, SELL means selling base token for quote token"
+              },
+              {
+                "name": "slippagePct",
+                "value": "",
+                "type": "query",
+                "description": "Maximum acceptable slippage percentage"
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "query",
+                "description": "Wallet address for more accurate quotes (optional)"
+              }
+            ]
+          },
+          "docs": "Get an executable swap quote from Pancakeswap Universal Router"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/pancakeswap/router/execute-quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/pancakeswap/router/execute-quote",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a previously fetched quote from Pancakeswap Universal Router"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/pancakeswap/router/execute-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/pancakeswap/router/execute-swap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Quote and execute a token swap on Pancakeswap Universal Router in one step"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/pancakeswap/amm/pool-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/pancakeswap/amm/pool-info",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "The EVM network to use"
+              },
+              {
+                "name": "poolAddress",
+                "value": "0x88A43bbDF9D098eEC7bCEda4e2494615dfD9bB9C",
+                "type": "query",
+                "description": "Pancakeswap V2 pool address"
+              }
+            ]
+          },
+          "docs": "Get AMM pool information from Pancakeswap V2"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/pancakeswap/amm/position-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/pancakeswap/amm/position-info",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "walletAddress",
+                "value": "0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50",
+                "type": "query"
+              },
+              {
+                "name": "poolAddress",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "baseToken",
+                "value": "WETH",
+                "type": "query"
+              },
+              {
+                "name": "quoteToken",
+                "value": "USDC",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get position information for a Pancakeswap V2 pool"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/pancakeswap/amm/quote-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/pancakeswap/amm/quote-swap",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "poolAddress",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "baseToken",
+                "value": "WETH",
+                "type": "query"
+              },
+              {
+                "name": "quoteToken",
+                "value": "USDC",
+                "type": "query"
+              },
+              {
+                "name": "amount",
+                "value": "0.001",
+                "type": "query"
+              },
+              {
+                "name": "side",
+                "value": "SELL",
+                "type": "query"
+              },
+              {
+                "name": "slippagePct",
+                "value": "1",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get swap quote for Pancakeswap V2 AMM"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/pancakeswap/amm/quote-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/pancakeswap/amm/quote-liquidity",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "poolAddress",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "baseTokenAmount",
+                "value": "0.001",
+                "type": "query"
+              },
+              {
+                "name": "quoteTokenAmount",
+                "value": "2.5",
+                "type": "query"
+              },
+              {
+                "name": "slippagePct",
+                "value": "1",
+                "type": "query"
+              },
+              {
+                "name": "baseToken",
+                "value": "WETH",
+                "type": "query"
+              },
+              {
+                "name": "quoteToken",
+                "value": "USDC",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get liquidity quote for a Pancakeswap V2 pool"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/pancakeswap/amm/execute-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/pancakeswap/amm/execute-swap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a swap on Pancakeswap V2 AMM using Router02"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/pancakeswap/amm/add-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/pancakeswap/amm/add-liquidity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add liquidity to a Pancakeswap V2 pool"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/pancakeswap/amm/remove-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/pancakeswap/amm/remove-liquidity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove liquidity from a Pancakeswap V2 pool"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/pancakeswap/clmm/pool-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/pancakeswap/clmm/pool-info",
+            "params": [
+              {
+                "name": "network",
+                "value": "bsc",
+                "type": "query",
+                "description": "The EVM network to use"
+              },
+              {
+                "name": "poolAddress",
+                "value": "0x172fcd41e0913e95784454622d1c3724f546f849",
+                "type": "query",
+                "description": "Pancakeswap V3 pool address"
+              }
+            ]
+          },
+          "docs": "Get CLMM pool information from Pancakeswap V3"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/pancakeswap/clmm/position-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/pancakeswap/clmm/position-info",
+            "params": [
+              {
+                "name": "network",
+                "value": "bsc",
+                "type": "query"
+              },
+              {
+                "name": "positionAddress",
+                "value": "1234",
+                "type": "query",
+                "description": "Position NFT token ID"
+              }
+            ]
+          },
+          "docs": "Get position information for a Pancakeswap V3 position"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/pancakeswap/clmm/positions-owned",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/pancakeswap/clmm/positions-owned",
+            "params": [
+              {
+                "name": "network",
+                "value": "bsc",
+                "type": "query"
+              },
+              {
+                "name": "walletAddress",
+                "value": "0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get all Pancakeswap V3 positions owned by a wallet"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/pancakeswap/clmm/quote-position",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/pancakeswap/clmm/quote-position",
+            "params": [
+              {
+                "name": "network",
+                "value": "bsc",
+                "type": "query"
+              },
+              {
+                "name": "lowerPrice",
+                "value": "0.0008",
+                "type": "query"
+              },
+              {
+                "name": "upperPrice",
+                "value": "0.001",
+                "type": "query"
+              },
+              {
+                "name": "poolAddress",
+                "value": "0x172fcd41e0913e95784454622d1c3724f546f849",
+                "type": "query"
+              },
+              {
+                "name": "baseTokenAmount",
+                "value": "10",
+                "type": "query"
+              },
+              {
+                "name": "quoteTokenAmount",
+                "value": "0.01",
+                "type": "query"
+              },
+              {
+                "name": "slippagePct",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a quote for opening a position on Pancakeswap V3"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/pancakeswap/clmm/quote-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/pancakeswap/clmm/quote-swap",
+            "params": [
+              {
+                "name": "network",
+                "value": "bsc",
+                "type": "query"
+              },
+              {
+                "name": "poolAddress",
+                "value": "",
+                "type": "query",
+                "description": "Pool address (optional - can be looked up from baseToken and quoteToken)"
+              },
+              {
+                "name": "baseToken",
+                "value": "USDT",
+                "type": "query"
+              },
+              {
+                "name": "quoteToken",
+                "value": "WBNB",
+                "type": "query"
+              },
+              {
+                "name": "amount",
+                "value": "10",
+                "type": "query"
+              },
+              {
+                "name": "side",
+                "value": "SELL",
+                "type": "query"
+              },
+              {
+                "name": "slippagePct",
+                "value": "1",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get swap quote for Pancakeswap V3 CLMM"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/pancakeswap/clmm/execute-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/pancakeswap/clmm/execute-swap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a swap on Pancakeswap V3 CLMM using SwapRouter02"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/pancakeswap/clmm/open-position",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/pancakeswap/clmm/open-position",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Open a new liquidity position in a Pancakeswap V3 pool"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/pancakeswap/clmm/add-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/pancakeswap/clmm/add-liquidity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add liquidity to an existing Pancakeswap V3 position"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/pancakeswap/clmm/remove-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/pancakeswap/clmm/remove-liquidity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove liquidity from a Pancakeswap V3 position"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/pancakeswap/clmm/collect-fees",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/pancakeswap/clmm/collect-fees",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Collect fees from a Pancakeswap V3 position"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/pancakeswap/clmm/close-position",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/pancakeswap/clmm/close-position",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Close a Pancakeswap V3 position by removing all liquidity and collecting fees"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

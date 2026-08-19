@@ -1,0 +1,981 @@
+{
+  "item": [
+    {
+      "id": "b8b0128e-2e03-4ead-b69c-23eaa50c45ea",
+      "name": "/trading/clmm",
+      "description": {
+        "content": "Unified cross-chain CLMM (Concentrated Liquidity) endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2f6de030-4832-4613-b7fc-5db00053daba",
+          "name": "Get CLMM pool information from any supported connector",
+          "request": {
+            "name": "Get CLMM pool information from any supported connector",
+            "description": {
+              "content": "Get CLMM pool information from any supported connector",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trading",
+                "clmm",
+                "pool-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "connector",
+                  "value": "meteora",
+                  "description": "(Required) CLMM connector (raydium, meteora, pancakeswap-sol, uniswap, pancakeswap, orca)"
+                },
+                {
+                  "disabled": false,
+                  "key": "chainNetwork",
+                  "value": "solana-mainnet-beta",
+                  "description": "(Required) Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) Pool contract address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a5af57fd-e2af-4b7a-a803-3bef4a81f1d8",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trading",
+                    "clmm",
+                    "pool-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "connector",
+                      "value": "meteora"
+                    },
+                    {
+                      "key": "chainNetwork",
+                      "value": "solana-mainnet-beta"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"feePct\": 7764.198868647333,\n  \"price\": 6990.0172147941175,\n  \"baseTokenAmount\": 2417.2672447881196,\n  \"quoteTokenAmount\": 7944.571941747964,\n  \"activeBinId\": 4471.923616933545,\n  \"binStep\": 1557.5322476191855\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4aba33f-d881-49fa-a1ee-fb31aa75e6dc",
+          "name": "Get CLMM position information from any supported connector",
+          "request": {
+            "name": "Get CLMM position information from any supported connector",
+            "description": {
+              "content": "Get CLMM position information from any supported connector",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trading",
+                "clmm",
+                "position-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "connector",
+                  "value": "meteora",
+                  "description": "(Required) CLMM connector (raydium, meteora, pancakeswap-sol, uniswap, pancakeswap, orca)"
+                },
+                {
+                  "disabled": false,
+                  "key": "chainNetwork",
+                  "value": "solana-mainnet-beta",
+                  "description": "(Required) Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)"
+                },
+                {
+                  "disabled": false,
+                  "key": "positionAddress",
+                  "value": "<string>",
+                  "description": "(Required) Position address or NFT token ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e813c14-3324-4927-a994-1ce9882dd755",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trading",
+                    "clmm",
+                    "position-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "connector",
+                      "value": "meteora"
+                    },
+                    {
+                      "key": "chainNetwork",
+                      "value": "solana-mainnet-beta"
+                    },
+                    {
+                      "key": "positionAddress",
+                      "value": "<sample-position-address>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"poolAddress\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"baseTokenAmount\": 1641.4610222486215,\n  \"quoteTokenAmount\": 5504.946455957034,\n  \"baseFeeAmount\": 7664.291021797209,\n  \"quoteFeeAmount\": 7922.396056379685,\n  \"lowerBinId\": 30.4736497265512,\n  \"upperBinId\": 8436.254945293242,\n  \"lowerPrice\": 7434.814258501179,\n  \"upperPrice\": 7826.482700669031,\n  \"price\": 6587.438471229195,\n  \"rewardTokenAddress\": \"string\",\n  \"rewardAmount\": 6069.059469832349\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2b4c1ec-8f9e-4f57-b6a5-73b373e411dd",
+          "name": "Get all CLMM positions owned by a wallet from any supported connector",
+          "request": {
+            "name": "Get all CLMM positions owned by a wallet from any supported connector",
+            "description": {
+              "content": "Get all CLMM positions owned by a wallet from any supported connector",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trading",
+                "clmm",
+                "positions-owned"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "connector",
+                  "value": "meteora",
+                  "description": "(Required) CLMM connector (raydium, meteora, pancakeswap-sol, uniswap, pancakeswap, orca)"
+                },
+                {
+                  "disabled": false,
+                  "key": "chainNetwork",
+                  "value": "solana-mainnet-beta",
+                  "description": "(Required) Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)"
+                },
+                {
+                  "disabled": false,
+                  "key": "walletAddress",
+                  "value": "Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn",
+                  "description": "Wallet address (optional, uses default wallet if not provided)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6dcbf714-ed65-4005-9c1c-6569d4f397c9",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trading",
+                    "clmm",
+                    "positions-owned"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "connector",
+                      "value": "meteora"
+                    },
+                    {
+                      "key": "chainNetwork",
+                      "value": "solana-mainnet-beta"
+                    },
+                    {
+                      "key": "walletAddress",
+                      "value": "Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"address\": \"string\",\n    \"poolAddress\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"baseTokenAmount\": 8259.049936694666,\n    \"quoteTokenAmount\": 3035.7257747109957,\n    \"baseFeeAmount\": 8546.272815495682,\n    \"quoteFeeAmount\": 9518.251594296302,\n    \"lowerBinId\": 9491.284657572898,\n    \"upperBinId\": 6457.722389415485,\n    \"lowerPrice\": 3510.977944485264,\n    \"upperPrice\": 7193.040708724505,\n    \"price\": 8163.220104425505,\n    \"rewardTokenAddress\": \"string\",\n    \"rewardAmount\": 6759.425125205574\n  },\n  {\n    \"address\": \"string\",\n    \"poolAddress\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"baseTokenAmount\": 1001.2544875943596,\n    \"quoteTokenAmount\": 1152.5512388435134,\n    \"baseFeeAmount\": 5296.406264910486,\n    \"quoteFeeAmount\": 1350.0355304709487,\n    \"lowerBinId\": 5928.061529596836,\n    \"upperBinId\": 5853.344882080303,\n    \"lowerPrice\": 3153.9834603729532,\n    \"upperPrice\": 52.36800337049097,\n    \"price\": 867.92440713923,\n    \"rewardTokenAddress\": \"string\",\n    \"rewardAmount\": 2170.2634408593003\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "abd95f6c-7521-47cc-968a-85ab29dffa48",
+          "name": "Quote amounts for a new CLMM position from any supported connector",
+          "request": {
+            "name": "Quote amounts for a new CLMM position from any supported connector",
+            "description": {
+              "content": "Quote amounts for a new CLMM position from any supported connector",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trading",
+                "clmm",
+                "quote-position"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "connector",
+                  "value": "meteora",
+                  "description": "(Required) CLMM connector (raydium, meteora, pancakeswap-sol, uniswap, pancakeswap, orca)"
+                },
+                {
+                  "disabled": false,
+                  "key": "chainNetwork",
+                  "value": "solana-mainnet-beta",
+                  "description": "(Required) Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)"
+                },
+                {
+                  "disabled": false,
+                  "key": "lowerPrice",
+                  "value": "<number>",
+                  "description": "(Required) Lower price bound for the position"
+                },
+                {
+                  "disabled": false,
+                  "key": "upperPrice",
+                  "value": "<number>",
+                  "description": "(Required) Upper price bound for the position"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) Pool contract address"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseTokenAmount",
+                  "value": "<number>",
+                  "description": "Amount of base token to deposit"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteTokenAmount",
+                  "value": "<number>",
+                  "description": "Amount of quote token to deposit"
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "1",
+                  "description": "Maximum acceptable slippage percentage"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "996a61bf-8cf2-4a51-827c-0046020e68a0",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trading",
+                    "clmm",
+                    "quote-position"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "connector",
+                      "value": "meteora"
+                    },
+                    {
+                      "key": "chainNetwork",
+                      "value": "solana-mainnet-beta"
+                    },
+                    {
+                      "key": "lowerPrice",
+                      "value": "150"
+                    },
+                    {
+                      "key": "upperPrice",
+                      "value": "250"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3"
+                    },
+                    {
+                      "key": "baseTokenAmount",
+                      "value": "0.01"
+                    },
+                    {
+                      "key": "quoteTokenAmount",
+                      "value": "2"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"baseLimited\": true,\n  \"baseTokenAmount\": 6490.465896315825,\n  \"quoteTokenAmount\": 9858.256125245407,\n  \"baseTokenAmountMax\": 2585.154682361358,\n  \"quoteTokenAmountMax\": 8800.427401997773,\n  \"liquidity\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d717789e-e5c2-4cd2-a3b9-b03ac192bc28",
+          "name": "Open a new CLMM position across supported connectors",
+          "request": {
+            "name": "Open a new CLMM position across supported connectors",
+            "description": {
+              "content": "Open a new CLMM position across supported connectors",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trading",
+                "clmm",
+                "open"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"connector\": \"meteora\",\n  \"chainNetwork\": \"solana-mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"lowerPrice\": \"<number>\",\n  \"upperPrice\": \"<number>\",\n  \"poolAddress\": \"<string>\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"slippagePct\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c056d2de-d094-4368-a799-58060d8f3ed1",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trading",
+                    "clmm",
+                    "open"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"connector\": \"meteora\",\n  \"chainNetwork\": \"solana-mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"lowerPrice\": 150,\n  \"upperPrice\": 250,\n  \"poolAddress\": \"2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3\",\n  \"baseTokenAmount\": 0.01,\n  \"quoteTokenAmount\": 2,\n  \"slippagePct\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 437.3915058030664,\n  \"data\": {\n    \"fee\": 3876.4619600434826,\n    \"positionAddress\": \"string\",\n    \"positionRent\": 112.84483410904377,\n    \"baseTokenAmountAdded\": 525.0791585842651,\n    \"quoteTokenAmountAdded\": 3228.156953734247\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "259dbb98-1de2-41da-ab39-86f5ee2976c5",
+          "name": "Add liquidity to an existing CLMM position across supported connectors",
+          "request": {
+            "name": "Add liquidity to an existing CLMM position across supported connectors",
+            "description": {
+              "content": "Add liquidity to an existing CLMM position across supported connectors",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trading",
+                "clmm",
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"connector\": \"meteora\",\n  \"chainNetwork\": \"solana-mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"positionAddress\": \"<string>\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"slippagePct\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe7da30e-02ed-42a7-859b-d9af18f25dfd",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trading",
+                    "clmm",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"connector\": \"meteora\",\n  \"chainNetwork\": \"solana-mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"positionAddress\": \"<sample-position-address>\",\n  \"baseTokenAmount\": 0.01,\n  \"quoteTokenAmount\": 2,\n  \"slippagePct\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 3918.4200386594935,\n  \"data\": {\n    \"fee\": 3997.851504513087,\n    \"baseTokenAmountAdded\": 9739.307791767083,\n    \"quoteTokenAmountAdded\": 8407.389256510285\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c45f9595-4156-44e9-96cb-120d3bb34bb1",
+          "name": "Remove liquidity from a CLMM position across supported connectors",
+          "request": {
+            "name": "Remove liquidity from a CLMM position across supported connectors",
+            "description": {
+              "content": "Remove liquidity from a CLMM position across supported connectors",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trading",
+                "clmm",
+                "remove"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"connector\": \"meteora\",\n  \"chainNetwork\": \"solana-mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"positionAddress\": \"<string>\",\n  \"percentageToRemove\": 100\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "88a1f226-e622-4b23-b19a-fdb028bcb761",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trading",
+                    "clmm",
+                    "remove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"connector\": \"meteora\",\n  \"chainNetwork\": \"solana-mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"positionAddress\": \"<sample-position-address>\",\n  \"percentageToRemove\": 100\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 3553.3174801469922,\n  \"data\": {\n    \"fee\": 6164.243556854417,\n    \"baseTokenAmountRemoved\": 5036.777030875359,\n    \"quoteTokenAmountRemoved\": 403.77256507128425\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2263d37-2f46-46de-b7b1-c0cddc7be005",
+          "name": "Collect fees from a CLMM position across supported connectors",
+          "request": {
+            "name": "Collect fees from a CLMM position across supported connectors",
+            "description": {
+              "content": "Collect fees from a CLMM position across supported connectors",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trading",
+                "clmm",
+                "collect-fees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"connector\": \"meteora\",\n  \"chainNetwork\": \"solana-mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"positionAddress\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b94b9c30-3422-44c2-aa5b-beaa9f67600c",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trading",
+                    "clmm",
+                    "collect-fees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"connector\": \"meteora\",\n  \"chainNetwork\": \"solana-mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"positionAddress\": \"<sample-position-address>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 7315.384670549939,\n  \"data\": {\n    \"fee\": 3763.3550926075054,\n    \"baseFeeAmountCollected\": 3659.421801524911,\n    \"quoteFeeAmountCollected\": 4967.722482148875\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8731d99d-9b57-477b-9132-9f81403da96a",
+          "name": "Close a CLMM position across supported connectors",
+          "request": {
+            "name": "Close a CLMM position across supported connectors",
+            "description": {
+              "content": "Close a CLMM position across supported connectors",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trading",
+                "clmm",
+                "close"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"connector\": \"meteora\",\n  \"chainNetwork\": \"solana-mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"positionAddress\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f67acb08-a4ac-4e36-ae92-0cc9d9f8d39e",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trading",
+                    "clmm",
+                    "close"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"connector\": \"meteora\",\n  \"chainNetwork\": \"solana-mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"positionAddress\": \"<sample-position-address>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 8689.20211495617,\n  \"data\": {\n    \"fee\": 6740.9030218609105,\n    \"positionRentRefunded\": 9479.247428205099,\n    \"baseTokenAmountRemoved\": 632.9783636296916,\n    \"quoteTokenAmountRemoved\": 7586.581470653026,\n    \"baseFeeAmountCollected\": 7118.595875160888,\n    \"quoteFeeAmountCollected\": 1833.0875422006377\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:15888",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cf28544d-30f4-4b73-b619-0614b76f20f0",
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /trading/clmm API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API endpoints for interacting with DEXs and blockchains",
+      "type": "text/plain"
+    }
+  }
+}

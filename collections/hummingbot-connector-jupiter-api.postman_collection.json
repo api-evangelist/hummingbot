@@ -1,0 +1,384 @@
+{
+  "item": [
+    {
+      "id": "352e4209-1425-44f8-9d59-78978c69624e",
+      "name": "/connector/jupiter",
+      "description": {
+        "content": "Jupiter connector endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5a3f6569-125e-43dd-a422-a7ffc72c3069",
+          "name": "Get an executable swap quote from Jupiter",
+          "request": {
+            "name": "Get an executable swap quote from Jupiter",
+            "description": {
+              "content": "Get an executable swap quote from Jupiter",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "jupiter",
+                "router",
+                "quote-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseToken",
+                  "value": "<string>",
+                  "description": "(Required) Solana token symbol or address to determine swap direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteToken",
+                  "value": "<string>",
+                  "description": "(Required) The other Solana token symbol or address in the pair"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "(Required) Amount of base token to trade"
+                },
+                {
+                  "disabled": false,
+                  "key": "side",
+                  "value": "SELL",
+                  "description": "(Required) Trade direction - BUY means buying base token with quote token, SELL means selling base token for quote token"
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "1",
+                  "description": "Maximum acceptable slippage percentage"
+                },
+                {
+                  "disabled": false,
+                  "key": "restrictIntermediateTokens",
+                  "value": "true",
+                  "description": "Restrict routing through highly liquid intermediate tokens only for better price and stability"
+                },
+                {
+                  "disabled": false,
+                  "key": "onlyDirectRoutes",
+                  "value": "false",
+                  "description": "Restrict routing to only go through 1 market"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "182171a2-c4dc-4280-bf84-4c52dd68e574",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "jupiter",
+                    "router",
+                    "quote-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "baseToken",
+                      "value": "SOL"
+                    },
+                    {
+                      "key": "quoteToken",
+                      "value": "USDC"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "0.1"
+                    },
+                    {
+                      "key": "side",
+                      "value": "SELL"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "1"
+                    },
+                    {
+                      "key": "restrictIntermediateTokens",
+                      "value": "true"
+                    },
+                    {
+                      "key": "onlyDirectRoutes",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"quoteId\": \"string\",\n  \"tokenIn\": \"string\",\n  \"tokenOut\": \"string\",\n  \"amountIn\": 9694.727768288625,\n  \"amountOut\": 8017.485918286525,\n  \"price\": 2922.19125763982,\n  \"priceImpactPct\": 4163.220526522521,\n  \"minAmountOut\": 5962.018375357852,\n  \"maxAmountIn\": 1720.3451429437223,\n  \"quoteResponse\": {\n    \"inputMint\": \"string\",\n    \"inAmount\": \"string\",\n    \"outputMint\": \"string\",\n    \"outAmount\": \"string\",\n    \"otherAmountThreshold\": \"string\",\n    \"swapMode\": \"string\",\n    \"slippageBps\": 8749.635781591465,\n    \"priceImpactPct\": \"string\",\n    \"platformFee\": {},\n    \"contextSlot\": 3306.4917846369467,\n    \"timeTaken\": 4956.603319012362\n  },\n  \"approximation\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf223a49-bcc1-41f0-af5a-e93c48b55bf3",
+          "name": "Execute a previously fetched quote from Jupiter",
+          "request": {
+            "name": "Execute a previously fetched quote from Jupiter",
+            "description": {
+              "content": "Execute a previously fetched quote from Jupiter",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "jupiter",
+                "router",
+                "execute-quote"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quoteId\": \"<string>\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"network\": \"mainnet-beta\",\n  \"priorityLevel\": \"veryHigh\",\n  \"maxLamports\": [\n    1000000\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7b2029b9-eb12-4503-9fe4-ad1966fc2a69",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "jupiter",
+                    "router",
+                    "execute-quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quoteId\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"network\": \"mainnet-beta\",\n  \"priorityLevel\": \"veryHigh\",\n  \"maxLamports\": [\n    1000000\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 4916.950492548547,\n  \"data\": {\n    \"tokenIn\": \"string\",\n    \"tokenOut\": \"string\",\n    \"amountIn\": 1698.9967287291408,\n    \"amountOut\": 756.9147657955566,\n    \"fee\": 3467.9422422863395,\n    \"baseTokenBalanceChange\": 8674.064037062411,\n    \"quoteTokenBalanceChange\": 340.3297273201622\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d59df639-d12e-481a-aea0-4989c4c6a33a",
+          "name": "Quote and execute a token swap on Jupiter in one step",
+          "request": {
+            "name": "Quote and execute a token swap on Jupiter in one step",
+            "description": {
+              "content": "Quote and execute a token swap on Jupiter in one step",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "jupiter",
+                "router",
+                "execute-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baseToken\": \"<string>\",\n  \"quoteToken\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"side\": \"SELL\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"network\": \"mainnet-beta\",\n  \"slippagePct\": 1,\n  \"restrictIntermediateTokens\": true,\n  \"onlyDirectRoutes\": false,\n  \"priorityLevel\": \"veryHigh\",\n  \"maxLamports\": 1000000\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "89b326b8-fe4d-475e-9ff6-ea21535f043a",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "jupiter",
+                    "router",
+                    "execute-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baseToken\": \"SOL\",\n  \"quoteToken\": \"USDC\",\n  \"amount\": 0.1,\n  \"side\": \"SELL\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"network\": \"mainnet-beta\",\n  \"slippagePct\": 1,\n  \"restrictIntermediateTokens\": true,\n  \"onlyDirectRoutes\": false,\n  \"priorityLevel\": \"veryHigh\",\n  \"maxLamports\": 1000000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 4916.950492548547,\n  \"data\": {\n    \"tokenIn\": \"string\",\n    \"tokenOut\": \"string\",\n    \"amountIn\": 1698.9967287291408,\n    \"amountOut\": 756.9147657955566,\n    \"fee\": 3467.9422422863395,\n    \"baseTokenBalanceChange\": 8674.064037062411,\n    \"quoteTokenBalanceChange\": 340.3297273201622\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:15888",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2a18059e-927e-4f3a-82b8-c3df901efea4",
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/jupiter API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API endpoints for interacting with DEXs and blockchains",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/jupiter API",
+    "version": "dev-2.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/connector/jupiter",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /connectors/jupiter/router/quote-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/jupiter/router/quote-swap",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "baseToken",
+                "value": "SOL",
+                "type": "query",
+                "description": "Solana token symbol or address to determine swap direction"
+              },
+              {
+                "name": "quoteToken",
+                "value": "USDC",
+                "type": "query",
+                "description": "The other Solana token symbol or address in the pair"
+              },
+              {
+                "name": "amount",
+                "value": "0.1",
+                "type": "query",
+                "description": "Amount of base token to trade"
+              },
+              {
+                "name": "side",
+                "value": "",
+                "type": "query",
+                "description": "Trade direction - BUY means buying base token with quote token, SELL means selling base token for quote token"
+              },
+              {
+                "name": "slippagePct",
+                "value": "",
+                "type": "query",
+                "description": "Maximum acceptable slippage percentage"
+              },
+              {
+                "name": "restrictIntermediateTokens",
+                "value": "",
+                "type": "query",
+                "description": "Restrict routing through highly liquid intermediate tokens only for better price and stability"
+              },
+              {
+                "name": "onlyDirectRoutes",
+                "value": "",
+                "type": "query",
+                "description": "Restrict routing to only go through 1 market"
+              }
+            ]
+          },
+          "docs": "Get an executable swap quote from Jupiter"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/jupiter/router/execute-quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/jupiter/router/execute-quote",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a previously fetched quote from Jupiter"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/jupiter/router/execute-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/jupiter/router/execute-swap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Quote and execute a token swap on Jupiter in one step"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

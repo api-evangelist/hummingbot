@@ -1,0 +1,342 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/orca API",
+    "version": "dev-2.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/connector/orca",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /connectors/orca/clmm/fetch-pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/orca/clmm/fetch-pools",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Maximum number of pools to return"
+              },
+              {
+                "name": "tokenA",
+                "value": "SOL",
+                "type": "query",
+                "description": "First token symbol or address"
+              },
+              {
+                "name": "tokenB",
+                "value": "USDC",
+                "type": "query",
+                "description": "Second token symbol or address"
+              }
+            ]
+          },
+          "docs": "Fetch info about Orca pools"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/orca/clmm/pool-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/orca/clmm/pool-info",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "poolAddress",
+                "value": "Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE",
+                "type": "query",
+                "description": "Orca CLMM pool address"
+              }
+            ]
+          },
+          "docs": "Get pool information for a Orca pool"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/orca/clmm/positions-owned",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/orca/clmm/positions-owned",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "walletAddress",
+                "value": "Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn",
+                "type": "query",
+                "description": "Solana wallet address to check for positions"
+              },
+              {
+                "name": "poolAddress",
+                "value": "Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE",
+                "type": "query",
+                "description": "Orca CLMM pool address"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of positions owned by a user's wallet in a specific Orca pool"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/orca/clmm/position-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/orca/clmm/position-info",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "positionAddress",
+                "value": "<sample-position-address>",
+                "type": "query",
+                "description": "Position address"
+              },
+              {
+                "name": "walletAddress",
+                "value": "Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn",
+                "type": "query",
+                "description": "Solana wallet address"
+              }
+            ]
+          },
+          "docs": "Get details for a specific Orca position"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/orca/clmm/quote-position",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/orca/clmm/quote-position",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "lowerPrice",
+                "value": "200",
+                "type": "query",
+                "description": "Lower price bound for the position"
+              },
+              {
+                "name": "upperPrice",
+                "value": "300",
+                "type": "query",
+                "description": "Upper price bound for the position"
+              },
+              {
+                "name": "poolAddress",
+                "value": "Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE",
+                "type": "query",
+                "description": "Orca CLMM pool address"
+              },
+              {
+                "name": "baseTokenAmount",
+                "value": "0.01",
+                "type": "query",
+                "description": "Amount of base token to deposit"
+              },
+              {
+                "name": "quoteTokenAmount",
+                "value": "2",
+                "type": "query",
+                "description": "Amount of quote token to deposit"
+              },
+              {
+                "name": "slippagePct",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum acceptable slippage percentage"
+              }
+            ]
+          },
+          "docs": "Quote amounts for a new Orca CLMM position"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/orca/clmm/quote-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/orca/clmm/quote-swap",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "poolAddress",
+                "value": "Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE",
+                "type": "query",
+                "description": "Orca CLMM pool address (optional - can be looked up from baseToken and quoteToken)"
+              },
+              {
+                "name": "baseToken",
+                "value": "SOL",
+                "type": "query",
+                "description": "Token to determine swap direction"
+              },
+              {
+                "name": "quoteToken",
+                "value": "USDC",
+                "type": "query",
+                "description": "The other token in the pair (optional - required if poolAddress not provided)"
+              },
+              {
+                "name": "amount",
+                "value": "0.01",
+                "type": "query",
+                "description": "Amount to swap"
+              },
+              {
+                "name": "side",
+                "value": "SELL",
+                "type": "query",
+                "description": "Trade direction"
+              },
+              {
+                "name": "slippagePct",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum acceptable slippage percentage"
+              }
+            ]
+          },
+          "docs": "Get swap quote for Orca CLMM"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/orca/clmm/execute-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/orca/clmm/execute-swap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a token swap on Orca CLMM"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/orca/clmm/open-position",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/orca/clmm/open-position",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Open a new Orca position"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/orca/clmm/add-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/orca/clmm/add-liquidity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add liquidity to an Orca position"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/orca/clmm/remove-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/orca/clmm/remove-liquidity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove liquidity from an Orca position"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/orca/clmm/collect-fees",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/orca/clmm/collect-fees",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Collect fees from an Orca position"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/orca/clmm/close-position",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/orca/clmm/close-position",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Close an Orca position"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

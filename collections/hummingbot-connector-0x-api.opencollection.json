@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/0x API",
+    "version": "dev-2.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/connector/0x",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /connectors/0x/router/quote-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/0x/router/quote-swap",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "The EVM network to use"
+              },
+              {
+                "name": "baseToken",
+                "value": "WETH",
+                "type": "query",
+                "description": "First token in the trading pair"
+              },
+              {
+                "name": "quoteToken",
+                "value": "USDC",
+                "type": "query",
+                "description": "Second token in the trading pair"
+              },
+              {
+                "name": "amount",
+                "value": "1",
+                "type": "query",
+                "description": "Amount of base token to trade"
+              },
+              {
+                "name": "side",
+                "value": "",
+                "type": "query",
+                "description": "Trade direction - BUY means buying base token with quote token, SELL means selling base token for quote token"
+              },
+              {
+                "name": "slippagePct",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum acceptable slippage percentage"
+              },
+              {
+                "name": "indicativePrice",
+                "value": "",
+                "type": "query",
+                "description": "If true, returns indicative pricing only (no commitment). If false, returns firm quote ready for execution"
+              },
+              {
+                "name": "takerAddress",
+                "value": "",
+                "type": "query",
+                "description": "Ethereum wallet address that will execute the swap (optional for quotes)"
+              }
+            ]
+          },
+          "docs": "Get a swap quote from 0x. Use indicativePrice=true for price discovery only, or false/undefined for executable quotes"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/0x/router/execute-quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/0x/router/execute-quote",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a previously fetched quote from 0x"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/0x/router/execute-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/0x/router/execute-swap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Quote and execute a token swap on 0x in one step"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

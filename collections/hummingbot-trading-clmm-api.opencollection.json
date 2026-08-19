@@ -1,0 +1,247 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /trading/clmm API",
+    "version": "dev-2.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/trading/clmm",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /trading/clmm/pool-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/trading/clmm/pool-info",
+            "params": [
+              {
+                "name": "connector",
+                "value": "meteora",
+                "type": "query",
+                "description": "CLMM connector (raydium, meteora, pancakeswap-sol, uniswap, pancakeswap, orca)"
+              },
+              {
+                "name": "chainNetwork",
+                "value": "solana-mainnet-beta",
+                "type": "query",
+                "description": "Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)"
+              },
+              {
+                "name": "poolAddress",
+                "value": "2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3",
+                "type": "query",
+                "description": "Pool contract address"
+              }
+            ]
+          },
+          "docs": "Get CLMM pool information from any supported connector"
+        },
+        {
+          "info": {
+            "name": "GET /trading/clmm/position-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/trading/clmm/position-info",
+            "params": [
+              {
+                "name": "connector",
+                "value": "meteora",
+                "type": "query",
+                "description": "CLMM connector (raydium, meteora, pancakeswap-sol, uniswap, pancakeswap, orca)"
+              },
+              {
+                "name": "chainNetwork",
+                "value": "solana-mainnet-beta",
+                "type": "query",
+                "description": "Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)"
+              },
+              {
+                "name": "positionAddress",
+                "value": "<sample-position-address>",
+                "type": "query",
+                "description": "Position address or NFT token ID"
+              }
+            ]
+          },
+          "docs": "Get CLMM position information from any supported connector"
+        },
+        {
+          "info": {
+            "name": "GET /trading/clmm/positions-owned",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/trading/clmm/positions-owned",
+            "params": [
+              {
+                "name": "connector",
+                "value": "meteora",
+                "type": "query",
+                "description": "CLMM connector (raydium, meteora, pancakeswap-sol, uniswap, pancakeswap, orca)"
+              },
+              {
+                "name": "chainNetwork",
+                "value": "solana-mainnet-beta",
+                "type": "query",
+                "description": "Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)"
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "query",
+                "description": "Wallet address (optional, uses default wallet if not provided)"
+              }
+            ]
+          },
+          "docs": "Get all CLMM positions owned by a wallet from any supported connector"
+        },
+        {
+          "info": {
+            "name": "GET /trading/clmm/quote-position",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/trading/clmm/quote-position",
+            "params": [
+              {
+                "name": "connector",
+                "value": "meteora",
+                "type": "query",
+                "description": "CLMM connector (raydium, meteora, pancakeswap-sol, uniswap, pancakeswap, orca)"
+              },
+              {
+                "name": "chainNetwork",
+                "value": "solana-mainnet-beta",
+                "type": "query",
+                "description": "Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)"
+              },
+              {
+                "name": "lowerPrice",
+                "value": "150",
+                "type": "query",
+                "description": "Lower price bound for the position"
+              },
+              {
+                "name": "upperPrice",
+                "value": "250",
+                "type": "query",
+                "description": "Upper price bound for the position"
+              },
+              {
+                "name": "poolAddress",
+                "value": "2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3",
+                "type": "query",
+                "description": "Pool contract address"
+              },
+              {
+                "name": "baseTokenAmount",
+                "value": "0.01",
+                "type": "query",
+                "description": "Amount of base token to deposit"
+              },
+              {
+                "name": "quoteTokenAmount",
+                "value": "2",
+                "type": "query",
+                "description": "Amount of quote token to deposit"
+              },
+              {
+                "name": "slippagePct",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum acceptable slippage percentage"
+              }
+            ]
+          },
+          "docs": "Quote amounts for a new CLMM position from any supported connector"
+        },
+        {
+          "info": {
+            "name": "POST /trading/clmm/open",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/trading/clmm/open",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Open a new CLMM position across supported connectors"
+        },
+        {
+          "info": {
+            "name": "POST /trading/clmm/add",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/trading/clmm/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add liquidity to an existing CLMM position across supported connectors"
+        },
+        {
+          "info": {
+            "name": "POST /trading/clmm/remove",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/trading/clmm/remove",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove liquidity from a CLMM position across supported connectors"
+        },
+        {
+          "info": {
+            "name": "POST /trading/clmm/collect-fees",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/trading/clmm/collect-fees",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Collect fees from a CLMM position across supported connectors"
+        },
+        {
+          "info": {
+            "name": "POST /trading/clmm/close",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/trading/clmm/close",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Close a CLMM position across supported connectors"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

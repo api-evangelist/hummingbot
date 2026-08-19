@@ -1,0 +1,2338 @@
+{
+  "item": [
+    {
+      "id": "50104a77-1b3b-4321-89db-82f26448071b",
+      "name": "/connector/pancakeswap",
+      "description": {
+        "content": "PancakeSwap EVM connector endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3404c324-7c34-4205-b71a-cb8e31564b11",
+          "name": "Get an executable swap quote from Pancakeswap Universal Router",
+          "request": {
+            "name": "Get an executable swap quote from Pancakeswap Universal Router",
+            "description": {
+              "content": "Get an executable swap quote from Pancakeswap Universal Router",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "router",
+                "quote-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet",
+                  "description": "The EVM network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseToken",
+                  "value": "<string>",
+                  "description": "(Required) First token in the trading pair"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteToken",
+                  "value": "<string>",
+                  "description": "(Required) Second token in the trading pair"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "(Required) Amount of base token to trade"
+                },
+                {
+                  "disabled": false,
+                  "key": "side",
+                  "value": "<string>",
+                  "description": "(Required) Trade direction - BUY means buying base token with quote token, SELL means selling base token for quote token"
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "2",
+                  "description": "Maximum acceptable slippage percentage"
+                },
+                {
+                  "disabled": false,
+                  "key": "walletAddress",
+                  "value": "0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50",
+                  "description": "Wallet address for more accurate quotes (optional)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d0ed8e4-1485-4fdd-b0ef-87502b802285",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "router",
+                    "quote-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet"
+                    },
+                    {
+                      "key": "baseToken",
+                      "value": "USDT"
+                    },
+                    {
+                      "key": "quoteToken",
+                      "value": "WBNB"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "10"
+                    },
+                    {
+                      "key": "side",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "2"
+                    },
+                    {
+                      "key": "walletAddress",
+                      "value": "0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"quoteId\": \"string\",\n  \"tokenIn\": \"string\",\n  \"tokenOut\": \"string\",\n  \"amountIn\": 4695.696202875266,\n  \"amountOut\": 4962.711525280276,\n  \"price\": 6420.328149843376,\n  \"priceImpactPct\": 6509.1289987779355,\n  \"minAmountOut\": 5617.364662349555,\n  \"maxAmountIn\": 9132.120675862037,\n  \"routePath\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3971baef-cc6a-42ed-a25c-c8fcc6e64fea",
+          "name": "Execute a previously fetched quote from Pancakeswap Universal Router",
+          "request": {
+            "name": "Execute a previously fetched quote from Pancakeswap Universal Router",
+            "description": {
+              "content": "Execute a previously fetched quote from Pancakeswap Universal Router",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "router",
+                "execute-quote"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quoteId\": \"<string>\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"network\": \"mainnet\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1c5f3048-96eb-4f8f-85e9-3d1bb13b57a0",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "router",
+                    "execute-quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quoteId\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"network\": \"mainnet\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 2830.636282934831,\n  \"data\": {\n    \"tokenIn\": \"string\",\n    \"tokenOut\": \"string\",\n    \"amountIn\": 943.7046907994085,\n    \"amountOut\": 7993.161473966304,\n    \"fee\": 350.1084341036975,\n    \"baseTokenBalanceChange\": 2489.383283960004,\n    \"quoteTokenBalanceChange\": 5302.2437391221065\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a45963a2-50d2-4e3a-a27c-68e6a680208f",
+          "name": "Quote and execute a token swap on Pancakeswap Universal Router in one step",
+          "request": {
+            "name": "Quote and execute a token swap on Pancakeswap Universal Router in one step",
+            "description": {
+              "content": "Quote and execute a token swap on Pancakeswap Universal Router in one step",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "router",
+                "execute-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baseToken\": \"<string>\",\n  \"quoteToken\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"side\": \"<string>\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"network\": \"mainnet\",\n  \"slippagePct\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c4742cef-7711-4e9f-9ad0-cc8c6c45d11f",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "router",
+                    "execute-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baseToken\": \"USDT\",\n  \"quoteToken\": \"WBNB\",\n  \"amount\": 10,\n  \"side\": \"<string>\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"network\": \"mainnet\",\n  \"slippagePct\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 2830.636282934831,\n  \"data\": {\n    \"tokenIn\": \"string\",\n    \"tokenOut\": \"string\",\n    \"amountIn\": 943.7046907994085,\n    \"amountOut\": 7993.161473966304,\n    \"fee\": 350.1084341036975,\n    \"baseTokenBalanceChange\": 2489.383283960004,\n    \"quoteTokenBalanceChange\": 5302.2437391221065\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "759b7a0e-167d-45aa-8474-e93dfb1f69ab",
+          "name": "Get AMM pool information from Pancakeswap V2",
+          "request": {
+            "name": "Get AMM pool information from Pancakeswap V2",
+            "description": {
+              "content": "Get AMM pool information from Pancakeswap V2",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "amm",
+                "pool-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet",
+                  "description": "The EVM network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) Pancakeswap V2 pool address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3311d94c-dd07-47a3-955f-9c4f1ba6e50f",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "amm",
+                    "pool-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "0x88A43bbDF9D098eEC7bCEda4e2494615dfD9bB9C"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"feePct\": 489.8585748768025,\n  \"price\": 350.5618820657308,\n  \"baseTokenAmount\": 578.9815997643643,\n  \"quoteTokenAmount\": 4596.111832375135\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8252283f-92cf-47ec-9379-8099e107c5fb",
+          "name": "Get position information for a Pancakeswap V2 pool",
+          "request": {
+            "name": "Get position information for a Pancakeswap V2 pool",
+            "description": {
+              "content": "Get position information for a Pancakeswap V2 pool",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "amm",
+                "position-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "base"
+                },
+                {
+                  "disabled": false,
+                  "key": "walletAddress",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "baseToken",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteToken",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5b134a2f-79df-4b15-9ee3-c756d3157d36",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "amm",
+                    "position-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "base"
+                    },
+                    {
+                      "key": "walletAddress",
+                      "value": "0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": ""
+                    },
+                    {
+                      "key": "baseToken",
+                      "value": "WETH"
+                    },
+                    {
+                      "key": "quoteToken",
+                      "value": "USDC"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"poolAddress\": \"string\",\n  \"walletAddress\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"lpTokenAmount\": 4231.29075301,\n  \"baseTokenAmount\": 8596.617537265203,\n  \"quoteTokenAmount\": 6415.901398522489,\n  \"price\": 3296.216926619725\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58a49fc0-3296-42d6-aa40-d7d3944886a6",
+          "name": "Get swap quote for Pancakeswap V2 AMM",
+          "request": {
+            "name": "Get swap quote for Pancakeswap V2 AMM",
+            "description": {
+              "content": "Get swap quote for Pancakeswap V2 AMM",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "amm",
+                "quote-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "base"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseToken",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteToken",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "side",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "<number>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "44712404-99e5-496f-8a28-78c7cd9a464c",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "amm",
+                    "quote-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "base"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": ""
+                    },
+                    {
+                      "key": "baseToken",
+                      "value": "WETH"
+                    },
+                    {
+                      "key": "quoteToken",
+                      "value": "USDC"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "0.001"
+                    },
+                    {
+                      "key": "side",
+                      "value": "SELL"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"poolAddress\": \"string\",\n  \"tokenIn\": \"string\",\n  \"tokenOut\": \"string\",\n  \"amountIn\": 3020.5113373031277,\n  \"amountOut\": 514.6599862043755,\n  \"price\": 1191.6063935700195,\n  \"minAmountOut\": 5850.860872951345,\n  \"maxAmountIn\": 9733.879667494459,\n  \"priceImpactPct\": 8915.47979498658,\n  \"slippagePct\": 5298.051520411526\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60726dd3-f214-458a-8c33-b37f11075406",
+          "name": "Get liquidity quote for a Pancakeswap V2 pool",
+          "request": {
+            "name": "Get liquidity quote for a Pancakeswap V2 pool",
+            "description": {
+              "content": "Get liquidity quote for a Pancakeswap V2 pool",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "amm",
+                "quote-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "base"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "baseTokenAmount",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteTokenAmount",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseToken",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteToken",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a40d6024-6ec6-4bd0-a829-2b8219fa0510",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "amm",
+                    "quote-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "base"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": ""
+                    },
+                    {
+                      "key": "baseTokenAmount",
+                      "value": "0.001"
+                    },
+                    {
+                      "key": "quoteTokenAmount",
+                      "value": "2.5"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "1"
+                    },
+                    {
+                      "key": "baseToken",
+                      "value": "WETH"
+                    },
+                    {
+                      "key": "quoteToken",
+                      "value": "USDC"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"baseLimited\": false,\n  \"baseTokenAmount\": 5561.122579930642,\n  \"quoteTokenAmount\": 6177.909059034406,\n  \"baseTokenAmountMax\": 7138.248966514921,\n  \"quoteTokenAmountMax\": 5265.360276295935\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cba1fa31-ae85-4620-bbae-8771353b8e32",
+          "name": "Execute a swap on Pancakeswap V2 AMM using Router02",
+          "request": {
+            "name": "Execute a swap on Pancakeswap V2 AMM using Router02",
+            "description": {
+              "content": "Execute a swap on Pancakeswap V2 AMM using Router02",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "amm",
+                "execute-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baseToken\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"side\": \"SELL\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"network\": \"mainnet\",\n  \"poolAddress\": \"\",\n  \"quoteToken\": \"<string>\",\n  \"slippagePct\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7f0f62be-2cf4-4cef-8cf9-6796c2e4942c",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "amm",
+                    "execute-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baseToken\": \"USDT\",\n  \"amount\": 10,\n  \"side\": \"SELL\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"network\": \"mainnet\",\n  \"poolAddress\": \"\",\n  \"quoteToken\": \"WBNB\",\n  \"slippagePct\": 2\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 2830.636282934831,\n  \"data\": {\n    \"tokenIn\": \"string\",\n    \"tokenOut\": \"string\",\n    \"amountIn\": 943.7046907994085,\n    \"amountOut\": 7993.161473966304,\n    \"fee\": 350.1084341036975,\n    \"baseTokenBalanceChange\": 2489.383283960004,\n    \"quoteTokenBalanceChange\": 5302.2437391221065\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "595f53c0-f4e9-45cd-8cfd-83b622f08b0e",
+          "name": "Add liquidity to a Pancakeswap V2 pool",
+          "request": {
+            "name": "Add liquidity to a Pancakeswap V2 pool",
+            "description": {
+              "content": "Add liquidity to a Pancakeswap V2 pool",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "amm",
+                "add-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"poolAddress\": \"<string>\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"network\": \"mainnet\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"slippagePct\": 2,\n  \"gasPrice\": \"<string>\",\n  \"maxGas\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eb4d4251-4097-40ce-9550-4eb0f838ac8e",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "amm",
+                    "add-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"poolAddress\": \"<string>\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"network\": \"mainnet\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"slippagePct\": 2,\n  \"gasPrice\": \"<string>\",\n  \"maxGas\": 300000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 6504.73094446962,\n  \"data\": {\n    \"fee\": 4168.113022010605,\n    \"baseTokenAmountAdded\": 5133.076173028538,\n    \"quoteTokenAmountAdded\": 9353.041006902218\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ecc71d0-c62d-454d-b864-ff24a7669534",
+          "name": "Remove liquidity from a Pancakeswap V2 pool",
+          "request": {
+            "name": "Remove liquidity from a Pancakeswap V2 pool",
+            "description": {
+              "content": "Remove liquidity from a Pancakeswap V2 pool",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "amm",
+                "remove-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"poolAddress\": \"<string>\",\n  \"percentageToRemove\": \"<number>\",\n  \"network\": \"mainnet\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"gasPrice\": \"<string>\",\n  \"maxGas\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0692caae-2189-4ed4-9b94-3b4c3450fc85",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "amm",
+                    "remove-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"poolAddress\": \"<string>\",\n  \"percentageToRemove\": \"<number>\",\n  \"network\": \"mainnet\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"gasPrice\": \"<string>\",\n  \"maxGas\": 300000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 5744.68151034769,\n  \"data\": {\n    \"fee\": 277.81939094774,\n    \"baseTokenAmountRemoved\": 5135.430987229125,\n    \"quoteTokenAmountRemoved\": 6541.820478565976\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13f82ad1-d5a9-4bb1-a4bf-1eb145cc630d",
+          "name": "Get CLMM pool information from Pancakeswap V3",
+          "request": {
+            "name": "Get CLMM pool information from Pancakeswap V3",
+            "description": {
+              "content": "Get CLMM pool information from Pancakeswap V3",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "clmm",
+                "pool-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "bsc",
+                  "description": "The EVM network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) Pancakeswap V3 pool address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba199552-7ac4-4997-906c-73e07bc0cb3d",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "clmm",
+                    "pool-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "bsc"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "0x172fcd41e0913e95784454622d1c3724f546f849"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"feePct\": 5125.617730141946,\n  \"price\": 2424.5015015801628,\n  \"baseTokenAmount\": 568.3619446345078,\n  \"quoteTokenAmount\": 7458.978914210393,\n  \"activeBinId\": 4290.207386885758,\n  \"binStep\": 5946.891416741681\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5174a098-bc58-407f-b320-a0f4c1152d7f",
+          "name": "Get position information for a Pancakeswap V3 position",
+          "request": {
+            "name": "Get position information for a Pancakeswap V3 position",
+            "description": {
+              "content": "Get position information for a Pancakeswap V3 position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "clmm",
+                "position-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "bsc"
+                },
+                {
+                  "disabled": false,
+                  "key": "positionAddress",
+                  "value": "<string>",
+                  "description": "(Required) Position NFT token ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce68c184-bc96-4da3-b50e-496c8666aaeb",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "clmm",
+                    "position-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "bsc"
+                    },
+                    {
+                      "key": "positionAddress",
+                      "value": "1234"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"poolAddress\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"baseTokenAmount\": 4410.75915894016,\n  \"quoteTokenAmount\": 3971.619515899326,\n  \"baseFeeAmount\": 8506.188407667763,\n  \"quoteFeeAmount\": 5942.991751447563,\n  \"lowerBinId\": 6292.523815210736,\n  \"upperBinId\": 7851.846666745338,\n  \"lowerPrice\": 1302.5521118878337,\n  \"upperPrice\": 8943.500265960205,\n  \"price\": 8096.769044450663,\n  \"rewardTokenAddress\": \"string\",\n  \"rewardAmount\": 1665.7905097791713\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3161070-9b7b-4b3b-b0a2-c528cc473a43",
+          "name": "Get all Pancakeswap V3 positions owned by a wallet",
+          "request": {
+            "name": "Get all Pancakeswap V3 positions owned by a wallet",
+            "description": {
+              "content": "Get all Pancakeswap V3 positions owned by a wallet",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "clmm",
+                "positions-owned"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "bsc"
+                },
+                {
+                  "disabled": false,
+                  "key": "walletAddress",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d60e2689-5d5e-4ba1-9bd9-2394f26d540a",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "clmm",
+                    "positions-owned"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "bsc"
+                    },
+                    {
+                      "key": "walletAddress",
+                      "value": "0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"address\": \"string\",\n    \"poolAddress\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"baseTokenAmount\": 3055.9101355632447,\n    \"quoteTokenAmount\": 9227.56446017409,\n    \"baseFeeAmount\": 6957.624123493426,\n    \"quoteFeeAmount\": 3803.2026504225646,\n    \"lowerBinId\": 8110.553867534642,\n    \"upperBinId\": 3311.808883592613,\n    \"lowerPrice\": 2591.0482924946164,\n    \"upperPrice\": 7534.020180548494,\n    \"price\": 3523.4358247530226,\n    \"rewardTokenAddress\": \"string\",\n    \"rewardAmount\": 5234.872902716843\n  },\n  {\n    \"address\": \"string\",\n    \"poolAddress\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"baseTokenAmount\": 5951.60981639947,\n    \"quoteTokenAmount\": 4744.11029598655,\n    \"baseFeeAmount\": 4773.365578388142,\n    \"quoteFeeAmount\": 6629.858182596598,\n    \"lowerBinId\": 9288.96471651323,\n    \"upperBinId\": 6147.945633457889,\n    \"lowerPrice\": 1658.8697829760113,\n    \"upperPrice\": 2341.7469989268857,\n    \"price\": 7579.792010338717,\n    \"rewardTokenAddress\": \"string\",\n    \"rewardAmount\": 4838.555670865419\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93113b37-88d6-42d9-91de-3a955f96bfc6",
+          "name": "Get a quote for opening a position on Pancakeswap V3",
+          "request": {
+            "name": "Get a quote for opening a position on Pancakeswap V3",
+            "description": {
+              "content": "Get a quote for opening a position on Pancakeswap V3",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "clmm",
+                "quote-position"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "bsc"
+                },
+                {
+                  "disabled": false,
+                  "key": "lowerPrice",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "upperPrice",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "0x172fcd41e0913e95784454622d1c3724f546f849",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "baseTokenAmount",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteTokenAmount",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "<number>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9a70900c-db58-494a-be10-ef23577fc115",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "clmm",
+                    "quote-position"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "bsc"
+                    },
+                    {
+                      "key": "lowerPrice",
+                      "value": "0.0008"
+                    },
+                    {
+                      "key": "upperPrice",
+                      "value": "0.001"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "0x172fcd41e0913e95784454622d1c3724f546f849"
+                    },
+                    {
+                      "key": "baseTokenAmount",
+                      "value": "10"
+                    },
+                    {
+                      "key": "quoteTokenAmount",
+                      "value": "0.01"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"baseLimited\": false,\n  \"baseTokenAmount\": 9372.020473180233,\n  \"quoteTokenAmount\": 3713.958434292194,\n  \"baseTokenAmountMax\": 6050.292126762804,\n  \"quoteTokenAmountMax\": 1097.341185640711,\n  \"liquidity\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3e00c8c-0739-40fe-a171-0be0f9c34cc7",
+          "name": "Get swap quote for Pancakeswap V3 CLMM",
+          "request": {
+            "name": "Get swap quote for Pancakeswap V3 CLMM",
+            "description": {
+              "content": "Get swap quote for Pancakeswap V3 CLMM",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "clmm",
+                "quote-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "bsc"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "Pool address (optional - can be looked up from baseToken and quoteToken)"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseToken",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteToken",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "side",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "<number>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c079c4a-514d-40ee-8aa2-cb6434bf119d",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "clmm",
+                    "quote-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "bsc"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "baseToken",
+                      "value": "USDT"
+                    },
+                    {
+                      "key": "quoteToken",
+                      "value": "WBNB"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "10"
+                    },
+                    {
+                      "key": "side",
+                      "value": "SELL"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"poolAddress\": \"string\",\n  \"tokenIn\": \"string\",\n  \"tokenOut\": \"string\",\n  \"amountIn\": 3020.5113373031277,\n  \"amountOut\": 514.6599862043755,\n  \"price\": 1191.6063935700195,\n  \"minAmountOut\": 5850.860872951345,\n  \"maxAmountIn\": 9733.879667494459,\n  \"priceImpactPct\": 8915.47979498658,\n  \"slippagePct\": 5298.051520411526\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82985319-8cc3-489f-a60b-63f9efcd3510",
+          "name": "Execute a swap on Pancakeswap V3 CLMM using SwapRouter02",
+          "request": {
+            "name": "Execute a swap on Pancakeswap V3 CLMM using SwapRouter02",
+            "description": {
+              "content": "Execute a swap on Pancakeswap V3 CLMM using SwapRouter02",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "clmm",
+                "execute-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baseToken\": \"<string>\",\n  \"quoteToken\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"side\": \"<string>\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"network\": \"mainnet\",\n  \"slippagePct\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "70ec1ea3-01f3-4917-9fa5-a61cde3a8d40",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "clmm",
+                    "execute-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baseToken\": \"USDT\",\n  \"quoteToken\": \"WBNB\",\n  \"amount\": 10,\n  \"side\": \"<string>\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"network\": \"mainnet\",\n  \"slippagePct\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 2830.636282934831,\n  \"data\": {\n    \"tokenIn\": \"string\",\n    \"tokenOut\": \"string\",\n    \"amountIn\": 943.7046907994085,\n    \"amountOut\": 7993.161473966304,\n    \"fee\": 350.1084341036975,\n    \"baseTokenBalanceChange\": 2489.383283960004,\n    \"quoteTokenBalanceChange\": 5302.2437391221065\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ed772b9-5466-4dbe-80a4-a3531e6fada0",
+          "name": "Open a new liquidity position in a Pancakeswap V3 pool",
+          "request": {
+            "name": "Open a new liquidity position in a Pancakeswap V3 pool",
+            "description": {
+              "content": "Open a new liquidity position in a Pancakeswap V3 pool",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "clmm",
+                "open-position"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lowerPrice\": \"<number>\",\n  \"upperPrice\": \"<number>\",\n  \"poolAddress\": \"0x172fcd41e0913e95784454622d1c3724f546f849\",\n  \"network\": \"bsc\",\n  \"walletAddress\": \"<string>\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"slippagePct\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f945c40b-3609-4cbc-bb40-e78ef5927f8e",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "clmm",
+                    "open-position"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lowerPrice\": 0.0008,\n  \"upperPrice\": 0.001,\n  \"poolAddress\": \"0x172fcd41e0913e95784454622d1c3724f546f849\",\n  \"network\": \"bsc\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"baseTokenAmount\": 10,\n  \"quoteTokenAmount\": 0.01,\n  \"slippagePct\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 7226.747232561465,\n  \"data\": {\n    \"fee\": 3299.607837640568,\n    \"positionAddress\": \"string\",\n    \"positionRent\": 1954.1280708148267,\n    \"baseTokenAmountAdded\": 7355.492280228636,\n    \"quoteTokenAmountAdded\": 3563.541818637722\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4839605d-1cfa-44f4-ac9d-f7db5385b54f",
+          "name": "Add liquidity to an existing Pancakeswap V3 position",
+          "request": {
+            "name": "Add liquidity to an existing Pancakeswap V3 position",
+            "description": {
+              "content": "Add liquidity to an existing Pancakeswap V3 position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "clmm",
+                "add-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"network\": \"bsc\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"slippagePct\": 2,\n  \"gasPrice\": \"<string>\",\n  \"maxGas\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7cebcc37-1f9e-4801-8d58-d7ca381a4477",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "clmm",
+                    "add-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"network\": \"bsc\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"slippagePct\": 2,\n  \"gasPrice\": \"<string>\",\n  \"maxGas\": 300000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 6504.73094446962,\n  \"data\": {\n    \"fee\": 4168.113022010605,\n    \"baseTokenAmountAdded\": 5133.076173028538,\n    \"quoteTokenAmountAdded\": 9353.041006902218\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9409d699-94ae-46ac-bca1-895043026aa8",
+          "name": "Remove liquidity from a Pancakeswap V3 position",
+          "request": {
+            "name": "Remove liquidity from a Pancakeswap V3 position",
+            "description": {
+              "content": "Remove liquidity from a Pancakeswap V3 position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "clmm",
+                "remove-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"percentageToRemove\": \"<number>\",\n  \"network\": \"bsc\",\n  \"walletAddress\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d7bfded7-799d-4dc4-a12f-491d3903f807",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "clmm",
+                    "remove-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"1234\",\n  \"percentageToRemove\": 50,\n  \"network\": \"bsc\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 5744.68151034769,\n  \"data\": {\n    \"fee\": 277.81939094774,\n    \"baseTokenAmountRemoved\": 5135.430987229125,\n    \"quoteTokenAmountRemoved\": 6541.820478565976\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6c563fc-1104-4997-a486-0e499ca3f5e9",
+          "name": "Collect fees from a Pancakeswap V3 position",
+          "request": {
+            "name": "Collect fees from a Pancakeswap V3 position",
+            "description": {
+              "content": "Collect fees from a Pancakeswap V3 position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "clmm",
+                "collect-fees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"network\": \"bsc\",\n  \"walletAddress\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "91c793e1-9687-4934-bd24-644d7bb95e71",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "clmm",
+                    "collect-fees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"1234\",\n  \"network\": \"bsc\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 7299.028124855286,\n  \"data\": {\n    \"fee\": 958.4493143396033,\n    \"baseFeeAmountCollected\": 2965.9310720977073,\n    \"quoteFeeAmountCollected\": 6768.609095040912\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f1111fc-3dfe-45d2-bc82-af8824088646",
+          "name": "Close a Pancakeswap V3 position by removing all liquidity and collecting fees",
+          "request": {
+            "name": "Close a Pancakeswap V3 position by removing all liquidity and collecting fees",
+            "description": {
+              "content": "Close a Pancakeswap V3 position by removing all liquidity and collecting fees",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "pancakeswap",
+                "clmm",
+                "close-position"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"network\": \"<string>\",\n  \"walletAddress\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "69d10ac1-4311-4bb7-bf05-35861ba398d6",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "pancakeswap",
+                    "clmm",
+                    "close-position"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"network\": \"<string>\",\n  \"walletAddress\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 5856.003419583289,\n  \"data\": {\n    \"fee\": 5603.170494491009,\n    \"positionRentRefunded\": 7566.07639151925,\n    \"baseTokenAmountRemoved\": 9653.060929275774,\n    \"quoteTokenAmountRemoved\": 4769.20555836458,\n    \"baseFeeAmountCollected\": 2808.9169701695037,\n    \"quoteFeeAmountCollected\": 8406.985040427435\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:15888",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d19dd9e7-b4ea-4fd4-9801-9a839fb9deb4",
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/pancakeswap API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API endpoints for interacting with DEXs and blockchains",
+      "type": "text/plain"
+    }
+  }
+}

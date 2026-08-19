@@ -1,0 +1,2338 @@
+{
+  "item": [
+    {
+      "id": "86105ad5-bd7d-406e-a166-d8b51605be1c",
+      "name": "/connector/uniswap",
+      "description": {
+        "content": "Uniswap connector endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a09294ab-5a9c-4de8-806e-2cdd01e6a470",
+          "name": "Get an executable swap quote from Uniswap Universal Router",
+          "request": {
+            "name": "Get an executable swap quote from Uniswap Universal Router",
+            "description": {
+              "content": "Get an executable swap quote from Uniswap Universal Router",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "router",
+                "quote-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet",
+                  "description": "The EVM network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseToken",
+                  "value": "<string>",
+                  "description": "(Required) First token in the trading pair"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteToken",
+                  "value": "<string>",
+                  "description": "(Required) Second token in the trading pair"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "(Required) Amount of base token to trade"
+                },
+                {
+                  "disabled": false,
+                  "key": "side",
+                  "value": "<string>",
+                  "description": "(Required) Trade direction - BUY means buying base token with quote token, SELL means selling base token for quote token"
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "2",
+                  "description": "Maximum acceptable slippage percentage"
+                },
+                {
+                  "disabled": false,
+                  "key": "walletAddress",
+                  "value": "0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50",
+                  "description": "Wallet address for more accurate quotes (optional)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "20d58d1c-1ef7-4937-be00-30ca3981e8b9",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "router",
+                    "quote-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet"
+                    },
+                    {
+                      "key": "baseToken",
+                      "value": "WETH"
+                    },
+                    {
+                      "key": "quoteToken",
+                      "value": "USDC"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "0.001"
+                    },
+                    {
+                      "key": "side",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "2"
+                    },
+                    {
+                      "key": "walletAddress",
+                      "value": "0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"quoteId\": \"string\",\n  \"tokenIn\": \"string\",\n  \"tokenOut\": \"string\",\n  \"amountIn\": 8323.31959924133,\n  \"amountOut\": 6424.6205661998265,\n  \"price\": 3000.6719185474963,\n  \"priceImpactPct\": 8858.107034541768,\n  \"minAmountOut\": 8131.396260983872,\n  \"maxAmountIn\": 3107.1448381146315,\n  \"routePath\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ddd819d-b9a2-4093-8424-0bca913058bd",
+          "name": "Execute a previously fetched quote from Uniswap Universal Router",
+          "request": {
+            "name": "Execute a previously fetched quote from Uniswap Universal Router",
+            "description": {
+              "content": "Execute a previously fetched quote from Uniswap Universal Router",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "router",
+                "execute-quote"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quoteId\": \"<string>\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"network\": \"mainnet\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "61bc3bc9-c799-4049-aeca-9e10372e289c",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "router",
+                    "execute-quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quoteId\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"network\": \"mainnet\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 1764.7304662412332,\n  \"data\": {\n    \"tokenIn\": \"string\",\n    \"tokenOut\": \"string\",\n    \"amountIn\": 4158.810504675942,\n    \"amountOut\": 4984.497737935555,\n    \"fee\": 2826.683332283231,\n    \"baseTokenBalanceChange\": 1062.0383941669008,\n    \"quoteTokenBalanceChange\": 5674.906582626539\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3914b70-6453-47a5-be3e-43881d5287c0",
+          "name": "Quote and execute a token swap on Uniswap Universal Router in one step",
+          "request": {
+            "name": "Quote and execute a token swap on Uniswap Universal Router in one step",
+            "description": {
+              "content": "Quote and execute a token swap on Uniswap Universal Router in one step",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "router",
+                "execute-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baseToken\": \"<string>\",\n  \"quoteToken\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"side\": \"<string>\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"network\": \"mainnet\",\n  \"slippagePct\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "65a026ec-1238-44e7-9d98-101a514f80db",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "router",
+                    "execute-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baseToken\": \"WETH\",\n  \"quoteToken\": \"USDC\",\n  \"amount\": 0.001,\n  \"side\": \"<string>\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"network\": \"mainnet\",\n  \"slippagePct\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 1764.7304662412332,\n  \"data\": {\n    \"tokenIn\": \"string\",\n    \"tokenOut\": \"string\",\n    \"amountIn\": 4158.810504675942,\n    \"amountOut\": 4984.497737935555,\n    \"fee\": 2826.683332283231,\n    \"baseTokenBalanceChange\": 1062.0383941669008,\n    \"quoteTokenBalanceChange\": 5674.906582626539\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58bec50f-616f-47a9-a362-93b99640887c",
+          "name": "Get AMM pool information from Uniswap V2",
+          "request": {
+            "name": "Get AMM pool information from Uniswap V2",
+            "description": {
+              "content": "Get AMM pool information from Uniswap V2",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "amm",
+                "pool-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet",
+                  "description": "The EVM network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) Uniswap V2 pool address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a5c2d37c-6bdf-4a3f-bed0-df622a54aee5",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "amm",
+                    "pool-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "0x88A43bbDF9D098eEC7bCEda4e2494615dfD9bB9C"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"feePct\": 3576.4477226708204,\n  \"price\": 202.9546125058457,\n  \"baseTokenAmount\": 6601.397422870816,\n  \"quoteTokenAmount\": 9591.77181642026\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd8c202c-132f-4d34-8c9c-423de071e8d2",
+          "name": "Get position information for a Uniswap V2 pool",
+          "request": {
+            "name": "Get position information for a Uniswap V2 pool",
+            "description": {
+              "content": "Get position information for a Uniswap V2 pool",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "amm",
+                "position-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "base"
+                },
+                {
+                  "disabled": false,
+                  "key": "walletAddress",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "baseToken",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteToken",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34a7606b-008b-4cfd-95f4-e0a3512e5794",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "amm",
+                    "position-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "base"
+                    },
+                    {
+                      "key": "walletAddress",
+                      "value": "0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": ""
+                    },
+                    {
+                      "key": "baseToken",
+                      "value": "WETH"
+                    },
+                    {
+                      "key": "quoteToken",
+                      "value": "USDC"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"poolAddress\": \"string\",\n  \"walletAddress\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"lpTokenAmount\": 2178.100838360424,\n  \"baseTokenAmount\": 4245.1933348155935,\n  \"quoteTokenAmount\": 1197.9017972177453,\n  \"price\": 4340.108050993196\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6c04a4a-be10-400b-8959-db59e6797feb",
+          "name": "Get swap quote for Uniswap V2 AMM",
+          "request": {
+            "name": "Get swap quote for Uniswap V2 AMM",
+            "description": {
+              "content": "Get swap quote for Uniswap V2 AMM",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "amm",
+                "quote-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "base"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseToken",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteToken",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "side",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "<number>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d8899d94-6e33-4c2e-9a46-d18c034e21bb",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "amm",
+                    "quote-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "base"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": ""
+                    },
+                    {
+                      "key": "baseToken",
+                      "value": "WETH"
+                    },
+                    {
+                      "key": "quoteToken",
+                      "value": "USDC"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "0.001"
+                    },
+                    {
+                      "key": "side",
+                      "value": "SELL"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"poolAddress\": \"string\",\n  \"tokenIn\": \"string\",\n  \"tokenOut\": \"string\",\n  \"amountIn\": 2192.337108661776,\n  \"amountOut\": 8934.620297849564,\n  \"price\": 1831.2926832238984,\n  \"minAmountOut\": 5140.532169856413,\n  \"maxAmountIn\": 7084.143175979639,\n  \"priceImpactPct\": 3514.9564638834663,\n  \"slippagePct\": 828.4932598859906\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89845f74-4a7a-44f2-8b80-5ddd80882224",
+          "name": "Get liquidity quote for a Uniswap V2 pool",
+          "request": {
+            "name": "Get liquidity quote for a Uniswap V2 pool",
+            "description": {
+              "content": "Get liquidity quote for a Uniswap V2 pool",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "amm",
+                "quote-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "base"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "baseTokenAmount",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteTokenAmount",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseToken",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteToken",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82ae6776-4a57-4508-ac46-2b3d9b3c336c",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "amm",
+                    "quote-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "base"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": ""
+                    },
+                    {
+                      "key": "baseTokenAmount",
+                      "value": "0.001"
+                    },
+                    {
+                      "key": "quoteTokenAmount",
+                      "value": "2.5"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "1"
+                    },
+                    {
+                      "key": "baseToken",
+                      "value": "WETH"
+                    },
+                    {
+                      "key": "quoteToken",
+                      "value": "USDC"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"baseLimited\": false,\n  \"baseTokenAmount\": 1020.6860443604038,\n  \"quoteTokenAmount\": 7826.356652224679,\n  \"baseTokenAmountMax\": 7388.494640257146,\n  \"quoteTokenAmountMax\": 2152.279134705809\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "105ad947-abdf-4eb7-b2de-853d9c1da521",
+          "name": "Execute a swap on Uniswap V2 AMM using Router02",
+          "request": {
+            "name": "Execute a swap on Uniswap V2 AMM using Router02",
+            "description": {
+              "content": "Execute a swap on Uniswap V2 AMM using Router02",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "amm",
+                "execute-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baseToken\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"side\": \"SELL\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"network\": \"mainnet\",\n  \"poolAddress\": \"\",\n  \"quoteToken\": \"<string>\",\n  \"slippagePct\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0165f0cd-3b95-48f5-85a5-0c2f3495f857",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "amm",
+                    "execute-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baseToken\": \"WETH\",\n  \"amount\": 0.001,\n  \"side\": \"SELL\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"network\": \"mainnet\",\n  \"poolAddress\": \"\",\n  \"quoteToken\": \"USDC\",\n  \"slippagePct\": 2\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 1764.7304662412332,\n  \"data\": {\n    \"tokenIn\": \"string\",\n    \"tokenOut\": \"string\",\n    \"amountIn\": 4158.810504675942,\n    \"amountOut\": 4984.497737935555,\n    \"fee\": 2826.683332283231,\n    \"baseTokenBalanceChange\": 1062.0383941669008,\n    \"quoteTokenBalanceChange\": 5674.906582626539\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d375efb-924e-4b49-8bae-488896fc53d3",
+          "name": "Add liquidity to a Uniswap V2 pool",
+          "request": {
+            "name": "Add liquidity to a Uniswap V2 pool",
+            "description": {
+              "content": "Add liquidity to a Uniswap V2 pool",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "amm",
+                "add-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"poolAddress\": \"<string>\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"network\": \"mainnet\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"slippagePct\": 2,\n  \"gasPrice\": \"<string>\",\n  \"maxGas\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "66b22dbb-a86b-4ae7-af40-3460f30b7c97",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "amm",
+                    "add-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"poolAddress\": \"<string>\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"network\": \"mainnet\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"slippagePct\": 2,\n  \"gasPrice\": \"<string>\",\n  \"maxGas\": 300000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 3070.3008173838784,\n  \"data\": {\n    \"fee\": 1517.1296647297372,\n    \"baseTokenAmountAdded\": 2694.008110099878,\n    \"quoteTokenAmountAdded\": 7545.088925456538\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa30d8fc-8c12-434e-ade6-f03c27559ef3",
+          "name": "Remove liquidity from a Uniswap V2 pool",
+          "request": {
+            "name": "Remove liquidity from a Uniswap V2 pool",
+            "description": {
+              "content": "Remove liquidity from a Uniswap V2 pool",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "amm",
+                "remove-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"poolAddress\": \"<string>\",\n  \"percentageToRemove\": \"<number>\",\n  \"network\": \"mainnet\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"gasPrice\": \"<string>\",\n  \"maxGas\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1bdb2c51-73b6-4965-b1c5-b866aab99dcc",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "amm",
+                    "remove-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"poolAddress\": \"<string>\",\n  \"percentageToRemove\": \"<number>\",\n  \"network\": \"mainnet\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"gasPrice\": \"<string>\",\n  \"maxGas\": 300000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 1763.7319132599494,\n  \"data\": {\n    \"fee\": 8814.985958805642,\n    \"baseTokenAmountRemoved\": 5048.663098799216,\n    \"quoteTokenAmountRemoved\": 4656.089830414717\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "379ce462-16fd-4a36-b5ed-4f17bdeb0b7c",
+          "name": "Get CLMM pool information from Uniswap V3",
+          "request": {
+            "name": "Get CLMM pool information from Uniswap V3",
+            "description": {
+              "content": "Get CLMM pool information from Uniswap V3",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "clmm",
+                "pool-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet",
+                  "description": "The EVM network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) Uniswap V3 pool address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ecf6a5ed-3cbb-4fd5-b7f7-adef17849f4c",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "clmm",
+                    "pool-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "0xd0b53d9277642d899df5c87a3966a349a798f224"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"feePct\": 5329.036651381437,\n  \"price\": 8609.35338307952,\n  \"baseTokenAmount\": 2452.6943305130476,\n  \"quoteTokenAmount\": 3356.8548005158127,\n  \"activeBinId\": 6297.032941638076,\n  \"binStep\": 2220.064734923003\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e2bb1dc-e011-41ee-b61a-8206b8d0b415",
+          "name": "Get position information for a Uniswap V3 position",
+          "request": {
+            "name": "Get position information for a Uniswap V3 position",
+            "description": {
+              "content": "Get position information for a Uniswap V3 position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "clmm",
+                "position-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "base"
+                },
+                {
+                  "disabled": false,
+                  "key": "positionAddress",
+                  "value": "<string>",
+                  "description": "(Required) Position NFT token ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "754a22f5-fdb6-4757-bd33-9eeb9ca5248b",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "clmm",
+                    "position-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "base"
+                    },
+                    {
+                      "key": "positionAddress",
+                      "value": "1234"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"poolAddress\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"baseTokenAmount\": 4554.786994730936,\n  \"quoteTokenAmount\": 1294.068766660169,\n  \"baseFeeAmount\": 2537.07935793812,\n  \"quoteFeeAmount\": 8582.054259054232,\n  \"lowerBinId\": 6600.445964781935,\n  \"upperBinId\": 3700.4404394980083,\n  \"lowerPrice\": 7868.129309570495,\n  \"upperPrice\": 7442.453767358858,\n  \"price\": 9281.559152679403,\n  \"rewardTokenAddress\": \"string\",\n  \"rewardAmount\": 178.93204692074337\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee49c2ea-9249-462d-9c1b-f75cc4379d74",
+          "name": "Get all Uniswap V3 positions owned by a wallet",
+          "request": {
+            "name": "Get all Uniswap V3 positions owned by a wallet",
+            "description": {
+              "content": "Get all Uniswap V3 positions owned by a wallet",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "clmm",
+                "positions-owned"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "base"
+                },
+                {
+                  "disabled": false,
+                  "key": "walletAddress",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6371c9a4-9cdd-4193-b7d6-1e6decb191f7",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "clmm",
+                    "positions-owned"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "base"
+                    },
+                    {
+                      "key": "walletAddress",
+                      "value": "0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"address\": \"string\",\n    \"poolAddress\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"baseTokenAmount\": 1972.7871080657856,\n    \"quoteTokenAmount\": 8072.246051574785,\n    \"baseFeeAmount\": 6211.045484190247,\n    \"quoteFeeAmount\": 438.65779413399974,\n    \"lowerBinId\": 2166.6642156308926,\n    \"upperBinId\": 5604.88981978913,\n    \"lowerPrice\": 7378.513507387329,\n    \"upperPrice\": 5535.832154078618,\n    \"price\": 2537.1188915345165,\n    \"rewardTokenAddress\": \"string\",\n    \"rewardAmount\": 5470.480393575919\n  },\n  {\n    \"address\": \"string\",\n    \"poolAddress\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"baseTokenAmount\": 6875.981319030247,\n    \"quoteTokenAmount\": 1297.101378050881,\n    \"baseFeeAmount\": 4028.1055443741707,\n    \"quoteFeeAmount\": 2833.248297233205,\n    \"lowerBinId\": 219.73961457418477,\n    \"upperBinId\": 4714.109016429924,\n    \"lowerPrice\": 9413.087208986582,\n    \"upperPrice\": 604.5205154966516,\n    \"price\": 112.2282395576113,\n    \"rewardTokenAddress\": \"string\",\n    \"rewardAmount\": 164.92888073610158\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "321014a9-53aa-4bba-898e-2c171570aeb9",
+          "name": "Get a quote for opening a position on Uniswap V3",
+          "request": {
+            "name": "Get a quote for opening a position on Uniswap V3",
+            "description": {
+              "content": "Get a quote for opening a position on Uniswap V3",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "clmm",
+                "quote-position"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "base"
+                },
+                {
+                  "disabled": false,
+                  "key": "lowerPrice",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "upperPrice",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "0xd0b53d9277642d899df5c87a3966a349a798f224",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "baseTokenAmount",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteTokenAmount",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "<number>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ff210f4-2557-4c8b-afa4-77c22c1f1270",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "clmm",
+                    "quote-position"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "base"
+                    },
+                    {
+                      "key": "lowerPrice",
+                      "value": "2000"
+                    },
+                    {
+                      "key": "upperPrice",
+                      "value": "4000"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "0xd0b53d9277642d899df5c87a3966a349a798f224"
+                    },
+                    {
+                      "key": "baseTokenAmount",
+                      "value": "0.001"
+                    },
+                    {
+                      "key": "quoteTokenAmount",
+                      "value": "3"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"baseLimited\": true,\n  \"baseTokenAmount\": 8422.94889136043,\n  \"quoteTokenAmount\": 5476.318152664391,\n  \"baseTokenAmountMax\": 7686.989570622061,\n  \"quoteTokenAmountMax\": 3787.874880978018,\n  \"liquidity\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3bc57ba3-30d3-45db-9690-4e4321253851",
+          "name": "Get swap quote for Uniswap V3 CLMM",
+          "request": {
+            "name": "Get swap quote for Uniswap V3 CLMM",
+            "description": {
+              "content": "Get swap quote for Uniswap V3 CLMM",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "clmm",
+                "quote-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "base"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "Pool address (optional - can be looked up from baseToken and quoteToken)"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseToken",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteToken",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "side",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "<number>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c9692f1-1943-4d75-9252-4319c396db11",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "clmm",
+                    "quote-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "base"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "baseToken",
+                      "value": "WETH"
+                    },
+                    {
+                      "key": "quoteToken",
+                      "value": "USDC"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "0.001"
+                    },
+                    {
+                      "key": "side",
+                      "value": "SELL"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"poolAddress\": \"string\",\n  \"tokenIn\": \"string\",\n  \"tokenOut\": \"string\",\n  \"amountIn\": 2192.337108661776,\n  \"amountOut\": 8934.620297849564,\n  \"price\": 1831.2926832238984,\n  \"minAmountOut\": 5140.532169856413,\n  \"maxAmountIn\": 7084.143175979639,\n  \"priceImpactPct\": 3514.9564638834663,\n  \"slippagePct\": 828.4932598859906\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62e36517-55bd-4aad-8255-9180608e45c5",
+          "name": "Execute a swap on Uniswap V3 CLMM using SwapRouter02",
+          "request": {
+            "name": "Execute a swap on Uniswap V3 CLMM using SwapRouter02",
+            "description": {
+              "content": "Execute a swap on Uniswap V3 CLMM using SwapRouter02",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "clmm",
+                "execute-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baseToken\": \"<string>\",\n  \"quoteToken\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"side\": \"<string>\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"network\": \"mainnet\",\n  \"slippagePct\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cf51a70b-c020-46b8-950d-a30efd461c6d",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "clmm",
+                    "execute-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baseToken\": \"WETH\",\n  \"quoteToken\": \"USDC\",\n  \"amount\": 0.001,\n  \"side\": \"<string>\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"network\": \"mainnet\",\n  \"slippagePct\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 1764.7304662412332,\n  \"data\": {\n    \"tokenIn\": \"string\",\n    \"tokenOut\": \"string\",\n    \"amountIn\": 4158.810504675942,\n    \"amountOut\": 4984.497737935555,\n    \"fee\": 2826.683332283231,\n    \"baseTokenBalanceChange\": 1062.0383941669008,\n    \"quoteTokenBalanceChange\": 5674.906582626539\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "455d8807-78ef-46d9-9349-638bfebf7f72",
+          "name": "Open a new liquidity position in a Uniswap V3 pool",
+          "request": {
+            "name": "Open a new liquidity position in a Uniswap V3 pool",
+            "description": {
+              "content": "Open a new liquidity position in a Uniswap V3 pool",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "clmm",
+                "open-position"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lowerPrice\": \"<number>\",\n  \"upperPrice\": \"<number>\",\n  \"poolAddress\": \"<string>\",\n  \"network\": \"base\",\n  \"walletAddress\": \"<string>\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"slippagePct\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "09b6b512-501a-4cd5-a873-2be7a6744f20",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "clmm",
+                    "open-position"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lowerPrice\": 1000,\n  \"upperPrice\": 4000,\n  \"poolAddress\": \"0xd0b53d9277642d899df5c87a3966a349a798f224\",\n  \"network\": \"base\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"baseTokenAmount\": 0.001,\n  \"quoteTokenAmount\": 3,\n  \"slippagePct\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 4770.543380355742,\n  \"data\": {\n    \"fee\": 6115.0368515994505,\n    \"positionAddress\": \"string\",\n    \"positionRent\": 9370.213298675604,\n    \"baseTokenAmountAdded\": 7397.929491011221,\n    \"quoteTokenAmountAdded\": 3097.087965219998\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76600e0e-731b-4682-810e-9a51bce81c89",
+          "name": "Add liquidity to an existing Uniswap V3 position",
+          "request": {
+            "name": "Add liquidity to an existing Uniswap V3 position",
+            "description": {
+              "content": "Add liquidity to an existing Uniswap V3 position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "clmm",
+                "add-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"network\": \"mainnet\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"slippagePct\": 2,\n  \"gasPrice\": \"<string>\",\n  \"maxGas\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9e30d790-8129-4a25-85d5-a35cc9a6b997",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "clmm",
+                    "add-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"network\": \"mainnet\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"slippagePct\": 2,\n  \"gasPrice\": \"<string>\",\n  \"maxGas\": 300000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 3070.3008173838784,\n  \"data\": {\n    \"fee\": 1517.1296647297372,\n    \"baseTokenAmountAdded\": 2694.008110099878,\n    \"quoteTokenAmountAdded\": 7545.088925456538\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a66e6a5-f040-4cdd-a348-494a246dfbb5",
+          "name": "Remove liquidity from a Uniswap V3 position",
+          "request": {
+            "name": "Remove liquidity from a Uniswap V3 position",
+            "description": {
+              "content": "Remove liquidity from a Uniswap V3 position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "clmm",
+                "remove-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"percentageToRemove\": \"<number>\",\n  \"network\": \"base\",\n  \"walletAddress\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f4c94454-9e5a-4857-a277-3ff486a9387d",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "clmm",
+                    "remove-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"1234\",\n  \"percentageToRemove\": 50,\n  \"network\": \"base\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 1763.7319132599494,\n  \"data\": {\n    \"fee\": 8814.985958805642,\n    \"baseTokenAmountRemoved\": 5048.663098799216,\n    \"quoteTokenAmountRemoved\": 4656.089830414717\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e98a2e7-dcec-44cd-98f6-d8f57681439d",
+          "name": "Collect fees from a Uniswap V3 position",
+          "request": {
+            "name": "Collect fees from a Uniswap V3 position",
+            "description": {
+              "content": "Collect fees from a Uniswap V3 position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "clmm",
+                "collect-fees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"network\": \"base\",\n  \"walletAddress\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "84f584ce-4700-46bd-a43b-5bfec3c1fa7b",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "clmm",
+                    "collect-fees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"1234\",\n  \"network\": \"base\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 7237.739994965342,\n  \"data\": {\n    \"fee\": 3414.4193928938084,\n    \"baseFeeAmountCollected\": 6641.541992659854,\n    \"quoteFeeAmountCollected\": 612.4461151163108\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e308ba6-d93f-473a-ab63-8b72cd24c3bf",
+          "name": "Close a Uniswap V3 position by removing all liquidity and collecting fees",
+          "request": {
+            "name": "Close a Uniswap V3 position by removing all liquidity and collecting fees",
+            "description": {
+              "content": "Close a Uniswap V3 position by removing all liquidity and collecting fees",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "uniswap",
+                "clmm",
+                "close-position"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"network\": \"<string>\",\n  \"walletAddress\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5488512f-4f74-44f9-bab3-026aefce0753",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "uniswap",
+                    "clmm",
+                    "close-position"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"network\": \"<string>\",\n  \"walletAddress\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 132.73622130373752,\n  \"data\": {\n    \"fee\": 5879.113319325455,\n    \"positionRentRefunded\": 2204.2549784525513,\n    \"baseTokenAmountRemoved\": 2204.1026932576524,\n    \"quoteTokenAmountRemoved\": 1838.5218705395146,\n    \"baseFeeAmountCollected\": 2907.1308105449466,\n    \"quoteFeeAmountCollected\": 5082.729216605707\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:15888",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e5cb91b3-8d6a-4f00-beb6-b5c37a24bf3d",
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/uniswap API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API endpoints for interacting with DEXs and blockchains",
+      "type": "text/plain"
+    }
+  }
+}

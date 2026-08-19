@@ -1,0 +1,975 @@
+{
+  "item": [
+    {
+      "id": "07ee24c0-2891-4abd-9d74-7e13b71bfdba",
+      "name": "/pools",
+      "description": {
+        "content": "Pool management endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bd386783-cf4f-4beb-823f-07c733f80073",
+          "name": "Get a specific pool by trading pair",
+          "request": {
+            "name": "Get a specific pool by trading pair",
+            "description": {
+              "content": "Get a specific pool by trading pair",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pools",
+                ":tradingPair"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "connector",
+                  "value": "<string>",
+                  "description": "(Required) Connector (raydium, meteora, uniswap, orca)"
+                },
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "(Required) Network name (mainnet, mainnet-beta, etc)"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "(Required) Pool type"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tradingPair",
+                  "description": "(Required) Trading pair (e.g., SOL-USDC, ETH-USDC)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b5bcad5a-4123-43a2-86f6-3647e5b38760",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pools",
+                    ":tradingPair"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "connector",
+                      "value": "raydium"
+                    },
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "type",
+                      "value": "amm"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tradingPair",
+                      "description": "(Required) Trading pair (e.g., SOL-USDC, ETH-USDC)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"clmm\",\n  \"network\": \"string\",\n  \"baseSymbol\": \"string\",\n  \"quoteSymbol\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"feePct\": 9038.235945510307,\n  \"address\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c2d1f89-9ecd-465e-b269-27b25d6964ff",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pools",
+                    ":tradingPair"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "connector",
+                      "value": "raydium"
+                    },
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "type",
+                      "value": "amm"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tradingPair",
+                      "description": "(Required) Trading pair (e.g., SOL-USDC, ETH-USDC)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4095ee5-e818-4af6-baa3-6226c685ea93",
+          "name": "Get detailed pool information by address from GeckoTerminal",
+          "request": {
+            "name": "Get detailed pool information by address from GeckoTerminal",
+            "description": {
+              "content": "Get detailed pool information by address from GeckoTerminal",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pools",
+                "find",
+                ":address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainNetwork",
+                  "value": "<string>",
+                  "description": "(Required) Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) Pool contract address"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f6b4124b-5ee0-452a-bb22-052b5377d6c1",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pools",
+                    "find",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainNetwork",
+                      "value": "solana-mainnet-beta"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) Pool contract address"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"clmm\",\n  \"network\": \"string\",\n  \"baseSymbol\": \"string\",\n  \"quoteSymbol\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"feePct\": 9647.646209161228,\n  \"address\": \"string\",\n  \"geckoData\": {\n    \"volumeUsd24h\": \"string\",\n    \"liquidityUsd\": \"string\",\n    \"priceNative\": \"string\",\n    \"priceUsd\": \"string\",\n    \"buys24h\": 1593.878394568735,\n    \"sells24h\": 6693.847675899085,\n    \"timestamp\": 2114.636414158357,\n    \"apr\": 4768.936343794947\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43860834-be98-4ef4-9d3e-38f6b75099ed",
+          "name": "Find pools for a token pair from GeckoTerminal",
+          "request": {
+            "name": "Find pools for a token pair from GeckoTerminal",
+            "description": {
+              "content": "Find pools for a token pair from GeckoTerminal",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pools",
+                "find"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainNetwork",
+                  "value": "<string>",
+                  "description": "(Required) Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)"
+                },
+                {
+                  "disabled": false,
+                  "key": "connector",
+                  "value": "<string>",
+                  "description": "Filter by connector name (e.g., raydium, meteora, uniswap, pancakeswap, pancakeswap-sol)"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "clmm",
+                  "description": "Filter by pool type: clmm (v3-style concentrated liquidity) or amm (v2-style)"
+                },
+                {
+                  "disabled": false,
+                  "key": "tokenA",
+                  "value": "<string>",
+                  "description": "First token symbol or contract address (optional - for filtering by token pair)"
+                },
+                {
+                  "disabled": false,
+                  "key": "tokenB",
+                  "value": "<string>",
+                  "description": "Second token symbol or contract address (optional - for filtering by token pair)"
+                },
+                {
+                  "disabled": false,
+                  "key": "pages",
+                  "value": "10",
+                  "description": "Number of pages to fetch from GeckoTerminal (1-10, default: 10)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "74180990-a064-480e-bcbc-f73a64fb091c",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pools",
+                    "find"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainNetwork",
+                      "value": "solana-mainnet-beta"
+                    },
+                    {
+                      "key": "connector",
+                      "value": "raydium"
+                    },
+                    {
+                      "key": "type",
+                      "value": "clmm"
+                    },
+                    {
+                      "key": "tokenA",
+                      "value": "SOL"
+                    },
+                    {
+                      "key": "tokenB",
+                      "value": "USDC"
+                    },
+                    {
+                      "key": "pages",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"type\": \"clmm\",\n    \"network\": \"string\",\n    \"baseSymbol\": \"string\",\n    \"quoteSymbol\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"feePct\": 662.1875346404394,\n    \"address\": \"string\",\n    \"geckoData\": {\n      \"volumeUsd24h\": \"string\",\n      \"liquidityUsd\": \"string\",\n      \"priceNative\": \"string\",\n      \"priceUsd\": \"string\",\n      \"buys24h\": 1078.4064811967676,\n      \"sells24h\": 5291.5133173464965,\n      \"timestamp\": 8027.936597943533,\n      \"apr\": 1815.8900644052555\n    }\n  },\n  {\n    \"type\": \"clmm\",\n    \"network\": \"string\",\n    \"baseSymbol\": \"string\",\n    \"quoteSymbol\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"feePct\": 6287.388362020766,\n    \"address\": \"string\",\n    \"geckoData\": {\n      \"volumeUsd24h\": \"string\",\n      \"liquidityUsd\": \"string\",\n      \"priceNative\": \"string\",\n      \"priceUsd\": \"string\",\n      \"buys24h\": 262.158229590006,\n      \"sells24h\": 7197.841421317325,\n      \"timestamp\": 7744.645431777918,\n      \"apr\": 678.3159858761711\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c0b935f-deb5-4a1b-8892-8f9de1a1f1be",
+          "name": "List all pools for a connector, optionally filtered by network, type, or search term",
+          "request": {
+            "name": "List all pools for a connector, optionally filtered by network, type, or search term",
+            "description": {
+              "content": "List all pools for a connector, optionally filtered by network, type, or search term",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pools",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "connector",
+                  "value": "<string>",
+                  "description": "(Required) Connector (raydium, meteora, uniswap, orca)"
+                },
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>",
+                  "description": "Optional: filter by network (mainnet, mainnet-beta, etc)"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Optional: filter by pool type"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Optional: search by token symbol or address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "17c8db8c-f030-47f3-8ef1-54d9e2df186f",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pools",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "connector",
+                      "value": "raydium"
+                    },
+                    {
+                      "key": "network",
+                      "value": "mainnet"
+                    },
+                    {
+                      "key": "type",
+                      "value": "clmm"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"type\": \"clmm\",\n    \"network\": \"string\",\n    \"baseSymbol\": \"string\",\n    \"quoteSymbol\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"feePct\": 8832.109050802546,\n    \"address\": \"string\"\n  },\n  {\n    \"type\": \"clmm\",\n    \"network\": \"string\",\n    \"baseSymbol\": \"string\",\n    \"quoteSymbol\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"feePct\": 5566.368848761194,\n    \"address\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd3df4a7-3b5c-42d2-afdb-e3e6f231b5dd",
+          "name": "Add a new pool",
+          "request": {
+            "name": "Add a new pool",
+            "description": {
+              "content": "Add a new pool",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pools",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"connector\": \"<string>\",\n  \"type\": \"<string>\",\n  \"network\": \"mainnet-beta\",\n  \"address\": \"<string>\",\n  \"baseSymbol\": \"<string>\",\n  \"quoteSymbol\": \"<string>\",\n  \"baseTokenAddress\": \"<string>\",\n  \"quoteTokenAddress\": \"<string>\",\n  \"feePct\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "05015007-10fd-4157-98de-f4dca5e30d9e",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pools",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"connector\": \"raydium\",\n  \"type\": \"clmm\",\n  \"network\": \"mainnet-beta\",\n  \"address\": \"<string>\",\n  \"baseSymbol\": \"SOL\",\n  \"quoteSymbol\": \"USDC\",\n  \"baseTokenAddress\": \"So11111111111111111111111111111111111111112\",\n  \"quoteTokenAddress\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\",\n  \"feePct\": 0.25\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "511f601c-af49-4627-9499-97a7dd76ebbc",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pools",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"connector\": \"raydium\",\n  \"type\": \"clmm\",\n  \"network\": \"mainnet-beta\",\n  \"address\": \"<string>\",\n  \"baseSymbol\": \"SOL\",\n  \"quoteSymbol\": \"USDC\",\n  \"baseTokenAddress\": \"So11111111111111111111111111111111111111112\",\n  \"quoteTokenAddress\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\",\n  \"feePct\": 0.25\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b69530d-0564-4e50-b478-c85bd74f5a62",
+          "name": "Find pool from GeckoTerminal and save it to the pool list",
+          "request": {
+            "name": "Find pool from GeckoTerminal and save it to the pool list",
+            "description": {
+              "content": "Find pool from GeckoTerminal and save it to the pool list",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pools",
+                "save",
+                ":address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainNetwork",
+                  "value": "<string>",
+                  "description": "(Required) Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) Pool contract address"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "018e2a0c-2cb2-4094-848f-2c19cff1c663",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pools",
+                    "save",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainNetwork",
+                      "value": "solana-mainnet-beta"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) Pool contract address"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"pool\": {\n    \"type\": \"clmm\",\n    \"network\": \"string\",\n    \"baseSymbol\": \"string\",\n    \"quoteSymbol\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"feePct\": 9487.999074956071,\n    \"address\": \"string\",\n    \"geckoData\": {\n      \"volumeUsd24h\": \"string\",\n      \"liquidityUsd\": \"string\",\n      \"priceNative\": \"string\",\n      \"priceUsd\": \"string\",\n      \"buys24h\": 2866.5456619998577,\n      \"sells24h\": 7962.454345973544,\n      \"timestamp\": 8387.711785916063,\n      \"apr\": 8074.000691542702\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1e4b1dd-cf28-4dda-8764-ee536a3e9d0c",
+          "name": "Remove a pool by address",
+          "request": {
+            "name": "Remove a pool by address",
+            "description": {
+              "content": "Remove a pool by address",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pools",
+                ":address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "connector",
+                  "value": "<string>",
+                  "description": "(Required) Connector (raydium, meteora, uniswap, orca)"
+                },
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>",
+                  "description": "(Required) Network name (mainnet, mainnet-beta, etc)"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "(Required) Pool type"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) Pool contract address to remove"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cec272d3-59d6-4372-911f-4cb08ed46e4c",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pools",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "connector",
+                      "value": "raydium"
+                    },
+                    {
+                      "key": "network",
+                      "value": "mainnet"
+                    },
+                    {
+                      "key": "type",
+                      "value": "amm"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) Pool contract address to remove"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3fd940dc-d8db-40c5-baa9-ca3dca7badea",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pools",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "connector",
+                      "value": "raydium"
+                    },
+                    {
+                      "key": "network",
+                      "value": "mainnet"
+                    },
+                    {
+                      "key": "type",
+                      "value": "amm"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) Pool contract address to remove"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:15888",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e02e8094-5fcd-4271-a4e9-fc88b0f16bea",
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /pools API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API endpoints for interacting with DEXs and blockchains",
+      "type": "text/plain"
+    }
+  }
+}

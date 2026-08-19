@@ -1,0 +1,2046 @@
+{
+  "item": [
+    {
+      "id": "d25832a3-0c55-40f5-9626-5ea4ce8ec27e",
+      "name": "/connector/raydium",
+      "description": {
+        "content": "Raydium connector endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "05847157-ebbd-42d2-8ba7-e473483b85a5",
+          "name": "Get AMM pool information from Raydium",
+          "request": {
+            "name": "Get AMM pool information from Raydium",
+            "description": {
+              "content": "Get AMM pool information from Raydium",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "raydium",
+                "amm",
+                "pool-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) Raydium AMM pool address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d88a2313-c7a6-4e34-b65d-7290ec6de7db",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "raydium",
+                    "amm",
+                    "pool-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"feePct\": 1853.567609436635,\n  \"price\": 7865.692327300943,\n  \"baseTokenAmount\": 8574.643520599038,\n  \"quoteTokenAmount\": 9822.75774253793\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5baa53f-30e5-45bc-9303-ef31a18cf977",
+          "name": "Get info about a Raydium AMM position",
+          "request": {
+            "name": "Get info about a Raydium AMM position",
+            "description": {
+              "content": "Get info about a Raydium AMM position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "raydium",
+                "amm",
+                "position-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) Raydium AMM pool address"
+                },
+                {
+                  "disabled": false,
+                  "key": "walletAddress",
+                  "value": "Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn",
+                  "description": "Solana wallet address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f1e4cd84-b009-4bc1-bb45-974d5bb618d3",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "raydium",
+                    "amm",
+                    "position-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2"
+                    },
+                    {
+                      "key": "walletAddress",
+                      "value": "Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"poolAddress\": \"string\",\n  \"walletAddress\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"lpTokenAmount\": 3053.8714906143396,\n  \"baseTokenAmount\": 4526.559804727674,\n  \"quoteTokenAmount\": 8172.598351862449,\n  \"price\": 2109.6150756575503\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96d81315-8b52-4639-a378-16654b472260",
+          "name": "Quote amounts for a new Raydium AMM liquidity position",
+          "request": {
+            "name": "Quote amounts for a new Raydium AMM liquidity position",
+            "description": {
+              "content": "Quote amounts for a new Raydium AMM liquidity position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "raydium",
+                "amm",
+                "quote-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) Raydium AMM pool address"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseTokenAmount",
+                  "value": "<number>",
+                  "description": "(Required) Amount of base token to add"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteTokenAmount",
+                  "value": "<number>",
+                  "description": "(Required) Amount of quote token to add"
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "2",
+                  "description": "Maximum acceptable slippage percentage"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2bab337-d6c0-4117-9552-d2e18eaa8f8a",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "raydium",
+                    "amm",
+                    "quote-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2"
+                    },
+                    {
+                      "key": "baseTokenAmount",
+                      "value": "0.01"
+                    },
+                    {
+                      "key": "quoteTokenAmount",
+                      "value": "2"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"baseLimited\": true,\n  \"baseTokenAmount\": 2804.099679356663,\n  \"quoteTokenAmount\": 9165.285516338006,\n  \"baseTokenAmountMax\": 6533.923471571452,\n  \"quoteTokenAmountMax\": 7017.9486112582135\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb5ab80f-6af4-4006-9770-09888898d135",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "raydium",
+                    "amm",
+                    "quote-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2"
+                    },
+                    {
+                      "key": "baseTokenAmount",
+                      "value": "0.01"
+                    },
+                    {
+                      "key": "quoteTokenAmount",
+                      "value": "2"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e960c6a-4110-4ccd-bc84-d8705d5890fc",
+          "name": "Get swap quote for Raydium AMM",
+          "request": {
+            "name": "Get swap quote for Raydium AMM",
+            "description": {
+              "content": "Get swap quote for Raydium AMM",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "raydium",
+                "amm",
+                "quote-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "AMM pool address (optional - can be looked up from baseToken and quoteToken)"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseToken",
+                  "value": "<string>",
+                  "description": "(Required) Token to determine swap direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteToken",
+                  "value": "<string>",
+                  "description": "The other token in the pair (optional - required if poolAddress not provided)"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "(Required) Amount to swap"
+                },
+                {
+                  "disabled": false,
+                  "key": "side",
+                  "value": "SELL",
+                  "description": "(Required) Trade direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "2",
+                  "description": "Maximum acceptable slippage percentage"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "beaed402-26df-4bcd-96e8-4c68afe9b11e",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "raydium",
+                    "amm",
+                    "quote-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2"
+                    },
+                    {
+                      "key": "baseToken",
+                      "value": "SOL"
+                    },
+                    {
+                      "key": "quoteToken",
+                      "value": "USDC"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "0.01"
+                    },
+                    {
+                      "key": "side",
+                      "value": "SELL"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"poolAddress\": \"string\",\n  \"tokenIn\": \"string\",\n  \"tokenOut\": \"string\",\n  \"amountIn\": 220.16204073876057,\n  \"amountOut\": 3863.6269287806867,\n  \"price\": 9403.987439376055,\n  \"minAmountOut\": 2171.801820564275,\n  \"maxAmountIn\": 7857.887410135517,\n  \"priceImpactPct\": 5035.810438098888,\n  \"slippagePct\": 6068.55376224009\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4910b1de-18eb-48e3-9a7c-c3aa6afbca54",
+          "name": "Execute a swap on Raydium AMM or CPMM",
+          "request": {
+            "name": "Execute a swap on Raydium AMM or CPMM",
+            "description": {
+              "content": "Execute a swap on Raydium AMM or CPMM",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "raydium",
+                "amm",
+                "execute-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baseToken\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"side\": \"<string>\",\n  \"walletAddress\": \"<string>\",\n  \"network\": \"mainnet-beta\",\n  \"poolAddress\": \"<string>\",\n  \"quoteToken\": \"<string>\",\n  \"slippagePct\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "74cf43bc-c180-4c38-862a-21eb83033279",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "raydium",
+                    "amm",
+                    "execute-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baseToken\": \"SOL\",\n  \"amount\": 0.01,\n  \"side\": \"SELL\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"network\": \"mainnet-beta\",\n  \"poolAddress\": \"\",\n  \"quoteToken\": \"USDC\",\n  \"slippagePct\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 972.9752579155393,\n  \"data\": {\n    \"tokenIn\": \"string\",\n    \"tokenOut\": \"string\",\n    \"amountIn\": 1484.0476453856,\n    \"amountOut\": 1127.6170400826124,\n    \"fee\": 3485.267036379017,\n    \"baseTokenBalanceChange\": 7403.501557373431,\n    \"quoteTokenBalanceChange\": 9688.481035589826\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc2f564e-d50f-4425-89b6-54a280959e1b",
+          "name": "Add liquidity to a Raydium AMM/CPMM pool",
+          "request": {
+            "name": "Add liquidity to a Raydium AMM/CPMM pool",
+            "description": {
+              "content": "Add liquidity to a Raydium AMM/CPMM pool",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "raydium",
+                "amm",
+                "add-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"poolAddress\": \"<string>\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"slippagePct\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "15bc40bc-f3cc-4907-96ef-67f6e39cefd9",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "raydium",
+                    "amm",
+                    "add-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"poolAddress\": \"58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2\",\n  \"baseTokenAmount\": 0.01,\n  \"quoteTokenAmount\": 2,\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"slippagePct\": 2\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 9955.837252549894,\n  \"data\": {\n    \"fee\": 7397.471841742724,\n    \"baseTokenAmountAdded\": 4727.753139845906,\n    \"quoteTokenAmountAdded\": 1908.338241602645\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a694987b-5f70-457c-b8f4-8d9b8406251f",
+          "name": "Remove liquidity from a Raydium AMM/CPMM pool",
+          "request": {
+            "name": "Remove liquidity from a Raydium AMM/CPMM pool",
+            "description": {
+              "content": "Remove liquidity from a Raydium AMM/CPMM pool",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "raydium",
+                "amm",
+                "remove-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"poolAddress\": \"<string>\",\n  \"percentageToRemove\": \"<number>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c3c21f42-9c38-4511-8afa-ea8d46136d94",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "raydium",
+                    "amm",
+                    "remove-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"poolAddress\": \"58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWBkwMihLYQo2\",\n  \"percentageToRemove\": 100,\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 8536.310018331686,\n  \"data\": {\n    \"fee\": 8689.47536247628,\n    \"baseTokenAmountRemoved\": 7877.480632508462,\n    \"quoteTokenAmountRemoved\": 1772.9803621301764\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5f9965e-7be8-4b91-8897-76bc0bdc76a5",
+          "name": "Get CLMM pool information from Raydium",
+          "request": {
+            "name": "Get CLMM pool information from Raydium",
+            "description": {
+              "content": "Get CLMM pool information from Raydium",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "raydium",
+                "clmm",
+                "pool-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) Raydium CLMM pool address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3edd13b1-0edd-476b-9863-95794737fff6",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "raydium",
+                    "clmm",
+                    "pool-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"feePct\": 8935.843575427569,\n  \"price\": 3583.1983847524484,\n  \"baseTokenAmount\": 6932.181605913191,\n  \"quoteTokenAmount\": 6649.437250604232,\n  \"activeBinId\": 4810.84850328087,\n  \"binStep\": 5740.149450176357\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b97da001-bf7b-4aa7-8c83-59d35bdc5773",
+          "name": "Retrieve all positions owned by a user's wallet across all Raydium CLMM pools",
+          "request": {
+            "name": "Retrieve all positions owned by a user's wallet across all Raydium CLMM pools",
+            "description": {
+              "content": "Retrieve all positions owned by a user's wallet across all Raydium CLMM pools",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "raydium",
+                "clmm",
+                "positions-owned"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "walletAddress",
+                  "value": "<string>",
+                  "description": "(Required) Solana wallet address to check for positions"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d29d604-264a-4e84-9dfb-f31e3330b063",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "raydium",
+                    "clmm",
+                    "positions-owned"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "walletAddress",
+                      "value": "Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"address\": \"string\",\n    \"poolAddress\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"baseTokenAmount\": 4524.883010804938,\n    \"quoteTokenAmount\": 7629.608878863383,\n    \"baseFeeAmount\": 8502.027083046836,\n    \"quoteFeeAmount\": 6985.3384305326035,\n    \"lowerBinId\": 4894.964261688692,\n    \"upperBinId\": 1292.0816775215983,\n    \"lowerPrice\": 282.3886230060102,\n    \"upperPrice\": 4725.5870362790065,\n    \"price\": 4909.195076020813,\n    \"rewardTokenAddress\": \"string\",\n    \"rewardAmount\": 7332.521950813575\n  },\n  {\n    \"address\": \"string\",\n    \"poolAddress\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"baseTokenAmount\": 4423.3772297910255,\n    \"quoteTokenAmount\": 684.8670696625625,\n    \"baseFeeAmount\": 1704.1363278131628,\n    \"quoteFeeAmount\": 4987.791086419299,\n    \"lowerBinId\": 9422.669534391309,\n    \"upperBinId\": 4038.6732678051694,\n    \"lowerPrice\": 9650.851049182846,\n    \"upperPrice\": 5109.150229865225,\n    \"price\": 330.4307832610065,\n    \"rewardTokenAddress\": \"string\",\n    \"rewardAmount\": 2941.533536176284\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94e54cf6-e8ff-4d15-8d9c-b12a93b9ddf8",
+          "name": "Get info about a Raydium CLMM position",
+          "request": {
+            "name": "Get info about a Raydium CLMM position",
+            "description": {
+              "content": "Get info about a Raydium CLMM position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "raydium",
+                "clmm",
+                "position-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "positionAddress",
+                  "value": "<string>",
+                  "description": "(Required) Position NFT address"
+                },
+                {
+                  "disabled": false,
+                  "key": "walletAddress",
+                  "value": "Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn",
+                  "description": "Solana wallet address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "307e23df-1260-4670-90b8-0d4dfea891d2",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "raydium",
+                    "clmm",
+                    "position-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "positionAddress",
+                      "value": "<sample-position-address>"
+                    },
+                    {
+                      "key": "walletAddress",
+                      "value": "Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"poolAddress\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"baseTokenAmount\": 3455.9636360383115,\n  \"quoteTokenAmount\": 7593.676544881313,\n  \"baseFeeAmount\": 2172.5111945150343,\n  \"quoteFeeAmount\": 488.3429155220287,\n  \"lowerBinId\": 9262.436411320863,\n  \"upperBinId\": 6319.694436636596,\n  \"lowerPrice\": 3087.100970922253,\n  \"upperPrice\": 6654.921047703361,\n  \"price\": 5819.19679562096,\n  \"rewardTokenAddress\": \"string\",\n  \"rewardAmount\": 7627.469841132036\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10d939ab-73be-46c6-be3f-e984afe59798",
+          "name": "Quote amounts for a new Raydium CLMM position",
+          "request": {
+            "name": "Quote amounts for a new Raydium CLMM position",
+            "description": {
+              "content": "Quote amounts for a new Raydium CLMM position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "raydium",
+                "clmm",
+                "quote-position"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "lowerPrice",
+                  "value": "<number>",
+                  "description": "(Required) Lower price bound for the position"
+                },
+                {
+                  "disabled": false,
+                  "key": "upperPrice",
+                  "value": "<number>",
+                  "description": "(Required) Upper price bound for the position"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) Raydium CLMM pool address"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseTokenAmount",
+                  "value": "<number>",
+                  "description": "Amount of base token to deposit"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteTokenAmount",
+                  "value": "<number>",
+                  "description": "Amount of quote token to deposit"
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "2",
+                  "description": "Maximum acceptable slippage percentage"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c1dee6fc-2dd3-458d-af03-399445cef0ce",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "raydium",
+                    "clmm",
+                    "quote-position"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "lowerPrice",
+                      "value": "100"
+                    },
+                    {
+                      "key": "upperPrice",
+                      "value": "300"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv"
+                    },
+                    {
+                      "key": "baseTokenAmount",
+                      "value": "0.01"
+                    },
+                    {
+                      "key": "quoteTokenAmount",
+                      "value": "2"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"baseLimited\": false,\n  \"baseTokenAmount\": 8045.825848888257,\n  \"quoteTokenAmount\": 7008.675809083892,\n  \"baseTokenAmountMax\": 7793.596370997091,\n  \"quoteTokenAmountMax\": 8206.138249277277,\n  \"liquidity\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f484173-d7e9-4bd0-b48d-e4f96886b378",
+          "name": "Get swap quote for Raydium CLMM",
+          "request": {
+            "name": "Get swap quote for Raydium CLMM",
+            "description": {
+              "content": "Get swap quote for Raydium CLMM",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "raydium",
+                "clmm",
+                "quote-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "CLMM pool address (optional - can be looked up from tokens)"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseToken",
+                  "value": "<string>",
+                  "description": "(Required) Token to determine swap direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteToken",
+                  "value": "<string>",
+                  "description": "The other token in the pair"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "(Required) Amount to swap"
+                },
+                {
+                  "disabled": false,
+                  "key": "side",
+                  "value": "SELL",
+                  "description": "(Required) Trade direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "2",
+                  "description": "Maximum acceptable slippage percentage"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b35301f-28b8-456c-a641-aa43a4f0bc47",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "raydium",
+                    "clmm",
+                    "quote-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv"
+                    },
+                    {
+                      "key": "baseToken",
+                      "value": "SOL"
+                    },
+                    {
+                      "key": "quoteToken",
+                      "value": "USDC"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "0.01"
+                    },
+                    {
+                      "key": "side",
+                      "value": "SELL"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"poolAddress\": \"string\",\n  \"tokenIn\": \"string\",\n  \"tokenOut\": \"string\",\n  \"amountIn\": 220.16204073876057,\n  \"amountOut\": 3863.6269287806867,\n  \"price\": 9403.987439376055,\n  \"minAmountOut\": 2171.801820564275,\n  \"maxAmountIn\": 7857.887410135517,\n  \"priceImpactPct\": 5035.810438098888,\n  \"slippagePct\": 6068.55376224009\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a82f7733-c5b3-459f-9274-da177f2e9244",
+          "name": "Execute a swap on Raydium CLMM",
+          "request": {
+            "name": "Execute a swap on Raydium CLMM",
+            "description": {
+              "content": "Execute a swap on Raydium CLMM",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "raydium",
+                "clmm",
+                "execute-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baseToken\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"side\": \"SELL\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"network\": \"mainnet-beta\",\n  \"poolAddress\": \"<string>\",\n  \"quoteToken\": \"<string>\",\n  \"slippagePct\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9e9b3b6a-9c90-4e1d-ba07-cc0a8c36d7f8",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "raydium",
+                    "clmm",
+                    "execute-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baseToken\": \"SOL\",\n  \"amount\": 0.01,\n  \"side\": \"SELL\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"network\": \"mainnet-beta\",\n  \"poolAddress\": \"3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv\",\n  \"quoteToken\": \"USDC\",\n  \"slippagePct\": 2\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 972.9752579155393,\n  \"data\": {\n    \"tokenIn\": \"string\",\n    \"tokenOut\": \"string\",\n    \"amountIn\": 1484.0476453856,\n    \"amountOut\": 1127.6170400826124,\n    \"fee\": 3485.267036379017,\n    \"baseTokenBalanceChange\": 7403.501557373431,\n    \"quoteTokenBalanceChange\": 9688.481035589826\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ecb8fac-99dd-492b-995d-5c0d596e5177",
+          "name": "Open a new Raydium CLMM position",
+          "request": {
+            "name": "Open a new Raydium CLMM position",
+            "description": {
+              "content": "Open a new Raydium CLMM position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "raydium",
+                "clmm",
+                "open-position"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lowerPrice\": \"<number>\",\n  \"upperPrice\": \"<number>\",\n  \"poolAddress\": \"<string>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"slippagePct\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c076f3ba-6680-4ae6-b016-e394659a4885",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "raydium",
+                    "clmm",
+                    "open-position"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lowerPrice\": 100,\n  \"upperPrice\": 300,\n  \"poolAddress\": \"3ucNos4NbumPLZNWztqGHNFFgkHeRMBQAVemeeomsUxv\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"baseTokenAmount\": 0.01,\n  \"quoteTokenAmount\": 2,\n  \"slippagePct\": 2\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 4813.795402899634,\n  \"data\": {\n    \"fee\": 2712.1124256526073,\n    \"positionAddress\": \"string\",\n    \"positionRent\": 9357.13187987637,\n    \"baseTokenAmountAdded\": 7502.551279216234,\n    \"quoteTokenAmountAdded\": 1815.8865240861999\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cad4f1ac-f40e-486d-9cb3-b0b061837581",
+          "name": "Add liquidity to existing Raydium CLMM position",
+          "request": {
+            "name": "Add liquidity to existing Raydium CLMM position",
+            "description": {
+              "content": "Add liquidity to existing Raydium CLMM position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "raydium",
+                "clmm",
+                "add-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"slippagePct\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2385447e-5b92-4633-9b9b-58a0265df53b",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "raydium",
+                    "clmm",
+                    "add-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"<sample-position-address>\",\n  \"baseTokenAmount\": 0.01,\n  \"quoteTokenAmount\": 2,\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"slippagePct\": 2\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 9955.837252549894,\n  \"data\": {\n    \"fee\": 7397.471841742724,\n    \"baseTokenAmountAdded\": 4727.753139845906,\n    \"quoteTokenAmountAdded\": 1908.338241602645\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "170099fc-2fb0-4c82-81cd-282dc5ba7859",
+          "name": "Remove liquidity from Raydium CLMM position",
+          "request": {
+            "name": "Remove liquidity from Raydium CLMM position",
+            "description": {
+              "content": "Remove liquidity from Raydium CLMM position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "raydium",
+                "clmm",
+                "remove-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"percentageToRemove\": \"<number>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "48a56383-ca28-408b-8953-a550270f5195",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "raydium",
+                    "clmm",
+                    "remove-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263\",\n  \"percentageToRemove\": 100,\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 8536.310018331686,\n  \"data\": {\n    \"fee\": 8689.47536247628,\n    \"baseTokenAmountRemoved\": 7877.480632508462,\n    \"quoteTokenAmountRemoved\": 1772.9803621301764\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c863965-17d2-4948-986e-581c8d9af2f7",
+          "name": "Collect fees from a Raydium CLMM position by removing 1% of liquidity",
+          "request": {
+            "name": "Collect fees from a Raydium CLMM position by removing 1% of liquidity",
+            "description": {
+              "content": "Collect fees from a Raydium CLMM position by removing 1% of liquidity",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "raydium",
+                "clmm",
+                "collect-fees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "714fa09a-bde9-493d-80da-d92b068c00bc",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "raydium",
+                    "clmm",
+                    "collect-fees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 26.723150972579603,\n  \"data\": {\n    \"fee\": 4463.61127857331,\n    \"baseFeeAmountCollected\": 559.4874462349486,\n    \"quoteFeeAmountCollected\": 8277.352263385126\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02e3f422-aeae-4def-a4b4-466b72b8a7d4",
+          "name": "Close a Raydium CLMM position",
+          "request": {
+            "name": "Close a Raydium CLMM position",
+            "description": {
+              "content": "Close a Raydium CLMM position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "raydium",
+                "clmm",
+                "close-position"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4ad17d49-8988-4749-9a9f-87a13849b63a",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "raydium",
+                    "clmm",
+                    "close-position"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 271.3710806955849,\n  \"data\": {\n    \"fee\": 1156.8377539854246,\n    \"positionRentRefunded\": 7537.9867557617645,\n    \"baseTokenAmountRemoved\": 6594.760576522673,\n    \"quoteTokenAmountRemoved\": 5449.947242345509,\n    \"baseFeeAmountCollected\": 6106.661674221466,\n    \"quoteFeeAmountCollected\": 1156.2429877923619\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:15888",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7513f427-bb3c-48be-be9d-a063ca0d6dd9",
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/raydium API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API endpoints for interacting with DEXs and blockchains",
+      "type": "text/plain"
+    }
+  }
+}

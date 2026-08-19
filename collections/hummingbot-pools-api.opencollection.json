@@ -1,0 +1,243 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /pools API",
+    "version": "dev-2.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/pools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /pools/{tradingPair}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/pools/:tradingPair",
+            "params": [
+              {
+                "name": "connector",
+                "value": "",
+                "type": "query",
+                "description": "Connector (raydium, meteora, uniswap, orca)"
+              },
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Network name (mainnet, mainnet-beta, etc)"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Pool type"
+              },
+              {
+                "name": "tradingPair",
+                "value": "",
+                "type": "path",
+                "description": "Trading pair (e.g., SOL-USDC, ETH-USDC)"
+              }
+            ]
+          },
+          "docs": "Get a specific pool by trading pair"
+        },
+        {
+          "info": {
+            "name": "GET /pools/find/{address}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/pools/find/:address",
+            "params": [
+              {
+                "name": "chainNetwork",
+                "value": "",
+                "type": "query",
+                "description": "Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)"
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "Pool contract address"
+              }
+            ]
+          },
+          "docs": "Get detailed pool information by address from GeckoTerminal"
+        },
+        {
+          "info": {
+            "name": "GET /pools/find",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/pools/find",
+            "params": [
+              {
+                "name": "chainNetwork",
+                "value": "",
+                "type": "query",
+                "description": "Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)"
+              },
+              {
+                "name": "connector",
+                "value": "",
+                "type": "query",
+                "description": "Filter by connector name (e.g., raydium, meteora, uniswap, pancakeswap, pancakeswap-sol)"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by pool type: clmm (v3-style concentrated liquidity) or amm (v2-style)"
+              },
+              {
+                "name": "tokenA",
+                "value": "",
+                "type": "query",
+                "description": "First token symbol or contract address (optional - for filtering by token pair)"
+              },
+              {
+                "name": "tokenB",
+                "value": "",
+                "type": "query",
+                "description": "Second token symbol or contract address (optional - for filtering by token pair)"
+              },
+              {
+                "name": "pages",
+                "value": "",
+                "type": "query",
+                "description": "Number of pages to fetch from GeckoTerminal (1-10, default: 10)"
+              }
+            ]
+          },
+          "docs": "Find pools for a token pair from GeckoTerminal"
+        },
+        {
+          "info": {
+            "name": "GET /pools/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/pools/",
+            "params": [
+              {
+                "name": "connector",
+                "value": "",
+                "type": "query",
+                "description": "Connector (raydium, meteora, uniswap, orca)"
+              },
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Optional: filter by network (mainnet, mainnet-beta, etc)"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Optional: filter by pool type"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Optional: search by token symbol or address"
+              }
+            ]
+          },
+          "docs": "List all pools for a connector, optionally filtered by network, type, or search term"
+        },
+        {
+          "info": {
+            "name": "POST /pools/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/pools/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new pool"
+        },
+        {
+          "info": {
+            "name": "POST /pools/save/{address}",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/pools/save/:address",
+            "params": [
+              {
+                "name": "chainNetwork",
+                "value": "",
+                "type": "query",
+                "description": "Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)"
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "Pool contract address"
+              }
+            ]
+          },
+          "docs": "Find pool from GeckoTerminal and save it to the pool list"
+        },
+        {
+          "info": {
+            "name": "DELETE /pools/{address}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:15888/pools/:address",
+            "params": [
+              {
+                "name": "connector",
+                "value": "",
+                "type": "query",
+                "description": "Connector (raydium, meteora, uniswap, orca)"
+              },
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Network name (mainnet, mainnet-beta, etc)"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Pool type"
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "Pool contract address to remove"
+              }
+            ]
+          },
+          "docs": "Remove a pool by address"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

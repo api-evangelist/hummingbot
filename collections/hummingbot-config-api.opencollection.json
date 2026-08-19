@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /config API",
+    "version": "dev-2.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/config",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /config/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/config/",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query",
+                "description": "Optional configuration namespace (e.g., \"server\", \"ethereum-mainnet\", \"solana-mainnet-beta\", \"uniswap\")"
+              }
+            ]
+          },
+          "docs": "Get configuration settings. Returns all configurations if no parameters are specified. Use namespace to get a specific config (e.g., server, ethereum-mainnet, solana-mainnet-beta, uniswap)."
+        },
+        {
+          "info": {
+            "name": "POST /config/update",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/config/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a specific configuration value"
+        },
+        {
+          "info": {
+            "name": "GET /config/chains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/config/chains"
+          },
+          "docs": "Returns a list of available blockchain networks supported by Gateway."
+        },
+        {
+          "info": {
+            "name": "GET /config/connectors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/config/connectors"
+          },
+          "docs": "Returns a list of available DEX connectors and their supported blockchain networks."
+        },
+        {
+          "info": {
+            "name": "GET /config/namespaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/config/namespaces"
+          },
+          "docs": "Returns a list of all configuration namespaces available in Gateway."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

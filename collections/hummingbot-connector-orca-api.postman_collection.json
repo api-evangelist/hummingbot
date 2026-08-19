@@ -1,0 +1,1342 @@
+{
+  "item": [
+    {
+      "id": "8914fae9-5620-4b24-8f1f-926502513522",
+      "name": "/connector/orca",
+      "description": {
+        "content": "Orca connector endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "68d8075c-7266-45ee-bcaa-30fcd395ca77",
+          "name": "Fetch info about Orca pools",
+          "request": {
+            "name": "Fetch info about Orca pools",
+            "description": {
+              "content": "Fetch info about Orca pools",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "orca",
+                "clmm",
+                "fetch-pools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of pools to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "tokenA",
+                  "value": "<string>",
+                  "description": "First token symbol or address"
+                },
+                {
+                  "disabled": false,
+                  "key": "tokenB",
+                  "value": "<string>",
+                  "description": "Second token symbol or address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48733a14-b704-42fc-ae2f-a4c6f38cdaed",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "orca",
+                    "clmm",
+                    "fetch-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "tokenA",
+                      "value": "SOL"
+                    },
+                    {
+                      "key": "tokenB",
+                      "value": "USDC"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"address\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"feePct\": 973.854581556426,\n    \"price\": 4869.680640792432,\n    \"baseTokenAmount\": 1569.5635608856128,\n    \"quoteTokenAmount\": 1196.4004663158923,\n    \"activeBinId\": 1734.910043000568,\n    \"binStep\": 5431.062782967976\n  },\n  {\n    \"address\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"feePct\": 9064.1348539178,\n    \"price\": 7987.762607626697,\n    \"baseTokenAmount\": 8415.435669152828,\n    \"quoteTokenAmount\": 4056.3729636915946,\n    \"activeBinId\": 1284.395683259949,\n    \"binStep\": 2674.098419335791\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5b6288c-09bd-4196-8f39-3f7f3974e9c7",
+          "name": "Get pool information for a Orca pool",
+          "request": {
+            "name": "Get pool information for a Orca pool",
+            "description": {
+              "content": "Get pool information for a Orca pool",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "orca",
+                "clmm",
+                "pool-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) Orca CLMM pool address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "432604f0-6f85-4513-9009-93df390a5af6",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "orca",
+                    "clmm",
+                    "pool-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"feePct\": 8893.575672070247,\n  \"price\": 2540.2209040532384,\n  \"baseTokenAmount\": 1059.8582729357497,\n  \"quoteTokenAmount\": 7225.816156289565,\n  \"activeBinId\": 1215.4909211550912,\n  \"liquidity\": \"string\",\n  \"sqrtPrice\": \"string\",\n  \"tvlUsdc\": 934.0072516163111,\n  \"protocolFeeRate\": 2543.2142000002054,\n  \"yieldOverTvl\": 8818.866617581682,\n  \"binStep\": 634.4138617618567\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8c6ebe4-4f1f-4b94-a69f-90249ff4ff5c",
+          "name": "Retrieve a list of positions owned by a user's wallet in a specific Orca pool",
+          "request": {
+            "name": "Retrieve a list of positions owned by a user's wallet in a specific Orca pool",
+            "description": {
+              "content": "Retrieve a list of positions owned by a user's wallet in a specific Orca pool",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "orca",
+                "clmm",
+                "positions-owned"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "walletAddress",
+                  "value": "Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn",
+                  "description": "Solana wallet address to check for positions"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) Orca CLMM pool address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "402b140b-3170-44be-a209-5939016e72b4",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "orca",
+                    "clmm",
+                    "positions-owned"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "walletAddress",
+                      "value": "Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"address\": \"string\",\n    \"poolAddress\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"baseTokenAmount\": 683.5854301472722,\n    \"quoteTokenAmount\": 5299.322052970582,\n    \"baseFeeAmount\": 8660.308103393665,\n    \"quoteFeeAmount\": 9949.728284845754,\n    \"lowerBinId\": 3819.686141345786,\n    \"upperBinId\": 6419.333476413694,\n    \"lowerPrice\": 8332.031402485225,\n    \"upperPrice\": 1987.4739238572959,\n    \"price\": 2070.7249288523976,\n    \"rewardTokenAddress\": \"string\",\n    \"rewardAmount\": 6948.931655583348\n  },\n  {\n    \"address\": \"string\",\n    \"poolAddress\": \"string\",\n    \"baseTokenAddress\": \"string\",\n    \"quoteTokenAddress\": \"string\",\n    \"baseTokenAmount\": 8537.83301424284,\n    \"quoteTokenAmount\": 8513.36147896636,\n    \"baseFeeAmount\": 2002.962976088445,\n    \"quoteFeeAmount\": 2165.478537104901,\n    \"lowerBinId\": 7265.698896199447,\n    \"upperBinId\": 8244.831285791981,\n    \"lowerPrice\": 9242.316599734379,\n    \"upperPrice\": 7362.668407374397,\n    \"price\": 1411.9834723729286,\n    \"rewardTokenAddress\": \"string\",\n    \"rewardAmount\": 7096.0292884779465\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72ab1829-2d8c-47d0-9d75-892336cfaa96",
+          "name": "Get details for a specific Orca position",
+          "request": {
+            "name": "Get details for a specific Orca position",
+            "description": {
+              "content": "Get details for a specific Orca position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "orca",
+                "clmm",
+                "position-info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "positionAddress",
+                  "value": "<string>",
+                  "description": "(Required) Position address"
+                },
+                {
+                  "disabled": false,
+                  "key": "walletAddress",
+                  "value": "Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn",
+                  "description": "Solana wallet address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9a699592-60ee-4c4c-8313-c5771049a416",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "orca",
+                    "clmm",
+                    "position-info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "positionAddress",
+                      "value": "<sample-position-address>"
+                    },
+                    {
+                      "key": "walletAddress",
+                      "value": "Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"poolAddress\": \"string\",\n  \"baseTokenAddress\": \"string\",\n  \"quoteTokenAddress\": \"string\",\n  \"baseTokenAmount\": 7643.391433700452,\n  \"quoteTokenAmount\": 5110.3692905470025,\n  \"baseFeeAmount\": 1895.971117409101,\n  \"quoteFeeAmount\": 867.1521355577694,\n  \"lowerBinId\": 853.03495232681,\n  \"upperBinId\": 7064.562192838384,\n  \"lowerPrice\": 4361.436866355602,\n  \"upperPrice\": 2967.756715915757,\n  \"price\": 8478.557884221787,\n  \"rewardTokenAddress\": \"string\",\n  \"rewardAmount\": 6810.572575815246\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76f59bba-44d5-4b33-9993-113f54596553",
+          "name": "Quote amounts for a new Orca CLMM position",
+          "request": {
+            "name": "Quote amounts for a new Orca CLMM position",
+            "description": {
+              "content": "Quote amounts for a new Orca CLMM position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "orca",
+                "clmm",
+                "quote-position"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "lowerPrice",
+                  "value": "<number>",
+                  "description": "(Required) Lower price bound for the position"
+                },
+                {
+                  "disabled": false,
+                  "key": "upperPrice",
+                  "value": "<number>",
+                  "description": "(Required) Upper price bound for the position"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "(Required) Orca CLMM pool address"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseTokenAmount",
+                  "value": "<number>",
+                  "description": "Amount of base token to deposit"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteTokenAmount",
+                  "value": "<number>",
+                  "description": "Amount of quote token to deposit"
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "1",
+                  "description": "Maximum acceptable slippage percentage"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "024cedff-8df7-4c64-a025-9d941e40294b",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "orca",
+                    "clmm",
+                    "quote-position"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "lowerPrice",
+                      "value": "200"
+                    },
+                    {
+                      "key": "upperPrice",
+                      "value": "300"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE"
+                    },
+                    {
+                      "key": "baseTokenAmount",
+                      "value": "0.01"
+                    },
+                    {
+                      "key": "quoteTokenAmount",
+                      "value": "2"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"baseLimited\": false,\n  \"baseTokenAmount\": 7799.853224168019,\n  \"quoteTokenAmount\": 3997.1964737361263,\n  \"baseTokenAmountMax\": 7089.957803998353,\n  \"quoteTokenAmountMax\": 8040.707618586157,\n  \"liquidity\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af6764ad-2fb0-4a14-b01c-40d3ce4a5cf4",
+          "name": "Get swap quote for Orca CLMM",
+          "request": {
+            "name": "Get swap quote for Orca CLMM",
+            "description": {
+              "content": "Get swap quote for Orca CLMM",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "orca",
+                "clmm",
+                "quote-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet-beta",
+                  "description": "Solana network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "poolAddress",
+                  "value": "<string>",
+                  "description": "Orca CLMM pool address (optional - can be looked up from baseToken and quoteToken)"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseToken",
+                  "value": "<string>",
+                  "description": "(Required) Token to determine swap direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteToken",
+                  "value": "<string>",
+                  "description": "The other token in the pair (optional - required if poolAddress not provided)"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "(Required) Amount to swap"
+                },
+                {
+                  "disabled": false,
+                  "key": "side",
+                  "value": "SELL",
+                  "description": "(Required) Trade direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "1",
+                  "description": "Maximum acceptable slippage percentage"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4cf45917-40f6-4108-89b0-7af84d3b1d21",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "orca",
+                    "clmm",
+                    "quote-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet-beta"
+                    },
+                    {
+                      "key": "poolAddress",
+                      "value": "Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE"
+                    },
+                    {
+                      "key": "baseToken",
+                      "value": "SOL"
+                    },
+                    {
+                      "key": "quoteToken",
+                      "value": "USDC"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "0.01"
+                    },
+                    {
+                      "key": "side",
+                      "value": "SELL"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"poolAddress\": \"string\",\n  \"tokenIn\": \"string\",\n  \"tokenOut\": \"string\",\n  \"amountIn\": 4580.003596796904,\n  \"amountOut\": 2772.538611095675,\n  \"price\": 2968.2193769660603,\n  \"minAmountOut\": 1239.897988071972,\n  \"maxAmountIn\": 8587.76431529755,\n  \"priceImpactPct\": 1872.2070983125416,\n  \"slippagePct\": 8091.391946618476\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "272a891c-9536-4065-9069-752386d3e546",
+          "name": "Execute a token swap on Orca CLMM",
+          "request": {
+            "name": "Execute a token swap on Orca CLMM",
+            "description": {
+              "content": "Execute a token swap on Orca CLMM",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "orca",
+                "clmm",
+                "execute-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baseToken\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"side\": \"SELL\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"poolAddress\": \"<string>\",\n  \"quoteToken\": \"<string>\",\n  \"slippagePct\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "555cd5a7-4014-42bc-8b16-fd01cbef8255",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "orca",
+                    "clmm",
+                    "execute-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baseToken\": \"SOL\",\n  \"amount\": 0.01,\n  \"side\": \"SELL\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"poolAddress\": \"Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE\",\n  \"quoteToken\": \"USDC\",\n  \"slippagePct\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 1131.6205888101695,\n  \"data\": {\n    \"tokenIn\": \"string\",\n    \"tokenOut\": \"string\",\n    \"amountIn\": 3693.817254535403,\n    \"amountOut\": 2177.8480368791775,\n    \"fee\": 5510.724431933699,\n    \"baseTokenBalanceChange\": 6236.393971856583,\n    \"quoteTokenBalanceChange\": 3996.868316634473\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c7eac2b-7f57-4727-9baa-78bf42656d1d",
+          "name": "Open a new Orca position",
+          "request": {
+            "name": "Open a new Orca position",
+            "description": {
+              "content": "Open a new Orca position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "orca",
+                "clmm",
+                "open-position"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lowerPrice\": \"<number>\",\n  \"upperPrice\": \"<number>\",\n  \"poolAddress\": \"<string>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"slippagePct\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9e5503ad-2b23-4d2b-8f19-c50a8b71dcfb",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "orca",
+                    "clmm",
+                    "open-position"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lowerPrice\": 200,\n  \"upperPrice\": 300,\n  \"poolAddress\": \"Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"baseTokenAmount\": 0.01,\n  \"quoteTokenAmount\": 2,\n  \"slippagePct\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 7967.164659059211,\n  \"data\": {\n    \"fee\": 7566.468535015609,\n    \"positionAddress\": \"string\",\n    \"positionRent\": 7534.414916279881,\n    \"baseTokenAmountAdded\": 4100.6713421375525,\n    \"quoteTokenAmountAdded\": 3518.7959539472245\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e83d584-adb1-4d54-ad08-9bce3114fb79",
+          "name": "Add liquidity to an Orca position",
+          "request": {
+            "name": "Add liquidity to an Orca position",
+            "description": {
+              "content": "Add liquidity to an Orca position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "orca",
+                "clmm",
+                "add-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"baseTokenAmount\": \"<number>\",\n  \"quoteTokenAmount\": \"<number>\",\n  \"slippagePct\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d103e4eb-2fb8-4e52-9c6c-5a4bcf8bc44e",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "orca",
+                    "clmm",
+                    "add-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"<sample-position-address>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"baseTokenAmount\": 0.01,\n  \"quoteTokenAmount\": 2,\n  \"slippagePct\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 1073.5820453192523,\n  \"data\": {\n    \"fee\": 2650.0787446789595,\n    \"baseTokenAmountAdded\": 5207.673082654383,\n    \"quoteTokenAmountAdded\": 6455.496926208331\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c0d385d-bef1-4a60-b75b-4d480d03d706",
+          "name": "Remove liquidity from an Orca position",
+          "request": {
+            "name": "Remove liquidity from an Orca position",
+            "description": {
+              "content": "Remove liquidity from an Orca position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "orca",
+                "clmm",
+                "remove-liquidity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"liquidityPct\": 100,\n  \"slippagePct\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "839697d9-bc92-4bc0-ba82-c0a65ad1bb9d",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "orca",
+                    "clmm",
+                    "remove-liquidity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"<sample-position-address>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\",\n  \"liquidityPct\": 100,\n  \"slippagePct\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 3382.0543947684555,\n  \"data\": {\n    \"fee\": 6068.537744602339,\n    \"baseTokenAmountRemoved\": 6385.476252623152,\n    \"quoteTokenAmountRemoved\": 3886.790893875586\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6602466f-aeec-4301-99a9-1e7aedd23956",
+          "name": "Collect fees from an Orca position",
+          "request": {
+            "name": "Collect fees from an Orca position",
+            "description": {
+              "content": "Collect fees from an Orca position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "orca",
+                "clmm",
+                "collect-fees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dcd500a1-92fc-45f4-9ef1-99cdfcb69fe6",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "orca",
+                    "clmm",
+                    "collect-fees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"<sample-position-address>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 4283.509597190601,\n  \"data\": {\n    \"fee\": 8924.045127933761,\n    \"baseFeeAmountCollected\": 375.09064799758573,\n    \"quoteFeeAmountCollected\": 4376.377421294979\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a003c898-600b-4cdb-a1b7-e16d61cf4dd8",
+          "name": "Close an Orca position",
+          "request": {
+            "name": "Close an Orca position",
+            "description": {
+              "content": "Close an Orca position",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "orca",
+                "clmm",
+                "close-position"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"positionAddress\": \"<string>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "57e222bf-74b4-4f14-99b1-c4575e43bd3a",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "orca",
+                    "clmm",
+                    "close-position"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"positionAddress\": \"<sample-position-address>\",\n  \"network\": \"mainnet-beta\",\n  \"walletAddress\": \"Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 3598.151214217559,\n  \"data\": {\n    \"fee\": 4003.9222850929846,\n    \"positionRentRefunded\": 1199.4295051439342,\n    \"baseTokenAmountRemoved\": 6448.851261493091,\n    \"quoteTokenAmountRemoved\": 772.3575921052561,\n    \"baseFeeAmountCollected\": 8876.080570819997,\n    \"quoteFeeAmountCollected\": 5754.433229065816\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:15888",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "128ae407-aabb-4bd3-9910-6714de11ae46",
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/orca API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API endpoints for interacting with DEXs and blockchains",
+      "type": "text/plain"
+    }
+  }
+}

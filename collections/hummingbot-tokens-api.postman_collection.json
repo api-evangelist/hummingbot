@@ -1,0 +1,653 @@
+{
+  "item": [
+    {
+      "id": "5983846d-700d-493a-96ad-29bad9a13047",
+      "name": "/tokens",
+      "description": {
+        "content": "Token management endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2b087785-4e48-4159-9def-716b6f6eb66b",
+          "name": "Get a specific token by symbol or address",
+          "request": {
+            "name": "Get a specific token by symbol or address",
+            "description": {
+              "content": "Get a specific token by symbol or address",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tokens",
+                ":symbolOrAddress"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chain",
+                  "value": "<string>",
+                  "description": "(Required) Blockchain network (e.g., ethereum, solana)"
+                },
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>",
+                  "description": "(Required) Network name (e.g., mainnet, mainnet-beta)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "symbolOrAddress",
+                  "description": "(Required) Token symbol or address"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a312d50-c020-4aca-bced-0629ccdbff59",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokens",
+                    ":symbolOrAddress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chain",
+                      "value": "ethereum"
+                    },
+                    {
+                      "key": "network",
+                      "value": "mainnet"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "symbolOrAddress",
+                      "description": "(Required) Token symbol or address"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": {\n    \"name\": \"USD Coin\",\n    \"symbol\": \"USDC\",\n    \"address\": \"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\n    \"decimals\": 6,\n    \"chainId\": 1,\n    \"geckoData\": {\n      \"coingeckoCoinId\": \"string\",\n      \"imageUrl\": \"string\",\n      \"priceUsd\": \"string\",\n      \"volumeUsd24h\": \"string\",\n      \"marketCapUsd\": \"string\",\n      \"fdvUsd\": \"string\",\n      \"totalSupply\": \"string\",\n      \"topPools\": [\n        \"string\",\n        \"string\"\n      ],\n      \"timestamp\": 7691.185491846414\n    }\n  },\n  \"chain\": \"string\",\n  \"network\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e48f0cf-1d2f-49a2-84b9-e01e336d674a",
+          "name": "Get token information with market data from GeckoTerminal by address",
+          "request": {
+            "name": "Get token information with market data from GeckoTerminal by address",
+            "description": {
+              "content": "Get token information with market data from GeckoTerminal by address",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tokens",
+                "find",
+                ":address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainNetwork",
+                  "value": "<string>",
+                  "description": "(Required) Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) Token contract address"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4dfe06e3-2992-47eb-922b-670180f0a7d8",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokens",
+                    "find",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainNetwork",
+                      "value": "solana-mainnet-beta"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) Token contract address"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"USD Coin\",\n  \"symbol\": \"USDC\",\n  \"address\": \"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\n  \"decimals\": 6,\n  \"chainId\": 1,\n  \"geckoData\": {\n    \"coingeckoCoinId\": \"string\",\n    \"imageUrl\": \"string\",\n    \"priceUsd\": \"string\",\n    \"volumeUsd24h\": \"string\",\n    \"marketCapUsd\": \"string\",\n    \"fdvUsd\": \"string\",\n    \"totalSupply\": \"string\",\n    \"topPools\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": 3701.8948748240146\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9c02747-5fe7-4909-809c-d7e9a057a8c0",
+          "name": "List tokens from token lists with optional filtering",
+          "request": {
+            "name": "List tokens from token lists with optional filtering",
+            "description": {
+              "content": "List tokens from token lists with optional filtering",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tokens",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chain",
+                  "value": "<string>",
+                  "description": "Blockchain network (e.g., ethereum, solana)"
+                },
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>",
+                  "description": "Network name (e.g., mainnet, mainnet-beta)"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search term for filtering tokens by symbol or name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ccc3118d-7b58-43ec-85c1-afefedc21227",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokens",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chain",
+                      "value": "ethereum"
+                    },
+                    {
+                      "key": "network",
+                      "value": "mainnet"
+                    },
+                    {
+                      "key": "search",
+                      "value": "USDC"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tokens\": [\n    {\n      \"name\": \"USD Coin\",\n      \"symbol\": \"USDC\",\n      \"address\": \"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\n      \"decimals\": 6,\n      \"chainId\": 1,\n      \"geckoData\": {\n        \"coingeckoCoinId\": \"string\",\n        \"imageUrl\": \"string\",\n        \"priceUsd\": \"string\",\n        \"volumeUsd24h\": \"string\",\n        \"marketCapUsd\": \"string\",\n        \"fdvUsd\": \"string\",\n        \"totalSupply\": \"string\",\n        \"topPools\": [\n          \"string\",\n          \"string\"\n        ],\n        \"timestamp\": 6103.835170499291\n      }\n    },\n    {\n      \"name\": \"USD Coin\",\n      \"symbol\": \"USDC\",\n      \"address\": \"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\n      \"decimals\": 6,\n      \"chainId\": 1,\n      \"geckoData\": {\n        \"coingeckoCoinId\": \"string\",\n        \"imageUrl\": \"string\",\n        \"priceUsd\": \"string\",\n        \"volumeUsd24h\": \"string\",\n        \"marketCapUsd\": \"string\",\n        \"fdvUsd\": \"string\",\n        \"totalSupply\": \"string\",\n        \"topPools\": [\n          \"string\",\n          \"string\"\n        ],\n        \"timestamp\": 4131.040237321764\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10174bea-9c81-4d96-8f4a-c54d216efd05",
+          "name": "Add a new token to a token list",
+          "request": {
+            "name": "Add a new token to a token list",
+            "description": {
+              "content": "Add a new token to a token list",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tokens",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chain\": \"<string>\",\n  \"network\": \"<string>\",\n  \"token\": {\n    \"name\": \"<string>\",\n    \"symbol\": \"<string>\",\n    \"address\": \"<string>\",\n    \"decimals\": \"<number>\",\n    \"chainId\": \"<number>\",\n    \"geckoData\": {\n      \"coingeckoCoinId\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"priceUsd\": \"<string>\",\n      \"volumeUsd24h\": \"<string>\",\n      \"marketCapUsd\": \"<string>\",\n      \"fdvUsd\": \"<string>\",\n      \"totalSupply\": \"<string>\",\n      \"topPools\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"timestamp\": \"<number>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "99ec391a-f33c-4275-8778-eec057ae636c",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokens",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chain\": \"ethereum\",\n  \"network\": \"mainnet\",\n  \"token\": {\n    \"name\": \"USD Coin\",\n    \"symbol\": \"USDC\",\n    \"address\": \"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\n    \"decimals\": 6,\n    \"chainId\": 1,\n    \"geckoData\": {\n      \"coingeckoCoinId\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"priceUsd\": \"<string>\",\n      \"volumeUsd24h\": \"<string>\",\n      \"marketCapUsd\": \"<string>\",\n      \"fdvUsd\": \"<string>\",\n      \"totalSupply\": \"<string>\",\n      \"topPools\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"timestamp\": \"<number>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requiresRestart\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "079a848a-bea9-43a3-b768-b8648580af4c",
+          "name": "Find token from GeckoTerminal and save it to the token list",
+          "request": {
+            "name": "Find token from GeckoTerminal and save it to the token list",
+            "description": {
+              "content": "Find token from GeckoTerminal and save it to the token list",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tokens",
+                "save",
+                ":address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainNetwork",
+                  "value": "<string>",
+                  "description": "(Required) Chain and network in format: chain-network (e.g., solana-mainnet-beta, ethereum-mainnet)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) Token contract address"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13816956-59a1-42a2-b767-f171b4f67517",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokens",
+                    "save",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainNetwork",
+                      "value": "solana-mainnet-beta"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) Token contract address"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"token\": {\n    \"name\": \"USD Coin\",\n    \"symbol\": \"USDC\",\n    \"address\": \"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\n    \"decimals\": 6,\n    \"chainId\": 1,\n    \"geckoData\": {\n      \"coingeckoCoinId\": \"string\",\n      \"imageUrl\": \"string\",\n      \"priceUsd\": \"string\",\n      \"volumeUsd24h\": \"string\",\n      \"marketCapUsd\": \"string\",\n      \"fdvUsd\": \"string\",\n      \"totalSupply\": \"string\",\n      \"topPools\": [\n        \"string\",\n        \"string\"\n      ],\n      \"timestamp\": 9018.05399831244\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7ba0629-1646-45db-ad6f-3955211f4086",
+          "name": "Remove a token from a token list by address",
+          "request": {
+            "name": "Remove a token from a token list by address",
+            "description": {
+              "content": "Remove a token from a token list by address",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tokens",
+                ":address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chain",
+                  "value": "<string>",
+                  "description": "(Required) Blockchain network (e.g., ethereum, solana)"
+                },
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>",
+                  "description": "(Required) Network name (e.g., mainnet, mainnet-beta)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) Token address to remove"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "806905b9-f4be-4e90-84f8-9a7183d39e44",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokens",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chain",
+                      "value": "ethereum"
+                    },
+                    {
+                      "key": "network",
+                      "value": "mainnet"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) Token address to remove"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requiresRestart\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:15888",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8abd399f-c820-4b9c-b480-d71319af801e",
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /tokens API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API endpoints for interacting with DEXs and blockchains",
+      "type": "text/plain"
+    }
+  }
+}

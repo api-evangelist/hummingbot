@@ -1,0 +1,425 @@
+{
+  "item": [
+    {
+      "id": "ffa445a4-ad37-4ad4-b509-2c55d247fdb0",
+      "name": "/config",
+      "description": {
+        "content": "System configuration endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "576663a5-74e6-464a-8ea8-8a7e3974868a",
+          "name": "Get configuration settings. Returns all configurations if no parameters are specified. Use namespace to get a specific config (e.g., server, ethereum-mainnet, solana-mainnet-beta, uniswap).",
+          "request": {
+            "name": "Get configuration settings. Returns all configurations if no parameters are specified. Use namespace to get a specific config (e.g., server, ethereum-mainnet, solana-mainnet-beta, uniswap).",
+            "description": {
+              "content": "Get configuration settings. Returns all configurations if no parameters are specified. Use namespace to get a specific config (e.g., server, ethereum-mainnet, solana-mainnet-beta, uniswap).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "namespace",
+                  "value": "<string>",
+                  "description": "Optional configuration namespace (e.g., \"server\", \"ethereum-mainnet\", \"solana-mainnet-beta\", \"uniswap\")"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f25a0175-7d28-4019-979d-16b6703dbdef",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "namespace",
+                      "value": "server"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec2c8b74-c8fd-4f32-a960-1666a72a3878",
+          "name": "Update a specific configuration value",
+          "request": {
+            "name": "Update a specific configuration value",
+            "description": {
+              "content": "Update a specific configuration value",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"namespace\": \"<string>\",\n  \"path\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eeaab40f-40dd-47b2-867b-d1c8a4fca33d",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"solana-mainnet-beta\",\n  \"path\": \"maxFee\",\n  \"value\": 0.01\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "daee5805-7490-4a5d-ada4-d9938014470c",
+          "name": "Returns a list of available blockchain networks supported by Gateway.",
+          "request": {
+            "name": "Returns a list of available blockchain networks supported by Gateway.",
+            "description": {
+              "content": "Returns a list of available blockchain networks supported by Gateway.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "chains"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1de03ab7-7295-43d6-a400-2fa57fb86dd7",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "chains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"chains\": [\n    {\n      \"chain\": \"string\",\n      \"networks\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"chain\": \"string\",\n      \"networks\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1fb20cf3-cc4b-448e-ab73-8514070e6b8a",
+          "name": "Returns a list of available DEX connectors and their supported blockchain networks.",
+          "request": {
+            "name": "Returns a list of available DEX connectors and their supported blockchain networks.",
+            "description": {
+              "content": "Returns a list of available DEX connectors and their supported blockchain networks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "connectors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c677254-d863-437b-9798-0f55f173e879",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "connectors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"connectors\": [\n    {\n      \"name\": \"string\",\n      \"trading_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"chain\": \"string\",\n      \"networks\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"trading_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"chain\": \"string\",\n      \"networks\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eaa7fbec-d39c-416b-a9a2-5e6ce6f94a92",
+          "name": "Returns a list of all configuration namespaces available in Gateway.",
+          "request": {
+            "name": "Returns a list of all configuration namespaces available in Gateway.",
+            "description": {
+              "content": "Returns a list of all configuration namespaces available in Gateway.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config",
+                "namespaces"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "312e3160-cbb8-478b-88d3-9a59a7cd8969",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config",
+                    "namespaces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"namespaces\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:15888",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "75177e4b-50ae-44f6-866f-8b4979c19052",
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /config API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API endpoints for interacting with DEXs and blockchains",
+      "type": "text/plain"
+    }
+  }
+}

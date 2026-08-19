@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /chain/solana API",
+    "version": "dev-2.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/chain/solana",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /chains/solana/status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/chains/solana/status",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "The Solana network to use"
+              }
+            ]
+          },
+          "docs": "Get Solana network status"
+        },
+        {
+          "info": {
+            "name": "GET /chains/solana/estimate-gas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/chains/solana/estimate-gas",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "The Solana network to use"
+              }
+            ]
+          },
+          "docs": "Estimate gas prices for Solana transactions"
+        },
+        {
+          "info": {
+            "name": "POST /chains/solana/balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/chains/solana/balances",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get token balances for a Solana address. Only returns tokens in the network's token list. If no tokens specified or empty array provided, returns non-zero balances for tokens from the token list that are found in the wallet (includes SOL even if zero). If specific tokens are requested, returns those exact tokens with their balances, including zeros."
+        },
+        {
+          "info": {
+            "name": "POST /chains/solana/poll",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/chains/solana/poll",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Poll for the status of a Solana transaction"
+        },
+        {
+          "info": {
+            "name": "POST /chains/solana/wrap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/chains/solana/wrap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Wrap SOL to WSOL (Wrapped SOL)"
+        },
+        {
+          "info": {
+            "name": "POST /chains/solana/unwrap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/chains/solana/unwrap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unwrap WSOL to SOL. Note: This closes the entire WSOL account, returning all WSOL as SOL."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

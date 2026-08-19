@@ -1,0 +1,299 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/pancakeswap-sol API",
+    "version": "dev-2.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/connector/pancakeswap-sol",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /connectors/pancakeswap-sol/clmm/pool-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/pancakeswap-sol/clmm/pool-info",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "poolAddress",
+                "value": "4QU2NpRaqmKMvPSwVKQDeW4V6JFEKJdkzbzdauumD9qN",
+                "type": "query",
+                "description": "PancakeSwap CLMM pool address"
+              }
+            ]
+          },
+          "docs": "Get CLMM pool information from PancakeSwap Solana"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/pancakeswap-sol/clmm/position-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/pancakeswap-sol/clmm/position-info",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "positionAddress",
+                "value": "",
+                "type": "query",
+                "description": "Position NFT address"
+              }
+            ]
+          },
+          "docs": "Get CLMM position information from PancakeSwap Solana"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/pancakeswap-sol/clmm/positions-owned",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/pancakeswap-sol/clmm/positions-owned",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "walletAddress",
+                "value": "Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn",
+                "type": "query",
+                "description": "Solana wallet address to check for positions"
+              },
+              {
+                "name": "poolAddress",
+                "value": "4QU2NpRaqmKMvPSwVKQDeW4V6JFEKJdkzbzdauumD9qN",
+                "type": "query",
+                "description": "Optional pool address to filter positions by specific pool"
+              }
+            ]
+          },
+          "docs": "Retrieve all positions owned by a user's wallet across all PancakeSwap Solana CLMM pools"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/pancakeswap-sol/clmm/quote-position",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/pancakeswap-sol/clmm/quote-position",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "poolAddress",
+                "value": "4QU2NpRaqmKMvPSwVKQDeW4V6JFEKJdkzbzdauumD9qN",
+                "type": "query",
+                "description": "PancakeSwap CLMM pool address"
+              },
+              {
+                "name": "lowerPrice",
+                "value": "150",
+                "type": "query",
+                "description": "Lower price bound for the position"
+              },
+              {
+                "name": "upperPrice",
+                "value": "250",
+                "type": "query",
+                "description": "Upper price bound for the position"
+              },
+              {
+                "name": "baseTokenAmount",
+                "value": "0.01",
+                "type": "query",
+                "description": "Amount of base token to deposit"
+              },
+              {
+                "name": "quoteTokenAmount",
+                "value": "2",
+                "type": "query",
+                "description": "Amount of quote token to deposit"
+              },
+              {
+                "name": "slippagePct",
+                "value": "2",
+                "type": "query",
+                "description": "Maximum acceptable slippage percentage"
+              }
+            ]
+          },
+          "docs": "Quote position amounts for PancakeSwap Solana CLMM (simplified)"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/pancakeswap-sol/clmm/quote-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/pancakeswap-sol/clmm/quote-swap",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "poolAddress",
+                "value": "4QU2NpRaqmKMvPSwVKQDeW4V6JFEKJdkzbzdauumD9qN",
+                "type": "query",
+                "description": "CLMM pool address (optional - can be looked up from tokens)"
+              },
+              {
+                "name": "baseToken",
+                "value": "SOL",
+                "type": "query",
+                "description": "Base token symbol or address"
+              },
+              {
+                "name": "quoteToken",
+                "value": "USDC",
+                "type": "query",
+                "description": "Quote token symbol or address"
+              },
+              {
+                "name": "amount",
+                "value": "0.01",
+                "type": "query",
+                "description": "Amount to swap"
+              },
+              {
+                "name": "side",
+                "value": "",
+                "type": "query",
+                "description": "Trade direction"
+              },
+              {
+                "name": "slippagePct",
+                "value": "2",
+                "type": "query",
+                "description": "Maximum acceptable slippage percentage"
+              }
+            ]
+          },
+          "docs": "Get swap quote for PancakeSwap Solana CLMM with fee and estimated price impact based on pool liquidity"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/pancakeswap-sol/clmm/execute-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/pancakeswap-sol/clmm/execute-swap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a swap on PancakeSwap Solana CLMM"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/pancakeswap-sol/clmm/open-position",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/pancakeswap-sol/clmm/open-position",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Open a new PancakeSwap Solana CLMM position with Token2022 NFT"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/pancakeswap-sol/clmm/add-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/pancakeswap-sol/clmm/add-liquidity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add liquidity to an existing PancakeSwap Solana CLMM position"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/pancakeswap-sol/clmm/remove-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/pancakeswap-sol/clmm/remove-liquidity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove liquidity from a PancakeSwap Solana CLMM position"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/pancakeswap-sol/clmm/collect-fees",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/pancakeswap-sol/clmm/collect-fees",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Collect accumulated fees from a PancakeSwap Solana CLMM position (removes 1% liquidity)"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/pancakeswap-sol/clmm/close-position",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/pancakeswap-sol/clmm/close-position",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Close a PancakeSwap Solana CLMM position and remove all liquidity and fees if present"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -2,42 +2,49 @@ generated: '2026-07-19'
 method: searched
 status: published
 source: https://github.com/hummingbot/mcp
-description: >-
-  Hummingbot maintains an official Model Context Protocol (MCP) server that lets
-  MCP clients (Claude, Gemini CLI, Claude Code) drive Hummingbot for automated
-  crypto trading across exchanges. It is a stdio server that talks to a running
-  Hummingbot API server; distributed from source (uv) and as a Docker image
-  (hummingbot/hummingbot-mcp:latest). Tool list captured from the project README;
-  first release 0.1.0 (October 2025).
+description: Hummingbot maintains an official Model Context Protocol (MCP) server that lets MCP clients
+  (Claude, Gemini CLI, Claude Code) drive Hummingbot for automated crypto trading across exchanges. It
+  is a stdio server that talks to a running Hummingbot API server; distributed from source (uv) and as
+  a Docker image (hummingbot/hummingbot-mcp:latest). Tool list captured from the project README; first
+  release 0.1.0 (October 2025).
 server:
   name: hummingbot-mcp
   transport: stdio
   source: https://github.com/hummingbot/mcp
   docker_image: hummingbot/hummingbot-mcp:latest
   requires:
-    - A running Hummingbot API server (default http://localhost:8000)
-    - Python 3.11+ (for the uv/source install path)
-    - Valid Hummingbot API credentials
+  - A running Hummingbot API server (default http://localhost:8000)
+  - Python 3.11+ (for the uv/source install path)
+  - Valid Hummingbot API credentials
 tools:
-  - name: configure_server
-    description: View or update the MCP server's Hummingbot API connection settings.
-  - name: manage_accounts
-    description: Create and manage trading accounts and their exchange credentials.
-  - name: setup_connectors
-    description: List and configure exchange/DEX connectors.
-  - name: get_portfolio_balances
-    description: Retrieve portfolio balances across connected accounts.
-  - name: place_order
-    description: Place buy/sell orders on a connected exchange.
-  - name: manage_orders
-    description: List, monitor, and cancel active orders.
-  - name: manage_positions
-    description: View and manage open derivatives positions.
-  - name: get_market_data
-    description: Fetch prices, candles, and order book data.
-  - name: get_funding_rates
-    description: Retrieve perpetual funding-rate information.
-  - name: deploy_bot
-    description: Deploy and control Hummingbot trading bots.
-  - name: configure_controller
-    description: Create or update controller configurations that drive bot strategies.
+- name: configure_server
+  description: View or update the MCP server's Hummingbot API connection settings.
+- name: manage_accounts
+  description: Create and manage trading accounts and their exchange credentials.
+- name: setup_connectors
+  description: List and configure exchange/DEX connectors.
+- name: get_portfolio_balances
+  description: Retrieve portfolio balances across connected accounts.
+- name: place_order
+  description: Place buy/sell orders on a connected exchange.
+- name: manage_orders
+  description: List, monitor, and cancel active orders.
+- name: manage_positions
+  description: View and manage open derivatives positions.
+- name: get_market_data
+  description: Fetch prices, candles, and order book data.
+- name: get_funding_rates
+  description: Retrieve perpetual funding-rate information.
+- name: deploy_bot
+  description: Deploy and control Hummingbot trading bots.
+- name: configure_controller
+  description: Create or update controller configurations that drive bot strategies.
+deployment:
+  mode: none
+  endpoint: http://localhost:8000
+  verified: probed
+  probe: dead
+  note: the endpoint this manifest claimed did not answer; recorded as none rather than deleted so the
+    claim stays auditable
+  checked: '2026-08-12'
+  source: catalog MCP census

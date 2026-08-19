@@ -1,0 +1,774 @@
+{
+  "item": [
+    {
+      "id": "be238af8-58e5-4b50-ae25-ad148d1d3160",
+      "name": "/chain/ethereum",
+      "description": {
+        "content": "Ethereum and EVM-based chain endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "58b2cd40-1069-429e-87ed-2d4a03c08d1b",
+          "name": "Get Ethereum chain status",
+          "request": {
+            "name": "Get Ethereum chain status",
+            "description": {
+              "content": "Get Ethereum chain status",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chains",
+                "ethereum",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet",
+                  "description": "The Ethereum network to use"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "811839fe-b7b8-4f96-a591-1c1fa353068e",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chains",
+                    "ethereum",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"chain\": \"string\",\n  \"network\": \"string\",\n  \"rpcUrl\": \"string\",\n  \"rpcProvider\": \"string\",\n  \"currentBlockNumber\": 1901.2599571138999,\n  \"nativeCurrency\": \"string\",\n  \"swapProvider\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de4bed58-9ec6-4ba1-80e6-7b600f7d1661",
+          "name": "Estimate gas prices for Ethereum transactions",
+          "request": {
+            "name": "Estimate gas prices for Ethereum transactions",
+            "description": {
+              "content": "Estimate gas prices for Ethereum transactions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chains",
+                "ethereum",
+                "estimate-gas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet",
+                  "description": "The Ethereum network to use"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a0327fa-89c6-479d-b891-465c2b0af1e1",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chains",
+                    "ethereum",
+                    "estimate-gas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"feePerComputeUnit\": 5959.835460171648,\n  \"denomination\": \"string\",\n  \"computeUnits\": 5935.779675659688,\n  \"feeAsset\": \"string\",\n  \"fee\": 6977.002024334793,\n  \"timestamp\": 1765.2971381956029,\n  \"gasType\": \"string\",\n  \"maxFeePerGas\": 5405.100228733452,\n  \"maxPriorityFeePerGas\": 7135.353428965168\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f575a42-60d1-4f50-822e-a8e44943893e",
+          "name": "Get Ethereum balances. If no tokens specified or empty array provided, returns native token (ETH) and only non-zero balances for tokens from the token list. If specific tokens are requested, returns those exact tokens with their balances, including zeros.",
+          "request": {
+            "name": "Get Ethereum balances. If no tokens specified or empty array provided, returns native token (ETH) and only non-zero balances for tokens from the token list. If specific tokens are requested, returns those exact tokens with their balances, including zeros.",
+            "description": {
+              "content": "Get Ethereum balances. If no tokens specified or empty array provided, returns native token (ETH) and only non-zero balances for tokens from the token list. If specific tokens are requested, returns those exact tokens with their balances, including zeros.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chains",
+                "ethereum",
+                "balances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"mainnet\",\n  \"address\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"tokens\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8fc6999a-fd56-43f1-acbd-17b0bd35b4f7",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chains",
+                    "ethereum",
+                    "balances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"mainnet\",\n  \"address\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"tokens\": [\n    \"ETH\",\n    \"USDC\",\n    \"WETH\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"balances\": {\n    \"key_0\": 9282.372849776604,\n    \"key_1\": 4675.252575397122\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58d41961-ff64-4ece-9f49-c2b24d729065",
+          "name": "Poll Ethereum transaction status",
+          "request": {
+            "name": "Poll Ethereum transaction status",
+            "description": {
+              "content": "Poll Ethereum transaction status",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chains",
+                "ethereum",
+                "poll"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"signature\": \"<string>\",\n  \"network\": \"mainnet\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bbb567b4-c550-432d-ba71-b784d5ce5031",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chains",
+                    "ethereum",
+                    "poll"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signature\": \"0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef\",\n  \"network\": \"mainnet\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"currentBlock\": 9512.789380268398,\n  \"signature\": \"string\",\n  \"txBlock\": 6527.608580217311,\n  \"txStatus\": 4453.332988135968,\n  \"fee\": 6106.244421590985,\n  \"txData\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {}\n  },\n  \"tokenBalanceChanges\": {\n    \"key_0\": 1697.3458061422352,\n    \"key_1\": 5834.481476610724\n  },\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3de637dc-8106-4769-a007-86f3866098d4",
+          "name": "Get token allowances",
+          "request": {
+            "name": "Get token allowances",
+            "description": {
+              "content": "Get token allowances",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chains",
+                "ethereum",
+                "allowances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"spender\": \"<string>\",\n  \"tokens\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"network\": \"mainnet\",\n  \"address\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bbf5b324-b9f5-4db5-9f0c-c66f98d3a441",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chains",
+                    "ethereum",
+                    "allowances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"spender\": \"uniswap/router\",\n  \"tokens\": [\n    \"USDC\",\n    \"WETH\"\n  ],\n  \"network\": \"mainnet\",\n  \"address\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"spender\": \"string\",\n  \"approvals\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ebb3c91-be14-49a5-91a4-0e868aefb218",
+          "name": "Approve token spending",
+          "request": {
+            "name": "Approve token spending",
+            "description": {
+              "content": "Approve token spending",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chains",
+                "ethereum",
+                "approve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"spender\": \"<string>\",\n  \"token\": \"<string>\",\n  \"network\": \"mainnet\",\n  \"address\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"amount\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "71aaec88-d545-4071-8e41-fe2459a4e9ce",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chains",
+                    "ethereum",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"spender\": \"uniswap/router\",\n  \"token\": \"USDC\",\n  \"network\": \"mainnet\",\n  \"address\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"amount\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 4972.167507342185,\n  \"data\": {\n    \"tokenAddress\": \"string\",\n    \"spender\": \"string\",\n    \"amount\": \"string\",\n    \"nonce\": 4703.363352777235,\n    \"fee\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ebe90bd-3d6a-4997-b1e9-c50b5cb3d8e0",
+          "name": "Wrap native token to wrapped token (e.g., ETH to WETH, BNB to WBNB)",
+          "request": {
+            "name": "Wrap native token to wrapped token (e.g., ETH to WETH, BNB to WBNB)",
+            "description": {
+              "content": "Wrap native token to wrapped token (e.g., ETH to WETH, BNB to WBNB)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chains",
+                "ethereum",
+                "wrap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<string>\",\n  \"network\": \"mainnet\",\n  \"address\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "69ada972-3b8e-41c9-afd3-33ead41dc1cb",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chains",
+                    "ethereum",
+                    "wrap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"0.01\",\n  \"network\": \"mainnet\",\n  \"address\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 3502.23341084295,\n  \"data\": {\n    \"nonce\": 8448.354264319927,\n    \"fee\": \"string\",\n    \"amount\": \"string\",\n    \"wrappedAddress\": \"string\",\n    \"nativeToken\": \"string\",\n    \"wrappedToken\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cceea45a-0bc9-4a69-9ad3-a96e29362c18",
+          "name": "Unwrap wrapped token to native token (e.g., WETH to ETH, WBNB to BNB)",
+          "request": {
+            "name": "Unwrap wrapped token to native token (e.g., WETH to ETH, WBNB to BNB)",
+            "description": {
+              "content": "Unwrap wrapped token to native token (e.g., WETH to ETH, WBNB to BNB)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chains",
+                "ethereum",
+                "unwrap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<string>\",\n  \"network\": \"mainnet\",\n  \"address\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "29041791-b201-46da-b858-960387e7d8bf",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chains",
+                    "ethereum",
+                    "unwrap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"0.01\",\n  \"network\": \"mainnet\",\n  \"address\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 3502.23341084295,\n  \"data\": {\n    \"nonce\": 8448.354264319927,\n    \"fee\": \"string\",\n    \"amount\": \"string\",\n    \"wrappedAddress\": \"string\",\n    \"nativeToken\": \"string\",\n    \"wrappedToken\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:15888",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8f134c02-4df8-430f-acc9-f6e26c42549c",
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /chain/ethereum API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API endpoints for interacting with DEXs and blockchains",
+      "type": "text/plain"
+    }
+  }
+}

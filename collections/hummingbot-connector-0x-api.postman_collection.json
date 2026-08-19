@@ -1,0 +1,384 @@
+{
+  "item": [
+    {
+      "id": "11f03b3b-319c-4c0e-8df0-159b99af4326",
+      "name": "/connector/0x",
+      "description": {
+        "content": "0x connector endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "18a15838-a6c9-40a0-a83a-24dee4094903",
+          "name": "Get a swap quote from 0x. Use indicativePrice=true for price discovery only, or false/undefined for executable quotes",
+          "request": {
+            "name": "Get a swap quote from 0x. Use indicativePrice=true for price discovery only, or false/undefined for executable quotes",
+            "description": {
+              "content": "Get a swap quote from 0x. Use indicativePrice=true for price discovery only, or false/undefined for executable quotes",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "0x",
+                "router",
+                "quote-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "mainnet",
+                  "description": "The EVM network to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseToken",
+                  "value": "<string>",
+                  "description": "(Required) First token in the trading pair"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteToken",
+                  "value": "<string>",
+                  "description": "(Required) Second token in the trading pair"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "(Required) Amount of base token to trade"
+                },
+                {
+                  "disabled": false,
+                  "key": "side",
+                  "value": "<string>",
+                  "description": "(Required) Trade direction - BUY means buying base token with quote token, SELL means selling base token for quote token"
+                },
+                {
+                  "disabled": false,
+                  "key": "slippagePct",
+                  "value": "<number>",
+                  "description": "Maximum acceptable slippage percentage"
+                },
+                {
+                  "disabled": false,
+                  "key": "indicativePrice",
+                  "value": "true",
+                  "description": "If true, returns indicative pricing only (no commitment). If false, returns firm quote ready for execution"
+                },
+                {
+                  "disabled": false,
+                  "key": "takerAddress",
+                  "value": "<string>",
+                  "description": "Ethereum wallet address that will execute the swap (optional for quotes)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b304238-5b03-41dc-87a2-0d3c3e393123",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "0x",
+                    "router",
+                    "quote-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "mainnet"
+                    },
+                    {
+                      "key": "baseToken",
+                      "value": "WETH"
+                    },
+                    {
+                      "key": "quoteToken",
+                      "value": "USDC"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "1"
+                    },
+                    {
+                      "key": "side",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slippagePct",
+                      "value": "1"
+                    },
+                    {
+                      "key": "indicativePrice",
+                      "value": "true"
+                    },
+                    {
+                      "key": "takerAddress",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"quoteId\": \"string\",\n  \"tokenIn\": \"string\",\n  \"tokenOut\": \"string\",\n  \"amountIn\": 2521.132070433648,\n  \"amountOut\": 4524.135536404104,\n  \"price\": 5149.134727121786,\n  \"priceImpactPct\": 2357.005931023749,\n  \"minAmountOut\": 5279.590544986502,\n  \"maxAmountIn\": 6860.533061042249,\n  \"gasEstimate\": \"string\",\n  \"expirationTime\": 3514.709800613356,\n  \"allowanceTarget\": \"string\",\n  \"to\": \"string\",\n  \"data\": \"string\",\n  \"value\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69d0020a-d2c5-4b85-bb6f-c3da3c5b9ba2",
+          "name": "Execute a previously fetched quote from 0x",
+          "request": {
+            "name": "Execute a previously fetched quote from 0x",
+            "description": {
+              "content": "Execute a previously fetched quote from 0x",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "0x",
+                "router",
+                "execute-quote"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quoteId\": \"<string>\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"network\": \"mainnet\",\n  \"gasPrice\": \"<string>\",\n  \"maxGas\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1917bb92-7ac9-42b6-862b-c778067585dd",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "0x",
+                    "router",
+                    "execute-quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quoteId\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"network\": \"arbitrum\",\n  \"gasPrice\": \"<string>\",\n  \"maxGas\": 1000000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 492.6383378081456,\n  \"data\": {\n    \"tokenIn\": \"string\",\n    \"tokenOut\": \"string\",\n    \"amountIn\": 8434.453495414513,\n    \"amountOut\": 1862.27681294994,\n    \"fee\": 4899.708423360372,\n    \"baseTokenBalanceChange\": 8781.848346814844,\n    \"quoteTokenBalanceChange\": 2201.4625081788754\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "47d6a6f7-2f6a-45b2-a450-3c9762ab6eb5",
+          "name": "Quote and execute a token swap on 0x in one step",
+          "request": {
+            "name": "Quote and execute a token swap on 0x in one step",
+            "description": {
+              "content": "Quote and execute a token swap on 0x in one step",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connectors",
+                "0x",
+                "router",
+                "execute-swap"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baseToken\": \"<string>\",\n  \"quoteToken\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"side\": \"<string>\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"network\": \"mainnet\",\n  \"slippagePct\": \"<number>\",\n  \"gasPrice\": \"<string>\",\n  \"maxGas\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7bfdd506-ac3c-4522-8737-4dfbdbd5d665",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connectors",
+                    "0x",
+                    "router",
+                    "execute-swap"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baseToken\": \"WETH\",\n  \"quoteToken\": \"USDC\",\n  \"amount\": 1,\n  \"side\": \"<string>\",\n  \"walletAddress\": \"0xB6B3140Eb3953BCE564f937948f98Ab5A8286a50\",\n  \"network\": \"arbitrum\",\n  \"slippagePct\": 1,\n  \"gasPrice\": \"<string>\",\n  \"maxGas\": 300000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\",\n  \"status\": 492.6383378081456,\n  \"data\": {\n    \"tokenIn\": \"string\",\n    \"tokenOut\": \"string\",\n    \"amountIn\": 8434.453495414513,\n    \"amountOut\": 1862.27681294994,\n    \"fee\": 4899.708423360372,\n    \"baseTokenBalanceChange\": 8781.848346814844,\n    \"quoteTokenBalanceChange\": 2201.4625081788754\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:15888",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "dd700e19-7f15-49f1-b214-f82ad826dd2e",
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/0x API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API endpoints for interacting with DEXs and blockchains",
+      "type": "text/plain"
+    }
+  }
+}

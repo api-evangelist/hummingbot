@@ -1,0 +1,336 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/meteora API",
+    "version": "dev-2.11.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/connector/meteora",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /connectors/meteora/clmm/fetch-pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/meteora/clmm/fetch-pools",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Maximum number of pools to return"
+              },
+              {
+                "name": "tokenA",
+                "value": "SOL",
+                "type": "query",
+                "description": "First token symbol or address"
+              },
+              {
+                "name": "tokenB",
+                "value": "USDC",
+                "type": "query",
+                "description": "Second token symbol or address"
+              }
+            ]
+          },
+          "docs": "Fetch info about Meteora pools"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/meteora/clmm/pool-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/meteora/clmm/pool-info",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "poolAddress",
+                "value": "2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3",
+                "type": "query",
+                "description": "Meteora DLMM pool address"
+              }
+            ]
+          },
+          "docs": "Get pool information for a Meteora pool"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/meteora/clmm/positions-owned",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/meteora/clmm/positions-owned",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "walletAddress",
+                "value": "Fxu7UU5D9ry1qDQj41Yp3oTeAdqxShzVYna44JE7E1gn",
+                "type": "query",
+                "description": "Solana wallet address to check for positions"
+              }
+            ]
+          },
+          "docs": "Retrieve all positions owned by a user's wallet across all Meteora pools"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/meteora/clmm/position-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/meteora/clmm/position-info",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "positionAddress",
+                "value": "<sample-position-address>",
+                "type": "query",
+                "description": "Position NFT address"
+              }
+            ]
+          },
+          "docs": "Get details for a specific Meteora position"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/meteora/clmm/quote-position",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/meteora/clmm/quote-position",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "lowerPrice",
+                "value": "150",
+                "type": "query",
+                "description": "Lower price bound for the position"
+              },
+              {
+                "name": "upperPrice",
+                "value": "250",
+                "type": "query",
+                "description": "Upper price bound for the position"
+              },
+              {
+                "name": "poolAddress",
+                "value": "2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3",
+                "type": "query",
+                "description": "Meteora DLMM pool address"
+              },
+              {
+                "name": "baseTokenAmount",
+                "value": "0.01",
+                "type": "query",
+                "description": "Amount of base token to deposit"
+              },
+              {
+                "name": "quoteTokenAmount",
+                "value": "2",
+                "type": "query",
+                "description": "Amount of quote token to deposit"
+              },
+              {
+                "name": "slippagePct",
+                "value": "2",
+                "type": "query",
+                "description": "Maximum acceptable slippage percentage"
+              },
+              {
+                "name": "strategyType",
+                "value": "0",
+                "type": "query",
+                "description": "Strategy type for the position"
+              }
+            ]
+          },
+          "docs": "Quote amounts for a new Meteora CLMM position"
+        },
+        {
+          "info": {
+            "name": "GET /connectors/meteora/clmm/quote-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:15888/connectors/meteora/clmm/quote-swap",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Solana network to use"
+              },
+              {
+                "name": "poolAddress",
+                "value": "2sf5NYcY4zUPXUSmG6f66mskb24t5F8S11pC1Nz5nQT3",
+                "type": "query",
+                "description": "Meteora DLMM pool address (optional - can be looked up from baseToken and quoteToken)"
+              },
+              {
+                "name": "baseToken",
+                "value": "SOL",
+                "type": "query",
+                "description": "Token to determine swap direction"
+              },
+              {
+                "name": "quoteToken",
+                "value": "USDC",
+                "type": "query",
+                "description": "The other token in the pair (optional - required if poolAddress not provided)"
+              },
+              {
+                "name": "amount",
+                "value": "0.01",
+                "type": "query",
+                "description": "Amount to swap"
+              },
+              {
+                "name": "side",
+                "value": "SELL",
+                "type": "query",
+                "description": "Trade direction"
+              },
+              {
+                "name": "slippagePct",
+                "value": "2",
+                "type": "query",
+                "description": "Maximum acceptable slippage percentage"
+              }
+            ]
+          },
+          "docs": "Get swap quote for Meteora CLMM"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/meteora/clmm/execute-swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/meteora/clmm/execute-swap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a token swap on Meteora DLMM"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/meteora/clmm/open-position",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/meteora/clmm/open-position",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Open a new Meteora position"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/meteora/clmm/add-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/meteora/clmm/add-liquidity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add liquidity to a Meteora position"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/meteora/clmm/remove-liquidity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/meteora/clmm/remove-liquidity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove liquidity from a Meteora position"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/meteora/clmm/collect-fees",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/meteora/clmm/collect-fees",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Collect fees from a Meteora position"
+        },
+        {
+          "info": {
+            "name": "POST /connectors/meteora/clmm/close-position",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:15888/connectors/meteora/clmm/close-position",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Close a Meteora position"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

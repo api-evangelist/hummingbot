@@ -43,6 +43,17 @@ tags:
 - Blockchain
 - DeFi
 - DEX
+- Open-Source
+- Market Making
+- Algorithmic Trading
+- Bots
+tags_raw:
+- Company
+- Crypto
+- Trading
+- Blockchain
+- DeFi
+- DEX
 - Open Source
 - Market Making
 - Algorithmic Trading
@@ -73,7 +84,8 @@ apis:
   description: Ethereum and EVM-based chain endpoints
   humanURL: https://hummingbot.org/gateway/
   baseURL: http://localhost:15888
-  tags:
+  tags: []
+  tags_raw:
   - /chain/ethereum
   properties:
   - type: OpenAPI
@@ -87,7 +99,8 @@ apis:
   description: Solana and SVM-based chain endpoints
   humanURL: https://hummingbot.org/gateway/
   baseURL: http://localhost:15888
-  tags:
+  tags: []
+  tags_raw:
   - /chain/solana
   properties:
   - type: OpenAPI
@@ -102,6 +115,8 @@ apis:
   humanURL: https://hummingbot.org/gateway/
   baseURL: http://localhost:15888
   tags:
+  - Config
+  tags_raw:
   - /config
   properties:
   - type: OpenAPI
@@ -115,7 +130,8 @@ apis:
   description: 0x connector endpoints
   humanURL: https://hummingbot.org/gateway/
   baseURL: http://localhost:15888
-  tags:
+  tags: []
+  tags_raw:
   - /connector/0x
   properties:
   - type: OpenAPI
@@ -129,7 +145,8 @@ apis:
   description: Jupiter connector endpoints
   humanURL: https://hummingbot.org/gateway/
   baseURL: http://localhost:15888
-  tags:
+  tags: []
+  tags_raw:
   - /connector/jupiter
   properties:
   - type: OpenAPI
@@ -143,7 +160,8 @@ apis:
   description: Meteora connector endpoints
   humanURL: https://hummingbot.org/gateway/
   baseURL: http://localhost:15888
-  tags:
+  tags: []
+  tags_raw:
   - /connector/meteora
   properties:
   - type: OpenAPI
@@ -157,7 +175,8 @@ apis:
   description: Orca connector endpoints
   humanURL: https://hummingbot.org/gateway/
   baseURL: http://localhost:15888
-  tags:
+  tags: []
+  tags_raw:
   - /connector/orca
   properties:
   - type: OpenAPI
@@ -171,7 +190,8 @@ apis:
   description: PancakeSwap EVM connector endpoints
   humanURL: https://hummingbot.org/gateway/
   baseURL: http://localhost:15888
-  tags:
+  tags: []
+  tags_raw:
   - /connector/pancakeswap
   properties:
   - type: OpenAPI
@@ -185,7 +205,8 @@ apis:
   description: PancakeSwap Solana connector endpoints
   humanURL: https://hummingbot.org/gateway/
   baseURL: http://localhost:15888
-  tags:
+  tags: []
+  tags_raw:
   - /connector/pancakeswap-sol
   properties:
   - type: OpenAPI
@@ -199,7 +220,8 @@ apis:
   description: Raydium connector endpoints
   humanURL: https://hummingbot.org/gateway/
   baseURL: http://localhost:15888
-  tags:
+  tags: []
+  tags_raw:
   - /connector/raydium
   properties:
   - type: OpenAPI
@@ -213,7 +235,8 @@ apis:
   description: Uniswap connector endpoints
   humanURL: https://hummingbot.org/gateway/
   baseURL: http://localhost:15888
-  tags:
+  tags: []
+  tags_raw:
   - /connector/uniswap
   properties:
   - type: OpenAPI
@@ -228,6 +251,8 @@ apis:
   humanURL: https://hummingbot.org/gateway/
   baseURL: http://localhost:15888
   tags:
+  - Pools
+  tags_raw:
   - /pools
   properties:
   - type: OpenAPI
@@ -242,6 +267,8 @@ apis:
   humanURL: https://hummingbot.org/gateway/
   baseURL: http://localhost:15888
   tags:
+  - Tokens
+  tags_raw:
   - /tokens
   properties:
   - type: OpenAPI
@@ -255,7 +282,8 @@ apis:
   description: Unified cross-chain CLMM (Concentrated Liquidity) endpoints
   humanURL: https://hummingbot.org/gateway/
   baseURL: http://localhost:15888
-  tags:
+  tags: []
+  tags_raw:
   - /trading/clmm
   properties:
   - type: OpenAPI
@@ -269,7 +297,8 @@ apis:
   description: Unified cross-chain swap endpoints
   humanURL: https://hummingbot.org/gateway/
   baseURL: http://localhost:15888
-  tags:
+  tags: []
+  tags_raw:
   - /trading/swap
   properties:
   - type: OpenAPI
@@ -284,6 +313,8 @@ apis:
   humanURL: https://hummingbot.org/gateway/
   baseURL: http://localhost:15888
   tags:
+  - Wallets
+  tags_raw:
   - /wallet
   properties:
   - type: OpenAPI

@@ -14,6 +14,17 @@ description: >-
   connectors and Apache-2.0 licensing, Hummingbot reports having facilitated
   tens of billions of dollars in trade volume across 100K+ deployed instances.
 url: https://raw.githubusercontent.com/api-evangelist/hummingbot/refs/heads/main/apis.yml
+deliveryModel:
+  model: library
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Library · distributed through package registries, no callable service
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve

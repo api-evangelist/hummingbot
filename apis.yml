@@ -125,8 +125,7 @@ apis:
   description: System configuration endpoints
   humanURL: https://hummingbot.org/gateway/
   baseURL: http://localhost:15888
-  tags:
-  - Config
+  tags: []
   tags_raw:
   - /config
   properties:
@@ -261,8 +260,7 @@ apis:
   description: Pool management endpoints
   humanURL: https://hummingbot.org/gateway/
   baseURL: http://localhost:15888
-  tags:
-  - Pools
+  tags: []
   tags_raw:
   - /pools
   properties:
@@ -277,8 +275,7 @@ apis:
   description: Token management endpoints
   humanURL: https://hummingbot.org/gateway/
   baseURL: http://localhost:15888
-  tags:
-  - Tokens
+  tags: []
   tags_raw:
   - /tokens
   properties:
@@ -323,8 +320,7 @@ apis:
   description: Wallet management endpoints
   humanURL: https://hummingbot.org/gateway/
   baseURL: http://localhost:15888
-  tags:
-  - Wallets
+  tags: []
   tags_raw:
   - /wallet
   properties:

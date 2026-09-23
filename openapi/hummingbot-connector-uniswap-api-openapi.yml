@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/uniswap API
+  title: Hummingbot Gateway /connector/uniswap API
   description: API endpoints for interacting with DEXs and blockchains
   version: dev-2.11.0
 servers:
@@ -125,6 +125,10 @@ paths:
                 - priceImpactPct
                 - minAmountOut
                 - maxAmountIn
+      summary: Get connectors uniswap router quote swap
+      x-summary-source: derived
+      operationId: getConnectorsUniswapRouterQuoteSwap
+      x-operation-id-source: derived
   /connectors/uniswap/router/execute-quote:
     post:
       tags:
@@ -210,6 +214,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors uniswap router execute quote
+      x-summary-source: derived
+      operationId: postConnectorsUniswapRouterExecuteQuote
+      x-operation-id-source: derived
   /connectors/uniswap/router/execute-swap:
     post:
       tags:
@@ -319,6 +327,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors uniswap router execute swap
+      x-summary-source: derived
+      operationId: postConnectorsUniswapRouterExecuteSwap
+      x-operation-id-source: derived
   /connectors/uniswap/amm/pool-info:
     get:
       tags:
@@ -378,6 +390,10 @@ paths:
                 - price
                 - baseTokenAmount
                 - quoteTokenAmount
+      summary: Get connectors uniswap amm pool info
+      x-summary-source: derived
+      operationId: getConnectorsUniswapAmmPoolInfo
+      x-operation-id-source: derived
   /connectors/uniswap/amm/position-info:
     get:
       tags:
@@ -447,6 +463,10 @@ paths:
                 - baseTokenAmount
                 - quoteTokenAmount
                 - price
+      summary: Get connectors uniswap amm position info
+      x-summary-source: derived
+      operationId: getConnectorsUniswapAmmPositionInfo
+      x-operation-id-source: derived
   /connectors/uniswap/amm/quote-swap:
     get:
       tags:
@@ -536,6 +556,10 @@ paths:
                 - minAmountOut
                 - maxAmountIn
                 - priceImpactPct
+      summary: Get connectors uniswap amm quote swap
+      x-summary-source: derived
+      operationId: getConnectorsUniswapAmmQuoteSwap
+      x-operation-id-source: derived
   /connectors/uniswap/amm/quote-liquidity:
     get:
       tags:
@@ -608,6 +632,10 @@ paths:
                 - quoteTokenAmount
                 - baseTokenAmountMax
                 - quoteTokenAmountMax
+      summary: Get connectors uniswap amm quote liquidity
+      x-summary-source: derived
+      operationId: getConnectorsUniswapAmmQuoteLiquidity
+      x-operation-id-source: derived
   /connectors/uniswap/amm/execute-swap:
     post:
       tags:
@@ -718,6 +746,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors uniswap amm execute swap
+      x-summary-source: derived
+      operationId: postConnectorsUniswapAmmExecuteSwap
+      x-operation-id-source: derived
   /connectors/uniswap/amm/add-liquidity:
     post:
       tags:
@@ -802,6 +834,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors uniswap amm add liquidity
+      x-summary-source: derived
+      operationId: postConnectorsUniswapAmmAddLiquidity
+      x-operation-id-source: derived
   /connectors/uniswap/amm/remove-liquidity:
     post:
       tags:
@@ -878,6 +914,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors uniswap amm remove liquidity
+      x-summary-source: derived
+      operationId: postConnectorsUniswapAmmRemoveLiquidity
+      x-operation-id-source: derived
   /connectors/uniswap/clmm/pool-info:
     get:
       tags:
@@ -942,6 +982,10 @@ paths:
                 - baseTokenAmount
                 - quoteTokenAmount
                 - activeBinId
+      summary: Get connectors uniswap clmm pool info
+      x-summary-source: derived
+      operationId: getConnectorsUniswapClmmPoolInfo
+      x-operation-id-source: derived
   /connectors/uniswap/clmm/position-info:
     get:
       tags:
@@ -1013,6 +1057,10 @@ paths:
                 - lowerPrice
                 - upperPrice
                 - price
+      summary: Get connectors uniswap clmm position info
+      x-summary-source: derived
+      operationId: getConnectorsUniswapClmmPositionInfo
+      x-operation-id-source: derived
   /connectors/uniswap/clmm/positions-owned:
     get:
       tags:
@@ -1086,6 +1134,10 @@ paths:
                   - lowerPrice
                   - upperPrice
                   - price
+      summary: Get connectors uniswap clmm positions owned
+      x-summary-source: derived
+      operationId: getConnectorsUniswapClmmPositionsOwned
+      x-operation-id-source: derived
   /connectors/uniswap/clmm/quote-position:
     get:
       tags:
@@ -1162,6 +1214,10 @@ paths:
                 - quoteTokenAmount
                 - baseTokenAmountMax
                 - quoteTokenAmountMax
+      summary: Get connectors uniswap clmm quote position
+      x-summary-source: derived
+      operationId: getConnectorsUniswapClmmQuotePosition
+      x-operation-id-source: derived
   /connectors/uniswap/clmm/quote-swap:
     get:
       tags:
@@ -1251,6 +1307,10 @@ paths:
                 - minAmountOut
                 - maxAmountIn
                 - priceImpactPct
+      summary: Get connectors uniswap clmm quote swap
+      x-summary-source: derived
+      operationId: getConnectorsUniswapClmmQuoteSwap
+      x-operation-id-source: derived
   /connectors/uniswap/clmm/execute-swap:
     post:
       tags:
@@ -1360,6 +1420,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors uniswap clmm execute swap
+      x-summary-source: derived
+      operationId: postConnectorsUniswapClmmExecuteSwap
+      x-operation-id-source: derived
   /connectors/uniswap/clmm/open-position:
     post:
       tags:
@@ -1435,6 +1499,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors uniswap clmm open position
+      x-summary-source: derived
+      operationId: postConnectorsUniswapClmmOpenPosition
+      x-operation-id-source: derived
   /connectors/uniswap/clmm/add-liquidity:
     post:
       tags:
@@ -1519,6 +1587,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors uniswap clmm add liquidity
+      x-summary-source: derived
+      operationId: postConnectorsUniswapClmmAddLiquidity
+      x-operation-id-source: derived
   /connectors/uniswap/clmm/remove-liquidity:
     post:
       tags:
@@ -1578,6 +1650,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors uniswap clmm remove liquidity
+      x-summary-source: derived
+      operationId: postConnectorsUniswapClmmRemoveLiquidity
+      x-operation-id-source: derived
   /connectors/uniswap/clmm/collect-fees:
     post:
       tags:
@@ -1631,6 +1707,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors uniswap clmm collect fees
+      x-summary-source: derived
+      operationId: postConnectorsUniswapClmmCollectFees
+      x-operation-id-source: derived
   /connectors/uniswap/clmm/close-position:
     post:
       tags:
@@ -1689,3 +1769,7 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors uniswap clmm close position
+      x-summary-source: derived
+      operationId: postConnectorsUniswapClmmClosePosition
+      x-operation-id-source: derived

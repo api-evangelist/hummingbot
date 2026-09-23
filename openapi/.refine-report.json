@@ -1,22 +1,7 @@
 {
   "provider": "hummingbot",
   "sources": [
-    "hummingbot-chain-ethereum-api-openapi.yml",
-    "hummingbot-chain-solana-api-openapi.yml",
-    "hummingbot-config-api-openapi.yml",
-    "hummingbot-connector-0x-api-openapi.yml",
-    "hummingbot-connector-jupiter-api-openapi.yml",
-    "hummingbot-connector-meteora-api-openapi.yml",
-    "hummingbot-connector-orca-api-openapi.yml",
-    "hummingbot-connector-pancakeswap-api-openapi.yml",
-    "hummingbot-connector-pancakeswap-sol-api-openapi.yml",
-    "hummingbot-connector-raydium-api-openapi.yml",
-    "hummingbot-connector-uniswap-api-openapi.yml",
-    "hummingbot-pools-api-openapi.yml",
-    "hummingbot-tokens-api-openapi.yml",
-    "hummingbot-trading-clmm-api-openapi.yml",
-    "hummingbot-trading-swap-api-openapi.yml",
-    "hummingbot-wallet-api-openapi.yml"
+    "_original/hummingbot-gateway-openapi-original.json"
   ],
   "outputs": [
     "hummingbot-chain-ethereum-api-openapi.yml",
@@ -39,6 +24,27 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "hummingbot-gateway-openapi-original.json: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "hummingbot-chain-ethereum-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hummingbot-chain-solana-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hummingbot-config-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hummingbot-connector-0x-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hummingbot-connector-jupiter-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hummingbot-connector-meteora-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hummingbot-connector-orca-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hummingbot-connector-pancakeswap-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hummingbot-connector-pancakeswap-sol-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hummingbot-connector-raydium-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hummingbot-connector-uniswap-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hummingbot-pools-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hummingbot-tokens-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hummingbot-trading-clmm-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hummingbot-trading-swap-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hummingbot-wallet-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

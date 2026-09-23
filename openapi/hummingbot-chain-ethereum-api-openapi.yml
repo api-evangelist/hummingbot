@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /chain/ethereum API
+  title: Hummingbot Gateway /chain/ethereum API
   description: API endpoints for interacting with DEXs and blockchains
   version: dev-2.11.0
 servers:
@@ -62,6 +62,10 @@ paths:
                 - currentBlockNumber
                 - nativeCurrency
                 - swapProvider
+      summary: Get chains ethereum status
+      x-summary-source: derived
+      operationId: getChainsEthereumStatus
+      x-operation-id-source: derived
   /chains/ethereum/estimate-gas:
     get:
       tags:
@@ -118,6 +122,10 @@ paths:
                 - feeAsset
                 - fee
                 - timestamp
+      summary: Get chains ethereum estimate gas
+      x-summary-source: derived
+      operationId: getChainsEthereumEstimateGas
+      x-operation-id-source: derived
   /chains/ethereum/balances:
     post:
       tags:
@@ -170,6 +178,10 @@ paths:
                       type: number
                 required:
                 - balances
+      summary: Create chains ethereum balances
+      x-summary-source: derived
+      operationId: postChainsEthereumBalances
+      x-operation-id-source: derived
   /chains/ethereum/poll:
     post:
       tags:
@@ -243,6 +255,10 @@ paths:
                 - txStatus
                 - fee
                 - txData
+      summary: Create chains ethereum poll
+      x-summary-source: derived
+      operationId: postChainsEthereumPoll
+      x-operation-id-source: derived
   /chains/ethereum/allowances:
     post:
       tags:
@@ -305,6 +321,10 @@ paths:
                 required:
                 - spender
                 - approvals
+      summary: Create chains ethereum allowances
+      x-summary-source: derived
+      operationId: postChainsEthereumAllowances
+      x-operation-id-source: derived
   /chains/ethereum/approve:
     post:
       tags:
@@ -385,6 +405,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create chains ethereum approve
+      x-summary-source: derived
+      operationId: postChainsEthereumApprove
+      x-operation-id-source: derived
   /chains/ethereum/wrap:
     post:
       tags:
@@ -459,6 +483,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create chains ethereum wrap
+      x-summary-source: derived
+      operationId: postChainsEthereumWrap
+      x-operation-id-source: derived
   /chains/ethereum/unwrap:
     post:
       tags:
@@ -533,3 +561,7 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create chains ethereum unwrap
+      x-summary-source: derived
+      operationId: postChainsEthereumUnwrap
+      x-operation-id-source: derived

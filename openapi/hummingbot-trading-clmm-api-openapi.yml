@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /trading/clmm API
+  title: Hummingbot Gateway /trading/clmm API
   description: API endpoints for interacting with DEXs and blockchains
   version: dev-2.11.0
 servers:
@@ -80,6 +80,10 @@ paths:
                 - baseTokenAmount
                 - quoteTokenAmount
                 - activeBinId
+      summary: Get trading clmm pool info
+      x-summary-source: derived
+      operationId: getTradingClmmPoolInfo
+      x-operation-id-source: derived
   /trading/clmm/position-info:
     get:
       tags:
@@ -168,6 +172,10 @@ paths:
                 - lowerPrice
                 - upperPrice
                 - price
+      summary: Get trading clmm position info
+      x-summary-source: derived
+      operationId: getTradingClmmPositionInfo
+      x-operation-id-source: derived
   /trading/clmm/positions-owned:
     get:
       tags:
@@ -259,6 +267,10 @@ paths:
                   - upperPrice
                   - price
                   title: PositionInfo
+      summary: Get trading clmm positions owned
+      x-summary-source: derived
+      operationId: getTradingClmmPositionsOwned
+      x-operation-id-source: derived
   /trading/clmm/quote-position:
     get:
       tags:
@@ -358,6 +370,10 @@ paths:
                 - quoteTokenAmount
                 - baseTokenAmountMax
                 - quoteTokenAmountMax
+      summary: Get trading clmm quote position
+      x-summary-source: derived
+      operationId: getTradingClmmQuotePosition
+      x-operation-id-source: derived
   /trading/clmm/open:
     post:
       tags:
@@ -453,6 +469,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create trading clmm open
+      x-summary-source: derived
+      operationId: postTradingClmmOpen
+      x-operation-id-source: derived
   /trading/clmm/add:
     post:
       tags:
@@ -534,6 +554,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create trading clmm add
+      x-summary-source: derived
+      operationId: postTradingClmmAdd
+      x-operation-id-source: derived
   /trading/clmm/remove:
     post:
       tags:
@@ -606,6 +630,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create trading clmm remove
+      x-summary-source: derived
+      operationId: postTradingClmmRemove
+      x-operation-id-source: derived
   /trading/clmm/collect-fees:
     post:
       tags:
@@ -670,6 +698,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create trading clmm collect fees
+      x-summary-source: derived
+      operationId: postTradingClmmCollectFees
+      x-operation-id-source: derived
   /trading/clmm/close:
     post:
       tags:
@@ -743,3 +775,7 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create trading clmm close
+      x-summary-source: derived
+      operationId: postTradingClmmClose
+      x-operation-id-source: derived

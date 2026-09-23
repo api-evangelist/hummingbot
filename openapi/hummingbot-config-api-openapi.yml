@@ -1,18 +1,18 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /config API
+  title: Hummingbot Gateway /config API
   description: API endpoints for interacting with DEXs and blockchains
   version: dev-2.11.0
 servers:
 - url: http://localhost:15888
 tags:
-- name: /config
+- name: Config
   description: System configuration endpoints
 paths:
   /config/:
     get:
       tags:
-      - /config
+      - Config
       description: Get configuration settings. Returns all configurations if no parameters are specified. Use namespace to get a specific config (e.g., server, ethereum-mainnet, solana-mainnet-beta, uniswap).
       parameters:
       - schema:
@@ -38,10 +38,14 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
+      summary: Get config
+      x-summary-source: derived
+      operationId: getConfig
+      x-operation-id-source: derived
   /config/update:
     post:
       tags:
-      - /config
+      - Config
       description: Update a specific configuration value
       requestBody:
         content:
@@ -111,10 +115,14 @@ paths:
                     type: string
                 required:
                 - message
+      summary: Create config update
+      x-summary-source: derived
+      operationId: postConfigUpdate
+      x-operation-id-source: derived
   /config/chains:
     get:
       tags:
-      - /config
+      - Config
       description: Returns a list of available blockchain networks supported by Gateway.
       responses:
         '200':
@@ -140,10 +148,14 @@ paths:
                       - networks
                 required:
                 - chains
+      summary: Get config chains
+      x-summary-source: derived
+      operationId: getConfigChains
+      x-operation-id-source: derived
   /config/connectors:
     get:
       tags:
-      - /config
+      - Config
       description: Returns a list of available DEX connectors and their supported blockchain networks.
       responses:
         '200':
@@ -177,10 +189,14 @@ paths:
                       - networks
                 required:
                 - connectors
+      summary: Get config connectors
+      x-summary-source: derived
+      operationId: getConfigConnectors
+      x-operation-id-source: derived
   /config/namespaces:
     get:
       tags:
-      - /config
+      - Config
       description: Returns a list of all configuration namespaces available in Gateway.
       responses:
         '200':
@@ -196,3 +212,7 @@ paths:
                       type: string
                 required:
                 - namespaces
+      summary: Get config namespaces
+      x-summary-source: derived
+      operationId: getConfigNamespaces
+      x-operation-id-source: derived

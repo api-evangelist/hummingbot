@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/orca API
+  title: Hummingbot Gateway /connector/orca API
   description: API endpoints for interacting with DEXs and blockchains
   version: dev-2.11.0
 servers:
@@ -85,6 +85,10 @@ paths:
                   - baseTokenAmount
                   - quoteTokenAmount
                   - activeBinId
+      summary: Get connectors orca clmm fetch pools
+      x-summary-source: derived
+      operationId: getConnectorsOrcaClmmFetchPools
+      x-operation-id-source: derived
   /connectors/orca/clmm/pool-info:
     get:
       tags:
@@ -158,6 +162,10 @@ paths:
                 - tvlUsdc
                 - protocolFeeRate
                 - yieldOverTvl
+      summary: Get connectors orca clmm pool info
+      x-summary-source: derived
+      operationId: getConnectorsOrcaClmmPoolInfo
+      x-operation-id-source: derived
   /connectors/orca/clmm/positions-owned:
     get:
       tags:
@@ -243,6 +251,10 @@ paths:
                   - lowerPrice
                   - upperPrice
                   - price
+      summary: Get connectors orca clmm positions owned
+      x-summary-source: derived
+      operationId: getConnectorsOrcaClmmPositionsOwned
+      x-operation-id-source: derived
   /connectors/orca/clmm/position-info:
     get:
       tags:
@@ -326,6 +338,10 @@ paths:
                 - lowerPrice
                 - upperPrice
                 - price
+      summary: Get connectors orca clmm position info
+      x-summary-source: derived
+      operationId: getConnectorsOrcaClmmPositionInfo
+      x-operation-id-source: derived
   /connectors/orca/clmm/quote-position:
     get:
       tags:
@@ -412,6 +428,10 @@ paths:
                 - quoteTokenAmount
                 - baseTokenAmountMax
                 - quoteTokenAmountMax
+      summary: Get connectors orca clmm quote position
+      x-summary-source: derived
+      operationId: getConnectorsOrcaClmmQuotePosition
+      x-operation-id-source: derived
   /connectors/orca/clmm/quote-swap:
     get:
       tags:
@@ -515,6 +535,10 @@ paths:
                 - minAmountOut
                 - maxAmountIn
                 - priceImpactPct
+      summary: Get connectors orca clmm quote swap
+      x-summary-source: derived
+      operationId: getConnectorsOrcaClmmQuoteSwap
+      x-operation-id-source: derived
   /connectors/orca/clmm/execute-swap:
     post:
       tags:
@@ -615,6 +639,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors orca clmm execute swap
+      x-summary-source: derived
+      operationId: postConnectorsOrcaClmmExecuteSwap
+      x-operation-id-source: derived
   /connectors/orca/clmm/open-position:
     post:
       tags:
@@ -705,6 +733,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors orca clmm open position
+      x-summary-source: derived
+      operationId: postConnectorsOrcaClmmOpenPosition
+      x-operation-id-source: derived
   /connectors/orca/clmm/add-liquidity:
     post:
       tags:
@@ -779,6 +811,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors orca clmm add liquidity
+      x-summary-source: derived
+      operationId: postConnectorsOrcaClmmAddLiquidity
+      x-operation-id-source: derived
   /connectors/orca/clmm/remove-liquidity:
     post:
       tags:
@@ -849,6 +885,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors orca clmm remove liquidity
+      x-summary-source: derived
+      operationId: postConnectorsOrcaClmmRemoveLiquidity
+      x-operation-id-source: derived
   /connectors/orca/clmm/collect-fees:
     post:
       tags:
@@ -908,6 +948,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors orca clmm collect fees
+      x-summary-source: derived
+      operationId: postConnectorsOrcaClmmCollectFees
+      x-operation-id-source: derived
   /connectors/orca/clmm/close-position:
     post:
       tags:
@@ -976,3 +1020,7 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors orca clmm close position
+      x-summary-source: derived
+      operationId: postConnectorsOrcaClmmClosePosition
+      x-operation-id-source: derived

@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /chain/solana API
+  title: Hummingbot Gateway /chain/solana API
   description: API endpoints for interacting with DEXs and blockchains
   version: dev-2.11.0
 servers:
@@ -55,6 +55,10 @@ paths:
                 - currentBlockNumber
                 - nativeCurrency
                 - swapProvider
+      summary: Get chains solana status
+      x-summary-source: derived
+      operationId: getChainsSolanaStatus
+      x-operation-id-source: derived
   /chains/solana/estimate-gas:
     get:
       tags:
@@ -104,6 +108,10 @@ paths:
                 - feeAsset
                 - fee
                 - timestamp
+      summary: Get chains solana estimate gas
+      x-summary-source: derived
+      operationId: getChainsSolanaEstimateGas
+      x-operation-id-source: derived
   /chains/solana/balances:
     post:
       tags:
@@ -155,6 +163,10 @@ paths:
                   SOL: 1.5
                   USDC: 100
                   BONK: 50000
+      summary: Create chains solana balances
+      x-summary-source: derived
+      operationId: postChainsSolanaBalances
+      x-operation-id-source: derived
   /chains/solana/poll:
     post:
       tags:
@@ -234,6 +246,10 @@ paths:
                 - txStatus
                 - fee
                 - txData
+      summary: Create chains solana poll
+      x-summary-source: derived
+      operationId: postChainsSolanaPoll
+      x-operation-id-source: derived
   /chains/solana/wrap:
     post:
       tags:
@@ -298,6 +314,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create chains solana wrap
+      x-summary-source: derived
+      operationId: postChainsSolanaWrap
+      x-operation-id-source: derived
   /chains/solana/unwrap:
     post:
       tags:
@@ -359,3 +379,7 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create chains solana unwrap
+      x-summary-source: derived
+      operationId: postChainsSolanaUnwrap
+      x-operation-id-source: derived

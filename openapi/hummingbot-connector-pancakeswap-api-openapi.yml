@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/pancakeswap API
+  title: Hummingbot Gateway /connector/pancakeswap API
   description: API endpoints for interacting with DEXs and blockchains
   version: dev-2.11.0
 servers:
@@ -121,6 +121,10 @@ paths:
                 - priceImpactPct
                 - minAmountOut
                 - maxAmountIn
+      summary: Get connectors pancakeswap router quote swap
+      x-summary-source: derived
+      operationId: getConnectorsPancakeswapRouterQuoteSwap
+      x-operation-id-source: derived
   /connectors/pancakeswap/router/execute-quote:
     post:
       tags:
@@ -202,6 +206,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors pancakeswap router execute quote
+      x-summary-source: derived
+      operationId: postConnectorsPancakeswapRouterExecuteQuote
+      x-operation-id-source: derived
   /connectors/pancakeswap/router/execute-swap:
     post:
       tags:
@@ -307,6 +315,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors pancakeswap router execute swap
+      x-summary-source: derived
+      operationId: postConnectorsPancakeswapRouterExecuteSwap
+      x-operation-id-source: derived
   /connectors/pancakeswap/amm/pool-info:
     get:
       tags:
@@ -362,6 +374,10 @@ paths:
                 - price
                 - baseTokenAmount
                 - quoteTokenAmount
+      summary: Get connectors pancakeswap amm pool info
+      x-summary-source: derived
+      operationId: getConnectorsPancakeswapAmmPoolInfo
+      x-operation-id-source: derived
   /connectors/pancakeswap/amm/position-info:
     get:
       tags:
@@ -431,6 +447,10 @@ paths:
                 - baseTokenAmount
                 - quoteTokenAmount
                 - price
+      summary: Get connectors pancakeswap amm position info
+      x-summary-source: derived
+      operationId: getConnectorsPancakeswapAmmPositionInfo
+      x-operation-id-source: derived
   /connectors/pancakeswap/amm/quote-swap:
     get:
       tags:
@@ -520,6 +540,10 @@ paths:
                 - minAmountOut
                 - maxAmountIn
                 - priceImpactPct
+      summary: Get connectors pancakeswap amm quote swap
+      x-summary-source: derived
+      operationId: getConnectorsPancakeswapAmmQuoteSwap
+      x-operation-id-source: derived
   /connectors/pancakeswap/amm/quote-liquidity:
     get:
       tags:
@@ -592,6 +616,10 @@ paths:
                 - quoteTokenAmount
                 - baseTokenAmountMax
                 - quoteTokenAmountMax
+      summary: Get connectors pancakeswap amm quote liquidity
+      x-summary-source: derived
+      operationId: getConnectorsPancakeswapAmmQuoteLiquidity
+      x-operation-id-source: derived
   /connectors/pancakeswap/amm/execute-swap:
     post:
       tags:
@@ -698,6 +726,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors pancakeswap amm execute swap
+      x-summary-source: derived
+      operationId: postConnectorsPancakeswapAmmExecuteSwap
+      x-operation-id-source: derived
   /connectors/pancakeswap/amm/add-liquidity:
     post:
       tags:
@@ -778,6 +810,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors pancakeswap amm add liquidity
+      x-summary-source: derived
+      operationId: postConnectorsPancakeswapAmmAddLiquidity
+      x-operation-id-source: derived
   /connectors/pancakeswap/amm/remove-liquidity:
     post:
       tags:
@@ -850,6 +886,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors pancakeswap amm remove liquidity
+      x-summary-source: derived
+      operationId: postConnectorsPancakeswapAmmRemoveLiquidity
+      x-operation-id-source: derived
   /connectors/pancakeswap/clmm/pool-info:
     get:
       tags:
@@ -911,6 +951,10 @@ paths:
                 - baseTokenAmount
                 - quoteTokenAmount
                 - activeBinId
+      summary: Get connectors pancakeswap clmm pool info
+      x-summary-source: derived
+      operationId: getConnectorsPancakeswapClmmPoolInfo
+      x-operation-id-source: derived
   /connectors/pancakeswap/clmm/position-info:
     get:
       tags:
@@ -983,6 +1027,10 @@ paths:
                 - lowerPrice
                 - upperPrice
                 - price
+      summary: Get connectors pancakeswap clmm position info
+      x-summary-source: derived
+      operationId: getConnectorsPancakeswapClmmPositionInfo
+      x-operation-id-source: derived
   /connectors/pancakeswap/clmm/positions-owned:
     get:
       tags:
@@ -1056,6 +1104,10 @@ paths:
                   - lowerPrice
                   - upperPrice
                   - price
+      summary: Get connectors pancakeswap clmm positions owned
+      x-summary-source: derived
+      operationId: getConnectorsPancakeswapClmmPositionsOwned
+      x-operation-id-source: derived
   /connectors/pancakeswap/clmm/quote-position:
     get:
       tags:
@@ -1132,6 +1184,10 @@ paths:
                 - quoteTokenAmount
                 - baseTokenAmountMax
                 - quoteTokenAmountMax
+      summary: Get connectors pancakeswap clmm quote position
+      x-summary-source: derived
+      operationId: getConnectorsPancakeswapClmmQuotePosition
+      x-operation-id-source: derived
   /connectors/pancakeswap/clmm/quote-swap:
     get:
       tags:
@@ -1222,6 +1278,10 @@ paths:
                 - minAmountOut
                 - maxAmountIn
                 - priceImpactPct
+      summary: Get connectors pancakeswap clmm quote swap
+      x-summary-source: derived
+      operationId: getConnectorsPancakeswapClmmQuoteSwap
+      x-operation-id-source: derived
   /connectors/pancakeswap/clmm/execute-swap:
     post:
       tags:
@@ -1327,6 +1387,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors pancakeswap clmm execute swap
+      x-summary-source: derived
+      operationId: postConnectorsPancakeswapClmmExecuteSwap
+      x-operation-id-source: derived
   /connectors/pancakeswap/clmm/open-position:
     post:
       tags:
@@ -1404,6 +1468,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors pancakeswap clmm open position
+      x-summary-source: derived
+      operationId: postConnectorsPancakeswapClmmOpenPosition
+      x-operation-id-source: derived
   /connectors/pancakeswap/clmm/add-liquidity:
     post:
       tags:
@@ -1485,6 +1553,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors pancakeswap clmm add liquidity
+      x-summary-source: derived
+      operationId: postConnectorsPancakeswapClmmAddLiquidity
+      x-operation-id-source: derived
   /connectors/pancakeswap/clmm/remove-liquidity:
     post:
       tags:
@@ -1545,6 +1617,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors pancakeswap clmm remove liquidity
+      x-summary-source: derived
+      operationId: postConnectorsPancakeswapClmmRemoveLiquidity
+      x-operation-id-source: derived
   /connectors/pancakeswap/clmm/collect-fees:
     post:
       tags:
@@ -1599,6 +1675,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors pancakeswap clmm collect fees
+      x-summary-source: derived
+      operationId: postConnectorsPancakeswapClmmCollectFees
+      x-operation-id-source: derived
   /connectors/pancakeswap/clmm/close-position:
     post:
       tags:
@@ -1657,3 +1737,7 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors pancakeswap clmm close position
+      x-summary-source: derived
+      operationId: postConnectorsPancakeswapClmmClosePosition
+      x-operation-id-source: derived

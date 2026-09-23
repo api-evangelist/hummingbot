@@ -6,9 +6,9 @@ info:
 # Gateway OpenAPI. The original spec is never mutated. Captures enhancements we
 # would recommend upstream: operationIds (the published spec declares none),
 # an API Evangelist rating, and cross-links to our derived artifacts.
-generated: '2026-07-19'
-method: generated
-source: openapi/hummingbot-gateway-openapi-original.json
+x-generated: '2026-07-19'
+x-method: generated
+x-source: openapi/hummingbot-gateway-openapi-original.json
 extends: openapi/hummingbot-gateway-openapi-original.json
 actions:
   - target: $.info

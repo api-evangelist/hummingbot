@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/pancakeswap-sol API
+  title: Hummingbot Gateway /connector/pancakeswap Sol API
   description: API endpoints for interacting with DEXs and blockchains
   version: dev-2.11.0
 servers:
@@ -67,6 +67,10 @@ paths:
                 - baseTokenAmount
                 - quoteTokenAmount
                 - activeBinId
+      summary: Get connectors pancakeswap sol clmm pool info
+      x-summary-source: derived
+      operationId: getConnectorsPancakeswapSolClmmPoolInfo
+      x-operation-id-source: derived
   /connectors/pancakeswap-sol/clmm/position-info:
     get:
       tags:
@@ -142,6 +146,10 @@ paths:
                 - lowerPrice
                 - upperPrice
                 - price
+      summary: Get connectors pancakeswap sol clmm position info
+      x-summary-source: derived
+      operationId: getConnectorsPancakeswapSolClmmPositionInfo
+      x-operation-id-source: derived
   /connectors/pancakeswap-sol/clmm/positions-owned:
     get:
       tags:
@@ -226,6 +234,10 @@ paths:
                   - lowerPrice
                   - upperPrice
                   - price
+      summary: Get connectors pancakeswap sol clmm positions owned
+      x-summary-source: derived
+      operationId: getConnectorsPancakeswapSolClmmPositionsOwned
+      x-operation-id-source: derived
   /connectors/pancakeswap-sol/clmm/quote-position:
     get:
       tags:
@@ -312,6 +324,10 @@ paths:
                 - quoteTokenAmount
                 - baseTokenAmountMax
                 - quoteTokenAmountMax
+      summary: Get connectors pancakeswap sol clmm quote position
+      x-summary-source: derived
+      operationId: getConnectorsPancakeswapSolClmmQuotePosition
+      x-operation-id-source: derived
   /connectors/pancakeswap-sol/clmm/quote-swap:
     get:
       tags:
@@ -414,6 +430,10 @@ paths:
                 - minAmountOut
                 - maxAmountIn
                 - priceImpactPct
+      summary: Get connectors pancakeswap sol clmm quote swap
+      x-summary-source: derived
+      operationId: getConnectorsPancakeswapSolClmmQuoteSwap
+      x-operation-id-source: derived
   /connectors/pancakeswap-sol/clmm/execute-swap:
     post:
       tags:
@@ -514,6 +534,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors pancakeswap sol clmm execute swap
+      x-summary-source: derived
+      operationId: postConnectorsPancakeswapSolClmmExecuteSwap
+      x-operation-id-source: derived
   /connectors/pancakeswap-sol/clmm/open-position:
     post:
       tags:
@@ -603,6 +627,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors pancakeswap sol clmm open position
+      x-summary-source: derived
+      operationId: postConnectorsPancakeswapSolClmmOpenPosition
+      x-operation-id-source: derived
   /connectors/pancakeswap-sol/clmm/add-liquidity:
     post:
       tags:
@@ -678,6 +706,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors pancakeswap sol clmm add liquidity
+      x-summary-source: derived
+      operationId: postConnectorsPancakeswapSolClmmAddLiquidity
+      x-operation-id-source: derived
   /connectors/pancakeswap-sol/clmm/remove-liquidity:
     post:
       tags:
@@ -743,6 +775,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors pancakeswap sol clmm remove liquidity
+      x-summary-source: derived
+      operationId: postConnectorsPancakeswapSolClmmRemoveLiquidity
+      x-operation-id-source: derived
   /connectors/pancakeswap-sol/clmm/collect-fees:
     post:
       tags:
@@ -801,6 +837,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors pancakeswap sol clmm collect fees
+      x-summary-source: derived
+      operationId: postConnectorsPancakeswapSolClmmCollectFees
+      x-operation-id-source: derived
   /connectors/pancakeswap-sol/clmm/close-position:
     post:
       tags:
@@ -868,3 +908,7 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors pancakeswap sol clmm close position
+      x-summary-source: derived
+      operationId: postConnectorsPancakeswapSolClmmClosePosition
+      x-operation-id-source: derived

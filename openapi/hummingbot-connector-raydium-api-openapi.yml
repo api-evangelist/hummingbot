@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/raydium API
+  title: Hummingbot Gateway /connector/raydium API
   description: API endpoints for interacting with DEXs and blockchains
   version: dev-2.11.0
 servers:
@@ -62,6 +62,10 @@ paths:
                 - price
                 - baseTokenAmount
                 - quoteTokenAmount
+      summary: Get connectors raydium amm pool info
+      x-summary-source: derived
+      operationId: getConnectorsRaydiumAmmPoolInfo
+      x-operation-id-source: derived
   /connectors/raydium/amm/position-info:
     get:
       tags:
@@ -125,6 +129,10 @@ paths:
                 - baseTokenAmount
                 - quoteTokenAmount
                 - price
+      summary: Get connectors raydium amm position info
+      x-summary-source: derived
+      operationId: getConnectorsRaydiumAmmPositionInfo
+      x-operation-id-source: derived
   /connectors/raydium/amm/quote-liquidity:
     get:
       tags:
@@ -205,6 +213,10 @@ paths:
                 properties:
                   error:
                     type: string
+      summary: Get connectors raydium amm quote liquidity
+      x-summary-source: derived
+      operationId: getConnectorsRaydiumAmmQuoteLiquidity
+      x-operation-id-source: derived
   /connectors/raydium/amm/quote-swap:
     get:
       tags:
@@ -307,6 +319,10 @@ paths:
                 - minAmountOut
                 - maxAmountIn
                 - priceImpactPct
+      summary: Get connectors raydium amm quote swap
+      x-summary-source: derived
+      operationId: getConnectorsRaydiumAmmQuoteSwap
+      x-operation-id-source: derived
   /connectors/raydium/amm/execute-swap:
     post:
       tags:
@@ -388,6 +404,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors raydium amm execute swap
+      x-summary-source: derived
+      operationId: postConnectorsRaydiumAmmExecuteSwap
+      x-operation-id-source: derived
   /connectors/raydium/amm/add-liquidity:
     post:
       tags:
@@ -463,6 +483,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors raydium amm add liquidity
+      x-summary-source: derived
+      operationId: postConnectorsRaydiumAmmAddLiquidity
+      x-operation-id-source: derived
   /connectors/raydium/amm/remove-liquidity:
     post:
       tags:
@@ -528,6 +552,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors raydium amm remove liquidity
+      x-summary-source: derived
+      operationId: postConnectorsRaydiumAmmRemoveLiquidity
+      x-operation-id-source: derived
   /connectors/raydium/clmm/pool-info:
     get:
       tags:
@@ -586,6 +614,10 @@ paths:
                 - baseTokenAmount
                 - quoteTokenAmount
                 - activeBinId
+      summary: Get connectors raydium clmm pool info
+      x-summary-source: derived
+      operationId: getConnectorsRaydiumClmmPoolInfo
+      x-operation-id-source: derived
   /connectors/raydium/clmm/positions-owned:
     get:
       tags:
@@ -663,6 +695,10 @@ paths:
                   - lowerPrice
                   - upperPrice
                   - price
+      summary: Get connectors raydium clmm positions owned
+      x-summary-source: derived
+      operationId: getConnectorsRaydiumClmmPositionsOwned
+      x-operation-id-source: derived
   /connectors/raydium/clmm/position-info:
     get:
       tags:
@@ -745,6 +781,10 @@ paths:
                 - lowerPrice
                 - upperPrice
                 - price
+      summary: Get connectors raydium clmm position info
+      x-summary-source: derived
+      operationId: getConnectorsRaydiumClmmPositionInfo
+      x-operation-id-source: derived
   /connectors/raydium/clmm/quote-position:
     get:
       tags:
@@ -831,6 +871,10 @@ paths:
                 - quoteTokenAmount
                 - baseTokenAmountMax
                 - quoteTokenAmountMax
+      summary: Get connectors raydium clmm quote position
+      x-summary-source: derived
+      operationId: getConnectorsRaydiumClmmQuotePosition
+      x-operation-id-source: derived
   /connectors/raydium/clmm/quote-swap:
     get:
       tags:
@@ -933,6 +977,10 @@ paths:
                 - minAmountOut
                 - maxAmountIn
                 - priceImpactPct
+      summary: Get connectors raydium clmm quote swap
+      x-summary-source: derived
+      operationId: getConnectorsRaydiumClmmQuoteSwap
+      x-operation-id-source: derived
   /connectors/raydium/clmm/execute-swap:
     post:
       tags:
@@ -1033,6 +1081,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors raydium clmm execute swap
+      x-summary-source: derived
+      operationId: postConnectorsRaydiumClmmExecuteSwap
+      x-operation-id-source: derived
   /connectors/raydium/clmm/open-position:
     post:
       tags:
@@ -1122,6 +1174,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors raydium clmm open position
+      x-summary-source: derived
+      operationId: postConnectorsRaydiumClmmOpenPosition
+      x-operation-id-source: derived
   /connectors/raydium/clmm/add-liquidity:
     post:
       tags:
@@ -1197,6 +1253,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors raydium clmm add liquidity
+      x-summary-source: derived
+      operationId: postConnectorsRaydiumClmmAddLiquidity
+      x-operation-id-source: derived
   /connectors/raydium/clmm/remove-liquidity:
     post:
       tags:
@@ -1262,6 +1322,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors raydium clmm remove liquidity
+      x-summary-source: derived
+      operationId: postConnectorsRaydiumClmmRemoveLiquidity
+      x-operation-id-source: derived
   /connectors/raydium/clmm/collect-fees:
     post:
       tags:
@@ -1313,6 +1377,10 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors raydium clmm collect fees
+      x-summary-source: derived
+      operationId: postConnectorsRaydiumClmmCollectFees
+      x-operation-id-source: derived
   /connectors/raydium/clmm/close-position:
     post:
       tags:
@@ -1380,3 +1448,7 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create connectors raydium clmm close position
+      x-summary-source: derived
+      operationId: postConnectorsRaydiumClmmClosePosition
+      x-operation-id-source: derived

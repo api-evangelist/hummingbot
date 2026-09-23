@@ -1,18 +1,18 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /pools API
+  title: Hummingbot Gateway /pools API
   description: API endpoints for interacting with DEXs and blockchains
   version: dev-2.11.0
 servers:
 - url: http://localhost:15888
 tags:
-- name: /pools
+- name: Pools
   description: Pool management endpoints
 paths:
   /pools/{tradingPair}:
     get:
       tags:
-      - /pools
+      - Pools
       description: Get a specific pool by trading pair
       parameters:
       - schema:
@@ -114,10 +114,14 @@ paths:
                 properties:
                   message:
                     type: string
+      summary: Get pools by trading pair
+      x-summary-source: derived
+      operationId: getPoolsByTradingPair
+      x-operation-id-source: derived
   /pools/find/{address}:
     get:
       tags:
-      - /pools
+      - Pools
       description: Get detailed pool information by address from GeckoTerminal
       parameters:
       - schema:
@@ -219,10 +223,14 @@ paths:
                 - quoteTokenAddress
                 - feePct
                 - address
+      summary: Get pools find by address
+      x-summary-source: derived
+      operationId: getPoolsFindByAddress
+      x-operation-id-source: derived
   /pools/find:
     get:
       tags:
-      - /pools
+      - Pools
       description: Find pools for a token pair from GeckoTerminal
       parameters:
       - schema:
@@ -384,10 +392,14 @@ paths:
                   - quoteTokenAddress
                   - feePct
                   - address
+      summary: Get pools find
+      x-summary-source: derived
+      operationId: getPoolsFind
+      x-operation-id-source: derived
   /pools/:
     get:
       tags:
-      - /pools
+      - Pools
       description: List all pools for a connector, optionally filtered by network, type, or search term
       parameters:
       - schema:
@@ -478,9 +490,13 @@ paths:
                   - quoteTokenAddress
                   - feePct
                   - address
+      summary: Get pools
+      x-summary-source: derived
+      operationId: getPools
+      x-operation-id-source: derived
     post:
       tags:
-      - /pools
+      - Pools
       description: Add a new pool
       requestBody:
         content:
@@ -560,10 +576,14 @@ paths:
                 properties:
                   message:
                     type: string
+      summary: Create pools
+      x-summary-source: derived
+      operationId: postPools
+      x-operation-id-source: derived
   /pools/save/{address}:
     post:
       tags:
-      - /pools
+      - Pools
       description: Find pool from GeckoTerminal and save it to the pool list
       parameters:
       - schema:
@@ -673,10 +693,14 @@ paths:
                 required:
                 - message
                 - pool
+      summary: Create pools save by address
+      x-summary-source: derived
+      operationId: postPoolsSaveByAddress
+      x-operation-id-source: derived
   /pools/{address}:
     delete:
       tags:
-      - /pools
+      - Pools
       description: Remove a pool by address
       parameters:
       - schema:
@@ -743,3 +767,7 @@ paths:
                 properties:
                   message:
                     type: string
+      summary: Delete pools by address
+      x-summary-source: derived
+      operationId: deletePoolsByAddress
+      x-operation-id-source: derived

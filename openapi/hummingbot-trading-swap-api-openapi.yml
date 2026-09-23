@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /trading/swap API
+  title: Hummingbot Gateway /trading/swap API
   description: API endpoints for interacting with DEXs and blockchains
   version: dev-2.11.0
 servers:
@@ -117,6 +117,10 @@ paths:
                 - priceImpactPct
                 - minAmountOut
                 - maxAmountIn
+      summary: Get trading swap quote
+      x-summary-source: derived
+      operationId: getTradingSwapQuote
+      x-operation-id-source: derived
   /trading/swap/execute:
     post:
       tags:
@@ -220,3 +224,7 @@ paths:
                 required:
                 - signature
                 - status
+      summary: Create trading swap execute
+      x-summary-source: derived
+      operationId: postTradingSwapExecute
+      x-operation-id-source: derived

@@ -1,18 +1,18 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hummingbot Gateway /chain/ethereum /chain/ethereum /tokens API
+  title: Hummingbot Gateway /tokens API
   description: API endpoints for interacting with DEXs and blockchains
   version: dev-2.11.0
 servers:
 - url: http://localhost:15888
 tags:
-- name: /tokens
+- name: Tokens
   description: Token management endpoints
 paths:
   /tokens/{symbolOrAddress}:
     get:
       tags:
-      - /tokens
+      - Tokens
       description: Get a specific token by symbol or address
       parameters:
       - schema:
@@ -135,10 +135,14 @@ paths:
                 - token
                 - chain
                 - network
+      summary: Get tokens by symbol or address
+      x-summary-source: derived
+      operationId: getTokensBySymbolOrAddress
+      x-operation-id-source: derived
   /tokens/find/{address}:
     get:
       tags:
-      - /tokens
+      - Tokens
       description: Get token information with market data from GeckoTerminal by address
       parameters:
       - schema:
@@ -291,10 +295,14 @@ paths:
                 - symbol
                 - address
                 - decimals
+      summary: Get tokens find by address
+      x-summary-source: derived
+      operationId: getTokensFindByAddress
+      x-operation-id-source: derived
   /tokens/:
     get:
       tags:
-      - /tokens
+      - Tokens
       description: List tokens from token lists with optional filtering
       parameters:
       - schema:
@@ -418,9 +426,13 @@ paths:
                       - decimals
                 required:
                 - tokens
+      summary: Get tokens
+      x-summary-source: derived
+      operationId: getTokens
+      x-operation-id-source: derived
     post:
       tags:
-      - /tokens
+      - Tokens
       description: Add a new token to a token list
       requestBody:
         content:
@@ -533,10 +545,14 @@ paths:
                 required:
                 - message
                 - requiresRestart
+      summary: Create tokens
+      x-summary-source: derived
+      operationId: postTokens
+      x-operation-id-source: derived
   /tokens/save/{address}:
     post:
       tags:
-      - /tokens
+      - Tokens
       description: Find token from GeckoTerminal and save it to the token list
       parameters:
       - schema:
@@ -652,10 +668,14 @@ paths:
                 required:
                 - message
                 - token
+      summary: Create tokens save by address
+      x-summary-source: derived
+      operationId: postTokensSaveByAddress
+      x-operation-id-source: derived
   /tokens/{address}:
     delete:
       tags:
-      - /tokens
+      - Tokens
       description: Remove a token from a token list by address
       parameters:
       - schema:
@@ -706,3 +726,7 @@ paths:
                 required:
                 - message
                 - requiresRestart
+      summary: Delete tokens by address
+      x-summary-source: derived
+      operationId: deleteTokensByAddress
+      x-operation-id-source: derived

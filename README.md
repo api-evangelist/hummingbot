@@ -64,6 +64,146 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Hummingbot is a company surfaced as a portfolio company of initialized-capital and added to the API Evangelist network as a stub for enrichment. Sector: crypto. This profile is a lead awaiting the enrichment pipeline.
+Hummingbot is an open source Python framework, maintained by the Hummingbot Foundation, that lets traders build and run automated, high-frequency crypto trading strategies across both centralized (CEX) and decentralized (DEX) venues. The project ships several developer-facing components: the Hummingbot client (a CLI trading bot), Gateway (a TypeScript middleware that standardizes DEX/blockchain endpoints behind one REST API on port 15888, documented with a published OpenAPI spec), the Hummingbot API (a FastAPI REST server on port 8000 that orchestrates multiple bots, accounts, portfolios, and market data), an async Python API client, an official Model Context Protocol (MCP) server, and a set of open Agent Skills for AI trading agents. With 300+ exchange connectors and Apache-2.0 licensing, Hummingbot reports having facilitated tens of billions of dollars in trade volume across 100K+ deployed instances.
 
-Backed by: initialized-capital — https://hummingbot.io/
+**Areas:** Company · Cryptocurrency · Trading · Blockchain · DeFi · Decentralized Exchange · Open Source · Market Making · Algorithmic Trading · Bots
+
+## Hummingbot on APIs.io
+
+Everything profiled for Hummingbot is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/hummingbot/](https://apis.io/providers/hummingbot/)** — or go straight to one of the APIs or properties below.
+
+### APIs (17)
+
+- [Hummingbot API](https://apis.io/apis/hummingbot/hummingbot-api/) — The Hummingbot API is a FastAPI backend service (default port 8000) that orchestrates multiple trading bots and exposes REST routers for accounts and…
+- [Hummingbot /chain/ethereum API](https://apis.io/apis/hummingbot/hummingbot-chain-ethereum-api/) — Ethereum and EVM-based chain endpoints
+- [Hummingbot /chain/solana API](https://apis.io/apis/hummingbot/hummingbot-chain-solana-api/) — Solana and SVM-based chain endpoints
+- [Hummingbot /config API](https://apis.io/apis/hummingbot/hummingbot-config-api/) — System configuration endpoints
+- [Hummingbot /connector/0x API](https://apis.io/apis/hummingbot/hummingbot-connector-0x-api/) — 0x connector endpoints
+- [Hummingbot /connector/jupiter API](https://apis.io/apis/hummingbot/hummingbot-connector-jupiter-api/) — Jupiter connector endpoints
+- [Hummingbot /connector/meteora API](https://apis.io/apis/hummingbot/hummingbot-connector-meteora-api/) — Meteora connector endpoints
+- [Hummingbot /connector/orca API](https://apis.io/apis/hummingbot/hummingbot-connector-orca-api/) — Orca connector endpoints
+- [Hummingbot /connector/pancakeswap API](https://apis.io/apis/hummingbot/hummingbot-connector-pancakeswap-api/) — PancakeSwap EVM connector endpoints
+- [Hummingbot /connector/pancakeswap-sol API](https://apis.io/apis/hummingbot/hummingbot-connector-pancakeswap-sol-api/) — PancakeSwap Solana connector endpoints
+- [Hummingbot /connector/raydium API](https://apis.io/apis/hummingbot/hummingbot-connector-raydium-api/) — Raydium connector endpoints
+- [Hummingbot /connector/uniswap API](https://apis.io/apis/hummingbot/hummingbot-connector-uniswap-api/) — Uniswap connector endpoints
+- [Hummingbot /pools API](https://apis.io/apis/hummingbot/hummingbot-pools-api/) — Pool management endpoints
+- [Hummingbot /tokens API](https://apis.io/apis/hummingbot/hummingbot-tokens-api/) — Token management endpoints
+- [Hummingbot /trading/clmm API](https://apis.io/apis/hummingbot/hummingbot-trading-clmm-api/) — Unified cross-chain CLMM (Concentrated Liquidity) endpoints
+- [Hummingbot /trading/swap API](https://apis.io/apis/hummingbot/hummingbot-trading-swap-api/) — Unified cross-chain swap endpoints
+- [Hummingbot /wallet API](https://apis.io/apis/hummingbot/hummingbot-wallet-api/) — Wallet management endpoints
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [hummingbot-mcp](https://apis.io/servers/hummingbot/hummingbot-mcp/)
+
+#### Collections (16)
+
+Postman and Open Collection request collections.
+
+- [Hummingbot Gateway /chain/ethereum /chain/ethereum /chain/ethereum API](https://apis.io/collections/hummingbot/open-hummingbot-chain-ethereum-api/)
+- [Hummingbot Gateway /chain/ethereum /chain/ethereum /chain/solana API](https://apis.io/collections/hummingbot/open-hummingbot-chain-solana-api/)
+- [Hummingbot Gateway /chain/ethereum /chain/ethereum /config API](https://apis.io/collections/hummingbot/open-hummingbot-config-api/)
+- [Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/0x API](https://apis.io/collections/hummingbot/open-hummingbot-connector-0x-api/)
+- [Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/jupiter API](https://apis.io/collections/hummingbot/open-hummingbot-connector-jupiter-api/)
+- [Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/meteora API](https://apis.io/collections/hummingbot/open-hummingbot-connector-meteora-api/)
+- [Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/orca API](https://apis.io/collections/hummingbot/open-hummingbot-connector-orca-api/)
+- [Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/pancakeswap API](https://apis.io/collections/hummingbot/open-hummingbot-connector-pancakeswap-api/)
+- [Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/pancakeswap-sol API](https://apis.io/collections/hummingbot/open-hummingbot-connector-pancakeswap-sol-api/)
+- [Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/raydium API](https://apis.io/collections/hummingbot/open-hummingbot-connector-raydium-api/)
+- [Hummingbot Gateway /chain/ethereum /chain/ethereum /connector/uniswap API](https://apis.io/collections/hummingbot/open-hummingbot-connector-uniswap-api/)
+- [Hummingbot Gateway /chain/ethereum /chain/ethereum /pools API](https://apis.io/collections/hummingbot/open-hummingbot-pools-api/)
+- [Hummingbot Gateway /chain/ethereum /chain/ethereum /tokens API](https://apis.io/collections/hummingbot/open-hummingbot-tokens-api/)
+- [Hummingbot Gateway /chain/ethereum /chain/ethereum /trading/clmm API](https://apis.io/collections/hummingbot/open-hummingbot-trading-clmm-api/)
+- [Hummingbot Gateway /chain/ethereum /chain/ethereum /trading/swap API](https://apis.io/collections/hummingbot/open-hummingbot-trading-swap-api/)
+- [Hummingbot Gateway /chain/ethereum /chain/ethereum /wallet API](https://apis.io/collections/hummingbot/open-hummingbot-wallet-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Hummingbot Gateway Overlay](https://apis.io/overlays/hummingbot/hummingbot-gateway-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Hummingbot Authentication](https://apis.io/security/hummingbot/hummingbot-authentication/)
+- [Hummingbot Domain Security](https://apis.io/security/hummingbot/hummingbot-domain-security/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Hummingbot Rate Limits](https://apis.io/rate-limits/hummingbot/hummingbot-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://hummingbot.io/)
+- [Documentation](https://hummingbot.org/docs/)
+- [Getting started](https://hummingbot.org/installation/)
+- [API reference](https://hummingbot.org/hummingbot-api/)
+- [Support](https://hummingbot.org/community/)
+- [Changelog](https://hummingbot.org/release-notes/)
+- [Blog](https://hummingbot.org/blog/)
+- [GitHub](https://github.com/hummingbot)
+
+## API Evangelist rating
+
+**Kin Score 35.9** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 38.2 |
+| Contract governance | 4.5 |
+| Operational transparency | 39.5 |
+| Developer ergonomics | 78.6 |
+| Access clarity | 0.0 |
+
+**Agent readiness 27.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | yes |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 15.7** — Securities & Market Data
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/hummingbot/](https://apis.io/providers/hummingbot/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Hummingbot: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/hummingbot/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
